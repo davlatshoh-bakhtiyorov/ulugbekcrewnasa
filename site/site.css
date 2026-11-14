@@ -72,18 +72,8 @@ h3 { font-size: 20px; font-weight: 700; }
 .hero-text .lead { font-size: 20px; max-width: 46ch; }
 .lead-note { color: var(--hint); font-size: 16px; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 22px; }
-.frame { margin: 0; }
-.frame-map { position: relative; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); background: var(--bg2); }
 .map { width: 100%; height: 400px; background: var(--bg2); }
 .map.tall { height: 460px; border-radius: 16px; overflow: hidden; }
-.frame-label { position: absolute; left: 14px; top: 14px; z-index: 450; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-radius: 12px; padding: 8px 12px; line-height: 1.1; pointer-events: none; }
-.frame-label .month { display: block; font-size: 24px; font-weight: 800; letter-spacing: -.01em; }
-.frame-label .year { display: block; font-size: 12px; color: var(--hint); margin-top: 2px; }
-.play { position: absolute; right: 14px; bottom: 34px; z-index: 450; width: 38px; height: 38px; border-radius: 50%; border: 0; background: color-mix(in srgb, var(--bg) 90%, transparent); color: var(--text); font-size: 12px; cursor: pointer; box-shadow: 0 2px 8px rgb(0 0 0 / .2); }
-.frame-cap { margin: 12px 2px 4px; font-size: 16px; font-weight: 600; min-height: 1.5em; }
-.frame-foot { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
-.legend-bar { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--hint); }
-.legend-bar i { display: inline-block; width: 120px; height: 10px; border-radius: 5px; }
 .nasa-tiles { transition: opacity .9s ease; }
 @media (prefers-reduced-motion: reduce) { .nasa-tiles { transition: none; } }
 .leaflet-container { font: inherit; }
@@ -334,3 +324,61 @@ details.fold > :not(summary) { margin-top: 12px; }
 /* yig'im vaqti xaritasi */
 .hv-legend { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--hint); margin-top: 8px; }
 .hv-legend i { flex: 1; max-width: 220px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, #f2c14e, #9ccc5a, #1f9d4f, #0e4d2a); }
+
+/* ===== v3: soddalik - ikkinchi darajali matn "Batafsil" ostida ===== */
+.h2row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.h2row h2 { margin: 0; }
+.info { border: 1px solid var(--line); background: var(--bg); color: var(--hint); border-radius: 999px; padding: 6px 12px; font: 600 13px system-ui, sans-serif; cursor: pointer; white-space: nowrap; }
+.info[aria-expanded="true"] { color: var(--text); border-color: var(--text); }
+.sec:not(.open) .detail { display: none !important; }
+.sec.open .detail { animation: fadein .35s ease; }
+@keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ===== v3: bosh qismdagi 3D qatlamlar ===== */
+.stack-fig { margin: 0; }
+.stack { position: relative; height: 440px; perspective: 1100px; perspective-origin: 50% 40%; }
+.stack-in { position: absolute; left: 10%; right: 10%; top: 22%; height: 60%; transform-style: preserve-3d; transform: rotateX(var(--rx, 58deg)) rotateZ(var(--rz, -22deg)); transition: transform .25s ease-out; will-change: transform; }
+.plane { position: absolute; inset: 0; border-radius: 10px; overflow: hidden; background: var(--bg2); box-shadow: 0 14px 34px rgb(0 0 0 / .28); transform: translateZ(calc(var(--i) * var(--gap, 12px))); transition: transform .25s ease-out; will-change: transform; outline: 1px solid rgb(255 255 255 / .35); }
+.plane canvas { width: 100%; height: 100%; display: block; }
+.plane-lab { opacity: var(--lab, 1); transition: opacity .25s; position: absolute; left: 10px; bottom: 10px; background: color-mix(in srgb, var(--bg) 90%, transparent); border-radius: 8px; padding: 4px 9px; font: 700 12px system-ui, sans-serif; color: var(--text); white-space: nowrap; }
+.plane[data-k="soil"] canvas, .plane[data-k="water"] canvas, .plane[data-k="heat"] canvas { image-rendering: pixelated; }
+@media (max-width: 900px) { .stack { height: 330px; } .stack-in { left: 8%; right: 8%; } }
+@media (prefers-reduced-motion: reduce) { .stack-in, .plane { transition: none; } }
+
+/* ===== v3: katta NASA xaritasi (ilova bilan bir xil sinflar) ===== */
+.map-sec .mapgrid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 18px; align-items: start; margin-top: 10px; }
+.bigmap { height: 64vh; min-height: 400px; border-radius: 16px; overflow: hidden; background: var(--bg2); }
+@media (max-width: 900px) { .map-sec .mapgrid { grid-template-columns: 1fr; } .bigmap { height: 58vh; min-height: 320px; } }
+.layerbar { display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 6px; margin-top: 4px; scrollbar-width: none; }
+.layerbar::-webkit-scrollbar { display: none; }
+.lchip { flex: 0 0 auto; border: 1.5px solid var(--line); background: var(--bg); color: var(--text); border-radius: 999px; padding: 8px 14px; font: 600 14px system-ui, sans-serif; white-space: nowrap; cursor: pointer; }
+.lchip[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
+.nasa-tiles { transition: opacity .35s ease; }
+.nasa-tiles img { image-rendering: pixelated; }
+.timebar { display: grid; grid-template-columns: 40px 1fr; column-gap: 12px; align-items: center; margin: 10px 0 6px; }
+.timebar .play { position: static; grid-row: 1 / span 2; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--btn); color: var(--btn-text); font-size: 13px; font-weight: 800; letter-spacing: -1px; box-shadow: none; cursor: pointer; }
+.timebar input[type="range"] { width: 100%; margin: 0; accent-color: var(--btn); }
+.frame-label { font-size: 13px; font-weight: 600; }
+.legend { margin: 4px 0 8px; }
+.lg-bar { height: 10px; border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08); }
+.lg-ticks { position: relative; height: 16px; font-size: 11px; color: var(--hint); }
+.lg-ticks span { position: absolute; top: 2px; transform: translateX(-50%); white-space: nowrap; }
+.lg-ticks span.first { transform: none; }
+.lg-ticks span.last { transform: translateX(-100%); }
+.lg-ends { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-top: 2px; }
+.lg-desc { margin: 2px 0 0; font-size: 12.5px; color: var(--hint); }
+.lg-desc b { color: var(--text); }
+.readout { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px 10px; }
+.readout h3 { margin-bottom: 2px; font-size: 18px; }
+.readout > p { margin: 4px 0; }
+.nrows { list-style: none; padding: 0; margin: 8px 0 4px; display: grid; gap: 6px; }
+.nrow { width: 100%; display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: center; text-align: left; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; color: var(--text); font: inherit; cursor: pointer; }
+.nrow[aria-pressed="true"] { border-color: var(--btn); box-shadow: inset 0 0 0 1px var(--btn); }
+.sw { width: 18px; height: 18px; border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .18); }
+.sw.empty { background: repeating-linear-gradient(45deg, var(--line) 0 3px, transparent 3px 6px); }
+.nname { display: flex; flex-direction: column; font-weight: 600; font-size: 14px; line-height: 1.25; }
+.nname small { font-weight: 400; font-size: 12px; color: var(--hint); }
+.nval { font-size: 16px; white-space: nowrap; }
+.secondary { background: var(--bg2); color: var(--text); border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px; font: 600 14px system-ui, sans-serif; cursor: pointer; }
+.secondary.wide { width: 100%; margin: 8px 0 4px; }
+.readout .chips { margin-top: 8px; }

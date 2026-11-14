@@ -26,7 +26,7 @@ export const PRICE_POINTS = [
 export const TEXT = {
   en: {
     title: 'Neyra — see before you sow',
-    nav_problem: 'Problem', nav_how: 'How it works', nav_herd: 'Harvest', nav_window: 'Market window', nav_climate: 'Climate', nav_field: 'One field', nav_method: 'Method',
+    nav_map: 'Map', nav_problem: 'Problem', nav_how: 'How it works', nav_herd: 'Harvest', nav_window: 'Market window', nav_climate: 'Climate', nav_field: 'One field', nav_method: 'Method',
     openApp: 'Open the app', lang: 'UZ',
     kicker: 'NASA Space Apps Challenge 2026 · “Field Shift: Adapting Farms with NASA Data” · Tashkent',
     h1: 'See before you sow.',
@@ -36,6 +36,9 @@ export const TEXT = {
     heroWhat: 'Vegetation seen by NASA MODIS, month by month, over fields near Jarqo‘rg‘on (Surkhandarya).',
     hero_green: 'Fields are green — a crop is growing', hero_mid: 'Fields are turning — harvest or emergence', hero_bare: 'Fields are bare — just after harvest', hero_na: 'No clear view (cloud)',
     heroLegend: 'bare', heroLegend2: 'dense green',
+    stack_cap: 'NASA layers stacked over the demo field near Jarqo‘rg‘on — scroll to open them', stack_sat: 'Satellite',
+    map_eyebrow: 'The map', map_h: 'See your field the way NASA sees it', map_hint: 'Pick a layer, drag the date, tap the map — the numbers at that point appear.',
+    details: 'Details', close: 'Close',
     play: 'Play', pause: 'Pause',
     st_heat: 'days a year at or above 38 °C near Jarqo‘rg‘on', st_heatSub: '1985–2004 → 2006–2025 · NASA POWER',
     st_wheat: 'when winter wheat ripens: FAO table → what NASA MODIS saw on real fields', st_wheatSub: '{n} field-years · MCD12Q2 · 2016–2025',
@@ -141,7 +144,7 @@ export const TEXT = {
   },
   uz: {
     title: 'Neyra — ekishdan oldin ko\'ring',
-    nav_problem: 'Muammo', nav_how: 'Qanday ishlaydi', nav_herd: 'Yig\'im', nav_window: 'Bozor oynasi', nav_climate: 'Iqlim', nav_field: 'Bitta dala', nav_method: 'Usul',
+    nav_map: 'Xarita', nav_problem: 'Muammo', nav_how: 'Qanday ishlaydi', nav_herd: 'Yig\'im', nav_window: 'Bozor oynasi', nav_climate: 'Iqlim', nav_field: 'Bitta dala', nav_method: 'Usul',
     openApp: 'Ilovani ochish', lang: 'EN',
     kicker: 'NASA Space Apps Challenge 2026 · “Field Shift: Adapting Farms with NASA Data” · Toshkent',
     h1: 'Ekishdan oldin ko\'ring.',
@@ -151,6 +154,9 @@ export const TEXT = {
     heroWhat: 'NASA MODIS ko\'rgan o\'simlik, oyma-oy, Jarqo\'rg\'on (Surxondaryo) atrofidagi dalalar.',
     hero_green: 'Dalalar yashil — ekin o\'smoqda', hero_mid: 'Dalalar o\'zgarmoqda — o\'rim yoki unib chiqish', hero_bare: 'Dalalar ochiq — o\'rimdan keyin', hero_na: 'Aniq ko\'rinmaydi (bulut)',
     heroLegend: 'ochiq yer', heroLegend2: 'quyuq yashil',
+    stack_cap: 'NASA qatlamlari Jarqo\'rg\'on yonidagi namuna dala ustida — aylantiring, qatlamlar ochiladi', stack_sat: 'Sun\'iy yo\'ldosh',
+    map_eyebrow: 'Xarita', map_h: 'Dalangizni NASA ko\'rganidek ko\'ring', map_hint: 'Qatlamni tanlang, sanani suring, xaritaga bosing — shu nuqtadagi raqamlar chiqadi.',
+    details: 'Batafsil', close: 'Yopish',
     play: 'Boshlash', pause: 'To\'xtatish',
     st_heat: 'Jarqo\'rg\'onda yiliga 38 °C va undan issiq kunlar', st_heatSub: '1985–2004 → 2006–2025 · NASA POWER',
     st_wheat: 'kuzgi bug\'doy qachon pishadi: FAO jadvali → NASA MODIS haqiqiy dalalarda ko\'rgani', st_wheatSub: '{n} dala-yil · MCD12Q2 · 2016–2025',

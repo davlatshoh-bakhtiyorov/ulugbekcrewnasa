@@ -24,6 +24,7 @@
     <div class="wrap top-in">
       <a class="brand" href="#"><img src="site/assets/neyra-192.png" alt="" width="34" height="34"><span>Neyra</span></a>
       <nav class="nav" aria-label="Sections">
+        <a href="#map" data-t="nav_map"></a>
         <a href="#problem" data-t="nav_problem"></a>
         <a href="#how" data-t="nav_how"></a>
         <a href="#herd" data-t="nav_herd" id="navHerd" hidden></a>
@@ -38,68 +39,78 @@
   </header>
 
   <main>
-    <!-- 0. Bosh qism -->
+    <!-- 0. Bosh qism: matn + skrollda ochiladigan 3D qatlamlar -->
     <section class="hero">
       <div class="wrap hero-in">
         <div class="hero-text reveal">
           <p class="eyebrow" data-t="kicker"></p>
           <h1 data-t="h1"></h1>
           <p class="lead" data-t="lead"></p>
-          <p class="lead-note" data-t="leadNote"></p>
           <div class="ctas">
             <a class="btn" id="ctaTg" href="https://t.me/ulugbekcrewbot" target="_blank" rel="noopener" data-t="btnTg"></a>
             <a class="btn ghost" href="web/" data-t="btnWeb"></a>
             <a class="link" href="https://github.com/davlatshoh-bakhtiyorov/ulugbekcrewnasa" target="_blank" rel="noopener" data-t="btnCode"></a>
           </div>
         </div>
-        <figure class="frame reveal">
-          <div class="frame-map">
-            <div id="heroMap" class="map" role="img"></div>
-            <div class="frame-label"><span id="heroMonth" class="month"></span><span id="heroYear" class="year"></span></div>
-            <button class="play" id="heroPlay" type="button" aria-label="Pause">❚❚</button>
-          </div>
-          <figcaption>
-            <p id="heroCaption" class="frame-cap"></p>
-            <div class="frame-foot">
-              <div class="legend-bar"><span data-t="heroLegend"></span><i id="heroLegend"></i><span data-t="heroLegend2"></span></div>
-              <p class="muted small" data-t="heroWhat"></p>
-            </div>
-            <div class="chips" id="heroChips"></div>
-          </figcaption>
+        <figure class="stack-fig">
+          <div id="stack" class="stack" role="img"><div id="stackIn" class="stack-in"></div></div>
+          <figcaption class="muted small" data-t="stack_cap"></figcaption>
         </figure>
       </div>
       <div class="wrap stats reveal" id="stats"></div>
     </section>
 
-    <!-- 1. Muammo -->
-    <section id="problem" class="sec">
+    <!-- 1. Katta interaktiv NASA xaritasi (ilovadagi nasa-map.js bilan bir xil kod va identifikatorlar) -->
+    <section id="map" class="sec map-sec">
+      <div class="wrap">
+        <p class="eyebrow" data-t="map_eyebrow"></p>
+        <div class="h2row"><h2 data-t="map_h"></h2></div>
+        <p class="lede" data-t="map_hint"></p>
+        <div id="layerBar" class="layerbar" role="group"></div>
+      </div>
+      <div class="wrap mapgrid">
+        <div>
+          <div id="nasaMap" class="bigmap" role="application"></div>
+          <div id="timeBar" class="timebar" hidden>
+            <button id="play" class="play" type="button" aria-label="Play">▶</button>
+            <input id="frame" type="range" min="0" max="0" step="1" value="0">
+            <span id="frameLabel" class="frame-label" aria-live="polite"></span>
+          </div>
+          <div id="legend" class="legend" hidden></div>
+        </div>
+        <section id="readout" class="readout" hidden></section>
+      </div>
+    </section>
+
+    <!-- 2. Muammo -->
+    <section id="problem" class="sec alt">
       <div class="wrap">
         <p class="eyebrow" data-t="pr_eyebrow"></p>
-        <h2 data-t="pr_h"></h2>
-        <p class="lede" data-t="pr_p"></p>
+        <div class="h2row"><h2 data-t="pr_h"></h2></div>
+        <p class="lede detail" data-t="pr_p"></p>
         <div class="two reveal">
           <figure class="loop-fig">
             <div id="loop" class="loop"></div>
-            <figcaption class="muted small" data-t="loop_cap"></figcaption>
+            <figcaption class="muted small detail" data-t="loop_cap"></figcaption>
           </figure>
           <figure class="price-fig">
             <h3 class="chart-h" data-t="price_h"></h3>
             <div id="priceChart" class="pricechart"></div>
             <ol id="priceNotes" class="notes"></ol>
-            <figcaption class="muted small" data-t="price_cap"></figcaption>
+            <figcaption class="muted small detail" data-t="price_cap"></figcaption>
           </figure>
         </div>
-        <div class="facts reveal" id="facts"></div>
-        <p class="aside" data-t="pr_other"></p>
-        <div class="chips" id="problemChips"></div>
+        <div class="facts detail" id="facts"></div>
+        <p class="aside detail" data-t="pr_other"></p>
+        <div class="chips detail" id="problemChips"></div>
       </div>
     </section>
 
-    <!-- 2. Qanday ishlaydi -->
-    <section id="how" class="sec alt">
+    <!-- 3. Qanday ishlaydi -->
+    <section id="how" class="sec">
       <div class="wrap">
         <p class="eyebrow" data-t="how_eyebrow"></p>
-        <h2 data-t="how_h"></h2>
+        <div class="h2row"><h2 data-t="how_h"></h2></div>
         <ol class="steps reveal">
           <li><span class="num">1</span><h3 data-t="how_1h"></h3><p data-t="how_1"></p></li>
           <li><span class="num">2</span><h3 data-t="how_2h"></h3><p data-t="how_2"></p></li>
@@ -107,7 +118,7 @@
         </ol>
         <div class="demo reveal">
           <h3 data-t="demo_h"></h3>
-          <p class="muted small" id="demoHint"></p>
+          <p class="muted small detail" id="demoHint"></p>
           <div id="demoQ"></div>
           <div class="cards" id="demoCards"></div>
           <a class="link" href="web/" data-t="demo_more"></a>
@@ -115,93 +126,95 @@
       </div>
     </section>
 
-    <!-- 3. Yig'im vaqti xaritasi (A) - ma'lumot bo'lsa ko'rinadi -->
-    <section id="herd" class="sec" hidden>
+    <!-- 4. Yig'im vaqti xaritasi (A) - ma'lumot bo'lsa ko'rinadi -->
+    <section id="herd" class="sec alt" hidden>
       <div class="wrap">
         <p class="eyebrow" data-t="hv_eyebrow"></p>
-        <h2 data-t="hv_h"></h2>
-        <p class="lede" data-t="hv_p"></p>
+        <div class="h2row"><h2 data-t="hv_h"></h2></div>
+        <p class="lede detail" data-t="hv_p"></p>
         <div class="herd-grid reveal">
           <div>
             <div id="herdMap" class="map tall"></div>
             <div class="hv-legend"><span id="hvLo"></span><i></i><span id="hvHi"></span><span data-t="hv_legend"></span></div>
             <div class="herd-ctl"><label for="herdYear" data-t="hv_year"></label> <input type="range" id="herdYear" min="2016" max="2025" step="1" value="2025"><output id="herdYearOut"></output></div>
-            <p class="muted small" id="hvN"></p>
+            <p class="muted small detail" id="hvN"></p>
           </div>
           <div class="panel">
             <h3 class="chart-h" data-t="hv_chart"></h3>
             <div id="herdChart" class="calstrip"></div>
-            <p class="muted small" data-t="hv_rule"></p>
+            <p class="muted small detail" data-t="hv_rule"></p>
           </div>
         </div>
-        <p class="note" data-t="hv_note"></p>
-        <p class="muted small" id="hvGap"></p>
-        <div class="chips" id="herdChips"></div>
+        <p class="note detail" data-t="hv_note"></p>
+        <p class="muted small detail" id="hvGap"></p>
+        <div class="chips detail" id="herdChips"></div>
       </div>
     </section>
 
-    <!-- 4. Bozor oynasi (B) -->
-    <section id="window" class="sec alt">
+    <!-- 5. Bozor oynasi (B) -->
+    <section id="window" class="sec">
       <div class="wrap">
         <p class="eyebrow" data-t="win_eyebrow"></p>
-        <h2 data-t="win_h"></h2>
-        <p class="lede" data-t="win_p"></p>
+        <div class="h2row"><h2 data-t="win_h"></h2></div>
+        <p class="lede detail" data-t="win_p"></p>
         <p class="headline reveal" id="winHead"></p>
         <div class="seg" id="winPeriod" role="group"></div>
         <div id="winStrip" class="calstrip reveal"></div>
-        <p class="muted small" data-t="win_legend"></p>
-        <p class="note" data-t="win_note"></p>
-        <div class="chips" id="winChips"></div>
+        <p class="muted small detail" data-t="win_legend"></p>
+        <p class="note detail" data-t="win_note"></p>
+        <div class="chips detail" id="winChips"></div>
       </div>
     </section>
 
-    <!-- 5. Iqlim -->
-    <section id="climate" class="sec">
+    <!-- 6. Iqlim -->
+    <section id="climate" class="sec alt">
       <div class="wrap">
         <p class="eyebrow" data-t="cl_eyebrow"></p>
-        <h2 data-t="cl_h"></h2>
-        <p class="lede" data-t="cl_p"></p>
+        <div class="h2row"><h2 data-t="cl_h"></h2></div>
+        <p class="lede detail" data-t="cl_p"></p>
         <div class="seg" id="clMetric" role="group"></div>
         <div class="cl-grid reveal">
           <div>
             <div id="clMap" class="map tall"></div>
-            <p class="muted small" data-t="cl_legend"></p>
+            <p class="muted small detail" data-t="cl_legend"></p>
           </div>
           <div id="clDetail" class="panel"></div>
         </div>
-        <p class="note" data-t="cl_note"></p>
-        <details class="fold"><summary data-t="cl_table"></summary><div class="scroll"><table class="tbl" id="clTable"></table></div></details>
-        <div class="chips" id="clChips"></div>
+        <p class="note detail" data-t="cl_note"></p>
+        <details class="fold detail"><summary data-t="cl_table"></summary><div class="scroll"><table class="tbl" id="clTable"></table></div></details>
+        <div class="chips detail" id="clChips"></div>
       </div>
     </section>
 
-    <!-- 6. Bitta dala: FAO jadvali va sun'iy yo'ldosh -->
-    <section id="field" class="sec alt">
+    <!-- 7. Bitta dala: FAO jadvali va sun'iy yo'ldosh -->
+    <section id="field" class="sec">
       <div class="wrap">
         <p class="eyebrow" data-t="f_eyebrow"></p>
-        <h2 data-t="f_h"></h2>
-        <p class="lede" data-t="f_p"></p>
+        <div class="h2row"><h2 data-t="f_h"></h2></div>
+        <p class="lede detail" data-t="f_p"></p>
         <figure class="ndvi-fig reveal">
           <h3 class="chart-h" id="ndviTitle"></h3>
           <div id="ndviChart" class="ndvi"></div>
           <ul id="ndviLegend" class="legend-list"></ul>
-          <figcaption class="muted small" data-t="ndvi_cap"></figcaption>
+          <figcaption class="muted small detail" data-t="ndvi_cap"></figcaption>
         </figure>
-        <h3 class="sub" data-t="season_h"></h3>
-        <div class="cal-grid reveal" id="calGrid"></div>
-        <details class="fold"><summary data-t="f_table"></summary>
-          <div class="scroll"><table class="tbl" id="cropTable"></table></div>
-          <p class="muted small" data-t="f_dry"></p>
-        </details>
-        <div class="chips" id="cropChips"></div>
+        <div class="detail">
+          <h3 class="sub" data-t="season_h"></h3>
+          <div class="cal-grid" id="calGrid"></div>
+          <details class="fold"><summary data-t="f_table"></summary>
+            <div class="scroll"><table class="tbl" id="cropTable"></table></div>
+            <p class="muted small" data-t="f_dry"></p>
+          </details>
+          <div class="chips" id="cropChips"></div>
+        </div>
       </div>
     </section>
 
-    <!-- 7. Usul, ma'lumot, cheklovlar -->
-    <section id="method" class="sec">
+    <!-- 8. Usul, ma'lumot, cheklovlar -->
+    <section id="method" class="sec alt">
       <div class="wrap">
         <p class="eyebrow" data-t="me_eyebrow"></p>
-        <h2 data-t="me_h"></h2>
+        <div class="h2row"><h2 data-t="me_h"></h2></div>
         <details class="fold"><summary data-t="me_sum"></summary>
           <ul class="list">
             <li data-t="me_1"></li><li data-t="me_2"></li><li data-t="me_3"></li>
@@ -221,11 +234,11 @@
       </div>
     </section>
 
-    <!-- 8. Jamoa -->
-    <section id="team" class="sec alt">
+    <!-- 9. Jamoa -->
+    <section id="team" class="sec">
       <div class="wrap">
         <p class="eyebrow" data-t="tm_eyebrow"></p>
-        <h2 data-t="tm_h"></h2>
+        <div class="h2row"><h2 data-t="tm_h"></h2></div>
         <p data-t="tm_p"></p>
         <h3 class="sub" data-t="ai_h"></h3>
         <p data-t="ai_p"></p>

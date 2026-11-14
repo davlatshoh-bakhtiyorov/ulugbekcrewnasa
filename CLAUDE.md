@@ -119,6 +119,20 @@ scripts/harvest-timing.js        npm run harvest -> site/data/harvest.json (A: s
 site/assets/             Neyra logo PNGs (transparent), favicon/apple-touch icon
 ```
 
+**Site v3 changes (14 Nov evening, user: "xaritani alohida va katta", "skrollda 3D", "hali ham juda ko'p ma'lumot").**
+- Hero = text + a **3D stack of the five NASA layers** (satellite, NDVI, SMAP L4, LST, GRACE) drawn from tiles onto
+  canvases for the demo-field extent (`boundsCanvas`, zoom ≤ 10) and laid out with CSS `perspective` + `translateZ`;
+  the gap/rotation/labels follow scroll (`onScrollStack`: desktop opens over the first 300 px, phone as it scrolls
+  into view; `prefers-reduced-motion` = fully open). Labels carry layer · resolution · frame date.
+- New section **#map "Dalangizni NASA ko'rganidek ko'ring"**: the app's `web/nasa-map.js` is reused unchanged on
+  the site (same element ids `layerBar`, `timeBar`, `play`, `frame`, `frameLabel`, `legend`, `readout`; map div
+  `#nasaMap`, 64 vh): layer chips, date slider + play, legend, tap readout with 12-frame history; "Dala pasporti"
+  button links to `web/`. The old hero crossfade map is gone.
+- **Simplicity rule:** every section shows only eyebrow + question + one visual; everything else has class
+  `detail` and is hidden until the section's "ⓘ Batafsil" button (added by `infoToggles()`, toggles `.open` on the
+  section) is pressed. Price and NDVI charts re-render on open (they need a visible container width).
+- CSS: removed the v2 hero `.frame-*`/`.play` absolute rules (they had hijacked the timebar's `.frame-label`).
+
 **Project site v2 "Neyra" (14 Nov; checked headless in Chrome at 375 px and 1280 px, uz/en, light/dark, no console
 errors, no horizontal scroll).** Files: `index.html`, `site/site.js`, `site/site.css`, `site/text.js` (uz/en strings,
 `SRC` news sources, `PRICE_POINTS`). Sections, each = eyebrow + question + one visual:

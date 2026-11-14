@@ -1,5 +1,5 @@
 // Neyra sayti (GitHub Pages ildizi). Raqamlarning hammasi data fayllaridan va ilova bilan bir xil core/ kodidan:
-//  web/data/gibs-layers.json         - NDVI kadrlari (bosh qismdagi animatsiya)
+//  web/data/gibs-layers.json         - NASA qatlamlari kadrlari (3D to'plam va katta xarita)
 //  site/data/field-ndvi.json         - namuna dalaning NDVI qatori (npm run field-ndvi)
 //  docs/pilot-ekinlar-jarqorgon.json - pilot dala natijasi (npm run pilot)
 //  site/data/climate.json            - 13 viloyat iqlim siljishi (npm run site-data)
@@ -13,7 +13,8 @@ import { barChart } from '../web/chart.js';
 import { advise } from '../core/advisor.js';
 import { CROPS, cropById } from '../core/crops.js';
 import { salinityImpact } from '../core/crop-calc.js';
-import { NASA_LAYERS, layerByKey, tileTemplate, colorAt } from '../core/gibs.js';
+import { NASA_LAYERS, layerByKey, tileUrl } from '../core/gibs.js';
+import { initNasaMap, readAt, renderNasa, setPassportHandler } from '../web/nasa-map.js';
 import { CALIBRATION } from '../core/calibration.js';
 import { doyToMMDD } from '../core/field.js';
 
@@ -65,67 +66,123 @@ async function loadJson(url) {
   return r.json();
 }
 
-// ---------------- bosh qism: NDVI animatsiyasi ----------------
-const H = { idx: 0, timer: null, layers: [], frames: [] };
-
-function heroMap() {
-  const def = layerByKey('ndvi');
-  H.frames = D.gibs.layers.ndvi.frames;
-  const map = L.map('heroMap', {
-    zoomControl: false, dragging: false, scrollWheelZoom: false, doubleClickZoom: false,
-    boxZoom: false, keyboard: false, touchZoom: false, attributionControl: true,
-  });
-  map.fitBounds([[37.15, 66.85], [38.35, 68.15]]);
-  L.tileLayer(EOX, { maxZoom: 14, attribution: EOX_ATTR }).addTo(map);
-  H.layers = H.frames.map((d) => L.tileLayer(tileTemplate(def, d), {
-    maxNativeZoom: def.z, maxZoom: 14, opacity: 0, className: 'nasa-tiles', attribution: GIBS_ATTR,
-  }).addTo(map));
-  L.circleMarker([FIELD.lat, FIELD.lon], { radius: 5, color: '#fff', weight: 2, fillColor: '#111', fillOpacity: 1, interactive: false }).addTo(map);
-  H.idx = H.frames.length - 1;
-  H.layers[H.idx].setOpacity(0.85);
-  const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  $('heroPlay').onclick = () => (H.timer ? stopHero() : playHero());
-  if (!reduce) playHero(); else stopHero();
-  heroLegend(def);
+// ---------------- bosh qism: skrollda ochiladigan 3D qatlamlar ----------------
+// Har qatlam = namuna dala atrofi (bosh qismdagi avvalgi xarita chegarasi) uchun tayllardan chizilgan rasm.
+const STACK_BOUNDS = [[37.15, 66.85], [38.35, 68.15]];
+const EOX_TILE = (z, x, y) => `https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/${z}/${y}/${x}.jpg`;
+const PLANES = ['sat', 'ndvi', 'soil', 'heat', 'water'];
+const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+const STK = { belowFold: null };
+function mercPx(lat, lon, z) {
+  const n = 256 * 2 ** z, sn = Math.sin((lat * Math.PI) / 180);
+  return { x: ((lon + 180) / 360) * n, y: (0.5 - Math.log((1 + sn) / (1 - sn)) / (4 * Math.PI)) * n };
 }
-function showFrame(i) {
-  H.layers[H.idx].setOpacity(0);
-  H.idx = i;
-  H.layers[H.idx].setOpacity(0.85);
-  heroLabel();
-}
-function playHero() {
-  clearInterval(H.timer);
-  H.timer = setInterval(() => showFrame((H.idx + 1) % H.frames.length), 1600);
-  $('heroPlay').textContent = '❚❚';
-  $('heroPlay').setAttribute('aria-label', s('pause'));
-}
-function stopHero() {
-  clearInterval(H.timer);
-  H.timer = null;
-  $('heroPlay').textContent = '▶';
-  $('heroPlay').setAttribute('aria-label', s('play'));
-}
-function heroLabel() {
-  if (!H.frames.length) return;
-  const d = H.frames[H.idx];
-  $('heroMonth').textContent = cap(T().monLong[Number(d.slice(5, 7)) - 1]);
-  $('heroYear').textContent = d.slice(0, 4);
-  const f = D.ndvi?.frames.find((x) => x.date === d);
-  const v = f?.value ?? null;
-  const key = v == null ? 'hero_na' : v >= 0.5 ? 'hero_green' : v < 0.3 ? 'hero_bare' : 'hero_mid';
-  $('heroCaption').textContent = v == null ? s(key) : `${s(key)} · NDVI ${num(v, 2)}`;
-  $('heroMap').setAttribute('aria-label', `${s('heroWhat')} · ${d}`);
-}
-function heroLegend(def) {
-  const entries = D.gibs.layers.ndvi.entries, { min, max } = def.legend;
-  const stops = [];
-  for (let i = 0; i <= 24; i++) {
-    const v = min + ((max - min) * i) / 24, c = colorAt(entries, Math.min(v, max - 1e-6));
-    if (c) stops.push(`rgb(${c.join(',')}) ${((i / 24) * 100).toFixed(1)}%`);
+/** Chegara ichini tayllardan canvas'ga chizadi (rasm ko'rsatish uchun; piksel o'qilmaydi) */
+function boundsCanvas(urlFn, z, W, Hh) {
+  const [[lat0, lon0], [lat1, lon1]] = STACK_BOUNDS;
+  const a = mercPx(lat1, lon0, z), b = mercPx(lat0, lon1, z);
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = Hh;
+  const ctx = cv.getContext('2d');
+  const sx = W / (b.x - a.x), sy = Hh / (b.y - a.y);
+  const jobs = [];
+  for (let tx = Math.floor(a.x / 256); tx <= Math.floor((b.x - 1) / 256); tx++) {
+    for (let ty = Math.floor(a.y / 256); ty <= Math.floor((b.y - 1) / 256); ty++) {
+      jobs.push(new Promise((res) => {
+        const img = new Image();
+        img.onload = () => { ctx.drawImage(img, (tx * 256 - a.x) * sx, (ty * 256 - a.y) * sy, 256 * sx + 0.5, 256 * sy + 0.5); res(); };
+        img.onerror = () => res();
+        img.src = urlFn(z, tx, ty);
+      }));
+    }
   }
-  $('heroLegend').style.background = `linear-gradient(90deg,${stops.join(',')})`;
-  $('heroChips').innerHTML = chip(s('src_ndvi'));
+  return Promise.all(jobs).then(() => cv);
+}
+function planeDate(key) {
+  const fr = D.gibs.layers[key].frames;
+  if (key === 'ndvi' && D.ndvi) { const best = D.ndvi.frames.filter((f) => f.value != null).sort((x, y) => y.value - x.value)[0]; if (best) return best.date; }
+  if (key === 'heat') return fr.find((d) => d.slice(5, 7) === '07') ?? fr.at(-1);
+  if (key === 'soil') return fr.find((d) => ['03', '04'].includes(d.slice(5, 7))) ?? fr.at(-1);
+  return fr.at(-1);
+}
+async function buildStack() {
+  const inn = $('stackIn');
+  inn.innerHTML = '';
+  const W = 520, Hh = 390;
+  const planes = PLANES.map((key, i) => {
+    const el2 = document.createElement('div');
+    el2.className = 'plane'; el2.dataset.k = key; el2.style.setProperty('--i', i);
+    const lab = document.createElement('span'); lab.className = 'plane-lab'; lab.dataset.k = key;
+    el2.append(lab); inn.append(el2);
+    return el2;
+  });
+  stackLabels();
+  onScrollStack();
+  await Promise.all(planes.map(async (el2) => {
+    const key = el2.dataset.k;
+    let cv;
+    if (key === 'sat') cv = await boundsCanvas(EOX_TILE, 10, W, Hh);
+    else {
+      const def = layerByKey(key), date = planeDate(key);
+      el2.dataset.date = date;
+      cv = await boundsCanvas((z, x, y) => tileUrl(def, date, z, x, y), Math.min(def.z, 10), W, Hh);
+      if (key !== 'ndvi') cv.style.opacity = '0.92';
+    }
+    el2.prepend(cv);
+  }));
+  stackLabels();
+}
+function stackLabels() {
+  document.querySelectorAll('.plane-lab').forEach((l) => {
+    const k = l.dataset.k, d = l.parentElement.dataset.date;
+    if (k === 'sat') { l.textContent = s('stack_sat'); return; }
+    const def = layerByKey(k);
+    l.textContent = `${at(`layer_${k}`)} · ${def.res}${d ? ` · ${mmdd(d.slice(5))} ${d.slice(0, 4)}` : ''}`;
+  });
+}
+function onScrollStack() {
+  const el2 = $('stack');
+  if (!el2) return;
+  const r = el2.getBoundingClientRect(), vh = innerHeight;
+  // Kompyuterda to'plam yuklanganda ko'rinib turadi: sahifa 360 px aylantirilganda to'liq ochiladi.
+  // Telefonda u matndan pastda: ko'rinishga kirib kelgani sari ochiladi.
+  if (STK.belowFold == null) STK.belowFold = r.top + scrollY > vh * 0.8;
+  const clamp = (v) => Math.max(0, Math.min(1, v));
+  // kompyuter: yuklanganda chorak ochiq, 300 px aylantirilganda to'liq; telefon: ko'rinishga kirgani sari
+  let p = STK.belowFold ? clamp((vh - r.top) / (vh * 0.55) - 0.4) : 0.25 + 0.75 * clamp(scrollY / 300);
+  if (reduceMotion) p = 1;
+  el2.style.setProperty('--lab', clamp((p - 0.3) / 0.4).toFixed(2));
+  el2.style.setProperty('--gap', `${12 + 58 * p}px`);
+  el2.style.setProperty('--rz', `${-24 + 14 * p}deg`);
+  el2.style.setProperty('--rx', `${60 - 8 * p}deg`);
+}
+addEventListener('scroll', () => requestAnimationFrame(onScrollStack), { passive: true });
+
+// ---------------- katta interaktiv NASA xaritasi (web/nasa-map.js) ----------------
+let BIG = null;
+async function bigMap() {
+  BIG = L.map('nasaMap', { scrollWheelZoom: false });
+  BIG.setView([FIELD.lat, FIELD.lon], 11);
+  L.tileLayer(EOX, { maxZoom: 17, attribution: EOX_ATTR }).addTo(BIG);
+  const marker = L.circleMarker([FIELD.lat, FIELD.lon], { radius: 7, color: '#fff', weight: 2, fillColor: '#111', fillOpacity: 1 }).addTo(BIG);
+  BIG.on('click', (e) => { marker.setLatLng(e.latlng); readAt(e.latlng.lat, e.latlng.lng); });
+  setPassportHandler(() => { location.href = 'web/'; });
+  await initNasaMap(BIG);
+  document.querySelector('#layerBar [data-k="ndvi"]')?.click();
+  readAt(FIELD.lat, FIELD.lon);
+}
+
+// ---------------- "Batafsil" tugmalari ----------------
+const infoLabel = (b, open) => { b.textContent = open ? `× ${s('close')}` : `ⓘ ${s('details')}`; };
+function infoToggles() {
+  document.querySelectorAll('main .sec').forEach((sec) => {
+    if (!sec.querySelector('.detail') || sec.querySelector('.info')) return;
+    const row = sec.querySelector('.h2row') ?? sec.querySelector('h2');
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'info'; b.setAttribute('aria-expanded', 'false');
+    b.onclick = () => { const open = sec.classList.toggle('open'); b.setAttribute('aria-expanded', String(open)); infoLabel(b, open); if (open) { safe(renderPrice); safe(renderNdvi); } };
+    infoLabel(b, false);
+    row.append(b);
+  });
 }
 
 // ---------------- raqamlar qatori ----------------
@@ -220,7 +277,8 @@ function renderPrice() {
     svg.append(el('circle', { cx: px, cy, r: 11, class: `pt${low ? ' low' : ''}` }));
     svg.append(el('text', { x: px, y: cy + 4, class: 'num' }, String(i + 1)));
     const val = range ? `${num(lo)}–${num(hi)}` : num(lo);
-    svg.append(el('text', { x: px, y: above ? y(hi) - 16 : y(lo) + 28, class: 'val', 'text-anchor': px > W - 70 ? 'end' : 'middle' }, val));
+    if (crowded && !above) svg.append(el('text', { x: px + 15, y: cy + 4, class: 'val', 'text-anchor': 'start' }, val));
+    else svg.append(el('text', { x: px, y: above ? y(hi) - 16 : y(lo) + 28, class: 'val', 'text-anchor': px > W - 70 ? 'end' : 'middle' }, val));
     const d = new Date(p.date);
     return `<li><span class="n${low ? ' low' : ''}">${i + 1}</span><b>${esc(`${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`)}</b> · ${esc(val)} ${esc(unit)} — ${esc(p.note[lang])} ${srcChip(p.src)}</li>`;
   });
@@ -555,7 +613,9 @@ function safe(fn, id) {
 }
 function renderAll() {
   applyText();
-  heroLabel();
+  stackLabels();
+  document.querySelectorAll('.info').forEach((b) => infoLabel(b, b.getAttribute('aria-expanded') === 'true'));
+  try { renderNasa(); } catch (e) { console.error(e); }
   safe(renderStats, 'stats');
   safe(renderProblem, 'priceChart');
   if (D.pilot) { safe(renderDemo, 'demoCards'); safe(renderField, 'cropTable'); }
@@ -570,11 +630,12 @@ $('lang').onclick = () => { lang = lang === 'en' ? 'uz' : 'en'; store.set('fs-si
 
 applyText();
 reveal();
+infoToggles();
 const got = await Promise.allSettled([
   loadJson('web/data/gibs-layers.json'), loadJson('docs/pilot-ekinlar-jarqorgon.json'), loadJson('site/data/climate.json'),
   loadJson('site/data/market-window.json'), loadJson('site/data/field-ndvi.json'), loadJson('site/data/harvest.json'),
 ]);
 ['gibs', 'pilot', 'climate', 'window', 'ndvi', 'harvest'].forEach((k, i) => { if (got[i].status === 'fulfilled') D[k] = got[i].value; else if (k !== 'harvest') console.error(got[i].reason); });
-if (D.gibs) safe(heroMap, 'heroMap');
+if (D.gibs) { buildStack().catch(console.error); bigMap().catch(console.error); }
 if (D.climate) safe(climateMap, 'clMap');
 renderAll();
