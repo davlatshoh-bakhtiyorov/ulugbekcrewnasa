@@ -9,8 +9,14 @@ farmer's judgment, not replace it.
 ## What we are building
 
 A farmer shows a field and answers three questions; the tool compares 3 rotation options on
-water, climate fit, soil benefit, and market/waste risk. One calculation core, two front ends:
-a web page and a Telegram bot.
+water, climate fit, soil benefit, and market/waste risk. One calculation core, one front end:
+a web app in `web/` that runs both in the browser and as a **Telegram Mini App** (team decision,
+14 Nov). The bot in `bot/` is thin: /start, a menu button that opens the Mini App, optionally
+receiving a location and opening the Mini App with it. The Mini App URL must be public HTTPS
+(`WEBAPP_URL` in `.env`).
+
+Repo: https://github.com/davlatshoh-bakhtiyorov/ulugbekcrewnasa (private, branch `main`).
+Secrets: `.env` (gitignored) holds `TELEGRAM_BOT_TOKEN`; `.env.example` lists the keys.
 
 Team motivation: vegetables are dumped in Uzbekistan because everyone plants what was
 expensive last year (onion 2024: wholesale price fell to ~12 US cents/kg, 150–200k t discarded),
@@ -24,9 +30,9 @@ of the four scores — but rotation stays the main screen (judging criterion: Re
   A dataset that is listed but not used hurts the Validity score.
 - Work step by step; finish and verify one step before the next.
 
-## Farmer flow (same in web and bot)
+## Farmer flow (same in browser and Mini App)
 
-1. Show the field: bot = send location; web = tap on the map.
+1. Show the field: tap on the map, or share location (Telegram location / browser geolocation).
 2. Answer with buttons: last crop · water situation · salinity (unknown/low/medium/high).
 3. Get three options, each with four traffic lights (water · will it ripen in time ·
    soil benefit · market & waste risk) and a one-sentence explanation.
@@ -37,8 +43,13 @@ of the four scores — but rotation stays the main screen (judging criterion: Re
 - Every number carries source, resolution and period.
 - Probabilities come from history ("in 39 of 42 years"), never from a guess.
 - Missing data returns null and the UI says "unknown" — never fill gaps silently.
-- Crop parameters need a cited source (FAO-56 Tables 11/12 for Kc and stage lengths, FAO-29
-  for salt tolerance). Do not invent values; mark anything unverified as `verified: false`.
+- Crop parameters need a cited source with table and printed page. Main source is
+  **FAO-56 Rev.1 (2025)** (doi 10.4060/cd6621en; printed page = PDF page - 32): Kc Tables
+  6.1/6.2/6.4, GDD thresholds Table 6.10, GDD per stage Tables 6.11/6.12, salt tolerance
+  Tables 8.8/8.9/8.11. Salt values are cross-checked against FAO-29 Rev.1 Table 4 (pp. 31-32)
+  in a test. The 1998 FAO-56 (Tables 11/12, stage lengths in days) is superseded; cite it only
+  where Rev.1 is silent (alfalfa -4 °C season rule). Do not invent values; mark anything
+  unverified as `verified: false`.
 - Calculations are tested against published worked examples (`npm test`).
 - POWER soil wetness (GWETROOT/GWETTOP) is MERRA-2 model output, NOT SMAP. Never label it SMAP.
 
@@ -48,17 +59,45 @@ of the four scores — but rotation stays the main screen (judging criterion: Re
 - Submission page and all linked material (README, repo docs, slides) must be English.
   README.md and docs/ are currently in Uzbek — translate README before submission (step 7).
 
-## Current state (step 1 done, 14 Nov)
+## Current state (step 2 done, 14 Nov)
 
 ```
-core/agro.js    FAO-56 Penman-Monteith ET0, GDD, frost/heat stats, climate shift, trend
-core/power.js   NASA POWER URL builder, fetch, parser (-999 -> null)
-tests/          8 tests pass (FAO-56 examples 3, 8, 18)   ->  npm test
+core/agro.js       FAO-56 Penman-Monteith ET0, GDD, frost/heat stats, climate shift, trend
+core/power.js      NASA POWER URL builder, fetch, parser (-999 -> null)
+core/crops.js      6 crops with sources (table + page): Kc, Tbase/Tupper, GDD stages, salt
+core/crop-calc.js  per-crop evaluation over all years: ripening, water, heat, spoilage, salinity
+scripts/pilot-crops.js   npm run pilot -> prints pilot result, writes docs/pilot-ekinlar-jarqorgon.json
+tests/             21 tests pass (FAO-56 Ex. 3, 8, 18; Rev.1 Ex. 6.6, 6.7; FAO-29 Table 4) -> npm test
 docs/REJA.md             step plan (Uzbek)
 docs/NASA-TEKSHIRUV.md   live API check results (Uzbek)
-docs/pilot-iqlim-jarqorgon.json   first real result
-web/ bot/       empty
+docs/pilot-iqlim-jarqorgon.json    step 1 climate result
+docs/pilot-ekinlar-jarqorgon.json  step 2 crop result
+cache/             POWER responses (gitignored)
+web/ bot/          empty
 ```
+
+Confirmed crops (14 Nov): winter wheat, cotton, onion, potato, mung bean, alfalfa.
+
+Step 2 method, per year, then counted over years ("in k of N years"):
+- Ripening: GDD from sowing (Rev.1 Eq. 6.23, Table 6.10 thresholds) until the Table 6.11/6.12
+  stage total; spring/summer crops fail if an autumn frost (T2M_MIN <= 0 °C after 1 July) comes first.
+- Water: Kc curve Eq. 6.20 with stage lengths from that year's GDD; Kc mid/end climate-adjusted
+  (Eq. 6.16/6.19, RHmin from T2MDEW via Eq. 6.17); minus effective rain (USDA-SCS monthly,
+  `verified: false` until the CROPWAT page is checked). Net field need, m3/ha = mm x 10.
+- Heat: mid-season days with daily mean T >= Tupper (Table 6.10). Sourced, but blind to wheat
+  heat stress (mean never reaches 35 °C in May) — a Tmax-based flowering threshold needs a source.
+- Spoilage: 14 days after maturity; rain days (grain, cotton) or mean Tmax (onion, potato).
+  Thresholds are a team heuristic, `verified: false`.
+- Alfalfa: season between -4 °C frosts, Kc 1.05 season average, cuttings from GDD cycles
+  (thermal upper bound).
+
+**Known problem — fix in step 4:** FAO GDD totals are "indicative" and calibrated elsewhere; in
+hot Surxondaryo they make seasons too short: winter wheat sown 15 Oct "matures" 25 Apr (local
+harvest is late May - June), mung bean sown 25 Jun matures in 43 days (usually 60-90). Ripening
+probabilities are 100% for all six crops at the pilot point, so the ripening light carries no
+information yet. Plan: calibrate each crop's GDD total on real fields with MODIS MCD12Q2
+(observed green-up / senescence dates per year), and show "FAO default" vs "calibrated by NASA
+MODIS" — this also makes MCD12Q2 feed a number on screen.
 
 Pure ES modules, no dependencies yet. Core functions must stay pure and isomorphic
 (browser + Node 18+), with `fetch` injectable for tests.
@@ -113,18 +152,17 @@ The exact pixel 37.51/67.42 is not a field (summer NDVI ~0.2) — pick a real fi
 | # | Step | Done when |
 |---|---|---|
 | 1 | Foundation | done |
-| 2 | Crop table + per-crop calculation | For a point and sowing date: probability of ripening before first frost (from 42 years), water need (sum Kc x ET0 minus effective rain, m3/ha), heat-stress days at flowering, spoilage risk at harvest (temperature/humidity in harvest window x perishability). Tested. A script prints the pilot result. |
-| 3 | Web page | Farmer flow works on a phone, uz/en toggle, every number shows its source. |
-| 4 | Field memory + map | Crop cycles per year from MCD12Q2, last 3 years NDVI from MOD13Q1, GIBS layers on Leaflet, results cached. |
-| 5 | Telegram bot | Location -> buttons -> three options, same core. Token only from `.env` (never commit it; provide `.env.example`). |
+| 2 | Crop table + per-crop calculation | done (see "Step 2 method" and "Known problem") |
+| 3 | Web app = Telegram Mini App | Farmer flow works on a phone in the browser and inside Telegram (telegram-web-app.js, theme colours, MainButton), uz/en toggle, every number shows its source. |
+| 4 | Field memory + map + GDD calibration | Crop cycles per year from MCD12Q2, last 3 years NDVI from MOD13Q1, GIBS layers on Leaflet, results cached; per-crop GDD totals calibrated from MCD12Q2 on real fields. |
+| 5 | Telegram bot (launcher) | /start + menu button opens the Mini App; a sent location opens it at that field. Token only from `.env` (`.env.example` done). |
 | 6 | Water outlook + HLS | GRACE basin storage series precomputed to JSON; HLS for one pilot district. |
 | 7 | Submission | English README, project page text, demo (7 slides or 30 s video — confirm with Local Lead), list of NASA data and all external resources, AI-use disclosure. |
 
-Candidate crops (not yet confirmed by the team): winter wheat, cotton, onion, potato, carrot,
-cabbage, tomato, mung bean, sesame, maize, alfalfa, melon/watermelon.
+Later candidates (not in the table yet): carrot, cabbage, tomato, sesame, maize, melon/watermelon.
 
-Research inputs prepared in the chat session will appear here — check before step 2 and step 3:
-`docs/ekinlar-manbalar.md` (crop parameters with sources), `docs/narxlar.md` (price history).
+Research input still expected from the chat session — check before step 3:
+`docs/narxlar.md` (price history, for the market & waste light).
 
 ## Judging (official criteria)
 

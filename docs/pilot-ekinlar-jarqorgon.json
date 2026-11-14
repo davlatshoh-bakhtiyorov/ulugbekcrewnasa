@@ -1,0 +1,6787 @@
+{
+ "manba": "NASA POWER daily point API (MERRA-2, CERES SRB/SYN1deg; ~0.5°), 19840101..20251231, 15341 kun",
+ "nuqta": {
+  "lat": 37.51,
+  "lon": 67.42,
+  "balandlik_m": 417.48
+ },
+ "hisoblangan_sana": "2026-11-14",
+ "sholanish": "medium",
+ "natijalar": [
+  {
+   "cropId": "winter_wheat",
+   "name": {
+    "uz": "Kuzgi bug'doy",
+    "en": "Winter wheat"
+   },
+   "sow": "10-15",
+   "period": {
+    "from": "19840101",
+    "to": "20251231"
+   },
+   "seasons": 41,
+   "ripen": {
+    "applicable": true,
+    "matured": 41,
+    "of": 41,
+    "share": 1,
+    "frostBeforeMaturity": null,
+    "daysToMaturity": {
+     "median": 193,
+     "min": 176,
+     "max": 213
+    },
+    "maturity": {
+     "median": "04-25",
+     "early": "04-17",
+     "late": "05-05"
+    },
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 205,
+      "row": "Wheat, common (Triticum aestivum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "6.11",
+      "page": 210,
+      "row": "Wheat, Winter (Triticum aestivum) - Long season",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": true,
+      "row": "Frost day = daily minimum 2 m air temperature <= 0 °C (NASA POWER T2M_MIN)"
+     }
+    ]
+   },
+   "springFrost": null,
+   "water": {
+    "seasons": 41,
+    "etcMm": 455,
+    "peffMm": 135,
+    "nirMm": {
+     "median": 303,
+     "p80": 376
+    },
+    "m3ha": {
+     "median": 3030,
+     "p80": 3760
+    },
+    "kcMid": 1.18,
+    "kcEnd": 0.25,
+    "note": "Net field need (ETc - effective rain). Canal and field losses not included.",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.2",
+      "page": 169,
+      "row": "Wheat, common (Triticum aestivum) - Winter, low grain moisture at harvest",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.20",
+      "page": 201,
+      "row": "Kc linear in dev and late stages",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.16",
+      "page": 190,
+      "row": "Kc mid climate adjustment (u2, RHmin, h)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.19",
+      "page": 195,
+      "row": "Kc end climate adjustment, only when Kc end (Tab) > 0.45",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.17",
+      "page": 193,
+      "row": "RHmin = e°(Tdew) / e°(Tmax) x 100",
+      "verified": true
+     },
+     {
+      "doc": "cropwat",
+      "table": "USDA-SCS",
+      "page": null,
+      "verified": false,
+      "row": "Peff = P (125 - 0.2 P) / 125 for P <= 250 mm/month; Peff = 125 + 0.1 P above. Formula seen in secondary sources, primary page not yet checked"
+     }
+    ]
+   },
+   "heat": {
+    "tUpper": 35,
+    "stage": "mid-season (includes flowering)",
+    "days": {
+     "median": 0,
+     "max": 0
+    },
+    "yearsWithAny": 0,
+    "of": 41,
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 205,
+      "row": "Wheat, common (Triticum aestivum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     }
+    ]
+   },
+   "spoilage": {
+    "perishability": "dry",
+    "driver": "rain",
+    "windowDays": 14,
+    "seasons": 41,
+    "rainDays": 2,
+    "meanTmax": 30.8,
+    "meanRh": 34,
+    "wetYears": 16,
+    "hotYears": 22,
+    "level": "medium",
+    "rule": {
+     "verified": false,
+     "windowDays": 14,
+     "wetRainDays": 3,
+     "hotMeanTmax": 30,
+     "levels": [
+      0.2,
+      0.5
+     ],
+     "note": "Team heuristic, not from a published source. Needs agronomist review."
+    }
+   },
+   "salinity": {
+    "class": "medium",
+    "ece": [
+     4,
+     8
+    ],
+    "yieldPct": [
+     100,
+     85.8
+    ],
+    "rating": "MT",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "8.9",
+      "page": 282,
+      "row": "Wheat, common (Triticum aestivum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 8.19",
+      "page": 285,
+      "row": "Yact/Ymax = 1 - b/100 (ECe - ECe threshold)",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": false,
+      "row": "Mapping of farmer answer to ECe range follows USDA salinity classes; source page not yet checked"
+     }
+    ]
+   },
+   "years": [
+    {
+     "year": 1984,
+     "status": "mature",
+     "days": 203,
+     "endDate": "19850505",
+     "stageDays": [
+      40,
+      85,
+      59,
+      19
+     ],
+     "etcMm": 517.0697318426546,
+     "peffMm": 120.91343183999997,
+     "nirMm": 396.15630000265463,
+     "kcMid": 1.1893076213172444,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 32.89,
+      "meanRh": 20.202981570018558
+     }
+    },
+    {
+     "year": 1985,
+     "status": "mature",
+     "days": 199,
+     "endDate": "19860501",
+     "stageDays": [
+      40,
+      55,
+      84,
+      20
+     ],
+     "etcMm": 518.3444761225238,
+     "peffMm": 69.51401183999998,
+     "nirMm": 448.83046428252385,
+     "kcMid": 1.194032190709715,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.17857142857143,
+      "meanRh": 19.64749403779416
+     }
+    },
+    {
+     "year": 1986,
+     "status": "mature",
+     "days": 189,
+     "endDate": "19870421",
+     "stageDays": [
+      36,
+      62,
+      66,
+      25
+     ],
+     "etcMm": 456.430817779893,
+     "peffMm": 121.50126767999998,
+     "nirMm": 334.92955009989305,
+     "kcMid": 1.1942314872862352,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 28.35357142857143,
+      "meanRh": 29.991628146291255
+     }
+    },
+    {
+     "year": 1987,
+     "status": "mature",
+     "days": 193,
+     "endDate": "19880424",
+     "stageDays": [
+      42,
+      50,
+      82,
+      19
+     ],
+     "etcMm": 471.80849785974755,
+     "peffMm": 123.94552015999996,
+     "nirMm": 347.8629776997476,
+     "kcMid": 1.1825034668892285,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 4,
+      "meanTmax": 31.127857142857145,
+      "meanRh": 36.03899546307008
+     }
+    },
+    {
+     "year": 1988,
+     "status": "mature",
+     "days": 193,
+     "endDate": "19890425",
+     "stageDays": [
+      31,
+      31,
+      107,
+      24
+     ],
+     "etcMm": 484.33515423472016,
+     "peffMm": 94.77817839999994,
+     "nirMm": 389.5569758347202,
+     "kcMid": 1.1808254368476638,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 5,
+      "meanTmax": 23.17928571428572,
+      "meanRh": 34.702952635144044
+     }
+    },
+    {
+     "year": 1989,
+     "status": "mature",
+     "days": 197,
+     "endDate": "19900429",
+     "stageDays": [
+      41,
+      41,
+      92,
+      23
+     ],
+     "etcMm": 440.76557125774696,
+     "peffMm": 144.9867568,
+     "nirMm": 295.778814457747,
+     "kcMid": 1.165489312879508,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 35.355714285714285,
+      "meanRh": 32.396487318993536
+     }
+    },
+    {
+     "year": 1990,
+     "status": "mature",
+     "days": 199,
+     "endDate": "19910501",
+     "stageDays": [
+      36,
+      67,
+      75,
+      21
+     ],
+     "etcMm": 462.23711854859994,
+     "peffMm": 160.30394032000004,
+     "nirMm": 301.9331782285999,
+     "kcMid": 1.1732970321923388,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 3,
+      "meanTmax": 28.916428571428575,
+      "meanRh": 37.89192876034989
+     }
+    },
+    {
+     "year": 1991,
+     "status": "mature",
+     "days": 199,
+     "endDate": "19920430",
+     "stageDays": [
+      34,
+      58,
+      86,
+      21
+     ],
+     "etcMm": 455.1646948307257,
+     "peffMm": 161.88011920000008,
+     "nirMm": 293.2845756307256,
+     "kcMid": 1.1770525166647108,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 3,
+      "meanTmax": 25.895,
+      "meanRh": 41.75223811179244
+     }
+    },
+    {
+     "year": 1992,
+     "status": "mature",
+     "days": 192,
+     "endDate": "19930424",
+     "stageDays": [
+      38,
+      41,
+      93,
+      20
+     ],
+     "etcMm": 455.0078349169722,
+     "peffMm": 125.15198336,
+     "nirMm": 329.8558515569722,
+     "kcMid": 1.175302912457067,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 5,
+      "meanTmax": 29.422142857142862,
+      "meanRh": 43.21857335506132
+     }
+    },
+    {
+     "year": 1993,
+     "status": "mature",
+     "days": 210,
+     "endDate": "19940512",
+     "stageDays": [
+      46,
+      88,
+      57,
+      19
+     ],
+     "etcMm": 532.9239506399381,
+     "peffMm": 150.02127311999993,
+     "nirMm": 382.90267751993815,
+     "kcMid": 1.1925183931314665,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 34.01142857142857,
+      "meanRh": 24.864256569635643
+     }
+    },
+    {
+     "year": 1994,
+     "status": "mature",
+     "days": 194,
+     "endDate": "19950426",
+     "stageDays": [
+      35,
+      54,
+      84,
+      21
+     ],
+     "etcMm": 458.21316851218523,
+     "peffMm": 135.51426432000002,
+     "nirMm": 322.6989041921852,
+     "kcMid": 1.1782715839553932,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 33.82428571428571,
+      "meanRh": 31.180820485085345
+     }
+    },
+    {
+     "year": 1995,
+     "status": "mature",
+     "days": 205,
+     "endDate": "19960506",
+     "stageDays": [
+      38,
+      71,
+      75,
+      21
+     ],
+     "etcMm": 497.9248448905624,
+     "peffMm": 128.64673919999998,
+     "nirMm": 369.27810569056237,
+     "kcMid": 1.1790635973981707,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 31.295714285714286,
+      "meanRh": 22.369041600848163
+     }
+    },
+    {
+     "year": 1996,
+     "status": "mature",
+     "days": 197,
+     "endDate": "19970429",
+     "stageDays": [
+      49,
+      45,
+      82,
+      21
+     ],
+     "etcMm": 502.4864515058466,
+     "peffMm": 131.49707344,
+     "nirMm": 370.9893780658466,
+     "kcMid": 1.195582041038345,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 6,
+      "meanTmax": 25.849285714285713,
+      "meanRh": 49.06014662632258
+     }
+    },
+    {
+     "year": 1997,
+     "status": "mature",
+     "days": 198,
+     "endDate": "19980430",
+     "stageDays": [
+      36,
+      67,
+      76,
+      19
+     ],
+     "etcMm": 474.34551609457577,
+     "peffMm": 171.60958799999995,
+     "nirMm": 302.7359280945758,
+     "kcMid": 1.1814213197912002,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 26.98857142857143,
+      "meanRh": 39.874025230247014
+     }
+    },
+    {
+     "year": 1998,
+     "status": "mature",
+     "days": 185,
+     "endDate": "19990417",
+     "stageDays": [
+      36,
+      39,
+      84,
+      26
+     ],
+     "etcMm": 425.49003583542475,
+     "peffMm": 112.34148575999994,
+     "nirMm": 313.1485500754248,
+     "kcMid": 1.177617705971985,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 26.760714285714283,
+      "meanRh": 27.400872734166665
+     }
+    },
+    {
+     "year": 1999,
+     "status": "mature",
+     "days": 189,
+     "endDate": "20000420",
+     "stageDays": [
+      37,
+      47,
+      87,
+      18
+     ],
+     "etcMm": 490.8644281466857,
+     "peffMm": 84.98047360000002,
+     "nirMm": 405.8839545466857,
+     "kcMid": 1.1916783309484513,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 34.48571428571429,
+      "meanRh": 17.67981043206208
+     }
+    },
+    {
+     "year": 2000,
+     "status": "mature",
+     "days": 186,
+     "endDate": "20010418",
+     "stageDays": [
+      41,
+      50,
+      77,
+      18
+     ],
+     "etcMm": 482.42581498551044,
+     "peffMm": 54.35783935999998,
+     "nirMm": 428.0679756255105,
+     "kcMid": 1.1964372464592214,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 32.28357142857142,
+      "meanRh": 18.666874001162387
+     }
+    },
+    {
+     "year": 2001,
+     "status": "mature",
+     "days": 179,
+     "endDate": "20020411",
+     "stageDays": [
+      33,
+      43,
+      81,
+      22
+     ],
+     "etcMm": 441.66076079869174,
+     "peffMm": 101.13402031999998,
+     "nirMm": 340.52674047869175,
+     "kcMid": 1.1814016620474728,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 5,
+      "meanTmax": 28.836428571428574,
+      "meanRh": 39.120906877244636
+     }
+    },
+    {
+     "year": 2002,
+     "status": "mature",
+     "days": 190,
+     "endDate": "20030422",
+     "stageDays": [
+      31,
+      56,
+      77,
+      26
+     ],
+     "etcMm": 424.9413447113039,
+     "peffMm": 153.73796911999992,
+     "nirMm": 271.20337559130394,
+     "kcMid": 1.1771060705369798,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 26.51,
+      "meanRh": 38.17162553547183
+     }
+    },
+    {
+     "year": 2003,
+     "status": "mature",
+     "days": 185,
+     "endDate": "20040416",
+     "stageDays": [
+      32,
+      61,
+      69,
+      23
+     ],
+     "etcMm": 415.3482910537209,
+     "peffMm": 115.06704784,
+     "nirMm": 300.2812432137209,
+     "kcMid": 1.173475846023667,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 28.47142857142857,
+      "meanRh": 32.754369592100986
+     }
+    },
+    {
+     "year": 2004,
+     "status": "mature",
+     "days": 193,
+     "endDate": "20050425",
+     "stageDays": [
+      37,
+      52,
+      81,
+      23
+     ],
+     "etcMm": 434.3166279935483,
+     "peffMm": 138.66321392000003,
+     "nirMm": 295.6534140735483,
+     "kcMid": 1.1739497913303794,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 3,
+      "meanTmax": 30.646428571428576,
+      "meanRh": 40.0093666039062
+     }
+    },
+    {
+     "year": 2005,
+     "status": "mature",
+     "days": 191,
+     "endDate": "20060423",
+     "stageDays": [
+      40,
+      72,
+      56,
+      23
+     ],
+     "etcMm": 427.7941145191974,
+     "peffMm": 165.43014815999996,
+     "nirMm": 262.36396635919743,
+     "kcMid": 1.1693363945302226,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 34.316428571428574,
+      "meanRh": 30.629457295040908
+     }
+    },
+    {
+     "year": 2006,
+     "status": "mature",
+     "days": 186,
+     "endDate": "20070418",
+     "stageDays": [
+      25,
+      68,
+      73,
+      20
+     ],
+     "etcMm": 404.02814745496937,
+     "peffMm": 134.92335999999997,
+     "nirMm": 269.10478745496937,
+     "kcMid": 1.1738372311754597,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 34.04,
+      "meanRh": 31.629651134022954
+     }
+    },
+    {
+     "year": 2007,
+     "status": "mature",
+     "days": 194,
+     "endDate": "20080425",
+     "stageDays": [
+      36,
+      92,
+      46,
+      20
+     ],
+     "etcMm": 469.1921596704932,
+     "peffMm": 104.86662880000003,
+     "nirMm": 364.32553087049314,
+     "kcMid": 1.2024151494060136,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.72142857142857,
+      "meanRh": 17.55775815339303
+     }
+    },
+    {
+     "year": 2008,
+     "status": "mature",
+     "days": 188,
+     "endDate": "20090420",
+     "stageDays": [
+      44,
+      56,
+      63,
+      25
+     ],
+     "etcMm": 403.15707900273173,
+     "peffMm": 125.14444112000002,
+     "nirMm": 278.0126378827317,
+     "kcMid": 1.1754039190922703,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 7,
+      "meanTmax": 26.30857142857143,
+      "meanRh": 42.45799452621837
+     }
+    },
+    {
+     "year": 2009,
+     "status": "mature",
+     "days": 181,
+     "endDate": "20100413",
+     "stageDays": [
+      38,
+      47,
+      71,
+      25
+     ],
+     "etcMm": 394.315599249266,
+     "peffMm": 151.4612504,
+     "nirMm": 242.85434884926596,
+     "kcMid": 1.1732349639328408,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 2,
+      "meanTmax": 28.772857142857145,
+      "meanRh": 39.92809879078316
+     }
+    },
+    {
+     "year": 2010,
+     "status": "mature",
+     "days": 195,
+     "endDate": "20110427",
+     "stageDays": [
+      36,
+      63,
+      78,
+      18
+     ],
+     "etcMm": 472.56411536284793,
+     "peffMm": 73.84977728,
+     "nirMm": 398.7143380828479,
+     "kcMid": 1.1841372749129457,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 2,
+      "meanTmax": 34.01285714285715,
+      "meanRh": 27.263636573783007
+     }
+    },
+    {
+     "year": 2011,
+     "status": "mature",
+     "days": 213,
+     "endDate": "20120514",
+     "stageDays": [
+      47,
+      106,
+      41,
+      19
+     ],
+     "etcMm": 494.3353167378436,
+     "peffMm": 221.21722720000002,
+     "nirMm": 273.11808953784356,
+     "kcMid": 1.1864910472202306,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 2,
+      "meanTmax": 32.14142857142858,
+      "meanRh": 34.70472171622887
+     }
+    },
+    {
+     "year": 2012,
+     "status": "mature",
+     "days": 189,
+     "endDate": "20130421",
+     "stageDays": [
+      36,
+      68,
+      63,
+      22
+     ],
+     "etcMm": 438.96359253111365,
+     "peffMm": 101.26471088000007,
+     "nirMm": 337.6988816511136,
+     "kcMid": 1.179862632926957,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 6,
+      "meanTmax": 25.98714285714286,
+      "meanRh": 43.23795577309694
+     }
+    },
+    {
+     "year": 2013,
+     "status": "mature",
+     "days": 199,
+     "endDate": "20140501",
+     "stageDays": [
+      40,
+      62,
+      77,
+      20
+     ],
+     "etcMm": 490.11248273309565,
+     "peffMm": 80.26645359999999,
+     "nirMm": 409.84602913309567,
+     "kcMid": 1.1866929465919378,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 33.38214285714286,
+      "meanRh": 26.535021227367515
+     }
+    },
+    {
+     "year": 2014,
+     "status": "mature",
+     "days": 198,
+     "endDate": "20150430",
+     "stageDays": [
+      43,
+      67,
+      68,
+      20
+     ],
+     "etcMm": 426.5629448958273,
+     "peffMm": 200.04934767999998,
+     "nirMm": 226.5135972158273,
+     "kcMid": 1.1592794023524755,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 3,
+      "meanTmax": 33.573571428571434,
+      "meanRh": 36.291641158206
+     }
+    },
+    {
+     "year": 2015,
+     "status": "mature",
+     "days": 187,
+     "endDate": "20160418",
+     "stageDays": [
+      45,
+      56,
+      64,
+      22
+     ],
+     "etcMm": 408.60567790979184,
+     "peffMm": 187.91891008,
+     "nirMm": 220.68676782979185,
+     "kcMid": 1.1778809826660397,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 29.490714285714287,
+      "meanRh": 37.83743615091838
+     }
+    },
+    {
+     "year": 2016,
+     "status": "mature",
+     "days": 203,
+     "endDate": "20170505",
+     "stageDays": [
+      48,
+      64,
+      71,
+      20
+     ],
+     "etcMm": 455.62708972174363,
+     "peffMm": 242.48475615999988,
+     "nirMm": 213.14233356174375,
+     "kcMid": 1.162278176082709,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 2,
+      "meanTmax": 35.18785714285715,
+      "meanRh": 34.15360096835452
+     }
+    },
+    {
+     "year": 2017,
+     "status": "mature",
+     "days": 176,
+     "endDate": "20180408",
+     "stageDays": [
+      31,
+      49,
+      77,
+      19
+     ],
+     "etcMm": 435.40292539048744,
+     "peffMm": 59.30445151999998,
+     "nirMm": 376.09847387048745,
+     "kcMid": 1.188487659205973,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 6,
+      "meanTmax": 24.842857142857145,
+      "meanRh": 33.2185583029835
+     }
+    },
+    {
+     "year": 2018,
+     "status": "mature",
+     "days": 191,
+     "endDate": "20190423",
+     "stageDays": [
+      47,
+      54,
+      70,
+      20
+     ],
+     "etcMm": 396.3386548590694,
+     "peffMm": 211.788332,
+     "nirMm": 184.55032285906938,
+     "kcMid": 1.1639905607971597,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 4,
+      "meanTmax": 26.814285714285713,
+      "meanRh": 39.113025811009564
+     }
+    },
+    {
+     "year": 2019,
+     "status": "mature",
+     "days": 197,
+     "endDate": "20200428",
+     "stageDays": [
+      47,
+      64,
+      64,
+      22
+     ],
+     "etcMm": 410.23130629392733,
+     "peffMm": 197.19014335999998,
+     "nirMm": 213.04116293392735,
+     "kcMid": 1.1718048438064212,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 6,
+      "meanTmax": 29.98857142857143,
+      "meanRh": 48.16476365317395
+     }
+    },
+    {
+     "year": 2020,
+     "status": "mature",
+     "days": 202,
+     "endDate": "20210504",
+     "stageDays": [
+      70,
+      58,
+      57,
+      17
+     ],
+     "etcMm": 492.116695891096,
+     "peffMm": 149.32849679999995,
+     "nirMm": 342.7881990910961,
+     "kcMid": 1.1913477744585064,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 4,
+      "meanTmax": 32.265,
+      "meanRh": 34.00678817209664
+     }
+    },
+    {
+     "year": 2021,
+     "status": "mature",
+     "days": 191,
+     "endDate": "20220423",
+     "stageDays": [
+      52,
+      57,
+      64,
+      18
+     ],
+     "etcMm": 426.01231017947737,
+     "peffMm": 128.45087264,
+     "nirMm": 297.56143753947737,
+     "kcMid": 1.1784320077854789,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 2,
+      "meanTmax": 33.019285714285715,
+      "meanRh": 36.363593020368896
+     }
+    },
+    {
+     "year": 2022,
+     "status": "mature",
+     "days": 192,
+     "endDate": "20230424",
+     "stageDays": [
+      40,
+      83,
+      47,
+      22
+     ],
+     "etcMm": 404.6826654018194,
+     "peffMm": 206.5105744000001,
+     "nirMm": 198.1720910018193,
+     "kcMid": 1.1699346041661904,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 30.829999999999995,
+      "meanRh": 26.491829423214252
+     }
+    },
+    {
+     "year": 2023,
+     "status": "mature",
+     "days": 185,
+     "endDate": "20240416",
+     "stageDays": [
+      33,
+      38,
+      89,
+      25
+     ],
+     "etcMm": 372.41766013815,
+     "peffMm": 209.72284623999994,
+     "nirMm": 162.69481389815004,
+     "kcMid": 1.1634324975485,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 3,
+      "meanTmax": 25.400000000000002,
+      "meanRh": 47.017065322709904
+     }
+    },
+    {
+     "year": 2024,
+     "status": "mature",
+     "days": 198,
+     "endDate": "20250430",
+     "stageDays": [
+      38,
+      76,
+      65,
+      19
+     ],
+     "etcMm": 432.53543035263846,
+     "peffMm": 221.78198991999994,
+     "nirMm": 210.7534404326385,
+     "kcMid": 1.1647920073645912,
+     "kcEnd": 0.25,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.159285714285716,
+      "meanRh": 28.21216703021062
+     }
+    },
+    {
+     "year": 2025,
+     "status": "data_end"
+    }
+   ]
+  },
+  {
+   "cropId": "cotton",
+   "name": {
+    "uz": "Paxta",
+    "en": "Cotton"
+   },
+   "sow": "04-10",
+   "period": {
+    "from": "19840101",
+    "to": "20251231"
+   },
+   "seasons": 42,
+   "ripen": {
+    "applicable": true,
+    "matured": 42,
+    "of": 42,
+    "share": 1,
+    "frostBeforeMaturity": 0,
+    "daysToMaturity": {
+     "median": 134,
+     "min": 122,
+     "max": 152
+    },
+    "maturity": {
+     "median": "08-21",
+     "early": "08-14",
+     "late": "08-30"
+    },
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 205,
+      "row": "Cotton (Gossypium hirsutum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "6.11",
+      "page": 209,
+      "row": "Cotton (Gossypium hirsutum) - Long season",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": true,
+      "row": "Frost day = daily minimum 2 m air temperature <= 0 °C (NASA POWER T2M_MIN)"
+     }
+    ]
+   },
+   "springFrost": {
+    "years": 1,
+    "of": 42
+   },
+   "water": {
+    "seasons": 42,
+    "etcMm": 887,
+    "peffMm": 24,
+    "nirMm": {
+     "median": 858,
+     "p80": 899
+    },
+    "m3ha": {
+     "median": 8580,
+     "p80": 8990
+    },
+    "kcMid": 1.19,
+    "kcEnd": 0.58,
+    "note": "Net field need (ETc - effective rain). Canal and field losses not included.",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.2",
+      "page": 168,
+      "row": "Cotton (Gossypium hirsutum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.20",
+      "page": 201,
+      "row": "Kc linear in dev and late stages",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.16",
+      "page": 190,
+      "row": "Kc mid climate adjustment (u2, RHmin, h)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.19",
+      "page": 195,
+      "row": "Kc end climate adjustment, only when Kc end (Tab) > 0.45",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.17",
+      "page": 193,
+      "row": "RHmin = e°(Tdew) / e°(Tmax) x 100",
+      "verified": true
+     },
+     {
+      "doc": "cropwat",
+      "table": "USDA-SCS",
+      "page": null,
+      "verified": false,
+      "row": "Peff = P (125 - 0.2 P) / 125 for P <= 250 mm/month; Peff = 125 + 0.1 P above. Formula seen in secondary sources, primary page not yet checked"
+     }
+    ]
+   },
+   "heat": {
+    "tUpper": 35,
+    "stage": "mid-season (includes flowering)",
+    "days": {
+     "median": 4,
+     "max": 18
+    },
+    "yearsWithAny": 35,
+    "of": 42,
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 205,
+      "row": "Cotton (Gossypium hirsutum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     }
+    ]
+   },
+   "spoilage": {
+    "perishability": "dry",
+    "driver": "rain",
+    "windowDays": 14,
+    "seasons": 42,
+    "rainDays": 0,
+    "meanTmax": 37.1,
+    "meanRh": 13,
+    "wetYears": 0,
+    "hotYears": 42,
+    "level": "low",
+    "rule": {
+     "verified": false,
+     "windowDays": 14,
+     "wetRainDays": 3,
+     "hotMeanTmax": 30,
+     "levels": [
+      0.2,
+      0.5
+     ],
+     "note": "Team heuristic, not from a published source. Needs agronomist review."
+    }
+   },
+   "salinity": {
+    "class": "medium",
+    "ece": [
+     4,
+     8
+    ],
+    "yieldPct": [
+     100,
+     98.44
+    ],
+    "rating": "T",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "8.9",
+      "page": 282,
+      "row": "Cotton (Gossypium hirsutum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 8.19",
+      "page": 285,
+      "row": "Yact/Ymax = 1 - b/100 (ECe - ECe threshold)",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": false,
+      "row": "Mapping of farmer answer to ECe range follows USDA salinity classes; source page not yet checked"
+     }
+    ]
+   },
+   "years": [
+    {
+     "year": 1984,
+     "status": "mature",
+     "days": 130,
+     "endDate": "19840817",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      37,
+      51,
+      28,
+      14
+     ],
+     "etcMm": 831.1478490556404,
+     "peffMm": 18.997206719999994,
+     "nirMm": 812.1506423356404,
+     "kcMid": 1.1810012252349606,
+     "kcEnd": 0.5794167961239873,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.38642857142857,
+      "meanRh": 10.497967303986414
+     }
+    },
+    {
+     "year": 1985,
+     "status": "mature",
+     "days": 133,
+     "endDate": "19850820",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      37,
+      49,
+      30,
+      17
+     ],
+     "etcMm": 858.659405285292,
+     "peffMm": 26.563188319999995,
+     "nirMm": 832.096216965292,
+     "kcMid": 1.1899738689949104,
+     "kcEnd": 0.5846526895841817,
+     "heatDays": 4,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.276428571428575,
+      "meanRh": 15.575370214748975
+     }
+    },
+    {
+     "year": 1986,
+     "status": "mature",
+     "days": 137,
+     "endDate": "19860824",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      34,
+      55,
+      31,
+      17
+     ],
+     "etcMm": 906.1719309882482,
+     "peffMm": 14.6626904,
+     "nirMm": 891.5092405882482,
+     "kcMid": 1.19145299623302,
+     "kcEnd": 0.5801662400306281,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.667142857142856,
+      "meanRh": 12.466795657359578
+     }
+    },
+    {
+     "year": 1987,
+     "status": "mature",
+     "days": 138,
+     "endDate": "19870825",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      40,
+      53,
+      31,
+      14
+     ],
+     "etcMm": 826.4703224300338,
+     "peffMm": 20.594684799999992,
+     "nirMm": 805.8756376300338,
+     "kcMid": 1.1731231888422649,
+     "kcEnd": 0.5671971579119608,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.97785714285714,
+      "meanRh": 14.300451332065732
+     }
+    },
+    {
+     "year": 1988,
+     "status": "mature",
+     "days": 127,
+     "endDate": "19880814",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      33,
+      51,
+      28,
+      15
+     ],
+     "etcMm": 843.0988259994789,
+     "peffMm": 19.850155840000003,
+     "nirMm": 823.2486701594789,
+     "kcMid": 1.185201047604458,
+     "kcEnd": 0.5855273387136128,
+     "heatDays": 13,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.18,
+      "meanRh": 17.593088674477368
+     }
+    },
+    {
+     "year": 1989,
+     "status": "mature",
+     "days": 141,
+     "endDate": "19890828",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      46,
+      49,
+      30,
+      16
+     ],
+     "etcMm": 812.3167002689048,
+     "peffMm": 13.389604959999996,
+     "nirMm": 798.9270953089048,
+     "kcMid": 1.1715496353236572,
+     "kcEnd": 0.5746363781556058,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.225,
+      "meanRh": 11.273594477860678
+     }
+    },
+    {
+     "year": 1990,
+     "status": "mature",
+     "days": 129,
+     "endDate": "19900816",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      35,
+      50,
+      30,
+      14
+     ],
+     "etcMm": 851.0232945753395,
+     "peffMm": 16.858981919999998,
+     "nirMm": 834.1643126553395,
+     "kcMid": 1.1907639130995602,
+     "kcEnd": 0.5846692871494055,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.86642857142858,
+      "meanRh": 12.97046185208453
+     }
+    },
+    {
+     "year": 1991,
+     "status": "mature",
+     "days": 141,
+     "endDate": "19910828",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      41,
+      52,
+      32,
+      16
+     ],
+     "etcMm": 849.7850137956415,
+     "peffMm": 35.75387327999998,
+     "nirMm": 814.0311405156415,
+     "kcMid": 1.1817011956298769,
+     "kcEnd": 0.5721484988837522,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.40714285714286,
+      "meanRh": 12.279781628408603
+     }
+    },
+    {
+     "year": 1992,
+     "status": "mature",
+     "days": 152,
+     "endDate": "19920908",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      45,
+      54,
+      34,
+      19
+     ],
+     "etcMm": 857.7809198829829,
+     "peffMm": 53.57499168000001,
+     "nirMm": 804.2059282029828,
+     "kcMid": 1.1809258978235606,
+     "kcEnd": 0.5733429608081656,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 2,
+      "meanTmax": 31.012142857142855,
+      "meanRh": 18.442316487541376
+     }
+    },
+    {
+     "year": 1993,
+     "status": "mature",
+     "days": 144,
+     "endDate": "19930831",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      41,
+      52,
+      33,
+      18
+     ],
+     "etcMm": 890.5120602608708,
+     "peffMm": 71.81709375999998,
+     "nirMm": 818.6949665008708,
+     "kcMid": 1.1933872646778199,
+     "kcEnd": 0.5741763631587745,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.63571428571429,
+      "meanRh": 12.570443708171267
+     }
+    },
+    {
+     "year": 1994,
+     "status": "mature",
+     "days": 136,
+     "endDate": "19940823",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      42,
+      49,
+      30,
+      15
+     ],
+     "etcMm": 876.0896935643179,
+     "peffMm": 17.77523920000001,
+     "nirMm": 858.314454364318,
+     "kcMid": 1.1907537843289877,
+     "kcEnd": 0.5726840576277695,
+     "heatDays": 5,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.166428571428575,
+      "meanRh": 13.435708506369025
+     }
+    },
+    {
+     "year": 1995,
+     "status": "mature",
+     "days": 134,
+     "endDate": "19950821",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      33,
+      56,
+      30,
+      15
+     ],
+     "etcMm": 865.8404728410985,
+     "peffMm": 23.800296799999998,
+     "nirMm": 842.0401760410986,
+     "kcMid": 1.1872492297109263,
+     "kcEnd": 0.5768165960213216,
+     "heatDays": 5,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.17857142857143,
+      "meanRh": 14.128158451451824
+     }
+    },
+    {
+     "year": 1996,
+     "status": "mature",
+     "days": 145,
+     "endDate": "19960901",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      42,
+      52,
+      31,
+      20
+     ],
+     "etcMm": 873.5740483111348,
+     "peffMm": 15.780473599999999,
+     "nirMm": 857.7935747111347,
+     "kcMid": 1.180386497546302,
+     "kcEnd": 0.5726080918484763,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.57857142857143,
+      "meanRh": 11.09293551081315
+     }
+    },
+    {
+     "year": 1997,
+     "status": "mature",
+     "days": 142,
+     "endDate": "19970829",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      45,
+      50,
+      31,
+      16
+     ],
+     "etcMm": 789.4952183704978,
+     "peffMm": 78.29141855999998,
+     "nirMm": 711.2037998104978,
+     "kcMid": 1.1714764467879082,
+     "kcEnd": 0.5704392688496543,
+     "heatDays": 4,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.66571428571429,
+      "meanRh": 13.183130298811703
+     }
+    },
+    {
+     "year": 1998,
+     "status": "mature",
+     "days": 141,
+     "endDate": "19980828",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      39,
+      55,
+      31,
+      16
+     ],
+     "etcMm": 849.7822228715896,
+     "peffMm": 31.0504936,
+     "nirMm": 818.7317292715896,
+     "kcMid": 1.1778379681764644,
+     "kcEnd": 0.5702113715117747,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.000714285714295,
+      "meanRh": 12.951555325089602
+     }
+    },
+    {
+     "year": 1999,
+     "status": "mature",
+     "days": 142,
+     "endDate": "19990829",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      40,
+      54,
+      32,
+      16
+     ],
+     "etcMm": 880.1958780280926,
+     "peffMm": 23.522201759999998,
+     "nirMm": 856.6736762680925,
+     "kcMid": 1.180352803047422,
+     "kcEnd": 0.5641910835027856,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.80428571428572,
+      "meanRh": 13.20060801816239
+     }
+    },
+    {
+     "year": 2000,
+     "status": "mature",
+     "days": 127,
+     "endDate": "20000814",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      26,
+      55,
+      32,
+      14
+     ],
+     "etcMm": 877.6908454070693,
+     "peffMm": 2.0072363199999996,
+     "nirMm": 875.6836090870694,
+     "kcMid": 1.1828881609313338,
+     "kcEnd": 0.5717116956528161,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.910714285714285,
+      "meanRh": 12.384489817384198
+     }
+    },
+    {
+     "year": 2001,
+     "status": "mature",
+     "days": 125,
+     "endDate": "20010812",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      28,
+      50,
+      31,
+      16
+     ],
+     "etcMm": 875.5422216384009,
+     "peffMm": 1.7776464000000003,
+     "nirMm": 873.7645752384009,
+     "kcMid": 1.1874341614575068,
+     "kcEnd": 0.5785296243443842,
+     "heatDays": 5,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.68928571428571,
+      "meanRh": 15.807500201034923
+     }
+    },
+    {
+     "year": 2002,
+     "status": "mature",
+     "days": 136,
+     "endDate": "20020823",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      35,
+      55,
+      31,
+      15
+     ],
+     "etcMm": 854.7013457561184,
+     "peffMm": 33.0928976,
+     "nirMm": 821.6084481561184,
+     "kcMid": 1.1699963393461947,
+     "kcEnd": 0.5732715263209706,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.83,
+      "meanRh": 12.76826300653045
+     }
+    },
+    {
+     "year": 2003,
+     "status": "mature",
+     "days": 146,
+     "endDate": "20030902",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      44,
+      54,
+      32,
+      16
+     ],
+     "etcMm": 891.3968140761312,
+     "peffMm": 35.418904799999986,
+     "nirMm": 855.9779092761313,
+     "kcMid": 1.1838092460052643,
+     "kcEnd": 0.5808845635024745,
+     "heatDays": 4,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.79071428571428,
+      "meanRh": 15.862498439704694
+     }
+    },
+    {
+     "year": 2004,
+     "status": "mature",
+     "days": 136,
+     "endDate": "20040823",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      36,
+      52,
+      32,
+      16
+     ],
+     "etcMm": 947.4684818721963,
+     "peffMm": 14.213584000000003,
+     "nirMm": 933.2548978721964,
+     "kcMid": 1.2031235453905698,
+     "kcEnd": 0.5808085977231813,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.00857142857142,
+      "meanRh": 11.593997531081138
+     }
+    },
+    {
+     "year": 2005,
+     "status": "mature",
+     "days": 137,
+     "endDate": "20050824",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      36,
+      54,
+      31,
+      16
+     ],
+     "etcMm": 939.5876279726787,
+     "peffMm": 38.83689904,
+     "nirMm": 900.7507289326786,
+     "kcMid": 1.202940982469365,
+     "kcEnd": 0.60031281155672,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.27,
+      "meanRh": 14.250175235188133
+     }
+    },
+    {
+     "year": 2006,
+     "status": "mature",
+     "days": 130,
+     "endDate": "20060817",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      34,
+      50,
+      31,
+      15
+     ],
+     "etcMm": 947.0151806371999,
+     "peffMm": 1.2883646400000002,
+     "nirMm": 945.7268159971999,
+     "kcMid": 1.1939623174587064,
+     "kcEnd": 0.5927390233611842,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.87785714285714,
+      "meanRh": 11.208902491376733
+     }
+    },
+    {
+     "year": 2007,
+     "status": "mature",
+     "days": 124,
+     "endDate": "20070811",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      25,
+      54,
+      30,
+      15
+     ],
+     "etcMm": 974.5164522362918,
+     "peffMm": 5.449779520000001,
+     "nirMm": 969.0666727162918,
+     "kcMid": 1.2141208580395875,
+     "kcEnd": 0.5941773087824695,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.15214285714285,
+      "meanRh": 11.782792328606902
+     }
+    },
+    {
+     "year": 2008,
+     "status": "mature",
+     "days": 122,
+     "endDate": "20080809",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      30,
+      49,
+      30,
+      13
+     ],
+     "etcMm": 886.2471866214611,
+     "peffMm": 9.939396959999998,
+     "nirMm": 876.3077896614611,
+     "kcMid": 1.1995759434975757,
+     "kcEnd": 0.5700053873794603,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.06428571428571,
+      "meanRh": 13.457128024126556
+     }
+    },
+    {
+     "year": 2009,
+     "status": "mature",
+     "days": 143,
+     "endDate": "20090830",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      42,
+      55,
+      29,
+      17
+     ],
+     "etcMm": 917.8618911314196,
+     "peffMm": 49.67019391999999,
+     "nirMm": 868.1916972114196,
+     "kcMid": 1.1909388963428977,
+     "kcEnd": 0.5896038709639997,
+     "heatDays": 4,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 32.54214285714285,
+      "meanRh": 14.816872597695944
+     }
+    },
+    {
+     "year": 2010,
+     "status": "mature",
+     "days": 134,
+     "endDate": "20100821",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      35,
+      53,
+      32,
+      14
+     ],
+     "etcMm": 892.7665871948004,
+     "peffMm": 34.067896639999994,
+     "nirMm": 858.6986905548005,
+     "kcMid": 1.1952895744009546,
+     "kcEnd": 0.5838445158313645,
+     "heatDays": 4,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.59928571428571,
+      "meanRh": 13.36744107205106
+     }
+    },
+    {
+     "year": 2011,
+     "status": "mature",
+     "days": 125,
+     "endDate": "20110812",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      29,
+      50,
+      32,
+      14
+     ],
+     "etcMm": 947.9291119426892,
+     "peffMm": 8.771878720000002,
+     "nirMm": 939.1572332226892,
+     "kcMid": 1.2034274085077428,
+     "kcEnd": 0.5928952958214446,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.237142857142864,
+      "meanRh": 12.354413668573427
+     }
+    },
+    {
+     "year": 2012,
+     "status": "mature",
+     "days": 136,
+     "endDate": "20120823",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      37,
+      53,
+      32,
+      14
+     ],
+     "etcMm": 867.2815822194774,
+     "peffMm": 55.38578223999998,
+     "nirMm": 811.8957999794774,
+     "kcMid": 1.1857273819324186,
+     "kcEnd": 0.5744464637073726,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.55714285714286,
+      "meanRh": 16.16101606798934
+     }
+    },
+    {
+     "year": 2013,
+     "status": "mature",
+     "days": 132,
+     "endDate": "20130819",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      37,
+      50,
+      30,
+      15
+     ],
+     "etcMm": 930.1983142554872,
+     "peffMm": 42.42633231999999,
+     "nirMm": 887.7719819354871,
+     "kcMid": 1.1956054654331825,
+     "kcEnd": 0.6062508033048081,
+     "heatDays": 6,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.08857142857142,
+      "meanRh": 14.232439124555725
+     }
+    },
+    {
+     "year": 2014,
+     "status": "mature",
+     "days": 131,
+     "endDate": "20140818",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      33,
+      51,
+      31,
+      16
+     ],
+     "etcMm": 935.5247874216853,
+     "peffMm": 15.95602112,
+     "nirMm": 919.5687663016854,
+     "kcMid": 1.2014216668835003,
+     "kcEnd": 0.5849107498050161,
+     "heatDays": 4,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.683571428571426,
+      "meanRh": 10.46286182879272
+     }
+    },
+    {
+     "year": 2015,
+     "status": "mature",
+     "days": 131,
+     "endDate": "20150818",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      34,
+      52,
+      30,
+      15
+     ],
+     "etcMm": 900.8639790710675,
+     "peffMm": 19.170820640000002,
+     "nirMm": 881.6931584310676,
+     "kcMid": 1.193670870253848,
+     "kcEnd": 0.5907335267878427,
+     "heatDays": 8,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.205714285714286,
+      "meanRh": 16.705003198760732
+     }
+    },
+    {
+     "year": 2016,
+     "status": "mature",
+     "days": 129,
+     "endDate": "20160816",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      34,
+      50,
+      30,
+      15
+     ],
+     "etcMm": 919.9858525800776,
+     "peffMm": 33.69097855999998,
+     "nirMm": 886.2948740200776,
+     "kcMid": 1.2004166314550875,
+     "kcEnd": 0.6045694273897844,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.75714285714287,
+      "meanRh": 13.30073139804873
+     }
+    },
+    {
+     "year": 2017,
+     "status": "mature",
+     "days": 129,
+     "endDate": "20170816",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      35,
+      49,
+      30,
+      15
+     ],
+     "etcMm": 943.9668975580402,
+     "peffMm": 13.669288800000002,
+     "nirMm": 930.2976087580402,
+     "kcMid": 1.1981174005351456,
+     "kcEnd": 0.6052379262475649,
+     "heatDays": 6,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.96,
+      "meanRh": 12.74803007006334
+     }
+    },
+    {
+     "year": 2018,
+     "status": "mature",
+     "days": 135,
+     "endDate": "20180822",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      37,
+      53,
+      30,
+      15
+     ],
+     "etcMm": 938.5586862794019,
+     "peffMm": 33.845547839999995,
+     "nirMm": 904.7131384394019,
+     "kcMid": 1.1945723308347944,
+     "kcEnd": 0.5969728494604606,
+     "heatDays": 14,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 34.35928571428572,
+      "meanRh": 13.543173056415446
+     }
+    },
+    {
+     "year": 2019,
+     "status": "mature",
+     "days": 139,
+     "endDate": "20190826",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      39,
+      55,
+      28,
+      17
+     ],
+     "etcMm": 891.1679642467004,
+     "peffMm": 56.807349119999984,
+     "nirMm": 834.3606151267004,
+     "kcMid": 1.1876753615585807,
+     "kcEnd": 0.5915164211720884,
+     "heatDays": 18,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.16857142857143,
+      "meanRh": 16.241848295537242
+     }
+    },
+    {
+     "year": 2020,
+     "status": "mature",
+     "days": 138,
+     "endDate": "20200825",
+     "frostDaysAfterSow": 1,
+     "stageDays": [
+      41,
+      52,
+      30,
+      15
+     ],
+     "etcMm": 905.9142581321848,
+     "peffMm": 68.56272336,
+     "nirMm": 837.3515347721848,
+     "kcMid": 1.1930428864783573,
+     "kcEnd": 0.5878569559452722,
+     "heatDays": 4,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 34.402857142857144,
+      "meanRh": 18.37161971701551
+     }
+    },
+    {
+     "year": 2021,
+     "status": "mature",
+     "days": 127,
+     "endDate": "20210814",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      35,
+      49,
+      29,
+      14
+     ],
+     "etcMm": 886.3480880195987,
+     "peffMm": 33.88895984000001,
+     "nirMm": 852.4591281795987,
+     "kcMid": 1.194585253748973,
+     "kcEnd": 0.5901388232585185,
+     "heatDays": 11,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.83642857142858,
+      "meanRh": 13.985429405208214
+     }
+    },
+    {
+     "year": 2022,
+     "status": "mature",
+     "days": 129,
+     "endDate": "20220816",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      29,
+      56,
+      29,
+      15
+     ],
+     "etcMm": 921.1153852488703,
+     "peffMm": 46.58256624000002,
+     "nirMm": 874.5328190088703,
+     "kcMid": 1.2059539255466507,
+     "kcEnd": 0.5928200535257636,
+     "heatDays": 12,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.325,
+      "meanRh": 13.519296708623875
+     }
+    },
+    {
+     "year": 2023,
+     "status": "mature",
+     "days": 129,
+     "endDate": "20230816",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      36,
+      49,
+      29,
+      15
+     ],
+     "etcMm": 924.3585675465603,
+     "peffMm": 3.4799459200000005,
+     "nirMm": 920.8786216265603,
+     "kcMid": 1.1962093497200699,
+     "kcEnd": 0.6042655642726114,
+     "heatDays": 8,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.728571428571435,
+      "meanRh": 16.338241884298007
+     }
+    },
+    {
+     "year": 2024,
+     "status": "mature",
+     "days": 134,
+     "endDate": "20240821",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      41,
+      51,
+      29,
+      13
+     ],
+     "etcMm": 874.4790234998264,
+     "peffMm": 42.455604799999996,
+     "nirMm": 832.0234186998265,
+     "kcMid": 1.1942080443621377,
+     "kcEnd": 0.6057209906902501,
+     "heatDays": 9,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.64857142857143,
+      "meanRh": 14.98531630798538
+     }
+    },
+    {
+     "year": 2025,
+     "status": "mature",
+     "days": 127,
+     "endDate": "20250814",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      32,
+      51,
+      29,
+      15
+     ],
+     "etcMm": 888.6249211818763,
+     "peffMm": 6.682919519999999,
+     "nirMm": 881.9420016618762,
+     "kcMid": 1.1965446469528125,
+     "kcEnd": 0.5900852854712071,
+     "heatDays": 14,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.896428571428565,
+      "meanRh": 15.028029361791445
+     }
+    }
+   ]
+  },
+  {
+   "cropId": "onion",
+   "name": {
+    "uz": "Piyoz",
+    "en": "Onion (dry)"
+   },
+   "sow": "03-01",
+   "period": {
+    "from": "19840101",
+    "to": "20251231"
+   },
+   "seasons": 42,
+   "ripen": {
+    "applicable": true,
+    "matured": 42,
+    "of": 42,
+    "share": 1,
+    "frostBeforeMaturity": 0,
+    "daysToMaturity": {
+     "median": 127,
+     "min": 115,
+     "max": 139
+    },
+    "maturity": {
+     "median": "07-05",
+     "early": "06-30",
+     "late": "07-11"
+    },
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 204,
+      "row": "Onions (Allium cepa)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "6.11",
+      "page": 209,
+      "row": "Onions (Allium cepa) - Common",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": true,
+      "row": "Frost day = daily minimum 2 m air temperature <= 0 °C (NASA POWER T2M_MIN)"
+     }
+    ]
+   },
+   "springFrost": {
+    "years": 29,
+    "of": 42
+   },
+   "water": {
+    "seasons": 42,
+    "etcMm": 737,
+    "peffMm": 66,
+    "nirMm": {
+     "median": 667,
+     "p80": 712
+    },
+    "m3ha": {
+     "median": 6670,
+     "p80": 7120
+    },
+    "kcMid": 1.11,
+    "kcEnd": 0.77,
+    "note": "Net field need (ETc - effective rain). Canal and field losses not included.",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.1",
+      "page": 165,
+      "row": "Onions (Allium cepa) - Dry",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.20",
+      "page": 201,
+      "row": "Kc linear in dev and late stages",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.16",
+      "page": 190,
+      "row": "Kc mid climate adjustment (u2, RHmin, h)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.19",
+      "page": 195,
+      "row": "Kc end climate adjustment, only when Kc end (Tab) > 0.45",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.17",
+      "page": 193,
+      "row": "RHmin = e°(Tdew) / e°(Tmax) x 100",
+      "verified": true
+     },
+     {
+      "doc": "cropwat",
+      "table": "USDA-SCS",
+      "page": null,
+      "verified": false,
+      "row": "Peff = P (125 - 0.2 P) / 125 for P <= 250 mm/month; Peff = 125 + 0.1 P above. Formula seen in secondary sources, primary page not yet checked"
+     }
+    ]
+   },
+   "heat": {
+    "tUpper": 35,
+    "stage": "mid-season (includes flowering)",
+    "days": {
+     "median": 0,
+     "max": 3
+    },
+    "yearsWithAny": 10,
+    "of": 42,
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 204,
+      "row": "Onions (Allium cepa)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     }
+    ]
+   },
+   "spoilage": {
+    "perishability": "semi",
+    "driver": "heat",
+    "windowDays": 14,
+    "seasons": 42,
+    "rainDays": 0,
+    "meanTmax": 41.4,
+    "meanRh": 14,
+    "wetYears": 0,
+    "hotYears": 42,
+    "level": "high",
+    "rule": {
+     "verified": false,
+     "windowDays": 14,
+     "wetRainDays": 3,
+     "hotMeanTmax": 30,
+     "levels": [
+      0.2,
+      0.5
+     ],
+     "note": "Team heuristic, not from a published source. Needs agronomist review."
+    }
+   },
+   "salinity": {
+    "class": "medium",
+    "ece": [
+     4,
+     8
+    ],
+    "yieldPct": [
+     55.2,
+     0
+    ],
+    "rating": "S/MS",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "8.8",
+      "page": 281,
+      "row": "Onion (Allium cepa)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 8.19",
+      "page": 285,
+      "row": "Yact/Ymax = 1 - b/100 (ECe - ECe threshold)",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": false,
+      "row": "Mapping of farmer answer to ECe range follows USDA salinity classes; source page not yet checked"
+     }
+    ]
+   },
+   "years": [
+    {
+     "year": 1984,
+     "status": "mature",
+     "days": 127,
+     "endDate": "19840705",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      47,
+      27,
+      36,
+      17
+     ],
+     "etcMm": 730.088828606861,
+     "peffMm": 68.96645952000003,
+     "nirMm": 661.1223690868609,
+     "kcMid": 1.1109157131580563,
+     "kcEnd": 0.7596112907376111,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.90642857142858,
+      "meanRh": 10.784656564854995
+     }
+    },
+    {
+     "year": 1985,
+     "status": "mature",
+     "days": 128,
+     "endDate": "19850706",
+     "frostDaysAfterSow": 9,
+     "stageDays": [
+      51,
+      25,
+      36,
+      16
+     ],
+     "etcMm": 704.3842569803788,
+     "peffMm": 58.27488944000001,
+     "nirMm": 646.1093675403788,
+     "kcMid": 1.106142326178192,
+     "kcEnd": 0.7555826009592091,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.08642857142858,
+      "meanRh": 11.239841097069355
+     }
+    },
+    {
+     "year": 1986,
+     "status": "mature",
+     "days": 132,
+     "endDate": "19860710",
+     "frostDaysAfterSow": 8,
+     "stageDays": [
+      53,
+      24,
+      38,
+      17
+     ],
+     "etcMm": 768.1397046637082,
+     "peffMm": 38.657527999999985,
+     "nirMm": 729.4821766637083,
+     "kcMid": 1.1119874992367471,
+     "kcEnd": 0.7654712031425596,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.982142857142854,
+      "meanRh": 13.44321400147056
+     }
+    },
+    {
+     "year": 1987,
+     "status": "mature",
+     "days": 129,
+     "endDate": "19870707",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      45,
+      29,
+      37,
+      18
+     ],
+     "etcMm": 729.6218079207766,
+     "peffMm": 79.98782304000002,
+     "nirMm": 649.6339848807766,
+     "kcMid": 1.109930202432377,
+     "kcEnd": 0.7663997624946063,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.747142857142855,
+      "meanRh": 19.659616591280614
+     }
+    },
+    {
+     "year": 1988,
+     "status": "mature",
+     "days": 125,
+     "endDate": "19880703",
+     "frostDaysAfterSow": 1,
+     "stageDays": [
+      49,
+      24,
+      36,
+      16
+     ],
+     "etcMm": 716.5101054347077,
+     "peffMm": 67.50853504000001,
+     "nirMm": 649.0015703947078,
+     "kcMid": 1.109991223189624,
+     "kcEnd": 0.7729875396506112,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 43.875,
+      "meanRh": 14.483722191125063
+     }
+    },
+    {
+     "year": 1989,
+     "status": "mature",
+     "days": 134,
+     "endDate": "19890712",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      51,
+      30,
+      36,
+      17
+     ],
+     "etcMm": 746.5354127065316,
+     "peffMm": 47.98601824000001,
+     "nirMm": 698.5493944665316,
+     "kcMid": 1.1088654837042542,
+     "kcEnd": 0.7527924835754894,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.24071428571428,
+      "meanRh": 16.147102950181313
+     }
+    },
+    {
+     "year": 1990,
+     "status": "mature",
+     "days": 127,
+     "endDate": "19900705",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      53,
+      23,
+      35,
+      16
+     ],
+     "etcMm": 717.1518247718514,
+     "peffMm": 46.95137536,
+     "nirMm": 670.2004494118513,
+     "kcMid": 1.1085161720427124,
+     "kcEnd": 0.7655586024042811,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.987142857142864,
+      "meanRh": 16.41065367712894
+     }
+    },
+    {
+     "year": 1991,
+     "status": "mature",
+     "days": 132,
+     "endDate": "19910710",
+     "frostDaysAfterSow": 2,
+     "stageDays": [
+      52,
+      26,
+      36,
+      18
+     ],
+     "etcMm": 702.2505759676521,
+     "peffMm": 108.44369951999997,
+     "nirMm": 593.8068764476521,
+     "kcMid": 1.1117898907472539,
+     "kcEnd": 0.756060568561936,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.98142857142857,
+      "meanRh": 14.399885044414896
+     }
+    },
+    {
+     "year": 1992,
+     "status": "mature",
+     "days": 139,
+     "endDate": "19920717",
+     "frostDaysAfterSow": 6,
+     "stageDays": [
+      56,
+      28,
+      38,
+      17
+     ],
+     "etcMm": 710.8975143001072,
+     "peffMm": 85.0143888,
+     "nirMm": 625.8831255001072,
+     "kcMid": 1.104396950022251,
+     "kcEnd": 0.7616223061311276,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.628571428571426,
+      "meanRh": 12.018239959193405
+     }
+    },
+    {
+     "year": 1993,
+     "status": "mature",
+     "days": 133,
+     "endDate": "19930711",
+     "frostDaysAfterSow": 6,
+     "stageDays": [
+      52,
+      28,
+      36,
+      17
+     ],
+     "etcMm": 693.3989079751958,
+     "peffMm": 113.33311087999991,
+     "nirMm": 580.0657970951959,
+     "kcMid": 1.1038405348282179,
+     "kcEnd": 0.7581995845673282,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.589999999999996,
+      "meanRh": 15.434097851445634
+     }
+    },
+    {
+     "year": 1994,
+     "status": "mature",
+     "days": 131,
+     "endDate": "19940709",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      54,
+      25,
+      36,
+      16
+     ],
+     "etcMm": 747.6369483520775,
+     "peffMm": 63.99764464000003,
+     "nirMm": 683.6393037120774,
+     "kcMid": 1.1087334137087639,
+     "kcEnd": 0.7678085091131697,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.870000000000005,
+      "meanRh": 12.751222740876793
+     }
+    },
+    {
+     "year": 1995,
+     "status": "mature",
+     "days": 130,
+     "endDate": "19950708",
+     "frostDaysAfterSow": 10,
+     "stageDays": [
+      50,
+      23,
+      39,
+      18
+     ],
+     "etcMm": 728.8380229781749,
+     "peffMm": 51.63460687999999,
+     "nirMm": 677.2034160981749,
+     "kcMid": 1.1123544536950092,
+     "kcEnd": 0.7650916406345117,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 43.03142857142858,
+      "meanRh": 11.917591827168836
+     }
+    },
+    {
+     "year": 1996,
+     "status": "mature",
+     "days": 136,
+     "endDate": "19960714",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      55,
+      28,
+      35,
+      18
+     ],
+     "etcMm": 757.1781636670403,
+     "peffMm": 60.52354928000001,
+     "nirMm": 696.6546143870403,
+     "kcMid": 1.1141180960963262,
+     "kcEnd": 0.7701228785579523,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.71142857142858,
+      "meanRh": 16.06425383384815
+     }
+    },
+    {
+     "year": 1997,
+     "status": "mature",
+     "days": 133,
+     "endDate": "19970711",
+     "frostDaysAfterSow": 4,
+     "stageDays": [
+      52,
+      28,
+      36,
+      17
+     ],
+     "etcMm": 683.3368870977046,
+     "peffMm": 146.44428848000004,
+     "nirMm": 536.8925986177045,
+     "kcMid": 1.0998407006790827,
+     "kcEnd": 0.7578000450851725,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.403571428571425,
+      "meanRh": 11.462501708363334
+     }
+    },
+    {
+     "year": 1998,
+     "status": "mature",
+     "days": 133,
+     "endDate": "19980711",
+     "frostDaysAfterSow": 8,
+     "stageDays": [
+      49,
+      28,
+      39,
+      17
+     ],
+     "etcMm": 737.0691769211412,
+     "peffMm": 106.0370344,
+     "nirMm": 631.0321425211412,
+     "kcMid": 1.114055399131434,
+     "kcEnd": 0.7611162227870638,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.087857142857146,
+      "meanRh": 16.922590025865944
+     }
+    },
+    {
+     "year": 1999,
+     "status": "mature",
+     "days": 133,
+     "endDate": "19990711",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      51,
+      27,
+      38,
+      17
+     ],
+     "etcMm": 783.4681994169313,
+     "peffMm": 71.5135152,
+     "nirMm": 711.9546842169312,
+     "kcMid": 1.1160866341343711,
+     "kcEnd": 0.7686142470688501,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.93928571428571,
+      "meanRh": 17.64190917176626
+     }
+    },
+    {
+     "year": 2000,
+     "status": "mature",
+     "days": 122,
+     "endDate": "20000630",
+     "frostDaysAfterSow": 5,
+     "stageDays": [
+      46,
+      21,
+      37,
+      18
+     ],
+     "etcMm": 764.980426081583,
+     "peffMm": 21.40638016000001,
+     "nirMm": 743.574045921583,
+     "kcMid": 1.1118026388163167,
+     "kcEnd": 0.7642866425667613,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.425,
+      "meanRh": 12.826642516639563
+     }
+    },
+    {
+     "year": 2001,
+     "status": "mature",
+     "days": 117,
+     "endDate": "20010625",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      40,
+      24,
+      35,
+      18
+     ],
+     "etcMm": 732.5427285046366,
+     "peffMm": 12.178036639999995,
+     "nirMm": 720.3646918646366,
+     "kcMid": 1.1111424782387485,
+     "kcEnd": 0.7620100074064045,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.69928571428572,
+      "meanRh": 10.36268070183498
+     }
+    },
+    {
+     "year": 2002,
+     "status": "mature",
+     "days": 125,
+     "endDate": "20020703",
+     "frostDaysAfterSow": 4,
+     "stageDays": [
+      41,
+      28,
+      38,
+      18
+     ],
+     "etcMm": 758.4568482038763,
+     "peffMm": 50.34811632000001,
+     "nirMm": 708.1087318838763,
+     "kcMid": 1.1153716687452506,
+     "kcEnd": 0.7675192129325717,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.73357142857143,
+      "meanRh": 13.894159810249212
+     }
+    },
+    {
+     "year": 2003,
+     "status": "mature",
+     "days": 135,
+     "endDate": "20030713",
+     "frostDaysAfterSow": 6,
+     "stageDays": [
+      46,
+      33,
+      39,
+      17
+     ],
+     "etcMm": 744.2940371268619,
+     "peffMm": 84.74833440000003,
+     "nirMm": 659.5457027268619,
+     "kcMid": 1.111205009338654,
+     "kcEnd": 0.7659106965729306,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.40714285714286,
+      "meanRh": 13.385415322068198
+     }
+    },
+    {
+     "year": 2004,
+     "status": "mature",
+     "days": 125,
+     "endDate": "20040703",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      44,
+      28,
+      36,
+      17
+     ],
+     "etcMm": 757.690404858972,
+     "peffMm": 44.14013104000001,
+     "nirMm": 713.550273818972,
+     "kcMid": 1.1172047605623567,
+     "kcEnd": 0.7664434158824714,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.65785714285715,
+      "meanRh": 16.964457082291556
+     }
+    },
+    {
+     "year": 2005,
+     "status": "mature",
+     "days": 127,
+     "endDate": "20050705",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      44,
+      25,
+      41,
+      17
+     ],
+     "etcMm": 719.939833465829,
+     "peffMm": 72.54722335999998,
+     "nirMm": 647.392610105829,
+     "kcMid": 1.1103895806556965,
+     "kcEnd": 0.7662170101759166,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.319285714285705,
+      "meanRh": 12.29221283385226
+     }
+    },
+    {
+     "year": 2006,
+     "status": "mature",
+     "days": 122,
+     "endDate": "20060630",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      44,
+      25,
+      36,
+      17
+     ],
+     "etcMm": 788.4986481238186,
+     "peffMm": 43.59703264000001,
+     "nirMm": 744.9016154838187,
+     "kcMid": 1.1231479103594209,
+     "kcEnd": 0.7778036551584282,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.257857142857134,
+      "meanRh": 15.699001794904419
+     }
+    },
+    {
+     "year": 2007,
+     "status": "mature",
+     "days": 121,
+     "endDate": "20070629",
+     "frostDaysAfterSow": 2,
+     "stageDays": [
+      44,
+      22,
+      38,
+      17
+     ],
+     "etcMm": 765.120126410153,
+     "peffMm": 53.70796656000001,
+     "nirMm": 711.412159850153,
+     "kcMid": 1.1231528753968454,
+     "kcEnd": 0.7750201967660777,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.721428571428575,
+      "meanRh": 14.588663494655298
+     }
+    },
+    {
+     "year": 2008,
+     "status": "mature",
+     "days": 115,
+     "endDate": "20080623",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      35,
+      27,
+      36,
+      17
+     ],
+     "etcMm": 732.2540249545193,
+     "peffMm": 21.58422192,
+     "nirMm": 710.6698030345193,
+     "kcMid": 1.1143872673252302,
+     "kcEnd": 0.7707318063242745,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.809999999999995,
+      "meanRh": 13.191001948207868
+     }
+    },
+    {
+     "year": 2009,
+     "status": "mature",
+     "days": 131,
+     "endDate": "20090709",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      43,
+      31,
+      38,
+      19
+     ],
+     "etcMm": 741.329911924309,
+     "peffMm": 76.76346207999998,
+     "nirMm": 664.5664498443091,
+     "kcMid": 1.112940786422241,
+     "kcEnd": 0.7694469714632375,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.809285714285714,
+      "meanRh": 12.874501656090402
+     }
+    },
+    {
+     "year": 2010,
+     "status": "mature",
+     "days": 124,
+     "endDate": "20100702",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      40,
+      27,
+      39,
+      18
+     ],
+     "etcMm": 691.9811922689581,
+     "peffMm": 67.65024415999997,
+     "nirMm": 624.3309481089582,
+     "kcMid": 1.1099263680967968,
+     "kcEnd": 0.7624879750091312,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.01714285714286,
+      "meanRh": 11.27606171977116
+     }
+    },
+    {
+     "year": 2011,
+     "status": "mature",
+     "days": 122,
+     "endDate": "20110630",
+     "frostDaysAfterSow": 5,
+     "stageDays": [
+      49,
+      22,
+      35,
+      16
+     ],
+     "etcMm": 772.3386154668311,
+     "peffMm": 24.970272159999993,
+     "nirMm": 747.3683433068311,
+     "kcMid": 1.120612705507213,
+     "kcEnd": 0.7844776292582685,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.87000000000001,
+      "meanRh": 11.41238839563417
+     }
+    },
+    {
+     "year": 2012,
+     "status": "mature",
+     "days": 130,
+     "endDate": "20120708",
+     "frostDaysAfterSow": 8,
+     "stageDays": [
+      48,
+      27,
+      38,
+      17
+     ],
+     "etcMm": 716.3379020085915,
+     "peffMm": 89.01047519999997,
+     "nirMm": 627.3274268085916,
+     "kcMid": 1.1097174841262896,
+     "kcEnd": 0.7630340123014105,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.755714285714284,
+      "meanRh": 13.446791395454982
+     }
+    },
+    {
+     "year": 2013,
+     "status": "mature",
+     "days": 125,
+     "endDate": "20130703",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      43,
+      29,
+      36,
+      17
+     ],
+     "etcMm": 758.8748155282619,
+     "peffMm": 63.96731039999999,
+     "nirMm": 694.907505128262,
+     "kcMid": 1.1186072181335158,
+     "kcEnd": 0.7698395014807937,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.95642857142857,
+      "meanRh": 15.206438895803933
+     }
+    },
+    {
+     "year": 2014,
+     "status": "mature",
+     "days": 126,
+     "endDate": "20140704",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      50,
+      23,
+      36,
+      17
+     ],
+     "etcMm": 754.3890413880395,
+     "peffMm": 46.00797071999998,
+     "nirMm": 708.3810706680395,
+     "kcMid": 1.1142111739979097,
+     "kcEnd": 0.7683878413622952,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.76714285714286,
+      "meanRh": 11.858545418904686
+     }
+    },
+    {
+     "year": 2015,
+     "status": "mature",
+     "days": 128,
+     "endDate": "20150706",
+     "frostDaysAfterSow": 5,
+     "stageDays": [
+      50,
+      25,
+      37,
+      16
+     ],
+     "etcMm": 748.6863560671799,
+     "peffMm": 63.82212160000001,
+     "nirMm": 684.8642344671798,
+     "kcMid": 1.1149294851960334,
+     "kcEnd": 0.770765933655042,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.64142857142857,
+      "meanRh": 13.318450660904785
+     }
+    },
+    {
+     "year": 2016,
+     "status": "mature",
+     "days": 122,
+     "endDate": "20160630",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      42,
+      26,
+      35,
+      19
+     ],
+     "etcMm": 720.173372568469,
+     "peffMm": 84.12252767999996,
+     "nirMm": 636.050844888469,
+     "kcMid": 1.1133612541629856,
+     "kcEnd": 0.7807195924317039,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.517857142857146,
+      "meanRh": 16.111861675350386
+     }
+    },
+    {
+     "year": 2017,
+     "status": "mature",
+     "days": 127,
+     "endDate": "20170705",
+     "frostDaysAfterSow": 11,
+     "stageDays": [
+      51,
+      25,
+      35,
+      16
+     ],
+     "etcMm": 777.2488315555283,
+     "peffMm": 62.812372480000015,
+     "nirMm": 714.4364590755283,
+     "kcMid": 1.121912921136285,
+     "kcEnd": 0.7779684651948173,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.34285714285714,
+      "meanRh": 15.392840872041143
+     }
+    },
+    {
+     "year": 2018,
+     "status": "mature",
+     "days": 122,
+     "endDate": "20180630",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      35,
+      30,
+      39,
+      18
+     ],
+     "etcMm": 738.5116869598315,
+     "peffMm": 56.06507487999999,
+     "nirMm": 682.4466120798315,
+     "kcMid": 1.113294908168391,
+     "kcEnd": 0.7761226297816551,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.88285714285714,
+      "meanRh": 13.0906303325286
+     }
+    },
+    {
+     "year": 2019,
+     "status": "mature",
+     "days": 129,
+     "endDate": "20190707",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      43,
+      29,
+      40,
+      17
+     ],
+     "etcMm": 704.0417672910022,
+     "peffMm": 98.21432015999999,
+     "nirMm": 605.8274471310023,
+     "kcMid": 1.1102396293442716,
+     "kcEnd": 0.7635400956454743,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 44.38214285714286,
+      "meanRh": 12.399869650674448
+     }
+    },
+    {
+     "year": 2020,
+     "status": "mature",
+     "days": 131,
+     "endDate": "20200709",
+     "frostDaysAfterSow": 2,
+     "stageDays": [
+      49,
+      25,
+      38,
+      19
+     ],
+     "etcMm": 737.6215263881547,
+     "peffMm": 133.15898063999995,
+     "nirMm": 604.4625457481548,
+     "kcMid": 1.110414575380682,
+     "kcEnd": 0.775142862396564,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.54500000000001,
+      "meanRh": 15.978657221103466
+     }
+    },
+    {
+     "year": 2021,
+     "status": "mature",
+     "days": 125,
+     "endDate": "20210703",
+     "frostDaysAfterSow": 4,
+     "stageDays": [
+      48,
+      25,
+      34,
+      18
+     ],
+     "etcMm": 745.2780511068236,
+     "peffMm": 82.81461104,
+     "nirMm": 662.4634400668235,
+     "kcMid": 1.1133070309475503,
+     "kcEnd": 0.7660727320295826,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 43.06857142857144,
+      "meanRh": 14.797865241658068
+     }
+    },
+    {
+     "year": 2022,
+     "status": "mature",
+     "days": 122,
+     "endDate": "20220630",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      41,
+      24,
+      40,
+      17
+     ],
+     "etcMm": 702.86610540984,
+     "peffMm": 84.75052079999999,
+     "nirMm": 618.11558460984,
+     "kcMid": 1.115872740322126,
+     "kcEnd": 0.7662036921931781,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.667857142857144,
+      "meanRh": 14.040622501800646
+     }
+    },
+    {
+     "year": 2023,
+     "status": "mature",
+     "days": 120,
+     "endDate": "20230628",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      36,
+      28,
+      39,
+      17
+     ],
+     "etcMm": 754.1949657378954,
+     "peffMm": 30.3832144,
+     "nirMm": 723.8117513378953,
+     "kcMid": 1.1199883896980758,
+     "kcEnd": 0.7753931002827562,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.087857142857146,
+      "meanRh": 13.953167352886743
+     }
+    },
+    {
+     "year": 2024,
+     "status": "mature",
+     "days": 131,
+     "endDate": "20240709",
+     "frostDaysAfterSow": 6,
+     "stageDays": [
+      50,
+      27,
+      37,
+      17
+     ],
+     "etcMm": 710.4867570967529,
+     "peffMm": 158.221368,
+     "nirMm": 552.2653890967529,
+     "kcMid": 1.1081801475114397,
+     "kcEnd": 0.779748080638252,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.497857142857136,
+      "meanRh": 19.508856157706663
+     }
+    },
+    {
+     "year": 2025,
+     "status": "mature",
+     "days": 123,
+     "endDate": "20250701",
+     "frostDaysAfterSow": 5,
+     "stageDays": [
+      44,
+      25,
+      37,
+      17
+     ],
+     "etcMm": 717.3617864637642,
+     "peffMm": 70.12917167999998,
+     "nirMm": 647.2326147837642,
+     "kcMid": 1.112842881251839,
+     "kcEnd": 0.7739148041987807,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.40785714285715,
+      "meanRh": 12.886046291070226
+     }
+    }
+   ]
+  },
+  {
+   "cropId": "potato",
+   "name": {
+    "uz": "Kartoshka",
+    "en": "Potato"
+   },
+   "sow": "02-20",
+   "period": {
+    "from": "19840101",
+    "to": "20251231"
+   },
+   "seasons": 42,
+   "ripen": {
+    "applicable": true,
+    "matured": 42,
+    "of": 42,
+    "share": 1,
+    "frostBeforeMaturity": 0,
+    "daysToMaturity": {
+     "median": 100,
+     "min": 89,
+     "max": 111
+    },
+    "maturity": {
+     "median": "05-30",
+     "early": "05-22",
+     "late": "06-05"
+    },
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 204,
+      "row": "Potato (Solanum tuberosum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "6.11",
+      "page": 209,
+      "row": "Potato (Solanum tuberosum) - Short season",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": true,
+      "row": "Frost day = daily minimum 2 m air temperature <= 0 °C (NASA POWER T2M_MIN)"
+     }
+    ]
+   },
+   "springFrost": {
+    "years": 34,
+    "of": 42
+   },
+   "water": {
+    "seasons": 42,
+    "etcMm": 421,
+    "peffMm": 69,
+    "nirMm": {
+     "median": 360,
+     "p80": 383
+    },
+    "m3ha": {
+     "median": 3600,
+     "p80": 3830
+    },
+    "kcMid": 1.15,
+    "kcEnd": 0.67,
+    "note": "Net field need (ETc - effective rain). Canal and field losses not included.",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.1",
+      "page": 165,
+      "row": "Potato (Solanum tuberosum) - Short season",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.20",
+      "page": 201,
+      "row": "Kc linear in dev and late stages",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.16",
+      "page": 190,
+      "row": "Kc mid climate adjustment (u2, RHmin, h)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.19",
+      "page": 195,
+      "row": "Kc end climate adjustment, only when Kc end (Tab) > 0.45",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.17",
+      "page": 193,
+      "row": "RHmin = e°(Tdew) / e°(Tmax) x 100",
+      "verified": true
+     },
+     {
+      "doc": "cropwat",
+      "table": "USDA-SCS",
+      "page": null,
+      "verified": false,
+      "row": "Peff = P (125 - 0.2 P) / 125 for P <= 250 mm/month; Peff = 125 + 0.1 P above. Formula seen in secondary sources, primary page not yet checked"
+     }
+    ]
+   },
+   "heat": {
+    "tUpper": 30,
+    "stage": "mid-season (includes flowering)",
+    "days": {
+     "median": 0,
+     "max": 3
+    },
+    "yearsWithAny": 18,
+    "of": 42,
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 204,
+      "row": "Potato (Solanum tuberosum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     }
+    ]
+   },
+   "spoilage": {
+    "perishability": "semi",
+    "driver": "heat",
+    "windowDays": 14,
+    "seasons": 42,
+    "rainDays": 0,
+    "meanTmax": 37.7,
+    "meanRh": 18,
+    "wetYears": 2,
+    "hotYears": 42,
+    "level": "high",
+    "rule": {
+     "verified": false,
+     "windowDays": 14,
+     "wetRainDays": 3,
+     "hotMeanTmax": 30,
+     "levels": [
+      0.2,
+      0.5
+     ],
+     "note": "Team heuristic, not from a published source. Needs agronomist review."
+    }
+   },
+   "salinity": {
+    "class": "medium",
+    "ece": [
+     4,
+     8
+    ],
+    "yieldPct": [
+     72.4,
+     24.400000000000006
+    ],
+    "rating": "MS",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "8.8",
+      "page": 281,
+      "row": "Potato (Solanum tuberosum)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 8.19",
+      "page": 285,
+      "row": "Yact/Ymax = 1 - b/100 (ECe - ECe threshold)",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": false,
+      "row": "Mapping of farmer answer to ECe range follows USDA salinity classes; source page not yet checked"
+     }
+    ]
+   },
+   "years": [
+    {
+     "year": 1984,
+     "status": "mature",
+     "days": 103,
+     "endDate": "19840601",
+     "frostDaysAfterSow": 13,
+     "stageDays": [
+      36,
+      30,
+      25,
+      12
+     ],
+     "etcMm": 431.97397727673365,
+     "peffMm": 69.55742976000003,
+     "nirMm": 362.4165475167336,
+     "kcMid": 1.1616046608539659,
+     "kcEnd": 0.6593175220028169,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.159285714285716,
+      "meanRh": 13.234025908210876
+     }
+    },
+    {
+     "year": 1985,
+     "status": "mature",
+     "days": 101,
+     "endDate": "19850531",
+     "frostDaysAfterSow": 11,
+     "stageDays": [
+      35,
+      30,
+      24,
+      12
+     ],
+     "etcMm": 420.6041538904239,
+     "peffMm": 49.82554704000002,
+     "nirMm": 370.7786068504239,
+     "kcMid": 1.1576072385349898,
+     "kcEnd": 0.6610040812275849,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 2,
+      "meanTmax": 38.517857142857146,
+      "meanRh": 14.454642960770983
+     }
+    },
+    {
+     "year": 1986,
+     "status": "mature",
+     "days": 103,
+     "endDate": "19860602",
+     "frostDaysAfterSow": 8,
+     "stageDays": [
+      33,
+      34,
+      23,
+      13
+     ],
+     "etcMm": 466.7931004762307,
+     "peffMm": 38.59753375999999,
+     "nirMm": 428.1955667162307,
+     "kcMid": 1.1705994049188686,
+     "kcEnd": 0.6593871360796366,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.800000000000004,
+      "meanRh": 13.814233651627955
+     }
+    },
+    {
+     "year": 1987,
+     "status": "mature",
+     "days": 99,
+     "endDate": "19870529",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      23,
+      36,
+      27,
+      13
+     ],
+     "etcMm": 432.82296269811934,
+     "peffMm": 77.44736368,
+     "nirMm": 355.3755990181194,
+     "kcMid": 1.1674349452634891,
+     "kcEnd": 0.6629564396547554,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 36.87428571428571,
+      "meanRh": 20.879237898484728
+     }
+    },
+    {
+     "year": 1988,
+     "status": "mature",
+     "days": 100,
+     "endDate": "19880529",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      29,
+      35,
+      23,
+      13
+     ],
+     "etcMm": 431.82884128450206,
+     "peffMm": 68.4775384,
+     "nirMm": 363.35130288450205,
+     "kcMid": 1.1588428137945923,
+     "kcEnd": 0.670873458754886,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.35214285714286,
+      "meanRh": 14.011410092081405
+     }
+    },
+    {
+     "year": 1989,
+     "status": "mature",
+     "days": 107,
+     "endDate": "19890606",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      34,
+      33,
+      28,
+      12
+     ],
+     "etcMm": 465.9391603507626,
+     "peffMm": 61.574775360000004,
+     "nirMm": 404.36438499076263,
+     "kcMid": 1.1663278642259525,
+     "kcEnd": 0.6664339792195211,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.46857142857142,
+      "meanRh": 11.980186533520596
+     }
+    },
+    {
+     "year": 1990,
+     "status": "mature",
+     "days": 102,
+     "endDate": "19900601",
+     "frostDaysAfterSow": 7,
+     "stageDays": [
+      35,
+      34,
+      21,
+      12
+     ],
+     "etcMm": 432.9020122187973,
+     "peffMm": 50.8168848,
+     "nirMm": 382.08512741879736,
+     "kcMid": 1.1672530796951728,
+     "kcEnd": 0.668305648603105,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.019285714285715,
+      "meanRh": 18.382613463358144
+     }
+    },
+    {
+     "year": 1991,
+     "status": "mature",
+     "days": 105,
+     "endDate": "19910604",
+     "frostDaysAfterSow": 4,
+     "stageDays": [
+      36,
+      30,
+      26,
+      13
+     ],
+     "etcMm": 421.40108857186596,
+     "peffMm": 117.59704575999994,
+     "nirMm": 303.804042811866,
+     "kcMid": 1.1459624801050574,
+     "kcEnd": 0.6643993496106545,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.503571428571426,
+      "meanRh": 18.71951029068149
+     }
+    },
+    {
+     "year": 1992,
+     "status": "mature",
+     "days": 111,
+     "endDate": "19920609",
+     "frostDaysAfterSow": 8,
+     "stageDays": [
+      39,
+      31,
+      28,
+      13
+     ],
+     "etcMm": 421.44115086682524,
+     "peffMm": 90.15907232000002,
+     "nirMm": 331.28207854682523,
+     "kcMid": 1.1441813660866098,
+     "kcEnd": 0.6551533344985117,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 37.632857142857134,
+      "meanRh": 19.831673131186278
+     }
+    },
+    {
+     "year": 1993,
+     "status": "mature",
+     "days": 106,
+     "endDate": "19930605",
+     "frostDaysAfterSow": 9,
+     "stageDays": [
+      37,
+      30,
+      26,
+      13
+     ],
+     "etcMm": 417.52887620827806,
+     "peffMm": 106.04697391999991,
+     "nirMm": 311.48190228827815,
+     "kcMid": 1.1490168517443098,
+     "kcEnd": 0.6548261328489482,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 37.92142857142857,
+      "meanRh": 22.31253801613564
+     }
+    },
+    {
+     "year": 1994,
+     "status": "mature",
+     "days": 106,
+     "endDate": "19940605",
+     "frostDaysAfterSow": 9,
+     "stageDays": [
+      33,
+      36,
+      24,
+      13
+     ],
+     "etcMm": 457.9588965322238,
+     "peffMm": 67.36997040000001,
+     "nirMm": 390.5889261322238,
+     "kcMid": 1.1685417721675593,
+     "kcEnd": 0.6566721870836686,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.33,
+      "meanRh": 17.38992343382126
+     }
+    },
+    {
+     "year": 1995,
+     "status": "mature",
+     "days": 104,
+     "endDate": "19950603",
+     "frostDaysAfterSow": 18,
+     "stageDays": [
+      36,
+      31,
+      21,
+      16
+     ],
+     "etcMm": 419.79312522241946,
+     "peffMm": 61.32508991999998,
+     "nirMm": 358.4680353024195,
+     "kcMid": 1.1555683067226707,
+     "kcEnd": 0.6638630047915209,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.08285714285715,
+      "meanRh": 12.7276126539654
+     }
+    },
+    {
+     "year": 1996,
+     "status": "mature",
+     "days": 109,
+     "endDate": "19960607",
+     "frostDaysAfterSow": 9,
+     "stageDays": [
+      37,
+      34,
+      26,
+      12
+     ],
+     "etcMm": 443.24014843417365,
+     "peffMm": 79.98698096000001,
+     "nirMm": 363.25316747417367,
+     "kcMid": 1.1535300607981251,
+     "kcEnd": 0.6723369365062091,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.44785714285714,
+      "meanRh": 16.2795814539644
+     }
+    },
+    {
+     "year": 1997,
+     "status": "mature",
+     "days": 106,
+     "endDate": "19970605",
+     "frostDaysAfterSow": 6,
+     "stageDays": [
+      34,
+      32,
+      27,
+      13
+     ],
+     "etcMm": 404.7454454053615,
+     "peffMm": 147.4372616,
+     "nirMm": 257.3081838053615,
+     "kcMid": 1.1290850510596797,
+     "kcEnd": 0.6472698947080802,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.31785714285714,
+      "meanRh": 21.992444363079322
+     }
+    },
+    {
+     "year": 1998,
+     "status": "mature",
+     "days": 105,
+     "endDate": "19980604",
+     "frostDaysAfterSow": 16,
+     "stageDays": [
+      38,
+      27,
+      27,
+      13
+     ],
+     "etcMm": 427.27500722457785,
+     "peffMm": 105.58798816,
+     "nirMm": 321.68701906457784,
+     "kcMid": 1.147004140493156,
+     "kcEnd": 0.6675458046050368,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 34.07214285714286,
+      "meanRh": 25.629249330562793
+     }
+    },
+    {
+     "year": 1999,
+     "status": "mature",
+     "days": 104,
+     "endDate": "19990603",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      31,
+      34,
+      24,
+      15
+     ],
+     "etcMm": 456.0885286368642,
+     "peffMm": 84.09863664,
+     "nirMm": 371.98989199686423,
+     "kcMid": 1.156828818756513,
+     "kcEnd": 0.6754097651425548,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.87357142857143,
+      "meanRh": 13.99657222995086
+     }
+    },
+    {
+     "year": 2000,
+     "status": "mature",
+     "days": 94,
+     "endDate": "20000523",
+     "frostDaysAfterSow": 7,
+     "stageDays": [
+      33,
+      27,
+      21,
+      13
+     ],
+     "etcMm": 455.87119112625544,
+     "peffMm": 23.907316480000006,
+     "nirMm": 431.9638746462554,
+     "kcMid": 1.1675446401724172,
+     "kcEnd": 0.6691267782819555,
+     "heatDays": 2,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.82071428571429,
+      "meanRh": 10.988327492546073
+     }
+    },
+    {
+     "year": 2001,
+     "status": "mature",
+     "days": 89,
+     "endDate": "20010519",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      26,
+      28,
+      23,
+      12
+     ],
+     "etcMm": 429.2792359320632,
+     "peffMm": 20.681663680000007,
+     "nirMm": 408.59757225206323,
+     "kcMid": 1.1589347821575355,
+     "kcEnd": 0.6693751739651531,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.77214285714286,
+      "meanRh": 13.057210541909095
+     }
+    },
+    {
+     "year": 2002,
+     "status": "mature",
+     "days": 95,
+     "endDate": "20020525",
+     "frostDaysAfterSow": 4,
+     "stageDays": [
+      26,
+      29,
+      26,
+      14
+     ],
+     "etcMm": 426.03309382998475,
+     "peffMm": 55.56444256,
+     "nirMm": 370.4686512699848,
+     "kcMid": 1.1628858362428962,
+     "kcEnd": 0.6692840880139896,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.665,
+      "meanRh": 14.944271225966135
+     }
+    },
+    {
+     "year": 2003,
+     "status": "mature",
+     "days": 106,
+     "endDate": "20030605",
+     "frostDaysAfterSow": 6,
+     "stageDays": [
+      32,
+      33,
+      27,
+      14
+     ],
+     "etcMm": 418.6016456740891,
+     "peffMm": 94.55317456000003,
+     "nirMm": 324.0484711140891,
+     "kcMid": 1.1531858201498675,
+     "kcEnd": 0.6453870138559341,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.665,
+      "meanRh": 20.638219186831964
+     }
+    },
+    {
+     "year": 2004,
+     "status": "mature",
+     "days": 97,
+     "endDate": "20040526",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      23,
+      35,
+      26,
+      13
+     ],
+     "etcMm": 446.9344708636832,
+     "peffMm": 46.653763839999996,
+     "nirMm": 400.2807070236832,
+     "kcMid": 1.1699336687178203,
+     "kcEnd": 0.6791701910013058,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.32214285714286,
+      "meanRh": 15.78759456168058
+     }
+    },
+    {
+     "year": 2005,
+     "status": "mature",
+     "days": 99,
+     "endDate": "20050529",
+     "frostDaysAfterSow": 5,
+     "stageDays": [
+      23,
+      37,
+      24,
+      15
+     ],
+     "etcMm": 418.5307681176532,
+     "peffMm": 68.86656176000001,
+     "nirMm": 349.6642063576532,
+     "kcMid": 1.146286506403903,
+     "kcEnd": 0.6649613250671627,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 4,
+      "meanTmax": 35.69428571428571,
+      "meanRh": 28.471895434373
+     }
+    },
+    {
+     "year": 2006,
+     "status": "mature",
+     "days": 94,
+     "endDate": "20060524",
+     "frostDaysAfterSow": 2,
+     "stageDays": [
+      28,
+      32,
+      23,
+      11
+     ],
+     "etcMm": 429.6864888760445,
+     "peffMm": 55.02262880000002,
+     "nirMm": 374.6638600760445,
+     "kcMid": 1.1588167408968413,
+     "kcEnd": 0.6832659150746893,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.94714285714286,
+      "meanRh": 17.256950638836262
+     }
+    },
+    {
+     "year": 2007,
+     "status": "mature",
+     "days": 95,
+     "endDate": "20070525",
+     "frostDaysAfterSow": 6,
+     "stageDays": [
+      33,
+      26,
+      22,
+      14
+     ],
+     "etcMm": 429.2963277246883,
+     "peffMm": 61.79956704000001,
+     "nirMm": 367.4967606846883,
+     "kcMid": 1.1680868820517771,
+     "kcEnd": 0.6835287554733545,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 37.76571428571429,
+      "meanRh": 18.23946084390001
+     }
+    },
+    {
+     "year": 2008,
+     "status": "mature",
+     "days": 89,
+     "endDate": "20080518",
+     "frostDaysAfterSow": 5,
+     "stageDays": [
+      26,
+      27,
+      24,
+      12
+     ],
+     "etcMm": 413.6072892047827,
+     "peffMm": 29.8220112,
+     "nirMm": 383.7852780047827,
+     "kcMid": 1.162505530293537,
+     "kcEnd": 0.6736738432087691,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.01714285714285,
+      "meanRh": 19.353246293272086
+     }
+    },
+    {
+     "year": 2009,
+     "status": "mature",
+     "days": 100,
+     "endDate": "20090530",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      25,
+      34,
+      28,
+      13
+     ],
+     "etcMm": 405.5466531411616,
+     "peffMm": 81.94494415999999,
+     "nirMm": 323.6017089811616,
+     "kcMid": 1.1443673305769684,
+     "kcEnd": 0.6642854356667678,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 33.94214285714286,
+      "meanRh": 24.295148442336902
+     }
+    },
+    {
+     "year": 2010,
+     "status": "mature",
+     "days": 93,
+     "endDate": "20100523",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      22,
+      32,
+      26,
+      13
+     ],
+     "etcMm": 369.4129231906747,
+     "peffMm": 80.79258000000002,
+     "nirMm": 288.6203431906747,
+     "kcMid": 1.1302098083960268,
+     "kcEnd": 0.6521503095679757,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 1,
+      "meanTmax": 34.43714285714285,
+      "meanRh": 23.307390205440665
+     }
+    },
+    {
+     "year": 2011,
+     "status": "mature",
+     "days": 98,
+     "endDate": "20110528",
+     "frostDaysAfterSow": 12,
+     "stageDays": [
+      35,
+      30,
+      21,
+      12
+     ],
+     "etcMm": 458.56361589940576,
+     "peffMm": 32.876366880000006,
+     "nirMm": 425.6872490194057,
+     "kcMid": 1.1685318943527692,
+     "kcEnd": 0.6845953425789133,
+     "heatDays": 3,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.087857142857146,
+      "meanRh": 14.987594584097408
+     }
+    },
+    {
+     "year": 2012,
+     "status": "mature",
+     "days": 105,
+     "endDate": "20120603",
+     "frostDaysAfterSow": 14,
+     "stageDays": [
+      41,
+      25,
+      26,
+      13
+     ],
+     "etcMm": 397.98753492125905,
+     "peffMm": 98.11549375999998,
+     "nirMm": 299.87204116125906,
+     "kcMid": 1.1360891884436917,
+     "kcEnd": 0.657431613376247,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.72642857142857,
+      "meanRh": 19.61392223038172
+     }
+    },
+    {
+     "year": 2013,
+     "status": "mature",
+     "days": 99,
+     "endDate": "20130529",
+     "frostDaysAfterSow": 5,
+     "stageDays": [
+      28,
+      32,
+      26,
+      13
+     ],
+     "etcMm": 434.71142882849693,
+     "peffMm": 68.35470384000001,
+     "nirMm": 366.3567249884969,
+     "kcMid": 1.1536395430625404,
+     "kcEnd": 0.6780500372197525,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.52499999999999,
+      "meanRh": 14.307533275524973
+     }
+    },
+    {
+     "year": 2014,
+     "status": "mature",
+     "days": 100,
+     "endDate": "20140530",
+     "frostDaysAfterSow": 7,
+     "stageDays": [
+      31,
+      34,
+      22,
+      13
+     ],
+     "etcMm": 452.87988153389904,
+     "peffMm": 44.667663359999985,
+     "nirMm": 408.21221817389903,
+     "kcMid": 1.1657758097659532,
+     "kcEnd": 0.6707785304683137,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.472857142857144,
+      "meanRh": 17.083584581793477
+     }
+    },
+    {
+     "year": 2015,
+     "status": "mature",
+     "days": 102,
+     "endDate": "20150601",
+     "frostDaysAfterSow": 10,
+     "stageDays": [
+      34,
+      31,
+      24,
+      13
+     ],
+     "etcMm": 420.10630465351056,
+     "peffMm": 82.31143967999999,
+     "nirMm": 337.7948649735106,
+     "kcMid": 1.1525609254298144,
+     "kcEnd": 0.6657283456226668,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.23428571428571,
+      "meanRh": 14.425197290056285
+     }
+    },
+    {
+     "year": 2016,
+     "status": "mature",
+     "days": 93,
+     "endDate": "20160522",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      18,
+      37,
+      25,
+      13
+     ],
+     "etcMm": 388.32736047860635,
+     "peffMm": 83.36459039999998,
+     "nirMm": 304.96277007860635,
+     "kcMid": 1.1385935615898843,
+     "kcEnd": 0.6644276337685694,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.74571428571429,
+      "meanRh": 21.71003828122431
+     }
+    },
+    {
+     "year": 2017,
+     "status": "mature",
+     "days": 102,
+     "endDate": "20170601",
+     "frostDaysAfterSow": 14,
+     "stageDays": [
+      35,
+      32,
+      23,
+      12
+     ],
+     "etcMm": 433.8260187217747,
+     "peffMm": 62.5081448,
+     "nirMm": 371.31787392177466,
+     "kcMid": 1.15148359388274,
+     "kcEnd": 0.6748050719570892,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.09285714285714,
+      "meanRh": 15.344799883216433
+     }
+    },
+    {
+     "year": 2018,
+     "status": "mature",
+     "days": 92,
+     "endDate": "20180522",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      21,
+      29,
+      28,
+      14
+     ],
+     "etcMm": 407.33344164238736,
+     "peffMm": 63.778746399999974,
+     "nirMm": 343.55469524238737,
+     "kcMid": 1.1663600001848666,
+     "kcEnd": 0.6433400266165379,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.80785714285714,
+      "meanRh": 17.935284729501564
+     }
+    },
+    {
+     "year": 2019,
+     "status": "mature",
+     "days": 100,
+     "endDate": "20190530",
+     "frostDaysAfterSow": 2,
+     "stageDays": [
+      30,
+      29,
+      27,
+      14
+     ],
+     "etcMm": 387.5964150851883,
+     "peffMm": 86.33816671999996,
+     "nirMm": 301.25824836518836,
+     "kcMid": 1.147684103020106,
+     "kcEnd": 0.6470338170070257,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 4,
+      "meanTmax": 34.33214285714285,
+      "meanRh": 28.751118974734563
+     }
+    },
+    {
+     "year": 2020,
+     "status": "mature",
+     "days": 102,
+     "endDate": "20200531",
+     "frostDaysAfterSow": 3,
+     "stageDays": [
+      29,
+      34,
+      25,
+      14
+     ],
+     "etcMm": 375.5767444126665,
+     "peffMm": 140.28673103999998,
+     "nirMm": 235.29001337266655,
+     "kcMid": 1.1269651733496437,
+     "kcEnd": 0.6511676887607726,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.215714285714284,
+      "meanRh": 19.621724945521603
+     }
+    },
+    {
+     "year": 2021,
+     "status": "mature",
+     "days": 100,
+     "endDate": "20210530",
+     "frostDaysAfterSow": 8,
+     "stageDays": [
+      32,
+      33,
+      22,
+      13
+     ],
+     "etcMm": 417.4638847110043,
+     "peffMm": 93.56820688000002,
+     "nirMm": 323.89567783100426,
+     "kcMid": 1.1418796398960356,
+     "kcEnd": 0.6591403225345486,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.555,
+      "meanRh": 13.3311544258893
+     }
+    },
+    {
+     "year": 2022,
+     "status": "mature",
+     "days": 92,
+     "endDate": "20220522",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      24,
+      32,
+      23,
+      13
+     ],
+     "etcMm": 378.85417508848747,
+     "peffMm": 85.399476,
+     "nirMm": 293.4546990884875,
+     "kcMid": 1.1372945871729547,
+     "kcEnd": 0.6730129442845103,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 33.85357142857142,
+      "meanRh": 22.60573521482482
+     }
+    },
+    {
+     "year": 2023,
+     "status": "mature",
+     "days": 92,
+     "endDate": "20230522",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      22,
+      30,
+      27,
+      13
+     ],
+     "etcMm": 409.8584798953018,
+     "peffMm": 36.597731679999995,
+     "nirMm": 373.2607482153018,
+     "kcMid": 1.1631225970505814,
+     "kcEnd": 0.6717657846486658,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.89928571428571,
+      "meanRh": 14.408129054189237
+     }
+    },
+    {
+     "year": 2024,
+     "status": "mature",
+     "days": 107,
+     "endDate": "20240605",
+     "frostDaysAfterSow": 14,
+     "stageDays": [
+      37,
+      32,
+      25,
+      13
+     ],
+     "etcMm": 404.10030220351143,
+     "peffMm": 176.78497935999997,
+     "nirMm": 227.31532284351147,
+     "kcMid": 1.1415628930765302,
+     "kcEnd": 0.67037983166471,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.589999999999996,
+      "meanRh": 20.260913566299973
+     }
+    },
+    {
+     "year": 2025,
+     "status": "mature",
+     "days": 96,
+     "endDate": "20250526",
+     "frostDaysAfterSow": 9,
+     "stageDays": [
+      30,
+      31,
+      22,
+      13
+     ],
+     "etcMm": 405.41699498186813,
+     "peffMm": 83.07202704000002,
+     "nirMm": 322.3449679418681,
+     "kcMid": 1.1525424965902653,
+     "kcEnd": 0.6704367886366533,
+     "heatDays": 1,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 35.279999999999994,
+      "meanRh": 20.912787218519295
+     }
+    }
+   ]
+  },
+  {
+   "cropId": "mung_bean",
+   "name": {
+    "uz": "Mosh",
+    "en": "Mung bean"
+   },
+   "sow": "06-25",
+   "period": {
+    "from": "19840101",
+    "to": "20251231"
+   },
+   "seasons": 42,
+   "ripen": {
+    "applicable": true,
+    "matured": 42,
+    "of": 42,
+    "share": 1,
+    "frostBeforeMaturity": 0,
+    "daysToMaturity": {
+     "median": 43,
+     "min": 40,
+     "max": 46
+    },
+    "maturity": {
+     "median": "08-06",
+     "early": "08-04",
+     "late": "08-08"
+    },
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 205,
+      "row": "Black and green gram (Vigna mungo)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "6.12",
+      "page": 211,
+      "row": "Black & green gram (Vigna mungo) - Common",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": true,
+      "row": "Frost day = daily minimum 2 m air temperature <= 0 °C (NASA POWER T2M_MIN)"
+     }
+    ]
+   },
+   "springFrost": {
+    "years": 0,
+    "of": 42
+   },
+   "water": {
+    "seasons": 42,
+    "etcMm": 359,
+    "peffMm": 0,
+    "nirMm": {
+     "median": 358,
+     "p80": 378
+    },
+    "m3ha": {
+     "median": 3580,
+     "p80": 3780
+    },
+    "kcMid": 1.18,
+    "kcEnd": 0.4,
+    "note": "Net field need (ETc - effective rain). Canal and field losses not included.",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.2",
+      "page": 168,
+      "row": "Black and green gram (Vigna mungo) - Green gram",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.20",
+      "page": 201,
+      "row": "Kc linear in dev and late stages",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.16",
+      "page": 190,
+      "row": "Kc mid climate adjustment (u2, RHmin, h)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.19",
+      "page": 195,
+      "row": "Kc end climate adjustment, only when Kc end (Tab) > 0.45",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.17",
+      "page": 193,
+      "row": "RHmin = e°(Tdew) / e°(Tmax) x 100",
+      "verified": true
+     },
+     {
+      "doc": "cropwat",
+      "table": "USDA-SCS",
+      "page": null,
+      "verified": false,
+      "row": "Peff = P (125 - 0.2 P) / 125 for P <= 250 mm/month; Peff = 125 + 0.1 P above. Formula seen in secondary sources, primary page not yet checked"
+     }
+    ]
+   },
+   "heat": {
+    "tUpper": 40,
+    "stage": "mid-season (includes flowering)",
+    "days": {
+     "median": 0,
+     "max": 0
+    },
+    "yearsWithAny": 0,
+    "of": 42,
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 205,
+      "row": "Black and green gram (Vigna mungo)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     }
+    ]
+   },
+   "spoilage": {
+    "perishability": "dry",
+    "driver": "rain",
+    "windowDays": 14,
+    "seasons": 42,
+    "rainDays": 0,
+    "meanTmax": 39.9,
+    "meanRh": 13,
+    "wetYears": 0,
+    "hotYears": 42,
+    "level": "low",
+    "rule": {
+     "verified": false,
+     "windowDays": 14,
+     "wetRainDays": 3,
+     "hotMeanTmax": 30,
+     "levels": [
+      0.2,
+      0.5
+     ],
+     "note": "Team heuristic, not from a published source. Needs agronomist review."
+    }
+   },
+   "salinity": {
+    "class": "medium",
+    "ece": [
+     4,
+     8
+    ],
+    "yieldPct": [
+     54.46,
+     0
+    ],
+    "rating": "S",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "8.9",
+      "page": 282,
+      "row": "Bean, mung (Vigna radiata)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 8.19",
+      "page": 285,
+      "row": "Yact/Ymax = 1 - b/100 (ECe - ECe threshold)",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": false,
+      "row": "Mapping of farmer answer to ECe range follows USDA salinity classes; source page not yet checked"
+     }
+    ]
+   },
+   "years": [
+    {
+     "year": 1984,
+     "status": "mature",
+     "days": 41,
+     "endDate": "19840804",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      17,
+      8
+     ],
+     "etcMm": 327.6020088385192,
+     "peffMm": 0,
+     "nirMm": 327.6020088385192,
+     "kcMid": 1.1707877185073459,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.65071428571428,
+      "meanRh": 13.993914263087632
+     }
+    },
+    {
+     "year": 1985,
+     "status": "mature",
+     "days": 43,
+     "endDate": "19850806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      18,
+      10
+     ],
+     "etcMm": 353.8628274873304,
+     "peffMm": 0,
+     "nirMm": 353.8628274873304,
+     "kcMid": 1.1751679673170292,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.10142857142857,
+      "meanRh": 15.249750952004836
+     }
+    },
+    {
+     "year": 1986,
+     "status": "mature",
+     "days": 44,
+     "endDate": "19860807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      19,
+      9
+     ],
+     "etcMm": 361.95226116159495,
+     "peffMm": 0.049996,
+     "nirMm": 361.9022651615949,
+     "kcMid": 1.1726562724342422,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.47357142857144,
+      "meanRh": 11.268554574464833
+     }
+    },
+    {
+     "year": 1987,
+     "status": "mature",
+     "days": 45,
+     "endDate": "19870808",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      20,
+      9
+     ],
+     "etcMm": 339.2716954793333,
+     "peffMm": 0.8891416000000001,
+     "nirMm": 338.3825538793333,
+     "kcMid": 1.1700130897456098,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.894999999999996,
+      "meanRh": 13.011420280190718
+     }
+    },
+    {
+     "year": 1988,
+     "status": "mature",
+     "days": 40,
+     "endDate": "19880803",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      17,
+      8
+     ],
+     "etcMm": 336.22127224686005,
+     "peffMm": 0.70922,
+     "nirMm": 335.51205224686004,
+     "kcMid": 1.1793257108711706,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.65500000000001,
+      "meanRh": 13.504187930325463
+     }
+    },
+    {
+     "year": 1989,
+     "status": "mature",
+     "days": 43,
+     "endDate": "19890806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      18,
+      9
+     ],
+     "etcMm": 318.7536803707517,
+     "peffMm": 0.42973248,
+     "nirMm": 318.3239478907517,
+     "kcMid": 1.1665178599019626,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.62071428571429,
+      "meanRh": 11.977627954866788
+     }
+    },
+    {
+     "year": 1990,
+     "status": "mature",
+     "days": 43,
+     "endDate": "19900806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      19,
+      9
+     ],
+     "etcMm": 359.61877357897606,
+     "peffMm": 0.049996,
+     "nirMm": 359.56877757897604,
+     "kcMid": 1.1793093702159287,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.16071428571429,
+      "meanRh": 11.266352448509922
+     }
+    },
+    {
+     "year": 1991,
+     "status": "mature",
+     "days": 44,
+     "endDate": "19910807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      11,
+      19,
+      8
+     ],
+     "etcMm": 337.52659364399204,
+     "peffMm": 0.38955823999999994,
+     "nirMm": 337.13703540399206,
+     "kcMid": 1.169642238574898,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.65714285714285,
+      "meanRh": 12.808082840226222
+     }
+    },
+    {
+     "year": 1992,
+     "status": "mature",
+     "days": 45,
+     "endDate": "19920808",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      19,
+      10
+     ],
+     "etcMm": 338.6060644198545,
+     "peffMm": 4.26300272,
+     "nirMm": 334.3430616998545,
+     "kcMid": 1.1692811100940548,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 36.354285714285716,
+      "meanRh": 17.293888448124598
+     }
+    },
+    {
+     "year": 1993,
+     "status": "mature",
+     "days": 45,
+     "endDate": "19930808",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      19,
+      10
+     ],
+     "etcMm": 376.1632239912978,
+     "peffMm": 0.2751047999999999,
+     "nirMm": 375.8881191912978,
+     "kcMid": 1.1814483619870764,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.472142857142856,
+      "meanRh": 15.92238771385315
+     }
+    },
+    {
+     "year": 1994,
+     "status": "mature",
+     "days": 42,
+     "endDate": "19940805",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      19,
+      8
+     ],
+     "etcMm": 352.9187607747804,
+     "peffMm": 0.21980288000000006,
+     "nirMm": 352.69895789478045,
+     "kcMid": 1.176753691736116,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.30357142857144,
+      "meanRh": 14.697964545351429
+     }
+    },
+    {
+     "year": 1995,
+     "status": "mature",
+     "days": 42,
+     "endDate": "19950805",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      18,
+      8
+     ],
+     "etcMm": 340.8286899916868,
+     "peffMm": 2.40134352,
+     "nirMm": 338.4273464716868,
+     "kcMid": 1.174757453744789,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.17571428571428,
+      "meanRh": 12.213685651744047
+     }
+    },
+    {
+     "year": 1996,
+     "status": "mature",
+     "days": 45,
+     "endDate": "19960808",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      20,
+      9
+     ],
+     "etcMm": 353.9253094708896,
+     "peffMm": 0,
+     "nirMm": 353.9253094708896,
+     "kcMid": 1.1733382496807576,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.635714285714286,
+      "meanRh": 11.623820622653067
+     }
+    },
+    {
+     "year": 1997,
+     "status": "mature",
+     "days": 44,
+     "endDate": "19970807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      18,
+      10
+     ],
+     "etcMm": 318.37526682081335,
+     "peffMm": 0.47334912000000007,
+     "nirMm": 317.9019177008133,
+     "kcMid": 1.158747424427411,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.875714285714295,
+      "meanRh": 10.036294633963836
+     }
+    },
+    {
+     "year": 1998,
+     "status": "mature",
+     "days": 43,
+     "endDate": "19980806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      19,
+      9
+     ],
+     "etcMm": 346.3279881209224,
+     "peffMm": 3.07126272,
+     "nirMm": 343.2567254009224,
+     "kcMid": 1.1754897420531651,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.15642857142858,
+      "meanRh": 19.166259964223205
+     }
+    },
+    {
+     "year": 1999,
+     "status": "mature",
+     "days": 44,
+     "endDate": "19990807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      20,
+      9
+     ],
+     "etcMm": 345.07461898335373,
+     "peffMm": 13.50485424,
+     "nirMm": 331.56976474335374,
+     "kcMid": 1.1750272198065468,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.78000000000001,
+      "meanRh": 12.682740050173225
+     }
+    },
+    {
+     "year": 2000,
+     "status": "mature",
+     "days": 44,
+     "endDate": "20000807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      19,
+      9
+     ],
+     "etcMm": 353.63047658747223,
+     "peffMm": 0.06999216000000001,
+     "nirMm": 353.5604844274722,
+     "kcMid": 1.1783093221151324,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.03285714285715,
+      "meanRh": 13.151511818942371
+     }
+    },
+    {
+     "year": 2001,
+     "status": "mature",
+     "days": 45,
+     "endDate": "20010808",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      19,
+      10
+     ],
+     "etcMm": 368.0671818892577,
+     "peffMm": 0,
+     "nirMm": 368.0671818892577,
+     "kcMid": 1.183642911986046,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 37.745,
+      "meanRh": 15.048296601363594
+     }
+    },
+    {
+     "year": 2002,
+     "status": "mature",
+     "days": 45,
+     "endDate": "20020808",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      11,
+      19,
+      9
+     ],
+     "etcMm": 337.05940483936547,
+     "peffMm": 1.30725424,
+     "nirMm": 335.75215059936545,
+     "kcMid": 1.165211469906092,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.060714285714276,
+      "meanRh": 10.898155145289
+     }
+    },
+    {
+     "year": 2003,
+     "status": "mature",
+     "days": 44,
+     "endDate": "20030807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      18,
+      10
+     ],
+     "etcMm": 357.5299543275697,
+     "peffMm": 0.39857280000000006,
+     "nirMm": 357.1313815275697,
+     "kcMid": 1.1756811092823298,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.92999999999999,
+      "meanRh": 12.477821888960955
+     }
+    },
+    {
+     "year": 2004,
+     "status": "mature",
+     "days": 46,
+     "endDate": "20040809",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      11,
+      19,
+      10
+     ],
+     "etcMm": 394.2899624268338,
+     "peffMm": 0.7593536000000001,
+     "nirMm": 393.5306088268338,
+     "kcMid": 1.1877542208448753,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.98357142857143,
+      "meanRh": 12.536651023787668
+     }
+    },
+    {
+     "year": 2005,
+     "status": "mature",
+     "days": 44,
+     "endDate": "20050807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      18,
+      10
+     ],
+     "etcMm": 390.5758420787378,
+     "peffMm": 0,
+     "nirMm": 390.5758420787378,
+     "kcMid": 1.197658246596203,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.30357142857143,
+      "meanRh": 15.47964027110398
+     }
+    },
+    {
+     "year": 2006,
+     "status": "mature",
+     "days": 43,
+     "endDate": "20060806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      20,
+      8
+     ],
+     "etcMm": 384.54468740853076,
+     "peffMm": 0.07998976000000001,
+     "nirMm": 384.4646976485308,
+     "kcMid": 1.185979135465962,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.14857142857142,
+      "meanRh": 11.159852390600422
+     }
+    },
+    {
+     "year": 2007,
+     "status": "mature",
+     "days": 43,
+     "endDate": "20070806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      18,
+      9
+     ],
+     "etcMm": 409.7566277111397,
+     "peffMm": 0.049996,
+     "nirMm": 409.70663171113966,
+     "kcMid": 1.2008397267810664,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.18714285714286,
+      "meanRh": 12.754954767868456
+     }
+    },
+    {
+     "year": 2008,
+     "status": "mature",
+     "days": 42,
+     "endDate": "20080805",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      18,
+      8
+     ],
+     "etcMm": 364.99384452291036,
+     "peffMm": 0.09998399999999999,
+     "nirMm": 364.89386052291036,
+     "kcMid": 1.1856653858071782,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.96071428571429,
+      "meanRh": 13.639880919555067
+     }
+    },
+    {
+     "year": 2009,
+     "status": "mature",
+     "days": 45,
+     "endDate": "20090808",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      11,
+      19,
+      9
+     ],
+     "etcMm": 384.3924075524619,
+     "peffMm": 0.059994240000000004,
+     "nirMm": 384.33241331246194,
+     "kcMid": 1.1807399945823458,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.53785714285714,
+      "meanRh": 12.176643318804576
+     }
+    },
+    {
+     "year": 2010,
+     "status": "mature",
+     "days": 44,
+     "endDate": "20100807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      19,
+      9
+     ],
+     "etcMm": 379.1249168330511,
+     "peffMm": 0.23925632,
+     "nirMm": 378.8856605130511,
+     "kcMid": 1.19036545755251,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.485,
+      "meanRh": 13.281916353905984
+     }
+    },
+    {
+     "year": 2011,
+     "status": "mature",
+     "days": 44,
+     "endDate": "20110807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      20,
+      8
+     ],
+     "etcMm": 396.661982826068,
+     "peffMm": 0,
+     "nirMm": 396.661982826068,
+     "kcMid": 1.1885125906546459,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.569285714285705,
+      "meanRh": 11.839766496985403
+     }
+    },
+    {
+     "year": 2012,
+     "status": "mature",
+     "days": 44,
+     "endDate": "20120807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      19,
+      9
+     ],
+     "etcMm": 360.55073897149026,
+     "peffMm": 0.5886296000000001,
+     "nirMm": 359.96210937149027,
+     "kcMid": 1.178684340152931,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 41.535714285714285,
+      "meanRh": 13.026580299067918
+     }
+    },
+    {
+     "year": 2013,
+     "status": "mature",
+     "days": 42,
+     "endDate": "20130805",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      12,
+      17,
+      8
+     ],
+     "etcMm": 368.50067791826837,
+     "peffMm": 0.0499496,
+     "nirMm": 368.4507283182684,
+     "kcMid": 1.1806917896493825,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.02785714285714,
+      "meanRh": 18.97249528371625
+     }
+    },
+    {
+     "year": 2014,
+     "status": "mature",
+     "days": 43,
+     "endDate": "20140806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      19,
+      9
+     ],
+     "etcMm": 392.218991574463,
+     "peffMm": 0,
+     "nirMm": 392.218991574463,
+     "kcMid": 1.185629118630683,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.335,
+      "meanRh": 12.222445147428308
+     }
+    },
+    {
+     "year": 2015,
+     "status": "mature",
+     "days": 41,
+     "endDate": "20150804",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      17,
+      9
+     ],
+     "etcMm": 344.65984210237775,
+     "peffMm": 0.16993712,
+     "nirMm": 344.48990498237777,
+     "kcMid": 1.1767332659170637,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.340714285714284,
+      "meanRh": 11.944799281303895
+     }
+    },
+    {
+     "year": 2016,
+     "status": "mature",
+     "days": 43,
+     "endDate": "20160806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      18,
+      9
+     ],
+     "etcMm": 373.2013197742696,
+     "peffMm": 0.30984624000000016,
+     "nirMm": 372.8914735342696,
+     "kcMid": 1.185738691802221,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.96857142857143,
+      "meanRh": 13.764531459273927
+     }
+    },
+    {
+     "year": 2017,
+     "status": "mature",
+     "days": 43,
+     "endDate": "20170806",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      9,
+      19,
+      9
+     ],
+     "etcMm": 384.45837123821974,
+     "peffMm": 0.21992208,
+     "nirMm": 384.23844915821974,
+     "kcMid": 1.1875875461614092,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.52357142857143,
+      "meanRh": 12.903065619298332
+     }
+    },
+    {
+     "year": 2018,
+     "status": "mature",
+     "days": 42,
+     "endDate": "20180805",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      16,
+      10
+     ],
+     "etcMm": 364.26894428531574,
+     "peffMm": 0.18994223999999998,
+     "nirMm": 364.07900204531575,
+     "kcMid": 1.1842340862539646,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 40.537142857142854,
+      "meanRh": 14.879046444168889
+     }
+    },
+    {
+     "year": 2019,
+     "status": "mature",
+     "days": 40,
+     "endDate": "20190803",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      10,
+      16,
+      8
+     ],
+     "etcMm": 338.9119621674799,
+     "peffMm": 0.62542064,
+     "nirMm": 338.28654152747987,
+     "kcMid": 1.1776365467001002,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.93214285714286,
+      "meanRh": 14.190067539591453
+     }
+    },
+    {
+     "year": 2020,
+     "status": "mature",
+     "days": 44,
+     "endDate": "20200807",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      12,
+      17,
+      9
+     ],
+     "etcMm": 370.3127144415219,
+     "peffMm": 1.58618864,
+     "nirMm": 368.7265258015219,
+     "kcMid": 1.1798224667905204,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.199999999999996,
+      "meanRh": 16.60390305606331
+     }
+    },
+    {
+     "year": 2021,
+     "status": "mature",
+     "days": 41,
+     "endDate": "20210804",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      6,
+      9,
+      17,
+      9
+     ],
+     "etcMm": 351.22288235037735,
+     "peffMm": 1.0084592,
+     "nirMm": 350.21442315037734,
+     "kcMid": 1.1842001283297905,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.38285714285714,
+      "meanRh": 13.207796069779576
+     }
+    },
+    {
+     "year": 2022,
+     "status": "mature",
+     "days": 41,
+     "endDate": "20220804",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      17,
+      9
+     ],
+     "etcMm": 370.92533088832806,
+     "peffMm": 0.10998384,
+     "nirMm": 370.8153470483281,
+     "kcMid": 1.1814369235284072,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.95928571428572,
+      "meanRh": 14.886639619958675
+     }
+    },
+    {
+     "year": 2023,
+     "status": "mature",
+     "days": 41,
+     "endDate": "20230804",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      17,
+      8
+     ],
+     "etcMm": 356.3267552782487,
+     "peffMm": 0.10998064,
+     "nirMm": 356.2167746382487,
+     "kcMid": 1.1792791400037315,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 38.42785714285714,
+      "meanRh": 15.666292663213357
+     }
+    },
+    {
+     "year": 2024,
+     "status": "mature",
+     "days": 41,
+     "endDate": "20240804",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      11,
+      17,
+      8
+     ],
+     "etcMm": 358.45259250725314,
+     "peffMm": 1.04892144,
+     "nirMm": 357.40367106725313,
+     "kcMid": 1.1857214433327992,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 42.59928571428571,
+      "meanRh": 15.730518071261164
+     }
+    },
+    {
+     "year": 2025,
+     "status": "mature",
+     "days": 41,
+     "endDate": "20250804",
+     "frostDaysAfterSow": 0,
+     "stageDays": [
+      5,
+      10,
+      17,
+      9
+     ],
+     "etcMm": 363.83315767012175,
+     "peffMm": 0,
+     "nirMm": 363.83315767012175,
+     "kcMid": 1.180086368372675,
+     "kcEnd": 0.4,
+     "heatDays": 0,
+     "harvest": {
+      "rainDays": 0,
+      "meanTmax": 39.98428571428571,
+      "meanRh": 15.195599302258952
+     }
+    }
+   ]
+  },
+  {
+   "cropId": "alfalfa",
+   "name": {
+    "uz": "Beda",
+    "en": "Alfalfa"
+   },
+   "sow": null,
+   "period": {
+    "from": "19840101",
+    "to": "20251231"
+   },
+   "seasons": 42,
+   "ripen": {
+    "applicable": false,
+    "reason": "perennial forage: no single harvest date",
+    "seasonDays": 299,
+    "cuttings": {
+     "low": 7,
+     "high": 11
+    },
+    "note": "Thermal potential from GDD cycles; water, variety and management limits are not included.",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 205,
+      "row": "Alfalfa (Medicago sativa)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "6.12",
+      "page": 212,
+      "row": "Alfalfa (Medicago sativa) - first cutting cycle / middle cycles, Total GDD",
+      "verified": true
+     },
+     {
+      "doc": "fao56",
+      "table": "11, note 4",
+      "page": null,
+      "verified": true,
+      "row": "alfalfa: last -4 °C in spring until first -4 °C in fall (Everson et al. 1978)"
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     }
+    ]
+   },
+   "springFrost": null,
+   "water": {
+    "seasons": 42,
+    "etcMm": 1748,
+    "peffMm": 102,
+    "nirMm": {
+     "median": 1639,
+     "p80": 1722
+    },
+    "m3ha": {
+     "median": 16390,
+     "p80": 17220
+    },
+    "kcMid": 1.05,
+    "kcEnd": null,
+    "note": "Net field need with season-average Kc. Canal and field losses not included.",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "text, end of section before 6.6",
+      "page": 198,
+      "row": "for alfalfa hay, the average, full-season Kc mid often is 1.05",
+      "verified": true
+     },
+     {
+      "doc": "fao56",
+      "table": "11, note 4",
+      "page": null,
+      "verified": true,
+      "row": "alfalfa: last -4 °C in spring until first -4 °C in fall (Everson et al. 1978)"
+     },
+     {
+      "doc": "cropwat",
+      "table": "USDA-SCS",
+      "page": null,
+      "verified": false,
+      "row": "Peff = P (125 - 0.2 P) / 125 for P <= 250 mm/month; Peff = 125 + 0.1 P above. Formula seen in secondary sources, primary page not yet checked"
+     }
+    ]
+   },
+   "heat": {
+    "tUpper": 30,
+    "stage": "whole season",
+    "days": {
+     "median": 74,
+     "max": 89
+    },
+    "yearsWithAny": 42,
+    "of": 42,
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "6.10",
+      "page": 205,
+      "row": "Alfalfa (Medicago sativa)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 6.23a-c",
+      "page": 203,
+      "row": "GDD = min(Tmean, Tupper) - Tbase, >= 0",
+      "verified": true
+     }
+    ]
+   },
+   "spoilage": {
+    "perishability": "hay",
+    "level": null,
+    "reason": "several cuttings per year; harvest-window risk not modelled yet"
+   },
+   "salinity": {
+    "class": "medium",
+    "ece": [
+     4,
+     8
+    ],
+    "yieldPct": [
+     85.4,
+     56.2
+    ],
+    "rating": "MS",
+    "src": [
+     {
+      "doc": "fao56r1",
+      "table": "8.11",
+      "page": 284,
+      "row": "Alfalfa (Medicago sativa)",
+      "verified": true
+     },
+     {
+      "doc": "fao56r1",
+      "table": "Eq. 8.19",
+      "page": 285,
+      "row": "Yact/Ymax = 1 - b/100 (ECe - ECe threshold)",
+      "verified": true
+     },
+     {
+      "doc": null,
+      "table": null,
+      "page": null,
+      "verified": false,
+      "row": "Mapping of farmer answer to ECe range follows USDA salinity classes; source page not yet checked"
+     }
+    ]
+   },
+   "years": [
+    {
+     "year": 1984,
+     "status": "season",
+     "startDate": "19840226",
+     "endDate": "19841201",
+     "days": 280,
+     "gdd": 6152.585000000001,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1673.4168123751244,
+     "peffMm": 86.16277872000002,
+     "nirMm": 1587.2540336551244,
+     "heatDays": 89
+    },
+    {
+     "year": 1985,
+     "status": "season",
+     "startDate": "19850308",
+     "endDate": "19851207",
+     "days": 275,
+     "gdd": 6122.119999999999,
+     "cutsLow": 7,
+     "cutsHigh": 10,
+     "etcMm": 1654.139928388847,
+     "peffMm": 59.05545695999999,
+     "nirMm": 1595.084471428847,
+     "heatDays": 68
+    },
+    {
+     "year": 1986,
+     "status": "season",
+     "startDate": "19860131",
+     "endDate": "19861121",
+     "days": 295,
+     "gdd": 6247.179999999995,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1733.4430646698524,
+     "peffMm": 49.47242688,
+     "nirMm": 1683.9706377898524,
+     "heatDays": 59
+    },
+    {
+     "year": 1987,
+     "status": "season",
+     "startDate": "19870219",
+     "endDate": "19871129",
+     "days": 284,
+     "gdd": 6183.945000000001,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1634.2279191956375,
+     "peffMm": 106.08494912000005,
+     "nirMm": 1528.1429700756373,
+     "heatDays": 75
+    },
+    {
+     "year": 1988,
+     "status": "season",
+     "startDate": "19880210",
+     "endDate": "19881229",
+     "days": 324,
+     "gdd": 6779.625,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1807.0581056456924,
+     "peffMm": 105.49345952000002,
+     "nirMm": 1701.5646461256924,
+     "heatDays": 84
+    },
+    {
+     "year": 1989,
+     "status": "season",
+     "startDate": "19890218",
+     "endDate": "19891231",
+     "days": 317,
+     "gdd": 6394.570000000002,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1680.1869198781965,
+     "peffMm": 99.46150416000003,
+     "nirMm": 1580.7254157181965,
+     "heatDays": 73
+    },
+    {
+     "year": 1990,
+     "status": "season",
+     "startDate": "19900129",
+     "endDate": "19901225",
+     "days": 331,
+     "gdd": 6654.745,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1772.27698889466,
+     "peffMm": 97.04014992,
+     "nirMm": 1675.23683897466,
+     "heatDays": 86
+    },
+    {
+     "year": 1991,
+     "status": "season",
+     "startDate": "19910217",
+     "endDate": "19911231",
+     "days": 318,
+     "gdd": 6336.875,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1638.3135467560273,
+     "peffMm": 177.3898211199999,
+     "nirMm": 1460.9237256360275,
+     "heatDays": 70
+    },
+    {
+     "year": 1992,
+     "status": "season",
+     "startDate": "19920314",
+     "endDate": "19921231",
+     "days": 293,
+     "gdd": 6013.254999999997,
+     "cutsLow": 7,
+     "cutsHigh": 10,
+     "etcMm": 1553.6952349110825,
+     "peffMm": 114.20342511999999,
+     "nirMm": 1439.4918097910825,
+     "heatDays": 50
+    },
+    {
+     "year": 1993,
+     "status": "season",
+     "startDate": "19930220",
+     "endDate": "19931130",
+     "days": 284,
+     "gdd": 5943.494999999996,
+     "cutsLow": 7,
+     "cutsHigh": 10,
+     "etcMm": 1609.3819109508336,
+     "peffMm": 144.26913423999997,
+     "nirMm": 1465.1127767108337,
+     "heatDays": 52
+    },
+    {
+     "year": 1994,
+     "status": "season",
+     "startDate": "19940222",
+     "endDate": "19941207",
+     "days": 289,
+     "gdd": 6156.644999999999,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1696.346553807109,
+     "peffMm": 102.52974432000006,
+     "nirMm": 1593.8168094871091,
+     "heatDays": 77
+    },
+    {
+     "year": 1995,
+     "status": "season",
+     "startDate": "19950221",
+     "endDate": "19951210",
+     "days": 293,
+     "gdd": 6219.745000000008,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1685.1305889059897,
+     "peffMm": 69.85460399999998,
+     "nirMm": 1615.2759849059898,
+     "heatDays": 72
+    },
+    {
+     "year": 1996,
+     "status": "season",
+     "startDate": "19960303",
+     "endDate": "19961231",
+     "days": 304,
+     "gdd": 6062.375000000002,
+     "cutsLow": 7,
+     "cutsHigh": 10,
+     "etcMm": 1642.2435356590963,
+     "peffMm": 70.53976240000001,
+     "nirMm": 1571.7037732590964,
+     "heatDays": 60
+    },
+    {
+     "year": 1997,
+     "status": "season",
+     "startDate": "19970210",
+     "endDate": "19971231",
+     "days": 325,
+     "gdd": 6406.4850000000015,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1622.0985097548173,
+     "peffMm": 172.41264512000004,
+     "nirMm": 1449.6858646348173,
+     "heatDays": 70
+    },
+    {
+     "year": 1998,
+     "status": "season",
+     "startDate": "19980302",
+     "endDate": "19981231",
+     "days": 305,
+     "gdd": 6393.4299999999985,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1663.6694224261084,
+     "peffMm": 126.29190800000005,
+     "nirMm": 1537.3775144261083,
+     "heatDays": 69
+    },
+    {
+     "year": 1999,
+     "status": "season",
+     "startDate": "19990129",
+     "endDate": "19991231",
+     "days": 337,
+     "gdd": 6641.864999999993,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1766.155160795389,
+     "peffMm": 151.67463087999994,
+     "nirMm": 1614.480529915389,
+     "heatDays": 68
+    },
+    {
+     "year": 2000,
+     "status": "season",
+     "startDate": "20000212",
+     "endDate": "20001231",
+     "days": 324,
+     "gdd": 6708.695000000001,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1832.5314298035437,
+     "peffMm": 48.48905104000001,
+     "nirMm": 1784.0423787635436,
+     "heatDays": 74
+    },
+    {
+     "year": 2001,
+     "status": "season",
+     "startDate": "20010201",
+     "endDate": "20011231",
+     "days": 334,
+     "gdd": 6965.639999999999,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1904.9663059712386,
+     "peffMm": 66.3250032,
+     "nirMm": 1838.6413027712385,
+     "heatDays": 75
+    },
+    {
+     "year": 2002,
+     "status": "season",
+     "startDate": "20020209",
+     "endDate": "20021202",
+     "days": 297,
+     "gdd": 6664.095000000001,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1739.9952225769093,
+     "peffMm": 77.84214704000003,
+     "nirMm": 1662.1530755369092,
+     "heatDays": 70
+    },
+    {
+     "year": 2003,
+     "status": "season",
+     "startDate": "20030305",
+     "endDate": "20031212",
+     "days": 283,
+     "gdd": 6136.365000000002,
+     "cutsLow": 7,
+     "cutsHigh": 10,
+     "etcMm": 1628.505347383207,
+     "peffMm": 115.73185408000005,
+     "nirMm": 1512.773493303207,
+     "heatDays": 66
+    },
+    {
+     "year": 2004,
+     "status": "season",
+     "startDate": "20040101",
+     "endDate": "20041203",
+     "days": 338,
+     "gdd": 6806.480000000002,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1892.9956485318978,
+     "peffMm": 113.53354671999998,
+     "nirMm": 1779.4621018118978,
+     "heatDays": 70
+    },
+    {
+     "year": 2005,
+     "status": "season",
+     "startDate": "20050220",
+     "endDate": "20051229",
+     "days": 313,
+     "gdd": 6530.404999999997,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1808.6991777195472,
+     "peffMm": 101.29688639999996,
+     "nirMm": 1707.4022913195472,
+     "heatDays": 74
+    },
+    {
+     "year": 2006,
+     "status": "season",
+     "startDate": "20060131",
+     "endDate": "20061124",
+     "days": 298,
+     "gdd": 6762.719999999997,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1879.6998113736156,
+     "peffMm": 108.98008592000002,
+     "nirMm": 1770.7197254536156,
+     "heatDays": 71
+    },
+    {
+     "year": 2007,
+     "status": "season",
+     "startDate": "20070302",
+     "endDate": "20071225",
+     "days": 299,
+     "gdd": 6509.2,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1885.694621733706,
+     "peffMm": 94.66887327999999,
+     "nirMm": 1791.025748453706,
+     "heatDays": 79
+    },
+    {
+     "year": 2008,
+     "status": "season",
+     "startDate": "20080213",
+     "endDate": "20081220",
+     "days": 312,
+     "gdd": 6788.779999999997,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1889.4198800040174,
+     "peffMm": 64.54874831999996,
+     "nirMm": 1824.8711316840174,
+     "heatDays": 88
+    },
+    {
+     "year": 2009,
+     "status": "season",
+     "startDate": "20090105",
+     "endDate": "20091231",
+     "days": 361,
+     "gdd": 6839.384999999999,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1847.0934078581827,
+     "peffMm": 155.42917376000005,
+     "nirMm": 1691.6642340981825,
+     "heatDays": 64
+    },
+    {
+     "year": 2010,
+     "status": "season",
+     "startDate": "20100217",
+     "endDate": "20101231",
+     "days": 318,
+     "gdd": 6691.345000000001,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1762.1431453652378,
+     "peffMm": 100.1063584,
+     "nirMm": 1662.0367869652378,
+     "heatDays": 73
+    },
+    {
+     "year": 2011,
+     "status": "season",
+     "startDate": "20110228",
+     "endDate": "20111107",
+     "days": 253,
+     "gdd": 6031.055000000004,
+     "cutsLow": 7,
+     "cutsHigh": 10,
+     "etcMm": 1755.4698483872887,
+     "peffMm": 41.442251840000004,
+     "nirMm": 1714.0275965472888,
+     "heatDays": 83
+    },
+    {
+     "year": 2012,
+     "status": "season",
+     "startDate": "20120322",
+     "endDate": "20121213",
+     "days": 267,
+     "gdd": 6079.090000000002,
+     "cutsLow": 7,
+     "cutsHigh": 10,
+     "etcMm": 1605.6610646600463,
+     "peffMm": 82.30687744000001,
+     "nirMm": 1523.3541872200462,
+     "heatDays": 76
+    },
+    {
+     "year": 2013,
+     "status": "season",
+     "startDate": "20130310",
+     "endDate": "20131218",
+     "days": 284,
+     "gdd": 6414.570000000002,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1809.6808433119731,
+     "peffMm": 75.68837855999999,
+     "nirMm": 1733.992464751973,
+     "heatDays": 86
+    },
+    {
+     "year": 2014,
+     "status": "season",
+     "startDate": "20140215",
+     "endDate": "20141206",
+     "days": 295,
+     "gdd": 6328.914999999998,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1817.724415043548,
+     "peffMm": 98.07604592,
+     "nirMm": 1719.648369123548,
+     "heatDays": 77
+    },
+    {
+     "year": 2015,
+     "status": "season",
+     "startDate": "20150227",
+     "endDate": "20151209",
+     "days": 286,
+     "gdd": 6175.120000000002,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1728.9634416189044,
+     "peffMm": 127.37029424000002,
+     "nirMm": 1601.5931473789044,
+     "heatDays": 68
+    },
+    {
+     "year": 2016,
+     "status": "season",
+     "startDate": "20160214",
+     "endDate": "20161120",
+     "days": 281,
+     "gdd": 6524.535000000003,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1813.3669035385876,
+     "peffMm": 90.49704559999998,
+     "nirMm": 1722.8698579385878,
+     "heatDays": 82
+    },
+    {
+     "year": 2017,
+     "status": "season",
+     "startDate": "20170312",
+     "endDate": "20171202",
+     "days": 266,
+     "gdd": 6184.035000000005,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1755.2929751969543,
+     "peffMm": 73.28092272,
+     "nirMm": 1682.0120524769543,
+     "heatDays": 79
+    },
+    {
+     "year": 2018,
+     "status": "season",
+     "startDate": "20180210",
+     "endDate": "20181231",
+     "days": 325,
+     "gdd": 6643.780000000001,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1849.8937278467254,
+     "peffMm": 139.37700431999994,
+     "nirMm": 1710.5167235267254,
+     "heatDays": 77
+    },
+    {
+     "year": 2019,
+     "status": "season",
+     "startDate": "20190208",
+     "endDate": "20191124",
+     "days": 290,
+     "gdd": 6199.269999999997,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1689.7854925810316,
+     "peffMm": 158.69705136,
+     "nirMm": 1531.0884412210316,
+     "heatDays": 57
+    },
+    {
+     "year": 2020,
+     "status": "season",
+     "startDate": "20200119",
+     "endDate": "20201118",
+     "days": 305,
+     "gdd": 6077.215000000007,
+     "cutsLow": 7,
+     "cutsHigh": 10,
+     "etcMm": 1706.055392221473,
+     "peffMm": 213.39240719999992,
+     "nirMm": 1492.662985021473,
+     "heatDays": 62
+    },
+    {
+     "year": 2021,
+     "status": "season",
+     "startDate": "20210315",
+     "endDate": "20211105",
+     "days": 236,
+     "gdd": 5699.600000000003,
+     "cutsLow": 6,
+     "cutsHigh": 10,
+     "etcMm": 1632.6219299861577,
+     "peffMm": 95.31348464000004,
+     "nirMm": 1537.3084453461577,
+     "heatDays": 81
+    },
+    {
+     "year": 2022,
+     "status": "season",
+     "startDate": "20220124",
+     "endDate": "20221231",
+     "days": 342,
+     "gdd": 6745.4749999999985,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1830.324880148784,
+     "peffMm": 235.54106767999994,
+     "nirMm": 1594.783812468784,
+     "heatDays": 70
+    },
+    {
+     "year": 2023,
+     "status": "season",
+     "startDate": "20230213",
+     "endDate": "20231231",
+     "days": 322,
+     "gdd": 6879.915000000003,
+     "cutsLow": 8,
+     "cutsHigh": 12,
+     "etcMm": 1882.7433010541172,
+     "peffMm": 110.60556367999999,
+     "nirMm": 1772.1377373741173,
+     "heatDays": 84
+    },
+    {
+     "year": 2024,
+     "status": "season",
+     "startDate": "20240305",
+     "endDate": "20241207",
+     "days": 278,
+     "gdd": 6165.745000000002,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1657.1166956035197,
+     "peffMm": 194.15152031999997,
+     "nirMm": 1462.9651752835198,
+     "heatDays": 75
+    },
+    {
+     "year": 2025,
+     "status": "season",
+     "startDate": "20250305",
+     "endDate": "20251231",
+     "days": 302,
+     "gdd": 6627.405000000002,
+     "cutsLow": 7,
+     "cutsHigh": 11,
+     "etcMm": 1773.4735717618953,
+     "peffMm": 102.62390592000001,
+     "nirMm": 1670.8496658418953,
+     "heatDays": 88
+    }
+   ]
+  }
+ ]
+}
