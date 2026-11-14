@@ -1,0 +1,9 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# deps / caches
+node_modules/
+cache/
+.DS_Store

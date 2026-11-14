@@ -1,0 +1,10 @@
+{
+  "name": "field-shift-uz",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "NASA Space Apps 2026 - Field Shift: almashlab ekish maslahatchisi (veb + Telegram bot)",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}

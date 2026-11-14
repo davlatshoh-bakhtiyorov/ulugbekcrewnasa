@@ -1,0 +1,15 @@
+{
+  "manba": "NASA POWER daily point API (MERRA-2, SRB, SYN1deg), 1984-01-01..2025-12-31, 15341 kun, bo'sh qiymat yo'q",
+  "nuqta": { "lat": 37.51, "lon": 67.42, "balandlik_m": 417.48 },
+  "hisoblangan_sana": "2026-11-14",
+  "tekshiruv": { "FAO56_18_misol_ET0": 3.88, "kutilgan": 3.9 },
+  "davr_1985_2004": { "oxirgi_bahorgi_sovuq_yil_kuni": 74.3, "birinchi_kuzgi_sovuq_yil_kuni": 328.6, "sovuqsiz_kunlar": 254.3, "jazirama_kunlar_38C": 74.4, "iyun_avgust_Tmax": 39.7, "ET0_apr_sen_mm": 1287.4, "GDD10_apr_okt": 3236.1 },
+  "davr_2006_2025": { "oxirgi_bahorgi_sovuq_yil_kuni": 62.0, "birinchi_kuzgi_sovuq_yil_kuni": 324.1, "sovuqsiz_kunlar": 262.1, "jazirama_kunlar_38C": 80.3, "iyun_avgust_Tmax": 40.1, "ET0_apr_sen_mm": 1385.9, "GDD10_apr_okt": 3336.3 },
+  "trend_10_yilga": { "jazirama_kunlar": 1.7, "iyun_avgust_Tmax_C": 0.1, "sovuqsiz_kunlar": 3.4, "ET0_apr_sen_mm": 34.3 },
+  "apr_sen_omillar": [
+    { "yillar": "1985-1994", "radiatsiya_MJ": 24.49, "shamol_ms": 2.08, "Tortacha": 27.08, "ET0_mm_kun": 6.98 },
+    { "yillar": "2006-2015", "radiatsiya_MJ": 25.50, "shamol_ms": 2.34, "Tortacha": 27.97, "ET0_mm_kun": 7.62 },
+    { "yillar": "2016-2025", "radiatsiya_MJ": 24.99, "shamol_ms": 2.33, "Tortacha": 27.87, "ET0_mm_kun": 7.52 }
+  ],
+  "ogohlantirish": "ET0 o'sishining katta qismi shamol tezligi o'sishidan (+12%). Reanalizdagi shamol trendi harorat trendiga qaraganda kamroq ishonchli; radiatsiya manbai 2001 yilda SRB'dan SYN1deg'ga almashgan. Harorat va sovuq sanalari bo'yicha xulosalar ishonchliroq."
+}
