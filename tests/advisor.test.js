@@ -4,14 +4,14 @@ import { readFileSync } from 'node:fs';
 import { advise, waterLight, soilLight, marketLight, ripenLight } from '../core/advisor.js';
 import { cropById } from '../core/crops.js';
 
-// Haqiqiy pilot natijasi (Jarqo'rg'on, NASA POWER 1984-2025, sho'r "medium") - npm run pilot
+// Haqiqiy pilot natijasi (Jarqo'rg'on, NASA POWER 1984-2025, sho'r "medium", GDD NASA MODIS bo'yicha kalibrlangan) - npm run pilot
 const pilot = JSON.parse(readFileSync(new URL('../docs/pilot-ekinlar-jarqorgon.json', import.meta.url)));
 const R = Object.fromEntries(pilot.natijalar.map((r) => [r.cropId, r]));
 
-test('suv svetofori: paxta (quruq yil 8 990 m3/ga) - yetarli/ba\'zan/kam', () => {
-  assert.equal(R.cotton.water.m3ha.p80, 8990);
-  assert.equal(waterLight(R.cotton, 'enough').level, 'green');
-  assert.equal(waterLight(R.cotton, 'sometimes').level, 'yellow');
+test('suv svetofori: paxta (quruq yil 11 620 m3/ga) - yetarli/ba\'zan/kam', () => {
+  assert.equal(R.cotton.water.m3ha.p80, 11620);
+  assert.equal(waterLight(R.cotton, 'enough').level, 'yellow');
+  assert.equal(waterLight(R.cotton, 'sometimes').level, 'red');
   assert.equal(waterLight(R.cotton, 'scarce').level, 'red');
   assert.equal(waterLight(R.cotton, null).level, 'unknown');
 });
@@ -45,9 +45,17 @@ test("pishish: ko'p yillik beda - o'rim soni bilan", () => {
   assert.equal(w.of, 41);
 });
 
-test('tavsiya: paxtadan keyin, suv kam, sho\'r o\'rtacha -> bug\'doy, mosh, kartoshka', () => {
+test('pishish: NASA MODIS kalibrlashdan keyin paxta 42 yildan 32 tasida sovuqdan oldin pishadi (sariq)', () => {
+  const c = ripenLight(R.cotton);
+  assert.deepEqual([c.matured, c.of, c.level], [32, 42, 'yellow']);
+  assert.equal(R.cotton.ripen.gddModel.source, 'modis');
+  assert.equal(R.cotton.ripen.gddModel.fao.matured, 42, 'FAO default: every year (no information)');
+  assert.equal(R.onion.ripen.gddModel.source, 'fao', 'crops without MODIS calibration keep FAO values');
+});
+
+test('tavsiya: paxtadan keyin, suv kam, sho\'r o\'rtacha -> mosh, bug\'doy, kartoshka', () => {
   const a = advise(pilot.natijalar, { lastCrop: 'cotton', water: 'scarce', salinity: 'medium' });
-  assert.deepEqual(a.top.map((o) => o.cropId), ['winter_wheat', 'mung_bean', 'potato']);
+  assert.deepEqual(a.top.map((o) => o.cropId), ['mung_bean', 'winter_wheat', 'potato']);
   assert.equal(a.all.length, 6);
   assert.equal(a.rules.verified, false);
 });

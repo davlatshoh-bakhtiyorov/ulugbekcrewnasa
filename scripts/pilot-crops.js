@@ -1,33 +1,21 @@
 // Pilot: Jarqo'rg'on nuqtasi uchun 6 ekin bo'yicha natija (NASA POWER 1984-2025).
-// Ishga tushirish:  npm run pilot            (yoki: node scripts/pilot-crops.js --salinity=medium)
+// Ishga tushirish:  npm run pilot            (yoki: node scripts/pilot-crops.js --salinity=medium [--fao])
 // POWER javobi cache/ papkasiga saqlanadi (git'ga kirmaydi), qayta ishga tushirish tez.
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { powerUrl, parsePower } from '../core/power.js';
-import { addEt0 } from '../core/agro.js';
+import { writeFile } from 'node:fs/promises';
 import { CROPS } from '../core/crops.js';
 import { evaluateCrop } from '../core/crop-calc.js';
+import { CALIBRATION } from '../core/calibration.js';
+import { loadPilotPower, PILOT } from './power-cache.js';
 
-const LAT = 37.51, LON = 67.42, START = '19840101', END = '20251231';
+const LAT = PILOT.lat, LON = PILOT.lon;
 const arg = (k, d) => process.argv.find((a) => a.startsWith(`--${k}=`))?.split('=')[1] ?? d;
 const salinity = arg('salinity', 'medium');
+// --fao : faqat FAO-56 Rev.1 GDD yig'indilari (NASA MODIS kalibrlashsiz), taqqoslash uchun
+const calibration = process.argv.includes('--fao') ? null : CALIBRATION;
 
-const cacheFile = `cache/power-${LAT}_${LON}-${START}-${END}.json`;
-let json;
-try {
-  json = JSON.parse(await readFile(cacheFile, 'utf8'));
-} catch {
-  const url = powerUrl({ lat: LAT, lon: LON, start: START, end: END });
-  console.error(`NASA POWER'dan yuklanmoqda...\n${url}`);
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`POWER HTTP ${res.status}`);
-  json = await res.json();
-  await mkdir('cache', { recursive: true });
-  await writeFile(cacheFile, JSON.stringify(json));
-}
-const p = parsePower(json);
-addEt0(p.days, { lat: p.lat, elev: p.elev });
+const p = await loadPilotPower();
 
-const results = CROPS.map((c) => evaluateCrop(p.days, c, { salinity }));
+const results = CROPS.map((c) => evaluateCrop(p.days, c, { salinity, calibration }));
 
 const pad = (s, n) => String(s ?? 'noma\'lum').padEnd(n);
 const pct = (x) => (x == null ? 'noma\'lum' : `${Math.round(x * 100)}%`);
@@ -64,7 +52,10 @@ const out = {
   nuqta: { lat: LAT, lon: LON, balandlik_m: p.elev },
   hisoblangan_sana: new Date().toISOString().slice(0, 10),
   sholanish: salinity,
+  gdd: calibration ? `FAO-56 Rev.1 stages scaled to NASA MODIS MCD12Q2 (core/calibration.js, ${calibration.generated}) for ${Object.keys(calibration.crops).join(', ')}; FAO values for the rest` : 'FAO-56 Rev.1 only',
   natijalar: results,
 };
-await writeFile('docs/pilot-ekinlar-jarqorgon.json', JSON.stringify(out, null, 1));
-console.log('Saqlandi: docs/pilot-ekinlar-jarqorgon.json');
+if (calibration) {
+  await writeFile('docs/pilot-ekinlar-jarqorgon.json', JSON.stringify(out, null, 1));
+  console.log('Saqlandi: docs/pilot-ekinlar-jarqorgon.json');
+} else console.log('--fao: fayl yozilmadi (asosiy natija kalibrlangan model bilan saqlanadi)');

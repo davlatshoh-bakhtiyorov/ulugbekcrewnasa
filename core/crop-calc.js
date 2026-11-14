@@ -5,6 +5,7 @@
 // Kirish qatori: [{date:'YYYYMMDD', doy, tmax, tmin, tdew, u2, rain, et0}] - agro.addEt0() dan keyin.
 import { satVapPressure, gddDay } from './agro.js';
 import { METHODS, SALINITY_CLASSES } from './crops.js';
+import { calibratedCrop } from './calibrate.js';
 
 // ---------- FAO-56 Rev.1 formulalari ----------
 
@@ -212,10 +213,13 @@ function spoilageLevel(share) {
 
 /**
  * Bitta ekin va ekish sanasi uchun barcha yillar bo'yicha natija.
- * opts: { sow:'MM-DD', salinity:'unknown'|'low'|'medium'|'high' }
+ * opts: { sow:'MM-DD', salinity:'unknown'|'low'|'medium'|'high',
+ *         calibration: core/calibration.js CALIBRATION (NASA MODIS bo'yicha GDD) yoki null = faqat FAO }
  */
-export function evaluateCrop(days, crop, opts = {}) {
-  if (crop.perennial) return evaluateForage(days, crop, opts);
+export function evaluateCrop(days, baseCrop, opts = {}) {
+  if (baseCrop.perennial) return evaluateForage(days, baseCrop, opts);
+  const crop = calibratedCrop(baseCrop, opts.calibration);
+  const cal = crop.gdd.calibration ?? null;
   const sow = opts.sow ?? crop.sow;
   const idx = new Map(days.map((d, i) => [d.date, i]));
   const ratio = monthlyRainRatio(days);
@@ -277,7 +281,8 @@ export function evaluateCrop(days, crop, opts = {}) {
         early: addDaysMMDD(sow, percentile(pick('days'), 0.1) - 1),
         late: addDaysMMDD(sow, percentile(pick('days'), 0.9) - 1),
       } : null,
-      src: [crop.gdd.tSrc, crop.gdd.stagesSrc, METHODS.gdd, METHODS.frost],
+      gddModel: gddModel(days, baseCrop, crop, cal, opts),
+      src: [crop.gdd.tSrc, crop.gdd.stagesSrc, METHODS.gdd, METHODS.frost, cal ? METHODS.gddCalibration : null].filter(Boolean),
     },
     springFrost: crop.frostEnds ? { years: done.filter((r) => r.frostDaysAfterSow > 0).length, of: N } : null,
     water: {
@@ -313,6 +318,26 @@ export function evaluateCrop(days, crop, opts = {}) {
     },
     salinity: salinityImpact(crop, opts.salinity ?? 'unknown'),
     years: recs,
+  };
+}
+
+/**
+ * Pishish modeli qaysi GDD yig'indisi bilan ishladi. Kalibrlangan bo'lsa, FAO asl yig'indisi bilan
+ * natija ham hisoblanadi (taqqoslash uchun: "FAO bo'yicha" va "NASA MODIS bo'yicha").
+ */
+function gddModel(days, baseCrop, crop, cal, opts) {
+  const total = crop.gdd.stages.reduce((a, b) => a + b, 0);
+  if (!cal) return { source: 'fao', total, faoTotal: total };
+  const f = evaluateCrop(days, baseCrop, { ...opts, calibration: null }).ripen;
+  return {
+    source: 'modis',
+    total,
+    faoTotal: cal.faoTotal,
+    stages: crop.gdd.stages,
+    faoStages: baseCrop.gdd.stages,
+    observed: { n: cal.n, pixels: cal.pixels, years: cal.years, end: cal.end, endDoy: cal.endDoy, iqr: [cal.p25, cal.p75] },
+    check: cal.check ?? null,
+    fao: { matured: f.matured, of: f.of, share: f.share, maturity: f.maturity, daysToMaturity: f.daysToMaturity },
   };
 }
 

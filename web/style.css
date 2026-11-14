@@ -185,3 +185,21 @@ details.table td, details.table th { padding: 2px 14px 2px 0; text-align: right;
 .facts li { margin: 3px 0; font-weight: 600; }
 .kv b { white-space: nowrap; }
 .shift td:not(:first-child), .shift th { white-space: nowrap; }
+
+/* Mavsum uzunligi: FAO jadvali va NASA MODIS (GDD kalibrlash) */
+.season { margin: 4px 0 6px; }
+.srow { margin: 8px 0; }
+.shead { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+.shead span { color: var(--hint); }
+.shead b { font-weight: 600; white-space: nowrap; }
+.shead small { font-weight: 400; color: var(--hint); }
+.strack { position: relative; height: 12px; margin-top: 3px; border-left: 2px solid var(--line); }
+.sbar { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 0 4px 4px 0; }
+.sbar.fao { background: var(--unk); }
+.sbar.cal { background: var(--series); }
+.swhisk { position: absolute; top: 5px; height: 2px; background: var(--text); opacity: .5; }
+.swhisk.obs { opacity: .8; }
+.sdot { position: absolute; top: 1px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--text); box-shadow: 0 0 0 2px var(--bg); }
+.saxis { position: relative; height: 18px; margin-top: 6px; font-size: 11px; color: var(--hint); border-top: 1px solid var(--line); }
+.saxis span { position: absolute; top: 3px; transform: translateX(-50%); white-space: nowrap; }
+.saxis span.first { left: 0; transform: none; }

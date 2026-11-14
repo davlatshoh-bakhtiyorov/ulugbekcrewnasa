@@ -47,6 +47,10 @@ export const METHODS = {
     doc: 'cropwat', table: 'USDA-SCS', page: null, verified: false,
     row: 'Peff = P (125 - 0.2 P) / 125 for P <= 250 mm/month; Peff = 125 + 0.1 P above. Formula seen in secondary sources, primary page not yet checked',
   },
+  gddCalibration: {
+    id: 'gdd_cal', doc: null, table: null, page: null, verified: false,
+    row: 'GDD total = median GDD from model sowing to the end of season seen by NASA MODIS MCD12Q2 v061 (Dormancy) on fields near Jarqo\'rg\'on, 2016-2025; FAO stage shares kept. Crop identity of each pixel is a team rule.',
+  },
   frost: { id: 'frost_def', doc: null, table: null, page: null, verified: true, row: 'Frost day = daily minimum 2 m air temperature <= 0 °C (NASA POWER T2M_MIN)' },
 };
 

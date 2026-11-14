@@ -8,6 +8,8 @@
     "test": "node --test tests/*.test.js",
     "pilot": "node scripts/pilot-crops.js",
     "dev": "node scripts/serve.js",
-    "gibs": "node scripts/gibs-layers.js"
+    "gibs": "node scripts/gibs-layers.js",
+    "mcd12q2": "node scripts/fetch-mcd12q2.js",
+    "calibrate": "node scripts/calibrate-gdd.js"
   }
 }
