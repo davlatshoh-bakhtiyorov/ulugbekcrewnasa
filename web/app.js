@@ -1,4 +1,4 @@
-// Field Shift UZ - dehqon oqimi: dala -> 3 savol -> 3 variant (4 svetofor) -> batafsil (NASA dalillari).
+// Neyra (Field Shift UZ) - dehqon oqimi: dala -> 3 savol -> 3 variant (4 svetofor) -> batafsil (NASA dalillari).
 import { powerUrl, parsePower } from '../core/power.js';
 import { addEt0, yearlyStats, climateShift } from '../core/agro.js';
 import { greenPeriods, periodsByYear, sameDayCompare, doyToMMDD, GREEN_RULE } from '../core/field.js';

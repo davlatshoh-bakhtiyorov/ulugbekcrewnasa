@@ -1,0 +1,1516 @@
+{
+ "generated": "2026-11-14",
+ "crop": {
+  "id": "onion",
+  "name": {
+   "uz": "Piyoz",
+   "en": "Onion (dry)"
+  },
+  "gdd": {
+   "tBase": 4.5,
+   "tUpper": 35,
+   "tSrc": {
+    "doc": "fao56r1",
+    "table": "6.10",
+    "page": 204,
+    "row": "Onions (Allium cepa)",
+    "verified": true
+   },
+   "stages": [
+    460,
+    470,
+    880,
+    480
+   ],
+   "stagesSrc": {
+    "doc": "fao56r1",
+    "table": "6.11",
+    "page": 209,
+    "row": "Onions (Allium cepa) - Common",
+    "verified": true
+   }
+  },
+  "sowRule": {
+   "windowDays": 30,
+   "meanT": 10,
+   "searchUntil": "06-30",
+   "verified": false,
+   "note": "Sowing = first day of the year on which the trailing 30-day mean air temperature (T2M_MAX+T2M_MIN)/2 reaches 10 °C; median over the years of the period. Team rule, not a published agronomic standard."
+  }
+ },
+ "climate": {
+  "product": "NASA POWER daily T2M_MAX/T2M_MIN/T2MDEW/WS2M/ALLSKY_SFC_SW_DWN/PRECTOTCORR (MERRA-2 + CERES, ~0.5°)",
+  "period": [
+   "1984-01-01",
+   "2025-12-31"
+  ]
+ },
+ "method": "Same crop model in every region (FAO-56 Rev.1 Eq. 6.23 GDD, Table 6.10 thresholds, Table 6.11 stage totals; no regional calibration), so differences between regions come from climate only. Absolute dates carry the FAO-table uncertainty (see the wheat/cotton calibration); differences between regions are the robust part.",
+ "periods": {
+  "early": [
+   "1985",
+   "2004"
+  ],
+  "late": [
+   "2006",
+   "2025"
+  ],
+  "all": [
+   "1985",
+   "2025"
+  ]
+ },
+ "reference": "surkhandarya",
+ "countries": {
+  "UZ": {
+   "uz": "O'zbekiston",
+   "en": "Uzbekistan"
+  },
+  "TJ": {
+   "uz": "Tojikiston",
+   "en": "Tajikistan"
+  },
+  "TM": {
+   "uz": "Turkmaniston",
+   "en": "Turkmenistan"
+  },
+  "KZ": {
+   "uz": "Qozog'iston",
+   "en": "Kazakhstan"
+  },
+  "KG": {
+   "uz": "Qirg'iziston",
+   "en": "Kyrgyzstan"
+  },
+  "RU": {
+   "uz": "Rossiya",
+   "en": "Russia"
+  }
+ },
+ "regions": [
+  {
+   "id": "surkhandarya",
+   "cc": "UZ",
+   "lat": 37.51,
+   "lon": 67.42,
+   "uz": "Surxondaryo",
+   "en": "Surkhandarya",
+   "elev": 417.48,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "03-19",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 77.5,
+      "p10": 6,
+      "p90": 90
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-14",
+      "early": "07-07",
+      "late": "07-16"
+     },
+     "daysToMaturity": 118,
+     "waterM3ha": {
+      "median": 6770,
+      "p80": 7230
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "03-13",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 72,
+      "p10": 59,
+      "p90": 88
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-06",
+      "early": "07-02",
+      "late": "07-10"
+     },
+     "daysToMaturity": 116,
+     "waterM3ha": {
+      "median": 6880,
+      "p80": 7110
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "03-14",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 73,
+      "p10": 49,
+      "p90": 88
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "07-08",
+      "early": "07-03",
+      "late": "07-15"
+     },
+     "daysToMaturity": 117,
+     "waterM3ha": {
+      "median": 6740,
+      "p80": 7190
+     }
+    }
+   }
+  },
+  {
+   "id": "kashkadarya",
+   "cc": "UZ",
+   "lat": 38.86,
+   "lon": 65.79,
+   "uz": "Qashqadaryo",
+   "en": "Kashkadarya",
+   "elev": 351.25,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "03-29",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 88,
+      "p10": 10,
+      "p90": 102
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-22",
+      "early": "07-13",
+      "late": "07-26"
+     },
+     "daysToMaturity": 116,
+     "waterM3ha": {
+      "median": 8390,
+      "p80": 8970
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "03-22",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 81,
+      "p10": 70,
+      "p90": 98
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-15",
+      "early": "07-10",
+      "late": "07-19"
+     },
+     "daysToMaturity": 116,
+     "waterM3ha": {
+      "median": 8340,
+      "p80": 8590
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "03-24",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 83,
+      "p10": 62,
+      "p90": 99
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "07-17",
+      "early": "07-11",
+      "late": "07-23"
+     },
+     "daysToMaturity": 116,
+     "waterM3ha": {
+      "median": 8280,
+      "p80": 8850
+     }
+    }
+   }
+  },
+  {
+   "id": "bukhara",
+   "cc": "UZ",
+   "lat": 39.77,
+   "lon": 64.42,
+   "uz": "Buxoro",
+   "en": "Bukhara",
+   "elev": 223.27,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-04",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 94,
+      "p10": 83,
+      "p90": 103
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-24",
+      "early": "07-18",
+      "late": "07-27"
+     },
+     "daysToMaturity": 112,
+     "waterM3ha": {
+      "median": 9280,
+      "p80": 9690
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "03-29",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 88,
+      "p10": 77,
+      "p90": 100
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-18",
+      "early": "07-14",
+      "late": "07-22"
+     },
+     "daysToMaturity": 112,
+     "waterM3ha": {
+      "median": 9010,
+      "p80": 9410
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-03",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 93,
+      "p10": 80,
+      "p90": 101
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "07-22",
+      "early": "07-17",
+      "late": "07-26"
+     },
+     "daysToMaturity": 111,
+     "waterM3ha": {
+      "median": 9140,
+      "p80": 9600
+     }
+    }
+   }
+  },
+  {
+   "id": "samarkand",
+   "cc": "UZ",
+   "lat": 39.65,
+   "lon": 66.96,
+   "uz": "Samarqand",
+   "en": "Samarkand",
+   "elev": 913.37,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-14",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 104,
+      "p10": 97,
+      "p90": 113
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-14",
+      "early": "08-06",
+      "late": "08-22"
+     },
+     "daysToMaturity": 123,
+     "waterM3ha": {
+      "median": 8010,
+      "p80": 8630
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "04-08",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 97.5,
+      "p10": 77,
+      "p90": 105
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-08",
+      "early": "08-02",
+      "late": "08-13"
+     },
+     "daysToMaturity": 123,
+     "waterM3ha": {
+      "median": 8030,
+      "p80": 8390
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-10",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 100,
+      "p10": 83,
+      "p90": 110
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "08-11",
+      "early": "08-03",
+      "late": "08-16"
+     },
+     "daysToMaturity": 124,
+     "waterM3ha": {
+      "median": 8010,
+      "p80": 8510
+     }
+    }
+   }
+  },
+  {
+   "id": "khorezm",
+   "cc": "UZ",
+   "lat": 41.55,
+   "lon": 60.63,
+   "uz": "Xorazm",
+   "en": "Khorezm",
+   "elev": 100.94,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-13",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 103,
+      "p10": 98,
+      "p90": 113
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-31",
+      "early": "07-27",
+      "late": "08-06"
+     },
+     "daysToMaturity": 110,
+     "waterM3ha": {
+      "median": 8500,
+      "p80": 8810
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "04-08",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 98,
+      "p10": 85,
+      "p90": 105
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-26",
+      "early": "07-21",
+      "late": "07-29"
+     },
+     "daysToMaturity": 110,
+     "waterM3ha": {
+      "median": 8290,
+      "p80": 8660
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-12",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 102,
+      "p10": 88,
+      "p90": 108
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "07-28",
+      "early": "07-24",
+      "late": "08-03"
+     },
+     "daysToMaturity": 108,
+     "waterM3ha": {
+      "median": 8460,
+      "p80": 8770
+     }
+    }
+   }
+  },
+  {
+   "id": "tashkent",
+   "cc": "UZ",
+   "lat": 41.3,
+   "lon": 69.24,
+   "uz": "Toshkent",
+   "en": "Tashkent",
+   "elev": 668.72,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-14",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 104,
+      "p10": 91,
+      "p90": 115
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-11",
+      "early": "08-04",
+      "late": "08-20"
+     },
+     "daysToMaturity": 120,
+     "waterM3ha": {
+      "median": 6790,
+      "p80": 7370
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "04-07",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 96.5,
+      "p10": 83,
+      "p90": 104
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-04",
+      "early": "07-31",
+      "late": "08-07"
+     },
+     "daysToMaturity": 120,
+     "waterM3ha": {
+      "median": 6720,
+      "p80": 7020
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-11",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 101,
+      "p10": 84,
+      "p90": 107
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "08-07",
+      "early": "08-01",
+      "late": "08-15"
+     },
+     "daysToMaturity": 119,
+     "waterM3ha": {
+      "median": 6730,
+      "p80": 7050
+     }
+    }
+   }
+  },
+  {
+   "id": "fergana",
+   "cc": "UZ",
+   "lat": 40.39,
+   "lon": 71.79,
+   "uz": "Farg'ona",
+   "en": "Fergana",
+   "elev": 718.68,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-02",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 92,
+      "p10": 77,
+      "p90": 105
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-28",
+      "early": "07-23",
+      "late": "08-02"
+     },
+     "daysToMaturity": 118,
+     "waterM3ha": {
+      "median": 6380,
+      "p80": 6890
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "03-20",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 78.5,
+      "p10": 69,
+      "p90": 90
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-18",
+      "early": "07-15",
+      "late": "07-25"
+     },
+     "daysToMaturity": 121,
+     "waterM3ha": {
+      "median": 6430,
+      "p80": 6890
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "03-28",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 87,
+      "p10": 69,
+      "p90": 101
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "07-22",
+      "early": "07-18",
+      "late": "07-31"
+     },
+     "daysToMaturity": 117,
+     "waterM3ha": {
+      "median": 6460,
+      "p80": 6860
+     }
+    }
+   }
+  },
+  {
+   "id": "khatlon",
+   "cc": "TJ",
+   "lat": 37.84,
+   "lon": 68.78,
+   "uz": "Xatlon",
+   "en": "Khatlon",
+   "elev": 782.37,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-02",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 92,
+      "p10": 77,
+      "p90": 106
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-27",
+      "early": "07-21",
+      "late": "08-01"
+     },
+     "daysToMaturity": 117,
+     "waterM3ha": {
+      "median": 5990,
+      "p80": 6480
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "03-21",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 80,
+      "p10": 63,
+      "p90": 94
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-17",
+      "early": "07-12",
+      "late": "07-23"
+     },
+     "daysToMaturity": 119,
+     "waterM3ha": {
+      "median": 5740,
+      "p80": 6340
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "03-30",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 89,
+      "p10": 68,
+      "p90": 103
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "07-22",
+      "early": "07-16",
+      "late": "07-30"
+     },
+     "daysToMaturity": 115,
+     "waterM3ha": {
+      "median": 5940,
+      "p80": 6370
+     }
+    }
+   }
+  },
+  {
+   "id": "sughd",
+   "cc": "TJ",
+   "lat": 40.28,
+   "lon": 69.62,
+   "uz": "Sug'd",
+   "en": "Sughd",
+   "elev": 570.89,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-07",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 97,
+      "p10": 85,
+      "p90": 106
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-04",
+      "early": "07-25",
+      "late": "08-09"
+     },
+     "daysToMaturity": 120,
+     "waterM3ha": {
+      "median": 6860,
+      "p80": 7170
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "03-31",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 90,
+      "p10": 78,
+      "p90": 101
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-26",
+      "early": "07-24",
+      "late": "07-30"
+     },
+     "daysToMaturity": 118,
+     "waterM3ha": {
+      "median": 6650,
+      "p80": 6950
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-06",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 96,
+      "p10": 80,
+      "p90": 105
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "07-31",
+      "early": "07-25",
+      "late": "08-05"
+     },
+     "daysToMaturity": 117,
+     "waterM3ha": {
+      "median": 6800,
+      "p80": 7140
+     }
+    }
+   }
+  },
+  {
+   "id": "lebap",
+   "cc": "TM",
+   "lat": 39.08,
+   "lon": 63.58,
+   "uz": "Lebap",
+   "en": "Lebap",
+   "elev": 194.83,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-01",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 91,
+      "p10": 76,
+      "p90": 102
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-20",
+      "early": "07-14",
+      "late": "07-23"
+     },
+     "daysToMaturity": 111,
+     "waterM3ha": {
+      "median": 9160,
+      "p80": 9610
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "03-24",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 83,
+      "p10": 73,
+      "p90": 96
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "07-14",
+      "early": "07-10",
+      "late": "07-18"
+     },
+     "daysToMaturity": 113,
+     "waterM3ha": {
+      "median": 8820,
+      "p80": 9180
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "03-29",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 88,
+      "p10": 74,
+      "p90": 98
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "07-16",
+      "early": "07-12",
+      "late": "07-22"
+     },
+     "daysToMaturity": 110,
+     "waterM3ha": {
+      "median": 9090,
+      "p80": 9480
+     }
+    }
+   }
+  },
+  {
+   "id": "turkistan",
+   "cc": "KZ",
+   "lat": 43.3,
+   "lon": 68.25,
+   "uz": "Turkiston",
+   "en": "Turkistan",
+   "elev": 401.21,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-21",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 110.5,
+      "p10": 103,
+      "p90": 121
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-14",
+      "early": "08-10",
+      "late": "08-23"
+     },
+     "daysToMaturity": 116,
+     "waterM3ha": {
+      "median": 8730,
+      "p80": 9260
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "04-16",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 106,
+      "p10": 98,
+      "p90": 115
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-11",
+      "early": "08-05",
+      "late": "08-16"
+     },
+     "daysToMaturity": 118,
+     "waterM3ha": {
+      "median": 8870,
+      "p80": 9180
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-19",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 109,
+      "p10": 101,
+      "p90": 117
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "08-12",
+      "early": "08-07",
+      "late": "08-20"
+     },
+     "daysToMaturity": 116,
+     "waterM3ha": {
+      "median": 8800,
+      "p80": 9250
+     }
+    }
+   }
+  },
+  {
+   "id": "jambyl",
+   "cc": "KZ",
+   "lat": 42.9,
+   "lon": 71.37,
+   "uz": "Jambil",
+   "en": "Jambyl",
+   "elev": 653,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-21",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 111,
+      "p10": 103,
+      "p90": 124
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-22",
+      "early": "08-16",
+      "late": "08-31"
+     },
+     "daysToMaturity": 124,
+     "waterM3ha": {
+      "median": 6870,
+      "p80": 7200
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "04-13",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 102.5,
+      "p10": 90,
+      "p90": 112
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-13",
+      "early": "08-07",
+      "late": "08-19"
+     },
+     "daysToMaturity": 123,
+     "waterM3ha": {
+      "median": 7070,
+      "p80": 7450
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-18",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 108,
+      "p10": 96,
+      "p90": 114
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "08-17",
+      "early": "08-12",
+      "late": "08-26"
+     },
+     "daysToMaturity": 122,
+     "waterM3ha": {
+      "median": 6970,
+      "p80": 7510
+     }
+    }
+   }
+  },
+  {
+   "id": "osh",
+   "cc": "KG",
+   "lat": 40.53,
+   "lon": 72.8,
+   "uz": "O'sh",
+   "en": "Osh",
+   "elev": 1141.92,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-12",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 101.5,
+      "p10": 94,
+      "p90": 111
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-17",
+      "early": "08-10",
+      "late": "08-25"
+     },
+     "daysToMaturity": 128,
+     "waterM3ha": {
+      "median": 6540,
+      "p80": 6850
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "04-05",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 94.5,
+      "p10": 78,
+      "p90": 103
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-08",
+      "early": "08-04",
+      "late": "08-15"
+     },
+     "daysToMaturity": 126,
+     "waterM3ha": {
+      "median": 6630,
+      "p80": 6980
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-08",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 98,
+      "p10": 80,
+      "p90": 108
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "08-12",
+      "early": "08-05",
+      "late": "08-22"
+     },
+     "daysToMaturity": 127,
+     "waterM3ha": {
+      "median": 6590,
+      "p80": 6920
+     }
+    }
+   }
+  },
+  {
+   "id": "astrakhan",
+   "cc": "RU",
+   "lat": 46.35,
+   "lon": 48.04,
+   "uz": "Astraxan",
+   "en": "Astrakhan",
+   "elev": -23.31,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "04-26",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 115.5,
+      "p10": 110,
+      "p90": 126
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-25",
+      "early": "08-20",
+      "late": "09-03"
+     },
+     "daysToMaturity": 122,
+     "waterM3ha": {
+      "median": 6420,
+      "p80": 6940
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "04-26",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 116,
+      "p10": 101,
+      "p90": 123
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "08-18",
+      "early": "08-12",
+      "late": "08-23"
+     },
+     "daysToMaturity": 115,
+     "waterM3ha": {
+      "median": 6780,
+      "p80": 7120
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-26",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 116,
+      "p10": 107,
+      "p90": 124
+     },
+     "matured": 41,
+     "of": 41,
+     "maturity": {
+      "median": "08-21",
+      "early": "08-15",
+      "late": "08-28"
+     },
+     "daysToMaturity": 118,
+     "waterM3ha": {
+      "median": 6610,
+      "p80": 7030
+     }
+    }
+   }
+  },
+  {
+   "id": "volgograd",
+   "cc": "RU",
+   "lat": 48.71,
+   "lon": 44.51,
+   "uz": "Volgograd",
+   "en": "Volgograd",
+   "elev": 64.65,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "05-05",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 125,
+      "p10": 114,
+      "p90": 133
+     },
+     "matured": 17,
+     "of": 20,
+     "maturity": {
+      "median": "09-18",
+      "early": "09-10",
+      "late": "10-06"
+     },
+     "daysToMaturity": 137,
+     "waterM3ha": {
+      "median": 5460,
+      "p80": 6610
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "05-01",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 121,
+      "p10": 112,
+      "p90": 130
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "09-02",
+      "early": "08-26",
+      "late": "09-08"
+     },
+     "daysToMaturity": 125,
+     "waterM3ha": {
+      "median": 6180,
+      "p80": 6490
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "05-02",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 122,
+      "p10": 113,
+      "p90": 131
+     },
+     "matured": 38,
+     "of": 41,
+     "maturity": {
+      "median": "09-08",
+      "early": "08-30",
+      "late": "09-29"
+     },
+     "daysToMaturity": 130,
+     "waterM3ha": {
+      "median": 5950,
+      "p80": 6540
+     }
+    }
+   }
+  },
+  {
+   "id": "rostov",
+   "cc": "RU",
+   "lat": 47.24,
+   "lon": 39.7,
+   "uz": "Rostov",
+   "en": "Rostov",
+   "elev": 54.99,
+   "periods": {
+    "early": {
+     "range": [
+      "1985",
+      "2004"
+     ],
+     "years": 20,
+     "sow": "05-03",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 122.5,
+      "p10": 113,
+      "p90": 134
+     },
+     "matured": 17,
+     "of": 20,
+     "maturity": {
+      "median": "09-20",
+      "early": "09-11",
+      "late": "10-05"
+     },
+     "daysToMaturity": 141,
+     "waterM3ha": {
+      "median": 4520,
+      "p80": 5150
+     }
+    },
+    "late": {
+     "range": [
+      "2006",
+      "2025"
+     ],
+     "years": 20,
+     "sow": "04-28",
+     "sowYears": 20,
+     "sowDoy": {
+      "median": 117.5,
+      "p10": 109,
+      "p90": 130
+     },
+     "matured": 20,
+     "of": 20,
+     "maturity": {
+      "median": "09-03",
+      "early": "08-24",
+      "late": "09-07"
+     },
+     "daysToMaturity": 129,
+     "waterM3ha": {
+      "median": 5370,
+      "p80": 6090
+     }
+    },
+    "all": {
+     "range": [
+      "1985",
+      "2025"
+     ],
+     "years": 41,
+     "sow": "04-29",
+     "sowYears": 41,
+     "sowDoy": {
+      "median": 119,
+      "p10": 111,
+      "p90": 130
+     },
+     "matured": 39,
+     "of": 41,
+     "maturity": {
+      "median": "09-08",
+      "early": "08-26",
+      "late": "09-24"
+     },
+     "daysToMaturity": 133,
+     "waterM3ha": {
+      "median": 5110,
+      "p80": 5840
+     }
+    }
+   }
+  }
+ ]
+}

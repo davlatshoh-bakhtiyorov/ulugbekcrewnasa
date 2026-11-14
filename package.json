@@ -11,6 +11,10 @@
     "gibs": "node scripts/gibs-layers.js",
     "mcd12q2": "node scripts/fetch-mcd12q2.js",
     "calibrate": "node scripts/calibrate-gdd.js",
-    "site-data": "node scripts/site-data.js"
+    "site-data": "node scripts/site-data.js",
+    "mcd12q2:region": "node scripts/fetch-mcd12q2-region.js",
+    "market-window": "node scripts/market-window.js",
+    "field-ndvi": "node scripts/field-ndvi.js",
+    "harvest": "node scripts/harvest-timing.js"
   }
 }

@@ -10,7 +10,7 @@ const MON = {
 
 const D = {
   uz: {
-    title: 'Dala almashinuvi',
+    title: 'Neyra',
     tagline: "Dalangizni ko'rsating — NASA ma'lumotlari asosida 3 ta ekin variantini solishtiramiz.",
     step1: '1. Dalani tanlang',
     mapHint: 'Xaritada dalangiz ustiga bosing',
@@ -193,7 +193,7 @@ const D = {
     lang: 'EN',
   },
   en: {
-    title: 'Field Shift',
+    title: 'Neyra',
     tagline: 'Show your field — we compare 3 crop options using NASA data.',
     step1: '1. Pick your field',
     mapHint: 'Tap your field on the map',

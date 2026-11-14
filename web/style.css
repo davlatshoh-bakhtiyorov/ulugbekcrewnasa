@@ -45,6 +45,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .small { font-size: 13px; }
 
 .top { display: flex; align-items: center; gap: 10px; padding: 12px 0 4px; }
+.top .logo { width: 26px; height: 26px; object-fit: contain; flex: none; }
 .lang { border: 1px solid var(--line); background: var(--bg2); border-radius: 8px; padding: 4px 10px; font-weight: 600; font-size: 14px; }
 .link { background: none; border: 0; color: var(--link); padding: 6px 0; font-weight: 600; }
 .back { font-size: 20px; padding: 0 4px 0 0; }

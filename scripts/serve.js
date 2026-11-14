@@ -33,4 +33,4 @@ createServer(async (req, res) => {
   } catch {
     res.writeHead(404); res.end('not found');
   }
-}).listen(PORT, () => console.log(`Field Shift UZ: http://localhost:${PORT}/  (Mini App: /web/)`));
+}).listen(PORT, () => console.log(`Neyra: http://localhost:${PORT}/  (Mini App: /web/)`));
