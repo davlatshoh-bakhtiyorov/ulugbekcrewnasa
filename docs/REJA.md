@@ -23,7 +23,7 @@ Talablar: ta'sirli, sodda, qulay, aniq. Veb + Telegram bot.
 |---|---|---|
 | 1 | Poydevor: papka, NASA API jonli tekshiruvi, ET0 va iqlim yadrosi, testlar, pilot nuqta | bajarildi |
 | 2 | Ekinlar jadvali (6 ekin, FAO-56 Rev.1 + FAO-29, sahifa raqami bilan) va ekin bo'yicha hisob: pishib ulgurish ehtimoli, suv talabi, issiq kunlar, yig'imda buzilish xavfi, sho'rda hosil | bajarildi (`npm run pilot`) |
-| 3 | Veb ilova = Telegram Mini App: dehqon oqimi (`npm run dev`) | brauzerda tekshirildi; Telegram ichida tekshirish uchun HTTPS hosting kerak |
+| 3 | Veb ilova = Telegram Mini App: dehqon oqimi (`npm run dev`) | jonli: https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/web/ ; Telegram ichida telefonda tekshirish qoldi |
 | 4 | Dala xotirasi (MCD12Q2 + MOD13Q1), xarita (GIBS) va GDD'ni MODIS bilan kalibrlash | |
 | 5 | Telegram bot: /start va Mini App'ni ochuvchi tugma | |
 | 6 | Suv prognozi (GRACE) va HLS 30 m — Earthdata Login kerak | |

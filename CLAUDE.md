@@ -15,7 +15,12 @@ a web app in `web/` that runs both in the browser and as a **Telegram Mini App**
 receiving a location and opening the Mini App with it. The Mini App URL must be public HTTPS
 (`WEBAPP_URL` in `.env`).
 
-Repo: https://github.com/davlatshoh-bakhtiyorov/ulugbekcrewnasa (private, branch `main`).
+Repo: https://github.com/davlatshoh-bakhtiyorov/ulugbekcrewnasa (public since 14 Nov, branch `main`).
+Live Mini App (GitHub Pages from `main`, root; `index.html` redirects to `web/`, `.nojekyll`):
+https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/web/ — every push to `main` redeploys.
+Bot: @ulugbekcrewbot. Default menu button set via Bot API `setChatMenuButton` (web_app,
+text "Dalani tekshirish") on 14 Nov — API said ok, but `getChatMenuButton` still returned
+"commands"; confirm on a phone, fallback is BotFather -> Bot Settings -> Menu Button.
 Secrets: `.env` (gitignored) holds `TELEGRAM_BOT_TOKEN`; `.env.example` lists the keys.
 
 Team motivation: vegetables are dumped in Uzbekistan because everyone plants what was
@@ -82,10 +87,10 @@ bot/               empty
 
 Step 3 status: full flow verified in a 375 px browser viewport, uz and en, light and dark
 (map tap / demo point -> 3 questions -> 3 cards with 4 lights -> details with chart, table view
-and a source chip under every block). **Not yet verified inside Telegram**: needs a public HTTPS
-URL first (team decision pending: make repo public + GitHub Pages at `/web/`, or a host such as
-Cloudflare Pages / Netlify). Imports are relative (`../core/`), so the site root must contain
-both `web/` and `core/`.
+and a source chip under every block). **Not yet verified inside Telegram**: needed a public HTTPS
+URL first — now live on GitHub Pages (see top); the live site was checked in a 375 px browser
+(demo point -> results in 2.5 s incl. POWER fetch, no console errors). Imports are relative
+(`../core/`), so the site root must contain both `web/` and `core/`.
 
 Traffic lights (core/advisor.js, all cut-offs `verified: false`):
 water = dry-year (p80) net need vs farmer's water answer; ripen = share of years matured;
@@ -174,7 +179,7 @@ The exact pixel 37.51/67.42 is not a field (summer NDVI ~0.2) — pick a real fi
 |---|---|---|
 | 1 | Foundation | done |
 | 2 | Crop table + per-crop calculation | done (see "Step 2 method" and "Known problem") |
-| 3 | Web app = Telegram Mini App | built; browser verified; inside-Telegram check waits for HTTPS hosting |
+| 3 | Web app = Telegram Mini App | built and live on GitHub Pages; inside-Telegram check pending (open @ulugbekcrewbot menu button on a phone) |
 | 4 | Field memory + map + GDD calibration | Crop cycles per year from MCD12Q2, last 3 years NDVI from MOD13Q1, GIBS layers on Leaflet, results cached; per-crop GDD totals calibrated from MCD12Q2 on real fields. |
 | 5 | Telegram bot (launcher) | /start + menu button opens the Mini App; a sent location opens it at that field. Token only from `.env` (`.env.example` done). |
 | 6 | Water outlook + HLS | GRACE basin storage series precomputed to JSON; HLS for one pilot district. |
