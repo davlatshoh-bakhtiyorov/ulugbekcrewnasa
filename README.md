@@ -14,4 +14,6 @@ tests/   testlar:  npm test
 docs/    reja va NASA ma'lumotlari tekshiruvi
 ```
 
+Ishga tushirish: `npm run dev` -> http://localhost:8080/ · testlar: `npm test` · pilot: `npm run pilot`
+
 Reja: `docs/REJA.md` · NASA manbalari holati: `docs/NASA-TEKSHIRUV.md`

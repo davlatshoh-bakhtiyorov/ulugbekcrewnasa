@@ -59,7 +59,7 @@ of the four scores — but rotation stays the main screen (judging criterion: Re
 - Submission page and all linked material (README, repo docs, slides) must be English.
   README.md and docs/ are currently in Uzbek — translate README before submission (step 7).
 
-## Current state (step 2 done, 14 Nov)
+## Current state (step 3 built and checked in a browser, 14 Nov)
 
 ```
 core/agro.js       FAO-56 Penman-Monteith ET0, GDD, frost/heat stats, climate shift, trend
@@ -72,9 +72,30 @@ docs/REJA.md             step plan (Uzbek)
 docs/NASA-TEKSHIRUV.md   live API check results (Uzbek)
 docs/pilot-iqlim-jarqorgon.json    step 1 climate result
 docs/pilot-ekinlar-jarqorgon.json  step 2 crop result
+core/advisor.js    four traffic lights + ranking of the 6 crops -> top 3 (language-free codes)
+web/               Mini App: index.html, app.js (flow), i18n.js (uz/en), tg.js (Telegram glue),
+                   chart.js (SVG bar chart), style.css (Telegram theme vars + own light/dark)
+scripts/serve.js   npm run dev -> http://localhost:8080/ (serves only web/ and core/)
 cache/             POWER responses (gitignored)
-web/ bot/          empty
+bot/               empty
 ```
+
+Step 3 status: full flow verified in a 375 px browser viewport, uz and en, light and dark
+(map tap / demo point -> 3 questions -> 3 cards with 4 lights -> details with chart, table view
+and a source chip under every block). **Not yet verified inside Telegram**: needs a public HTTPS
+URL first (team decision pending: make repo public + GitHub Pages at `/web/`, or a host such as
+Cloudflare Pages / Netlify). Imports are relative (`../core/`), so the site root must contain
+both `web/` and `core/`.
+
+Traffic lights (core/advisor.js, all cut-offs `verified: false`):
+water = dry-year (p80) net need vs farmer's water answer; ripen = share of years matured;
+soil = rotation rule (same crop red, legume green, after legume green, else yellow) combined with
+salinity yield (worst case); market & waste = spoilage level only — price part shows "unknown"
+until `docs/narxlar.md` exists. Ranking: sum of light scores, ties -> fewer reds -> less water.
+
+External resources used by the page (list them in the submission): Leaflet 1.9.4 (cdnjs, BSD-2),
+Telegram WebApp JS (telegram.org), EOX Sentinel-2 cloudless 2020 tiles (CC BY-NC-SA 4.0,
+attribution shown), OpenStreetMap tiles (ODbL, attribution shown).
 
 Confirmed crops (14 Nov): winter wheat, cotton, onion, potato, mung bean, alfalfa.
 
@@ -153,7 +174,7 @@ The exact pixel 37.51/67.42 is not a field (summer NDVI ~0.2) — pick a real fi
 |---|---|---|
 | 1 | Foundation | done |
 | 2 | Crop table + per-crop calculation | done (see "Step 2 method" and "Known problem") |
-| 3 | Web app = Telegram Mini App | Farmer flow works on a phone in the browser and inside Telegram (telegram-web-app.js, theme colours, MainButton), uz/en toggle, every number shows its source. |
+| 3 | Web app = Telegram Mini App | built; browser verified; inside-Telegram check waits for HTTPS hosting |
 | 4 | Field memory + map + GDD calibration | Crop cycles per year from MCD12Q2, last 3 years NDVI from MOD13Q1, GIBS layers on Leaflet, results cached; per-crop GDD totals calibrated from MCD12Q2 on real fields. |
 | 5 | Telegram bot (launcher) | /start + menu button opens the Mini App; a sent location opens it at that field. Token only from `.env` (`.env.example` done). |
 | 6 | Water outlook + HLS | GRACE basin storage series precomputed to JSON; HLS for one pilot district. |
