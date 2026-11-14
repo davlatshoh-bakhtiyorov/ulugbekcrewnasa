@@ -6,10 +6,13 @@ import { evaluateCrop, SPOILAGE_RULE } from '../core/crop-calc.js';
 import { advise, RULES } from '../core/advisor.js';
 import { t, num, mmdd, getLang, setLang } from './i18n.js';
 import { barChart } from './chart.js';
+import { initNasaMap, readAt, renderNasa } from './nasa-map.js';
 import { initTelegram, telegramLang, setPrimary, primaryProgress, setBack, haptic, getLocation } from './tg.js';
 
 const START = '19840101', END = '20251231';
-const DEMO = { lat: 37.51, lon: 67.42 };
+// Haqiqiy sug'oriladigan dala, yiliga ikki hosil (MODIS MOD13Q1 NDVI 2026: mart-aprel ~0.7, may 0.27 - yig'im,
+// iyul-avgust 0.75). Pilot nuqta 37.51, 67.42 bilan bitta NASA POWER katagida - iqlim natijalari bir xil.
+const DEMO = { lat: 37.5021, lon: 67.3888 };
 
 const S = {
   screen: 'field',
@@ -66,6 +69,7 @@ function initMap() {
   });
   L.control.layers({ 'Sentinel-2': sat, OpenStreetMap: osm }, null, { position: 'topright' }).addTo(map);
   map.on('click', (e) => setPoint(e.latlng.lat, e.latlng.lng, false));
+  initNasaMap(map).then(() => { if (S.lat != null) readAt(S.lat, S.lon); }).catch((err) => console.warn('NASA layers:', err));
 }
 
 function setPoint(lat, lon, fly = true) {
@@ -75,6 +79,7 @@ function setPoint(lat, lon, fly = true) {
   if (fly) map.setView([lat, lon], 13);
   haptic();
   loadData(lat, lon).catch(() => {}); // oldindan yuklash - savollarga javob berguncha tayyor bo'ladi
+  readAt(lat, lon);
   render();
 }
 
@@ -145,6 +150,7 @@ function renderField() {
   $('picked').textContent = S.lat == null ? '' : `${t('picked')}: ${S.lat.toFixed(4)}° N, ${S.lon.toFixed(4)}° E`;
   setBack(null);
   setPrimary(t('next'), () => go('questions'), S.lat != null);
+  renderNasa();
 }
 
 function chipGroup(name, options) {

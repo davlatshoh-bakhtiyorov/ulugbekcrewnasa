@@ -21,12 +21,20 @@
     <p id="intro" class="intro"></p>
     <h2 id="step1"></h2>
     <p id="mapHint" class="muted small"></p>
+    <div id="layerBar" class="layerbar" role="group"></div>
     <div id="map" role="application"></div>
+    <div id="timeBar" class="timebar" hidden>
+      <button id="play" class="play" type="button">▶</button>
+      <input id="frame" type="range" min="0" max="0" step="1" value="0">
+      <span id="frameLabel" class="frame-label" aria-live="polite"></span>
+    </div>
+    <div id="legend" class="legend" hidden></div>
     <div class="row">
       <button id="btnLocate" class="secondary"></button>
       <button id="btnDemo" class="secondary"></button>
     </div>
     <p id="picked" class="picked" aria-live="polite"></p>
+    <section id="readout" class="readout" hidden></section>
   </section>
 
   <main id="main" hidden></main>

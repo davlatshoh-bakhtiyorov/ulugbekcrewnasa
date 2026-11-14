@@ -23,8 +23,9 @@ Talablar: ta'sirli, sodda, qulay, aniq. Veb + Telegram bot.
 |---|---|---|
 | 1 | Poydevor: papka, NASA API jonli tekshiruvi, ET0 va iqlim yadrosi, testlar, pilot nuqta | bajarildi |
 | 2 | Ekinlar jadvali (6 ekin, FAO-56 Rev.1 + FAO-29, sahifa raqami bilan) va ekin bo'yicha hisob: pishib ulgurish ehtimoli, suv talabi, issiq kunlar, yig'imda buzilish xavfi, sho'rda hosil | bajarildi (`npm run pilot`) |
-| 3 | Veb ilova = Telegram Mini App: dehqon oqimi (`npm run dev`) | jonli: https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/web/ ; Telegram ichida telefonda tekshirish qoldi |
-| 4 | Dala xotirasi (MCD12Q2 + MOD13Q1), xarita (GIBS) va GDD'ni MODIS bilan kalibrlash | |
+| 3 | Veb ilova = Telegram Mini App: dehqon oqimi (`npm run dev`) | jonli: https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/web/ ; Telegram ichida ishladi (14-noyabr) |
+| 4a | Tirik NASA xaritasi: 4 qatlam (NDVI, SMAP namlik, yer harorati, GRACE), sana sirpang'ichi + animatsiya, bosilgan nuqtada har qatlamning qiymati va tarixi | bajarildi (`npm run gibs`) |
+| 4b | Dala xotirasi (MCD12Q2) va GDD'ni MODIS bilan kalibrlash | |
 | 5 | Telegram bot: /start va Mini App'ni ochuvchi tugma | |
 | 6 | Suv prognozi (GRACE) va HLS 30 m — Earthdata Login kerak | |
 | 7 | Inglizcha loyiha sahifasi va demo | |
@@ -42,3 +43,26 @@ FAO jadvallaridagi GDD yig'indilari boshqa iqlimlarda o'lchangan. Issiq Surxonda
 chiqadi: kuzgi bug'doy 25-aprelda "pishadi" (aslida o'rim may oxiri - iyun), mosh 43 kunda (odatda
 60-90). Shu sabab pilot nuqtada 6 ekinning hammasi 100% pishib ulguradi. Yechim: har bir ekin GDD'sini
 haqiqiy dalalarda MODIS MCD12Q2 (har yilgi ko'karish/qurish sanalari) bilan kalibrlash.
+
+## NASA xaritasidan raqam olish (4a)
+
+NASA GIBS qatlamlari rasm (tayl) bo'lib keladi, lekin GIBS har bir qatlam uchun rasmiy rang shkalasini
+e'lon qiladi: har bir rang aniq qiymat oralig'iga mos (masalan SMAP: 0.165–0.168 m³/m³). Bosilgan nuqtadagi
+piksel rangi shu jadvaldan topiladi va oraliq o'rtasi ko'rsatiladi; shaffof piksel (bulut, qamrov yo'q) —
+"ma'lumot yo'q". Tekshiruv: 4 qatlamning test taylida ranglarning 100% i shkalaga mos keldi; namuna
+dalada brauzer o'qigan 12 ta NDVI qiymati Python + PIL bilan mustaqil o'qilganiga to'liq teng.
+
+| Qatlam | NASA mahsuloti | Aniqlik | Kadrlar |
+|---|---|---|---|
+| O'simlik | MODIS Terra MOD13Q1 v061 NDVI | 250 m, 16 kunlik | oxirgi 12 oy |
+| Tuproq namligi | SMAP L4 SPL4SMAU v008, ildiz zonasi 0–100 sm | 9 km, kunlik | oxirgi 12 oy |
+| Yer harorati | MODIS Terra MOD11A2 v061 LST (kunduz) | 1 km, 8 kunlik | oxirgi 12 oy |
+| Suv zaxirasi | GRACE/GRACE-FO JPL Mascon RL06 v02 (CRI) | ~300 km, oylik | har yili iyul, 2003–2022 (GIBS'da 2022-yil iyulgacha) |
+
+Kadr sanalari va rang shkalalari `npm run gibs` bilan `web/data/gibs-layers.json` ga yoziladi (har bir kadr
+GIBS'dan `layer-time-actual` sarlavhasi bilan tekshiriladi). Yangi ma'lumot uchun qayta ishga tushiring.
+IMERG yog'in qatlami olinmadi: EPSG:3857 da faqat kunlik, quruq mavsumda deyarli bo'sh; yog'in raqamlari
+NASA POWER'dan keladi. HLS 30 m — keyinroq (sinalgan sanada tayl bo'sh).
+
+Namuna dala: 37.5021, 67.3888 (Jarqo'rg'on yonida) — yiliga ikki hosil: NDVI mart–aprel ~0.7, may 0.27
+(yig'im), iyul–avgust 0.75. Pilot nuqta (37.51, 67.42) bilan bitta NASA POWER katagida, iqlim natijalari bir xil.

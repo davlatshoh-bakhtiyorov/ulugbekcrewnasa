@@ -9,6 +9,8 @@ export function initTelegram() {
   root.classList.add('in-tg');
   tg.ready();
   tg.expand();
+  // xaritani pastga sudrash Mini App'ni yopib yubormasin (Bot API 7.7+)
+  if (tg.isVersionAtLeast?.('7.7')) tg.disableVerticalSwipes();
   const apply = () => root.setAttribute('data-theme', tg.colorScheme === 'dark' ? 'dark' : 'light');
   apply();
   tg.onEvent('themeChanged', apply);

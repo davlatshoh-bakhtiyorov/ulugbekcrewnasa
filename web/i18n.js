@@ -3,6 +3,10 @@ const MONTHS = {
   uz: ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'],
   en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 };
+const MON = {
+  uz: ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avg', 'sen', 'okt', 'noy', 'dek'],
+  en: MONTHS.en,
+};
 
 const D = {
   uz: {
@@ -11,7 +15,6 @@ const D = {
     step1: '1. Dalani tanlang',
     mapHint: 'Xaritada dalangiz ustiga bosing',
     myLocation: '📍 Joylashuvim',
-    demo: "Namuna: Jarqo'rg'on",
     locating: 'Joylashuv aniqlanmoqda…',
     locError: "Joylashuvni olib bo'lmadi. Xaritada bosing.",
     picked: 'Tanlangan nuqta',
@@ -114,6 +117,30 @@ const D = {
     src_map_salinity: "Javob → ECe (dS/m) mosligi, USDA sinflari",
     src_rule_lights: 'Svetofor chegaralari: jamoa qoidasi',
     src_rule_spoil: "Yig'im xavfi chegaralari: jamoa qoidasi",
+    // NASA xaritasi
+    demo: "Namuna: Jarqo'rg'on dalasi",
+    layer_sat: "Sun'iy yo'ldosh",
+    layer_ndvi: "O'simlik",
+    layer_soil: 'Tuproq namligi',
+    layer_heat: 'Yer harorati',
+    layer_water: 'Suv zaxirasi',
+    desc_ndvi: "NDVI: 0 — yalang'och yer, 1 — juda qalin yashil o'simlik. Har 16 kundagi eng toza kadr.",
+    desc_soil: "Ildiz qatlamidagi (0–100 sm) suv: 1 m³ tuproqdagi suv, m³. SMAP sun'iy yo'ldoshi + yer modeli (L4).",
+    desc_heat: "Kunduzgi yer yuzasi harorati (havo emas), 8 kunlik o'rtacha. Bulutli joy bo'sh qoladi.",
+    desc_water: "Yer osti, tuproq va yer usti suvlari jami: ko'p yillik o'rtachaga nisbatan farq. ~300 km — butun havza darajasida, bitta dala uchun emas.",
+    less_water: 'suv kamaygan', more_water: "suv ko'paygan",
+    p_16d: '16 kunlik', p_8d: '8 kunlik', p_1d: 'kunlik', p_1m: 'oylik',
+    play: 'Ijro etish', pause: "To'xtatish",
+    readTitle: "Shu nuqtada NASA nimani ko'rmoqda",
+    readHint: "Qatorni bosing — xaritada o'sha qatlam va uning tarixi ochiladi.",
+    reading: "NASA xaritalaridan o'qilmoqda…",
+    histMonthly: '{name}: shu nuqtada, oxirgi 12 oy',
+    histYearly: '{name}: shu nuqtada, har yili iyulda',
+    noData: "ma'lumot yo'q",
+    date: 'Sana',
+    class: 'Sinf',
+    method: 'Qiymat xarita rangidan, GIBS rasmiy shkalasi bo\'yicha',
+    methodLong: "NASA GIBS har bir rang uchun qiymat oralig'ini e'lon qiladi. Tayl pikselining rangi shu jadvaldan topiladi; ko'rsatilgan son — oraliq o'rtasi.",
     lang: 'EN',
   },
   en: {
@@ -122,7 +149,6 @@ const D = {
     step1: '1. Pick your field',
     mapHint: 'Tap your field on the map',
     myLocation: '📍 My location',
-    demo: "Example: Jarqo'rg'on",
     locating: 'Finding your location…',
     locError: 'Could not get your location. Tap the map instead.',
     picked: 'Selected point',
@@ -222,6 +248,29 @@ const D = {
     src_map_salinity: 'Answer → ECe (dS/m) mapping, USDA classes',
     src_rule_lights: 'Traffic-light cut-offs: team rule',
     src_rule_spoil: 'Spoilage cut-offs: team rule',
+    demo: "Example: a field near Jarqo'rg'on",
+    layer_sat: 'Satellite',
+    layer_ndvi: 'Vegetation',
+    layer_soil: 'Soil moisture',
+    layer_heat: 'Land heat',
+    layer_water: 'Water storage',
+    desc_ndvi: 'NDVI: 0 = bare ground, 1 = dense green vegetation. Clearest view in each 16 days.',
+    desc_soil: 'Water in the root zone (0–100 cm), m³ per m³ of soil. SMAP satellite + land model (L4).',
+    desc_heat: 'Daytime land surface temperature (not air), 8-day average. Cloudy spots stay blank.',
+    desc_water: 'Groundwater, soil and surface water together, versus the long-term mean. ~300 km — basin scale, not one field.',
+    less_water: 'less water', more_water: 'more water',
+    p_16d: '16-day', p_8d: '8-day', p_1d: 'daily', p_1m: 'monthly',
+    play: 'Play', pause: 'Pause',
+    readTitle: 'What NASA sees at this point',
+    readHint: 'Tap a row to show that layer and its history.',
+    reading: 'Reading NASA maps…',
+    histMonthly: '{name} at this point, last 12 months',
+    histYearly: '{name} at this point, every July',
+    noData: 'no data',
+    date: 'Date',
+    class: 'Class',
+    method: 'Value read from the map colour (official GIBS colour scale)',
+    methodLong: 'NASA GIBS publishes a value range for every colour. The tile pixel colour is looked up in that table; the number shown is the middle of the range.',
     lang: 'UZ',
   },
 };
@@ -250,3 +299,13 @@ export function mmdd(s) {
   const [m, d] = s.split('-').map(Number);
   return lang === 'en' ? `${d} ${MONTHS.en[m - 1]}` : `${d}-${MONTHS.uz[m - 1]}`;
 }
+
+/** '2026-10-16' -> "16-oktabr 2026" / "16 Oct 2026" */
+export function fullDate(s) {
+  if (!s) return t('lv_unknown');
+  const [y, m, d] = s.split('-').map(Number);
+  return lang === 'en' ? `${d} ${MONTHS.en[m - 1]} ${y}` : `${d}-${MONTHS.uz[m - 1]} ${y}`;
+}
+
+/** '2026-10-16' -> "okt" / "Oct" */
+export const monShort = (s) => MON[lang][Number(s.slice(5, 7)) - 1];

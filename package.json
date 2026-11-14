@@ -7,6 +7,7 @@
   "scripts": {
     "test": "node --test tests/*.test.js",
     "pilot": "node scripts/pilot-crops.js",
-    "dev": "node scripts/serve.js"
+    "dev": "node scripts/serve.js",
+    "gibs": "node scripts/gibs-layers.js"
   }
 }
