@@ -72,7 +72,7 @@ core/power.js      NASA POWER URL builder, fetch, parser (-999 -> null)
 core/crops.js      6 crops with sources (table + page): Kc, Tbase/Tupper, GDD stages, salt
 core/crop-calc.js  per-crop evaluation over all years: ripening, water, heat, spoilage, salinity
 scripts/pilot-crops.js   npm run pilot -> prints pilot result, writes docs/pilot-ekinlar-jarqorgon.json
-tests/             36 tests pass (FAO-56 Ex. 3, 8, 18; Rev.1 Ex. 6.6, 6.7; FAO-29 Table 4; GIBS decode) -> npm test
+tests/             42 tests pass (FAO-56 Ex. 3, 8, 18; Rev.1 Ex. 6.6, 6.7; FAO-29 Table 4; GIBS decode; passport) -> npm test
 docs/REJA.md             step plan (Uzbek)
 docs/NASA-TEKSHIRUV.md   live API check results (Uzbek)
 docs/pilot-iqlim-jarqorgon.json    step 1 climate result
@@ -81,7 +81,8 @@ core/advisor.js    four traffic lights + ranking of the 6 crops -> top 3 (langua
 web/               Mini App: index.html, app.js (flow), i18n.js (uz/en), tg.js (Telegram glue),
                    chart.js (SVG bar chart, negatives ok), style.css (Telegram theme vars + own light/dark),
                    nasa-map.js (live NASA layers + tap readout), data/gibs-layers.json (generated)
-core/gibs.js       GIBS layer list, tile math, colormap parser, pixel colour -> value class, frame picking
+core/gibs.js       GIBS layer list, tile math, colormap parser, pixel colour -> value class, frame/series picking
+core/field.js      field passport: NDVI green periods (team rule, unverified), SMAP same-day comparison, DOY->date
 scripts/gibs-layers.js   npm run gibs -> web/data/gibs-layers.json (frame dates verified via layer-time-actual)
 scripts/serve.js   npm run dev -> http://localhost:8080/ (serves only web/ and core/)
 cache/             POWER responses (gitignored)
@@ -114,6 +115,19 @@ Skipped: IMERG (EPSG:3857 only daily, empty in the dry season), HLS (empty tile 
 Demo point moved to a real double-crop field 37.5021, 67.3888 (NDVI Mar–Apr ~0.7, May 0.27,
 Jul–Aug 0.75); same NASA POWER cell as the pilot point, so climate results are unchanged.
 Tile CORS is open; Telegram: `disableVerticalSwipes()` (7.7+) so map drags don't close the app.
+
+Step 4b part 1 — field passport (14 Nov): screen "Dala pasporti", opened from the map readout and
+from a teaser card under the 3 options. Blocks: (1) NDVI line chart of the last 36 months (69
+MOD13Q1 16-day frames decoded from GIBS, ~3 MB of tiles) with "green periods" shaded and listed per
+year — rule: starts at NDVI >= 0.5, ends < 0.4 (`GREEN_RULE`, verified: false); demo field: 2024 two
+periods, 2025 one, 2026 two. (2) SMAP L4 root-zone moisture today vs the same calendar day 2015–2024
+(GIBS has no 2025-11-07..13), median + "wetter in k of n years", bar per year with gaps. (3) Climate
+shift from the POWER data already loaded: 1985–2004 vs 2006–2025 table (frost dates, frost-free,
+>= 38 °C days, JJA Tmax, ET0 with the wind caveat) + heat days per year chart.
+MCD12Q2 via ORNL was tested for the passport and dropped there: 25 years of NumCycles took 54 s
+(3 parallel requests), and at the demo 500 m pixel it reports 1 cycle in 21 of 25 years while the
+250 m NDVI shows clear double cropping in 2024 and 2026 (pixel mixing). Keep MCD12Q2 for the
+offline GDD calibration over many pixels.
 
 Traffic lights (core/advisor.js, all cut-offs `verified: false`):
 water = dry-year (p80) net need vs farmer's water answer; ripen = share of years matured;

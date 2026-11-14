@@ -67,19 +67,43 @@ function getTile(url) {
   })();
   p.catch(() => tileCache.delete(url));
   tileCache.set(url, p);
-  while (tileCache.size > 60) tileCache.delete(tileCache.keys().next().value);
+  while (tileCache.size > 32) tileCache.delete(tileCache.keys().next().value); // ~8 MB gacha
   return p;
 }
+
+const valueCache = new Map(); // "url|px,py" -> natija (kichik, tayl xotiradan chiqsa ham qoladi)
 
 /** Bitta qatlam, bitta sana, bitta nuqta -> { v: {lo, hi, value, bound}|null, actual, rgb } */
 async function readValue(key, date, lat, lon) {
   const def = layerByKey(key);
   const { tx, ty, px, py } = lonLatToTilePixel(lat, lon, def.z);
-  const tile = await getTile(tileUrl(def, date, def.z, tx, ty));
-  if (!tile.img) return { v: null, actual: tile.actual, rgb: null };
-  const k = (py * tile.img.width + px) * 4, d = tile.img.data;
-  const v = applyOffset(def, decodeColor(IDX[key], d[k], d[k + 1], d[k + 2], d[k + 3]));
-  return { v, actual: tile.actual ?? date, rgb: v ? [d[k], d[k + 1], d[k + 2]] : null };
+  const url = tileUrl(def, date, def.z, tx, ty), vk = `${url}|${px},${py}`;
+  if (valueCache.has(vk)) return valueCache.get(vk);
+  const tile = await getTile(url);
+  let out;
+  if (!tile.img) out = { v: null, actual: tile.actual, rgb: null };
+  else {
+    const k = (py * tile.img.width + px) * 4, d = tile.img.data;
+    const v = applyOffset(def, decodeColor(IDX[key], d[k], d[k + 1], d[k + 2], d[k + 3]));
+    out = { v, actual: tile.actual ?? date, rgb: v ? [d[k], d[k + 1], d[k + 2]] : null };
+  }
+  valueCache.set(vk, out);
+  return out;
+}
+
+/**
+ * Dala pasporti uchun qator: qatlamning `series` sanalari bo'yicha bitta nuqtadagi qiymatlar.
+ * -> [{ date, actual, value, v }] ; onProgress(done, total)
+ */
+export async function readSeries(key, lat, lon, onProgress) {
+  if (!DATA) await ready;
+  const dates = DATA.layers[key]?.series ?? [];
+  let done = 0;
+  return pool(dates, 6, async (date) => {
+    const r = await readValue(key, date, lat, lon).catch(() => ({ v: null, actual: null }));
+    onProgress?.(++done, dates.length);
+    return { date, actual: r.actual ?? date, v: r.v, value: r.v ? r.v.value : null };
+  });
 }
 
 async function pool(items, n, fn) {
@@ -276,7 +300,9 @@ function renderReadout() {
     <p class="chart-title">${esc(title)}</p>
     ${chart}
     <div class="chips">${nasaChip(def, key)}<span class="chip" title="${esc(t('methodLong'))}">${esc(t('method'))}</span></div>
-    <p class="muted small">${esc(t(`desc_${key}`))}</p>`;
+    <p class="muted small">${esc(t(`desc_${key}`))}</p>
+    <button class="secondary wide" id="openPassport">${t('passportOpen')} →</button>`;
+  $('openPassport').onclick = () => onPassport?.();
 
   if (Array.isArray(h)) {
     barChart($('nasaChart'), {
@@ -350,6 +376,9 @@ export async function readAt(lat, lon) {
 
 // ---------------- ishga tushirish ----------------
 
+let markReady;
+const ready = new Promise((r) => { markReady = r; });
+
 export function initNasaMap(leafletMap) {
   map = leafletMap;
   $('layerBar').addEventListener('click', (e) => {
@@ -366,7 +395,11 @@ export function initNasaMap(leafletMap) {
     if (!b) return;
     setActive(b.dataset.k);
   });
-  return loadNasaLayers().then(renderAll);
+  return loadNasaLayers().then(() => { markReady(); renderAll(); });
 }
 
 export const renderNasa = renderAll;
+
+let onPassport = null;
+/** Pasport ekranini ochuvchi funksiya (app.js beradi) */
+export const setPassportHandler = (fn) => { onPassport = fn; };

@@ -160,3 +160,28 @@ details.table td, details.table th { padding: 2px 14px 2px 0; text-align: right;
 .nname small { font-weight: 400; font-size: 12px; color: var(--hint); }
 .nval { font-size: 16px; white-space: nowrap; }
 .lg-ends { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-top: 2px; }
+
+/* pasport */
+.chart .bar.hl { fill: var(--series-on); }
+.chart .line { fill: none; stroke: var(--series); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart .dot { fill: var(--series); stroke: var(--bg); stroke-width: 2; }
+.chart .cross { stroke: var(--hint); stroke-width: 1; }
+.chart .band { fill: var(--good); opacity: .12; }
+.secondary.wide { width: 100%; margin: 8px 0 4px; }
+.teaser { display: block; width: 100%; text-align: left; background: var(--bg2); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin: 10px 0 4px; }
+.teaser h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.teaser h3 span { color: var(--link); font-size: 14px; }
+.teaser ul { margin: 6px 0 0; padding-left: 18px; font-size: 14px; }
+.teaser li { margin: 2px 0; }
+.years { display: grid; gap: 4px; margin: 8px 0; }
+.yrow { display: grid; grid-template-columns: 3.2em 1fr; gap: 8px; align-items: baseline; font-size: 14px; }
+.yrow b { font-variant-numeric: tabular-nums; }
+.shift { width: 100%; border-collapse: collapse; font-size: 14px; margin: 6px 0; }
+.shift th, .shift td { padding: 6px 4px; border-bottom: 1px dashed var(--line); text-align: right; }
+.shift th:first-child, .shift td:first-child { text-align: left; }
+.shift thead th { color: var(--hint); font-weight: 600; font-size: 12.5px; }
+.shift td.up { font-weight: 700; }
+.facts { padding-left: 18px; margin: 8px 0 4px; }
+.facts li { margin: 3px 0; font-weight: 600; }
+.kv b { white-space: nowrap; }
+.shift td:not(:first-child), .shift th { white-space: nowrap; }

@@ -26,6 +26,7 @@ export const NASA_LAYERS = [
     digits: 2,
     legend: { min: 0, max: 1, ticks: [0, 0.25, 0.5, 0.75, 1] },
     frames: { kind: 'monthly', n: 12 },
+    series: { kind: 'recent', months: 36 }, // dala pasporti: so'nggi 3 mavsum, har bir 16 kunlik kadr
     step: '16d',
     res: '250 m',
     product: 'MODIS Terra MOD13Q1 v061 NDVI',
@@ -38,9 +39,10 @@ export const NASA_LAYERS = [
     z: 6,
     view: 8,
     unit: 'm³/m³',
-    digits: 2,
+    digits: 3, // shkala qadami 0.002-0.003 m3/m3
     legend: { min: 0, max: 0.5, ticks: [0, 0.1, 0.2, 0.3, 0.4, 0.5] },
     frames: { kind: 'monthly', n: 12 },
+    series: { kind: 'sameDay', fromYear: 2015, tolDays: 3 }, // dala pasporti: bugun va oldingi yillarning shu kuni
     step: '1d',
     res: '9 km',
     product: 'SMAP L4 SPL4SMAU v008',
@@ -252,6 +254,41 @@ export function pickFrames(dates, rule) {
     return [...byYear.values()].sort();
   }
   throw new Error(`unknown frame rule ${rule.kind}`);
+}
+
+const dayNum = (d) => Date.parse(`${d}T00:00:00Z`) / 86400000;
+
+/**
+ * Pasport qatorlari.
+ * recent: eng so'nggi sanadan orqaga `months` oy ichidagi barcha sanalar.
+ * sameDay: har yil (fromYear dan) eng so'nggi sana bilan bir xil oy-kunga eng yaqin sana (± tolDays);
+ *          oxirgi element - eng so'nggi sananing o'zi.
+ */
+export function pickSeries(dates, rule) {
+  if (!dates.length) return [];
+  const last = dates[dates.length - 1];
+  if (rule.kind === 'recent') {
+    const [y, m, d] = last.split('-').map(Number);
+    const from = new Date(Date.UTC(y, m - 1 - rule.months, d)).toISOString().slice(0, 10);
+    return dates.filter((x) => x > from);
+  }
+  if (rule.kind === 'sameDay') {
+    const md = last.slice(5), y1 = Number(last.slice(0, 4));
+    const out = [];
+    for (let y = rule.fromYear; y < y1; y++) {
+      const target = dayNum(`${y}-${md}`);
+      let best = null, bd = Infinity;
+      for (const x of dates) {
+        if (!x.startsWith(String(y))) continue;
+        const dd = Math.abs(dayNum(x) - target);
+        if (dd < bd) { bd = dd; best = x; }
+      }
+      if (best && bd <= rule.tolDays) out.push(best);
+    }
+    out.push(last);
+    return out;
+  }
+  throw new Error(`unknown series rule ${rule.kind}`);
 }
 
 /** WMTSCapabilities.xml dan bitta qatlamning <Value> ro'yxati */

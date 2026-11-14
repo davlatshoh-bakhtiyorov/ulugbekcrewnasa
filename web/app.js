@@ -1,12 +1,14 @@
 // Field Shift UZ - dehqon oqimi: dala -> 3 savol -> 3 variant (4 svetofor) -> batafsil (NASA dalillari).
 import { powerUrl, parsePower } from '../core/power.js';
-import { addEt0 } from '../core/agro.js';
-import { CROPS, SOURCES, cropById } from '../core/crops.js';
+import { addEt0, yearlyStats, climateShift } from '../core/agro.js';
+import { greenPeriods, periodsByYear, sameDayCompare, doyToMMDD, GREEN_RULE } from '../core/field.js';
+import { layerByKey } from '../core/gibs.js';
+import { CROPS, SOURCES, METHODS, cropById } from '../core/crops.js';
 import { evaluateCrop, SPOILAGE_RULE } from '../core/crop-calc.js';
 import { advise, RULES } from '../core/advisor.js';
-import { t, num, mmdd, getLang, setLang } from './i18n.js';
-import { barChart } from './chart.js';
-import { initNasaMap, readAt, renderNasa } from './nasa-map.js';
+import { t, num, mmdd, getLang, setLang, fullDate, monthName } from './i18n.js';
+import { barChart, lineChart } from './chart.js';
+import { initNasaMap, readAt, renderNasa, readSeries, setPassportHandler, fmtValue } from './nasa-map.js';
 import { initTelegram, telegramLang, setPrimary, primaryProgress, setBack, haptic, getLocation } from './tg.js';
 
 const START = '19840101', END = '20251231';
@@ -20,6 +22,7 @@ const S = {
   answers: { lastCrop: null, water: null, salinity: null }, // null = hali javob yo'q
   data: null, dataKey: null, dataPromise: null,
   advice: null, detail: null, showOthers: false, error: null,
+  pass: null, passFrom: 'results', // dala pasporti ma'lumoti va qaysi ekrandan ochilgani
 };
 
 const $ = (id) => document.getElementById(id);
@@ -69,6 +72,7 @@ function initMap() {
   });
   L.control.layers({ 'Sentinel-2': sat, OpenStreetMap: osm }, null, { position: 'topright' }).addTo(map);
   map.on('click', (e) => setPoint(e.latlng.lat, e.latlng.lng, false));
+  setPassportHandler(() => { if (S.lat != null) { S.passFrom = 'field'; go('passport'); } });
   initNasaMap(map).then(() => { if (S.lat != null) readAt(S.lat, S.lon); }).catch((err) => console.warn('NASA layers:', err));
 }
 
@@ -93,7 +97,7 @@ function lightValue(kind, l) {
     if (l.code === 'ripen_perennial') return t('cuts', { a: l.cuttings.low, b: l.cuttings.high });
     return l.of ? t('years', { k: l.matured, n: l.of }) : '';
   }
-  if (kind === 'soil' && l.salt) return `${l.salt.yieldLow}–${l.salt.yieldHigh}%`;
+  if (kind === 'soil' && l.salt) return l.salt.yieldLow === l.salt.yieldHigh ? `${l.salt.yieldLow}%` : `${l.salt.yieldLow}–${l.salt.yieldHigh}%`;
   return '';
 }
 
@@ -244,6 +248,7 @@ function renderResults(el) {
     <div class="chips">${nasaChip(r0)}</div>
     <p class="muted small">${t('climateNote')}</p>
     ${a.top.map((o, i) => card(o, i + 1)).join('')}
+    ${teaserHtml()}
     <button class="link" id="toggleOthers">${S.showOthers ? t('hideOthers') : `${t('others')} (${a.all.length - 3})`}</button>
     ${S.showOthers ? a.all.slice(3).map((o) => card(o, null)).join('') : ''}
     <p class="muted small rules">${t('rulesNote')}</p>
@@ -252,6 +257,8 @@ function renderResults(el) {
       <button class="secondary" id="newField">${t('newField')}</button>
     </div>`;
   el.querySelectorAll('[data-detail]').forEach((b) => (b.onclick = () => { S.detail = b.dataset.detail; go('details'); }));
+  loadPassport();
+  bindTeaser();
   $('toggleOthers').onclick = () => { S.showOthers = !S.showOthers; render(); };
   $('again').onclick = () => go('questions');
   $('newField').onclick = () => go('field');
@@ -343,6 +350,188 @@ function renderDetails(el) {
   window.scrollTo(0, 0);
 }
 
+// ---------------- dala pasporti ----------------
+
+function loadPassport() {
+  const key = `${S.lat.toFixed(4)},${S.lon.toFixed(4)}`;
+  if (S.pass?.key === key) return S.pass;
+  const P = { key, ndvi: null, ndviDone: 0, ndviTotal: 0, soil: null, climate: null, err: {} };
+  S.pass = P;
+  const { lat, lon } = S;
+  const upd = () => { if (S.pass === P) refreshPassport(); };
+  readSeries('ndvi', lat, lon, (d, n) => {
+    P.ndviDone = d; P.ndviTotal = n;
+    const el = document.getElementById('ppProg');
+    if (el && S.pass === P) el.textContent = `${t('reading')} ${d}/${n}`;
+  }).then((r) => { P.ndvi = r; upd(); }).catch((e) => { P.err.ndvi = String(e); upd(); });
+  readSeries('soil', lat, lon).then((r) => { P.soil = r; upd(); }).catch((e) => { P.err.soil = String(e); upd(); });
+  loadData(lat, lon).then((p) => {
+    const stats = yearlyStats(p.days);
+    P.climate = { stats, shift: climateShift(stats), period: { from: p.days[0].date, to: p.days[p.days.length - 1].date } };
+    upd();
+  }).catch((e) => { P.err.climate = String(e); upd(); });
+  return P;
+}
+
+function refreshPassport() {
+  if (S.screen === 'passport') renderPassport($('main'), true);
+  else if (S.screen === 'results') { const el = $('teaser'); if (el) el.outerHTML = teaserHtml(); bindTeaser(); }
+}
+
+/** Pasportning qisqa xulosalari (natija ekrani va pasport boshida) */
+function passportFacts(P) {
+  const f = [];
+  if (P.ndvi) {
+    const by = periodsByYear(greenPeriods(P.ndvi), P.ndvi).filter((y) => !y.partial);
+    const last = by[by.length - 1];
+    if (last) f.push(t(last.count === 1 ? 'pp_factGreen1' : 'pp_factGreen', { y: last.year, n: last.count }));
+  }
+  if (P.soil) {
+    const c = sameDayCompare(P.soil);
+    if (c?.median != null) f.push(t('pp_factSoil', { v: fmtValue('soil', c.today.v), k: c.wetter, n: c.of }));
+  }
+  if (P.climate) {
+    const { early, late } = P.climate.shift;
+    f.push(t('pp_factHeat', { a: num(early.heatDays), b: num(late.heatDays) }));
+  }
+  return f;
+}
+
+function teaserHtml() {
+  const f = S.pass ? passportFacts(S.pass) : [];
+  return `<button class="teaser" id="teaser"><h3>${t('passport')}<span>${t('details')} →</span></h3>
+    ${f.length ? `<ul>${f.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : `<p class="muted small">${t('reading')}</p>`}</button>`;
+}
+function bindTeaser() {
+  const b = $('teaser');
+  if (b) b.onclick = () => { S.passFrom = 'results'; go('passport'); };
+}
+
+const monthRange = (a, b) => {
+  const ma = monthName(a), mb = monthName(b);
+  return ma === mb ? ma : `${ma}–${mb}`;
+};
+
+function ndviBlock(P) {
+  const def = layerByKey('ndvi');
+  const head = `<h3>${t('pp_ndviTitle')}</h3><p class="muted small">${t('pp_ndviHint')}</p>`;
+  const chipsHtml = `<div class="chips"><span class="chip nasa">${esc(`NASA · ${def.product} · ${def.res} · ${t('p_16d')}`)}${P.ndvi ? esc(` · ${fullDate(P.ndvi[0].date)} – ${fullDate(P.ndvi[P.ndvi.length - 1].date)}`) : ''}</span>
+    <span class="chip" title="${esc(t('methodLong'))}">${esc(t('method'))}</span>
+    <span class="chip unv" title="${esc(GREEN_RULE.note)}">${esc(t('pp_greenRule'))} <b>${t('unverified')}</b></span></div>`;
+  if (P.err.ndvi) return `${head}<p class="error">${t('pp_err')}</p>${chipsHtml}`;
+  if (!P.ndvi) return `${head}<p class="muted small" id="ppProg">${t('reading')} ${P.ndviDone}/${P.ndviTotal || '…'}</p>${chipsHtml}`;
+  const periods = greenPeriods(P.ndvi);
+  const by = periodsByYear(periods, P.ndvi);
+  const rows = by.map((y) => {
+    const desc = y.count
+      ? y.periods.map((p) => `${monthRange(p.start, p.end)} (${t('pp_peak')} ${num(p.peak, 2)})`).join('; ')
+      : t('pp_noGreen');
+    const part = y.partial ? ` <small class="muted">${t('pp_partial', { a: monthName(y.from), b: monthName(y.to) })}</small>` : '';
+    return `<div class="yrow"><b>${y.year}</b><span>${y.count ? `<b>${t(y.count === 1 ? 'pp_nGreen1' : 'pp_nGreen', { n: y.count })}</b>: ` : ''}${esc(desc)}${part}</span></div>`;
+  }).join('');
+  return `${head}<div id="ppNdvi"></div><div class="years">${rows}</div>
+    <details class="table"><summary>${t('d_table')}</summary><table><thead><tr><th>${t('date')}</th><th>NDVI</th></tr></thead><tbody>
+    ${P.ndvi.map((p) => `<tr><td>${esc(fullDate(p.actual ?? p.date))}</td><td>${p.value == null ? '—' : num(p.value, 2)}</td></tr>`).join('')}
+    </tbody></table></details>${chipsHtml}`;
+}
+
+function soilBlock(P) {
+  const def = layerByKey('soil');
+  const head = `<h3>${t('pp_soilTitle')}</h3>`;
+  const chip = `<div class="chips"><span class="chip nasa">${esc(`NASA · ${def.product} · ${def.res} · ${t('p_1d')}`)}${P.soil ? esc(` · ${P.soil[0].date.slice(0, 4)}–${P.soil[P.soil.length - 1].date.slice(0, 4)}`) : ''}</span>
+    <span class="chip" title="${esc(t('methodLong'))}">${esc(t('method'))}</span></div>`;
+  if (P.err.soil) return `${head}<p class="error">${t('pp_err')}</p>${chip}`;
+  if (!P.soil) return `${head}<p class="muted small">${t('reading')}</p>${chip}`;
+  const c = sameDayCompare(P.soil);
+  const today = P.soil[P.soil.length - 1];
+  const rows = c?.median != null ? `
+    ${kv(t('pp_today', { d: fullDate(today.actual ?? today.date) }), esc(fmtValue('soil', today.v)))}
+    ${kv(t('pp_median', { a: c.from, b: c.to }), `${num(c.median, 3)} m³/m³`)}
+    ${kv(t('pp_wetter'), t('years', { k: c.wetter, n: c.of }))}` : `<p class="muted">${t('pp_soilNone')}</p>`;
+  return `${head}<p class="muted small">${t('pp_soilHint')}</p>${rows}<div id="ppSoil"></div>${chip}<p class="muted small">${t('desc_soil')}</p>`;
+}
+
+function climateBlock(P) {
+  const head = `<h3>${t('pp_climTitle')}</h3>`;
+  if (P.err.climate) return `${head}<p class="error">${t('loadError')}</p>`;
+  if (!P.climate) return `${head}<p class="muted small">${t('loading')}</p>`;
+  const { early, late } = P.climate.shift;
+  const row = (label, a, b, worse) => `<tr><td>${esc(label)}</td><td>${a}</td><td class="${worse ? 'up' : ''}">${b}</td></tr>`;
+  const d = (doy) => mmdd(doyToMMDD(doy));
+  const range = (r) => `${r[0]}–${r[1]}`;
+  return `${head}<p class="muted small">${t('pp_climHint')}</p>
+    <table class="shift"><thead><tr><th></th><th>${range(early.range)}</th><th>${range(late.range)}</th></tr></thead><tbody>
+      ${row(t('pp_lastFrost'), d(early.lastSpringFrost), d(late.lastSpringFrost))}
+      ${row(t('pp_firstFrost'), d(early.firstAutumnFrost), d(late.firstAutumnFrost))}
+      ${row(t('pp_frostFree'), num(early.frostFree), num(late.frostFree))}
+      ${row(t('pp_heatDays'), num(early.heatDays), num(late.heatDays), late.heatDays > early.heatDays)}
+      ${row(t('pp_jjaTmax'), `${num(early.jjaTmax, 1)} °C`, `${num(late.jjaTmax, 1)} °C`, late.jjaTmax > early.jjaTmax)}
+      ${row(t('pp_et0'), `${num(early.et0AprSep)} mm`, `${num(late.et0AprSep)} mm`, late.et0AprSep > early.et0AprSep)}
+    </tbody></table>
+    <p class="note">${t('pp_et0Note')}</p>
+    <p class="chart-title">${t('pp_heatChart')}</p><div id="ppHeat"></div>
+    <div class="chips"><span class="chip nasa">${esc(t('nasaChip', { a: P.climate.period.from.slice(0, 4), b: P.climate.period.to.slice(0, 4) }))}</span>${srcChip(METHODS.frost)}</div>`;
+}
+
+function renderPassport(el, keepScroll = false) {
+  const P = loadPassport();
+  const y = window.scrollY;
+  const facts = passportFacts(P);
+  el.innerHTML = `
+    <h2>${t('passport')}</h2>
+    <p class="meta">${S.lat.toFixed(4)}° N, ${S.lon.toFixed(4)}° E</p>
+    ${facts.length ? `<ul class="facts">${facts.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+    <section class="block">${ndviBlock(P)}</section>
+    <section class="block">${soilBlock(P)}</section>
+    <section class="block">${climateBlock(P)}</section>`;
+
+  if (P.ndvi) {
+    const periods = greenPeriods(P.ndvi);
+    const idx = (d) => P.ndvi.findIndex((p) => p.date === d);
+    const xTicks = [];
+    P.ndvi.forEach((p, i) => { if (i === 0 || p.date.slice(0, 4) !== P.ndvi[i - 1].date.slice(0, 4)) xTicks.push({ i, label: p.date.slice(0, 4) }); });
+    if (xTicks.length > 1 && xTicks[1].i < P.ndvi.length * 0.1) xTicks.shift(); // birinchi yil juda qisqa - yorliqlar ustma-ust tushmasin
+    lineChart($('ppNdvi'), {
+      points: P.ndvi.map((p) => ({ value: p.value, tip: fullDate(p.actual ?? p.date) })),
+      yTicks: [0, 0.25, 0.5, 0.75, 1],
+      xTicks,
+      ref: { value: GREEN_RULE.on, label: t('pp_greenLine') },
+      bands: periods.map((p) => ({ i0: idx(p.start), i1: idx(p.end) })),
+      fmt: (v) => num(v, 2),
+      unit: '',
+    });
+  }
+  if (P.soil && $('ppSoil')) {
+    const c = sameDayCompare(P.soil);
+    // har yil bitta ustun; ma'lumot yo'q yil bo'sh qoladi (vaqt o'qi halol)
+    const byYear = new Map(P.soil.map((p) => [Number(p.date.slice(0, 4)), p]));
+    const y0 = Number(P.soil[0].date.slice(0, 4)), y1 = Number(P.soil[P.soil.length - 1].date.slice(0, 4));
+    const pts = [];
+    for (let yr = y0; yr <= y1; yr++) {
+      const p = byYear.get(yr);
+      pts.push(p ? { label: String(yr), tip: fullDate(p.actual ?? p.date), value: p.value, hl: yr === y1 }
+        : { label: String(yr), tip: String(yr), value: null });
+    }
+    barChart($('ppSoil'), {
+      points: pts,
+      ref: c?.median != null ? { value: c.median, label: t('pp_medianShort') } : null,
+      fmt: (v) => num(v, 3),
+      unit: 'm³/m³',
+    });
+  }
+  if (P.climate) {
+    const s = P.climate.stats.filter((r) => r.complete);
+    barChart($('ppHeat'), {
+      points: s.map((r) => ({ label: String(r.year), value: r.heatDays })),
+      fmt: (v) => num(v),
+      unit: t('days'),
+    });
+  }
+  setBack(() => go(S.passFrom));
+  setPrimary(null);
+  if (keepScroll) window.scrollTo(0, y);
+}
+
 // ---------------- boshqaruv ----------------
 
 function go(screen) {
@@ -369,6 +558,7 @@ function render() {
   else if (S.screen === 'loading') renderLoading(el);
   else if (S.screen === 'results') renderResults(el);
   else if (S.screen === 'details') renderDetails(el);
+  else if (S.screen === 'passport') renderPassport(el);
 }
 
 function start() {

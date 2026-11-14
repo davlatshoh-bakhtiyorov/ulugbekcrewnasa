@@ -25,7 +25,8 @@ Talablar: ta'sirli, sodda, qulay, aniq. Veb + Telegram bot.
 | 2 | Ekinlar jadvali (6 ekin, FAO-56 Rev.1 + FAO-29, sahifa raqami bilan) va ekin bo'yicha hisob: pishib ulgurish ehtimoli, suv talabi, issiq kunlar, yig'imda buzilish xavfi, sho'rda hosil | bajarildi (`npm run pilot`) |
 | 3 | Veb ilova = Telegram Mini App: dehqon oqimi (`npm run dev`) | jonli: https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/web/ ; Telegram ichida ishladi (14-noyabr) |
 | 4a | Tirik NASA xaritasi: 4 qatlam (NDVI, SMAP namlik, yer harorati, GRACE), sana sirpang'ichi + animatsiya, bosilgan nuqtada har qatlamning qiymati va tarixi | bajarildi (`npm run gibs`) |
-| 4b | Dala xotirasi (MCD12Q2) va GDD'ni MODIS bilan kalibrlash | |
+| 4b | Dala pasporti: NDVI 3 mavsum (yashil davrlar), SMAP namlik bugun va oldingi yillar, iqlim siljishi | bajarildi |
+| 4c | GDD'ni MODIS MCD12Q2 bilan kalibrlash (pishib ulgurish chirog'i) | |
 | 5 | Telegram bot: /start va Mini App'ni ochuvchi tugma | |
 | 6 | Suv prognozi (GRACE) va HLS 30 m — Earthdata Login kerak | |
 | 7 | Inglizcha loyiha sahifasi va demo | |
