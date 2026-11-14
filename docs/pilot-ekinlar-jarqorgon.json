@@ -60,6 +60,7 @@
        2016,
        2025
       ],
+      "end": "dormancy",
       "endDoy": {
        "median": 153,
        "p25": 150,
@@ -1401,6 +1402,7 @@
        2016,
        2025
       ],
+      "end": "midGreendown",
       "endDoy": {
        "median": 284,
        "p25": 279,

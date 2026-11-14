@@ -1,0 +1,232 @@
+/* Loyiha sayti. Ranglar Mini App bilan bir xil (web/style.css); karta, grafik va mavsum chiziqlari qoidalari undan ko'chirilgan. */
+:root {
+  color-scheme: light;
+  --bg: #fcfcfb; --bg2: #f1f0ec; --text: #0b0b0b; --hint: #52514e; --line: #dcdbd6;
+  --link: #2a78d6; --btn: #2a78d6; --btn-text: #ffffff;
+  --series: #2a78d6; --series-on: #184f95;
+  --good: #0ca30c; --warn: #fab219; --crit: #d03b3b; --unk: #8a8984;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #1a1a19; --bg2: #262624; --text: #f0efec; --hint: #c3c2b7; --line: #3a3a37;
+    --link: #6aa6ee; --btn: #3987e5; --series: #3987e5; --series-on: #86b6ef;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1a1a19; --bg2: #262624; --text: #f0efec; --hint: #c3c2b7; --line: #3a3a37;
+  --link: #6aa6ee; --btn: #3987e5; --series: #3987e5; --series-on: #86b6ef;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body { font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
+a { color: var(--link); }
+h1, h2, h3, h4 { line-height: 1.2; }
+h2 { font-size: 28px; margin: 0 0 12px; letter-spacing: -0.01em; }
+h3 { font-size: 18px; margin: 0 0 6px; }
+h3.sub { margin-top: 28px; }
+p { margin: 0 0 12px; max-width: 70ch; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+.muted { color: var(--hint); }
+.small { font-size: 13.5px; }
+.error { color: var(--crit); font-weight: 600; }
+
+/* yuqori panel */
+.top { position: sticky; top: 0; z-index: 1000; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top-in { display: flex; align-items: center; gap: 14px; height: 56px; }
+.brand { font-weight: 700; color: var(--text); text-decoration: none; white-space: nowrap; }
+.brand b { color: var(--series); }
+.nav { display: flex; gap: 16px; flex: 1; overflow-x: auto; scrollbar-width: none; }
+.nav a { color: var(--hint); text-decoration: none; font-size: 14px; white-space: nowrap; }
+.nav a:hover { color: var(--text); }
+.lang { border: 1px solid var(--line); background: var(--bg2); color: var(--text); border-radius: 8px; padding: 5px 9px; font: 600 13px system-ui, sans-serif; cursor: pointer; }
+@media (max-width: 860px) { .nav { display: none; } .top-in { justify-content: space-between; } .brand { flex: 1; } }
+
+/* tugmalar */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; border-radius: 12px; background: var(--btn); color: var(--btn-text); font-weight: 600; text-decoration: none; border: 1px solid transparent; }
+.btn.small { min-height: 34px; padding: 6px 12px; font-size: 14px; border-radius: 9px; white-space: nowrap; }
+.btn.ghost { background: transparent; color: var(--text); border-color: var(--line); }
+.btn:hover { filter: brightness(1.06); }
+.link { font-weight: 600; }
+
+/* bosh qism */
+.hero { padding: 36px 0 8px; }
+.hero-in { display: grid; grid-template-columns: 1fr 1.05fr; gap: 32px; align-items: center; }
+.kicker { font-size: 13px; color: var(--hint); margin-bottom: 10px; }
+h1 { font-size: clamp(40px, 6vw, 60px); margin: 0 0 14px; letter-spacing: -0.02em; }
+h1 span { color: var(--series); }
+.lead { font-size: 19px; }
+.lead-note { color: var(--hint); }
+.ctas { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 18px; }
+.hero-map { margin: 0; }
+.map { width: 100%; height: 380px; border-radius: 16px; overflow: hidden; background: var(--bg2); }
+.map.tall { height: 460px; }
+.hm-row { display: flex; align-items: center; gap: 10px; margin: 10px 0 6px; font-size: 13.5px; color: var(--hint); }
+.hm-label b { color: var(--text); font-weight: 600; }
+.play { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg2); color: var(--text); cursor: pointer; font-size: 12px; flex: none; }
+.nasa-tiles { image-rendering: pixelated; transition: opacity .6s ease; }
+@media (prefers-reduced-motion: reduce) { .nasa-tiles { transition: none; } }
+.lg-bar { height: 10px; border-radius: 5px; }
+.lg-ticks { position: relative; height: 16px; font-size: 11px; color: var(--hint); }
+.lg-ticks span { position: absolute; top: 2px; transform: translateX(-50%); }
+.lg-ticks span.first { transform: none; }
+.lg-ticks span.last { transform: translateX(-100%); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+.stat { background: var(--bg2); border-radius: 14px; padding: 14px 16px; display: grid; gap: 2px; }
+.stat b { font-size: 26px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14.5px; }
+.stat small { color: var(--hint); font-size: 12.5px; }
+@media (max-width: 860px) {
+  .hero-in { grid-template-columns: 1fr; gap: 20px; }
+  .map { height: 300px; }
+  .map.tall { height: 360px; }
+  .stats { grid-template-columns: 1fr; }
+}
+
+/* bo'limlar */
+.sec { padding: 52px 0; }
+.sec.alt { background: var(--bg2); }
+.two { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: start; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; gap: 16px; } .sec { padding: 40px 0; } h2 { font-size: 24px; } }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { background: var(--bg2); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.tile b { font-size: 24px; font-variant-numeric: tabular-nums; }
+.tile span { font-size: 13.5px; flex: 1; }
+.tiles > p { grid-column: 1 / -1; margin: 0; }
+
+.steps { list-style: none; padding: 0; margin: 8px 0 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; counter-reset: s; }
+.steps li { background: var(--bg); border-radius: 14px; padding: 16px; }
+.steps .num { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--btn); color: var(--btn-text); font-weight: 700; margin-bottom: 8px; }
+.steps p { margin: 0; font-size: 15px; }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+.demo { background: var(--bg); border-radius: 16px; padding: 18px; margin-top: 8px; }
+.q { font-weight: 600; margin: 12px 0 6px; font-size: 14.5px; }
+.opts, .seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.opt { border: 1px solid var(--line); background: var(--bg); color: var(--text); border-radius: 999px; padding: 7px 12px; font: 14px system-ui, sans-serif; cursor: pointer; min-height: 36px; }
+.opt[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 10px; }
+@media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
+
+/* natija kartasi (web/style.css bilan bir xil) */
+.card { background: var(--bg2); border-radius: 14px; padding: 14px; }
+.card h3 { margin: 0; font-size: 17px; }
+.card-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.rank { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--btn); color: var(--btn-text); font-size: 13px; font-weight: 700; align-self: center; }
+.sow { color: var(--hint); font-size: 13px; margin-left: auto; }
+.lights { list-style: none; padding: 0; margin: 10px 0 6px; display: grid; gap: 6px; }
+.light { display: grid; grid-template-columns: 24px 1fr auto; align-items: center; gap: 8px; font-size: 14px; }
+.lname { font-weight: 600; }
+.lval { color: var(--hint); text-align: right; }
+.light .dot { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: #fff; }
+.lv-green .dot { background: var(--good); }
+.lv-yellow .dot { background: var(--warn); color: #1a1a19; }
+.lv-red .dot { background: var(--crit); }
+.lv-unknown .dot { background: var(--unk); }
+.why { margin: 8px 0 2px; font-size: 14.5px; }
+
+/* jadvallar */
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 10px 0; }
+.tbl { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+.tbl th { text-align: left; font-size: 13px; color: var(--hint); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.tbl td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tbl td small { display: block; color: var(--hint); font-size: 12.5px; margin-top: 2px; }
+#dataTable td:first-child { min-width: 190px; }
+#dataTable td:nth-child(2) { white-space: nowrap; }
+#cropTable td, #cropTable th, #clTable td { white-space: nowrap; }
+#clTable td small { display: inline; }
+.tag { display: inline-block; font-size: 11px; font-weight: 700; color: var(--series); border: 1px solid var(--series); border-radius: 6px; padding: 0 5px; margin-left: 4px; }
+details.table, details.fold { margin: 12px 0; }
+details > summary { color: var(--link); font-weight: 600; cursor: pointer; padding: 4px 0; }
+details.fold { border-top: 1px solid var(--line); padding-top: 8px; }
+details.table table { border-collapse: collapse; margin-top: 6px; }
+details.table td, details.table th { padding: 2px 14px 2px 0; text-align: right; }
+details.table .tbl td, details.table .tbl th { padding: 8px 10px; text-align: left; }
+
+/* iqlim xaritasi */
+.seg { margin: 6px 0 14px; }
+.cl-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
+@media (max-width: 860px) { .cl-grid { grid-template-columns: 1fr; } }
+.panel { background: var(--bg); border-radius: 16px; padding: 16px; }
+.pin { background: none; border: 0; }
+.pill { transform: translate(-50%, -50%); display: inline-block; white-space: nowrap; background: var(--bg); color: var(--text); border: 1.5px solid var(--text); border-radius: 999px; padding: 3px 9px; font: 700 13px system-ui, sans-serif; cursor: pointer; box-shadow: 0 1px 4px rgb(0 0 0 / .35); }
+.pill.on { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
+.shift { border-collapse: collapse; width: 100%; font-size: 14px; margin: 8px 0; }
+.shift th { text-align: right; font-size: 12.5px; color: var(--hint); font-weight: 600; padding: 4px 0 4px 10px; }
+.shift td { padding: 5px 0; border-bottom: 1px dashed var(--line); }
+.shift td + td { text-align: right; padding-left: 10px; white-space: nowrap; }
+.note { background: var(--bg); border-left: 3px solid var(--warn); border-radius: 6px; padding: 8px 10px; font-size: 13.5px; max-width: none; }
+.sec:not(.alt) .note { background: var(--bg2); }
+
+/* bitta dala */
+.cal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+@media (max-width: 860px) { .cal-grid { grid-template-columns: 1fr; } }
+.calcard { background: var(--bg2); border-radius: 16px; padding: 16px; }
+.calcard h4 { margin: 0 0 4px; font-size: 17px; }
+.calcard .note { background: var(--bg); }
+
+/* belgilar (chips) */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+.chip { font-size: 11.5px; line-height: 1.3; color: var(--hint); border: 1px solid var(--line); border-radius: 8px; padding: 3px 7px; text-decoration: none; }
+.chip.nasa { border-color: var(--series); }
+.chip.src { color: var(--link); }
+.chip.unv { border-style: dashed; border-color: var(--warn); }
+.chip.unv b { color: var(--text); font-weight: 600; }
+
+/* ro'yxatlar */
+.list { padding-left: 20px; margin: 10px 0; }
+.list li { margin: 6px 0; max-width: 75ch; }
+.list.warn li::marker { color: var(--warn); }
+.credits { padding-left: 20px; font-size: 14px; }
+.credits li { margin: 5px 0; }
+.foot { border-top: 1px solid var(--line); padding: 28px 0 40px; font-size: 14px; }
+
+/* grafik (web/style.css bilan bir xil) */
+.chart-title { font-weight: 600; font-size: 14px; margin: 14px 0 4px; }
+.chart-wrap { position: relative; }
+.chart { width: 100%; height: auto; display: block; touch-action: pan-y; }
+.chart .bar { fill: var(--series); }
+.chart .bar.on, .chart .bar.hl { fill: var(--series-on); }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .axis { stroke: var(--hint); stroke-width: 1; }
+.chart .tick { fill: var(--hint); font-size: 10px; }
+.chart .ref { stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.chart .ref-label { fill: var(--text); font-size: 10.5px; font-weight: 600; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; }
+.chart-tip { position: absolute; top: -4px; transform: translateX(-50%); background: var(--text); color: var(--bg); font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 6px; pointer-events: none; white-space: nowrap; }
+.panel .chart .ref-label { stroke: var(--bg); }
+
+/* mavsum uzunligi: FAO va NASA MODIS (web/style.css bilan bir xil) */
+.kv { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
+.season { margin: 4px 0 6px; }
+.srow { margin: 8px 0; }
+.shead { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+.shead span { color: var(--hint); }
+.shead b { font-weight: 600; white-space: nowrap; }
+.shead small { font-weight: 400; color: var(--hint); }
+.strack { position: relative; height: 12px; margin-top: 3px; border-left: 2px solid var(--line); }
+.sbar { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 0 4px 4px 0; }
+.sbar.fao { background: var(--unk); }
+.sbar.cal { background: var(--series); }
+.swhisk { position: absolute; top: 5px; height: 2px; background: var(--text); opacity: .5; }
+.swhisk.obs { opacity: .8; }
+.sdot { position: absolute; top: 1px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--text); box-shadow: 0 0 0 2px var(--bg2); }
+.saxis { position: relative; height: 18px; margin-top: 6px; font-size: 11px; color: var(--hint); border-top: 1px solid var(--line); }
+.saxis span { position: absolute; top: 3px; transform: translateX(-50%); white-space: nowrap; }
+.saxis span.first { left: 0; transform: none; }
+.calcard p.muted.small { font-size: 13px; }
+
+.leaflet-container { font: 12px system-ui, sans-serif; }
+
+/* Tor ekranda NASA ma'lumotlar jadvali ustunlar emas, qator-qator o'qiladi */
+@media (max-width: 640px) {
+  #dataTable thead { display: none; }
+  #dataTable tr { display: block; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  #dataTable td { display: block; padding: 2px 0; border: 0; }
+  #dataTable td:nth-child(2) { color: var(--hint); font-size: 13px; }
+  #dataTable td:nth-child(3)::before { content: '→ '; color: var(--hint); }
+  .pill { padding: 2px 6px; font-size: 11.5px; }
+}
+#cropTable { min-width: 620px; }

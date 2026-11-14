@@ -27,9 +27,10 @@ Talablar: ta'sirli, sodda, qulay, aniq. Veb + Telegram bot.
 | 4a | Tirik NASA xaritasi: 4 qatlam (NDVI, SMAP namlik, yer harorati, GRACE), sana sirpang'ichi + animatsiya, bosilgan nuqtada har qatlamning qiymati va tarixi | bajarildi (`npm run gibs`) |
 | 4b | Dala pasporti: NDVI 3 mavsum (yashil davrlar), SMAP namlik bugun va oldingi yillar, iqlim siljishi | bajarildi |
 | 4c | GDD'ni MODIS MCD12Q2 bilan kalibrlash (pishib ulgurish chirog'i): bug'doy va paxta | bajarildi (`npm run mcd12q2`, `npm run calibrate`) |
-| 5 | Telegram bot: /start va Mini App'ni ochuvchi tugma | |
+| C | Loyiha sayti (ildiz, uz/en): NDVI animatsiyali bosh qism, muammo (manbali raqamlar), qanday ishlaydi + jonli demo, NASA ma'lumotlari jadvali, 13 viloyat iqlim xaritasi, FAO va MODIS solishtiruvi, usul/cheklov/manbalar yig'ma bloklarda | bajarildi (`npm run site-data`); 7-qadam uchun asos |
+| 5 | Telegram bot: /start va Mini App'ni ochuvchi tugma | menyu tugmasi Bot API orqali o'rnatilgan va tasdiqlangan; `bot/` hali bo'sh |
 | 6 | Suv prognozi (GRACE) va HLS 30 m — Earthdata Login kerak | |
-| 7 | Inglizcha loyiha sahifasi va demo | |
+| 7 | Topshirish: inglizcha README, forma matni (saytning en matnidan), demo (7 slayd yoki 30 s video), jamoa ismlari | sayt tayyor, qolgani kutmoqda |
 
 ## Arxitektura
 
