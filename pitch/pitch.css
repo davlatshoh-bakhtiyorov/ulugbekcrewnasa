@@ -116,11 +116,10 @@ p { margin: 0; }
 /* iPhone 17 Pro ko'rinishi: 402x874 ekran, titan ramka, Dynamic Island, yon tugmalar */
 .phone { position: relative; width: 426px; height: 898px; border-radius: 64px; background: linear-gradient(160deg, #3a3f44, #1b1f22 40%, #2a2f33 70%, #15181a); padding: 12px; box-shadow: 0 50px 110px rgb(0 0 0 / .7), 0 0 0 1px rgb(255 255 255 / .08) inset, 0 0 0 1.5px rgb(0 0 0 / .8); transform: scale(var(--s, 1)); transform-origin: center center; flex: none; }
 .phone .screen { position: relative; width: 402px; height: 874px; border-radius: 54px; background: #000; overflow: hidden; }
-.phone iframe { width: 100%; height: calc(100% - 54px); margin-top: 54px; border: 0; display: block; background: #fff; }
+.phone iframe { width: 100%; height: calc(100% - 54px); margin-top: 54px; border: 0; display: block; background: #1a1a19; }
 .phone .island { position: absolute; left: 50%; top: 11px; width: 124px; height: 36px; margin-left: -62px; border-radius: 20px; background: #000; z-index: 3; pointer-events: none; }
 .phone .island::after { content: ''; position: absolute; right: 12px; top: 11px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #1d2a3a, #0a0d12 60%); box-shadow: 0 0 0 1px rgb(255 255 255 / .06); }
-.phone .statusbar { position: absolute; left: 0; right: 0; top: 0; height: 54px; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 16px 28px 0 34px; font: 600 17px/1 -apple-system, "SF Pro Text", system-ui, sans-serif; letter-spacing: -.2px; color: #000; background: #fff; pointer-events: none; }
-@media (prefers-color-scheme: dark) { .phone .statusbar { background: #1a1a19; color: #fff; } .phone iframe { background: #1a1a19; } } /* ilova ham shu rejimga o'tadi; aniq rang yuklangach JS dan olinadi (syncStatus) */
+.phone .statusbar { position: absolute; left: 0; right: 0; top: 0; height: 54px; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 16px 28px 0 34px; font: 600 17px/1 -apple-system, "SF Pro Text", system-ui, sans-serif; letter-spacing: -.2px; color: #fff; background: #1a1a19; pointer-events: none; } /* ilova qorong'i rejimda ochiladi (?theme=dark); aniq fon syncStatus dan */
 .phone .status { display: flex; align-items: center; gap: 7px; }
 .phone .status svg { display: block; fill: currentColor; }
 .phone .sig { width: 19px; height: 12px; }

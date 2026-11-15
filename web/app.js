@@ -515,6 +515,7 @@ function render() {
 function start() {
   initTelegram();
   if (new URLSearchParams(location.search).get('safe') === '1') document.documentElement.classList.add('safe'); // taqdimot ramkasi: home-bar uchun joy
+  const qt = new URLSearchParams(location.search).get('theme'); if (qt === 'dark' || qt === 'light') document.documentElement.setAttribute('data-theme', qt); // ?theme= taqdimotdan: ramka bilan bir xil rejim
   const ql = new URLSearchParams(location.search).get('lang'); // ?lang=uz|en (sayt / taqdimotdan ochilganda)
   setLang(ql === 'en' || ql === 'uz' ? ql : (store.get('lang') ?? (telegramLang() === 'en' ? 'en' : 'uz')));
   if (ql === 'en' || ql === 'uz') store.set('lang', ql);

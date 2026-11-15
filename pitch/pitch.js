@@ -1,7 +1,7 @@
 // Neyra jonli taqdimot (sayt ichida, /pitch/). 11 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
 // to'rt chiroq -> arxitektura -> jonli demo (ilova iframe ichida) -> dalil -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
 // Matnlar: strings.js (uz/en, decklar bilan bir xil). Yer teksturasi: NASA Blue Marble (GIBS). Dala: EOX + NASA MODIS NDVI.
-import { L as STR, TEAM, LINKS } from './strings.js';
+import { L as STR, TEAM, LINKS } from './strings.js?v=4';
 import { layerByKey, tileTemplate } from '../core/gibs.js';
 
 const FIELD = { lat: 37.5021, lon: 67.3888 };
@@ -227,7 +227,7 @@ function loadApp(force = false) {
   const app = $('app');
   if (app.dataset.loaded && !force) return;
   app.dataset.loaded = '1';
-  app.src = `../web/?lang=${lang}&lat=${FIELD.lat}&lon=${FIELD.lon}&safe=1&v=${Date.now()}`; // demo dala tanlangan holda ochiladi
+  app.src = `../web/?lang=${lang}&lat=${FIELD.lat}&lon=${FIELD.lon}&safe=1&theme=dark&v=${Date.now()}`; // demo dala tanlangan holda, qorong'i rejimda (ramka qorong'i)
   app.onload = () => { try { app.contentWindow.addEventListener('keydown', onKey); } catch { /* boshqa domen emas, lekin ehtiyot */ } syncStatus(); };
 }
 // Telefon status qatori ilovaning haqiqiy fon rangini oladi (och/qorong'i rejim mos tushadi)
