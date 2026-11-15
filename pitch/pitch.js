@@ -31,7 +31,9 @@ function applyText() {
   $('wall').innerHTML = T().covers.map(([k, cap, src, z], i) => `<div class="tile" style="--i:${i}"><img src="assets/press-${k}.jpg" alt="" style="${z ? `transform-origin:center 30%;--z:${z}` : ''}"><div class="ov"><b>${esc(cap)}</b><span>${esc(src)}</span></div></div>`).join('')
     + `<div class="tile quote" style="--i:4"><div><p>${esc(T().quote)}${T().quote2 ? `<span>${esc(T().quote2)}</span>` : ''}</p><small>${esc(T().quoteBy)}</small></div></div>`;
   $('causes').innerHTML = T().causes.map((c, i) => `<li class="in" style="--i:${i + 1}"><span class="m">✓</span><span>${esc(c)}</span></li>`).join('');
-  $('lights').innerHTML = ['#4cc27a', '#4cc27a', '#e3a008', '#d64545'].map((c, i) => `<li class="in" style="--i:${i + 1}"><i style="background:${c}"></i>${esc(T().lights[i])}</li>`).join('');
+  const LC = ['#4cc27a', '#4cc27a', '#e3a008', '#d64545'];
+  const light = (i) => `<li class="in" style="--i:${i + 1}"><i style="background:${LC[i]}"></i><span>${esc(T().lights[i])}${T().lightsSub?.[i] ? `<small>${esc(T().lightsSub[i])}</small>` : ''}</span></li>`;
+  $('lightsL').innerHTML = [0, 1].map(light).join(''); $('lightsR').innerHTML = [2, 3].map(light).join('');
   $('team').innerHTML = TEAM.map((m, i) => `<figure class="in" style="--i:${i}"><img src="assets/team-${m.photo.replace('team/', '').replace('.jpg', '')}.jpg" alt=""><figcaption>${esc(m.name)}</figcaption></figure>`).join('');
   $('qrs').innerHTML = ['bot', 'site', 'repo'].map((k, i) => `<figure class="in" style="--i:${i + 3}"><a href="${LINKS[k]}" target="_blank" rel="noopener"><img src="assets/qr-${k}.png" alt=""></a>${esc(T().qr[i])}</figure>`).join('');
   renderLoop();
@@ -197,8 +199,11 @@ function animateProof() { setTimeout(() => countUp($('big3'), (e) => `${Math.rou
 function fitPhone() {
   const wrap = document.querySelector('.phone-wrap'), ph = $('phone');
   if (!wrap || !ph) return;
-  const s = Math.min(1, (innerHeight * 0.7) / 860);
-  ph.style.setProperty('--s', s.toFixed(3)); wrap.style.width = `${Math.round(406 * s)}px`;
+  // sahna balandligi = .demo-stage (grid) balandligi; wrap o'zi grid ichida cho'zilmasligi mumkin
+  const stage = document.querySelector('.demo-stage');
+  const h = (stage?.clientHeight || innerHeight * 0.8) - 4;
+  const s = Math.min(1.3, h / 866, (innerWidth * 0.36) / 412); // balandlik bo'yicha, lekin kenglikning 34 % idan oshmasin
+  ph.style.setProperty('--s', s.toFixed(3)); wrap.style.width = `${Math.round(412 * s)}px`;
 }
 function loadApp(force = false) {
   const app = $('app');

@@ -102,22 +102,30 @@ p { margin: 0; }
 .causes .m { display: grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--acc); color: var(--bg); font-size: .8em; font-weight: 800; }
 .demand { margin-top: 2vh; font-size: 1.05em; color: var(--muted); max-width: 30em; }
 
-/* 6 */
-.phone-wrap { flex: 0 0 auto; height: 100%; display: flex; align-items: flex-start; }
-.phone { position: relative; width: 390px; height: 844px; border-radius: 48px; border: 9px solid #15191a; outline: 2px solid #2b3335; background: #000; overflow: hidden; box-shadow: 0 40px 90px rgb(0 0 0 / .65), inset 0 0 0 1px rgb(255 255 255 / .06); transform: scale(var(--s, 1)); transform-origin: top left; }
-.phone iframe { width: 100%; height: calc(100% - 34px); margin-top: 34px; border: 0; display: block; background: #fff; } /* yuqorida 34 px holat paneli - ilova notch ostida qolmaydi */
+/* 6 - jonli demo: telefon markazda, balandligi ekranning ~84 % i */
+.s5 { padding: 3.5vh 6vw 2.5vh; }
+.s5-head { display: flex; align-items: baseline; gap: 1.2vw; flex-wrap: wrap; }
+.s5-head .eyebrow { margin: 0; }
+.s5-head h2 { font-size: 2.2em; margin: 0; }
+.demo-stage { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 3vw; margin-top: .5vh; }
+.phone-wrap { position: relative; align-self: stretch; display: flex; align-items: center; justify-content: center; min-height: 0; }
+.phone { position: relative; width: 390px; height: 844px; border-radius: 52px; border: 10px solid #15191a; outline: 2px solid #2b3335; background: #000; overflow: hidden; box-shadow: 0 40px 100px rgb(0 0 0 / .7), 0 0 0 1px rgb(255 255 255 / .05); transform: scale(var(--s, 1)); transform-origin: center center; flex: none; }
+.phone iframe { width: 100%; height: calc(100% - 34px); margin-top: 34px; border: 0; display: block; background: #fff; }
 .phone .notch { position: absolute; left: 50%; top: 8px; width: 96px; height: 22px; margin-left: -48px; border-radius: 14px; background: #1a1f21; z-index: 2; pointer-events: none; }
 .phone .home { position: absolute; left: 50%; bottom: 7px; width: 130px; height: 5px; margin-left: -65px; border-radius: 3px; background: rgb(0 0 0 / .55); z-index: 2; pointer-events: none; }
-.prod { padding-top: 1vh; }
-.lights { list-style: none; margin: 0 0 2vh; padding: 0; }
-.lights li { display: flex; align-items: center; gap: .6em; font-size: 1.7em; font-weight: 700; padding: .35em 0; }
-.lights i { width: .85em; height: .85em; border-radius: 50%; flex: none; }
-.prod-txt { font-size: 1.1em; color: var(--muted); max-width: 26em; }
-.live { display: flex; align-items: center; gap: .6em; margin-top: 3vh; font-size: .95em; color: var(--acc); font-weight: 700; }
+.lights { list-style: none; margin: 0; padding: 0; display: grid; gap: 4vh; }
+.lights.left { justify-items: end; text-align: right; }
+.lights li { display: flex; align-items: center; gap: .7em; font-size: 1.9em; font-weight: 700; line-height: 1.15; }
+.lights.left li { flex-direction: row-reverse; }
+.lights li i { width: 1em; height: 1em; border-radius: 50%; flex: none; box-shadow: 0 0 0 .35em rgb(255 255 255 / .06); }
+.lights li small { display: block; font-size: .55em; font-weight: 500; color: var(--muted); margin-top: .15em; }
+.demo-foot { position: absolute; right: 6vw; bottom: 2.6vh; display: flex; align-items: center; gap: 1.5vw; }
+.live { display: flex; align-items: center; gap: .6em; font-size: .95em; color: var(--acc); font-weight: 700; }
 .live i { width: .7em; height: .7em; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 0 rgb(76 194 122 / .6); animation: pulse 1.6s infinite; }
 @keyframes pulse { 70% { box-shadow: 0 0 0 .7em rgb(76 194 122 / 0); } 100% { box-shadow: 0 0 0 0 rgb(76 194 122 / 0); } }
-button.ghost { margin-top: 1.5vh; background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: .5em 1.1em; font: inherit; font-size: .85em; cursor: pointer; }
+button.ghost { margin: 0; background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: .5em 1.1em; font: inherit; font-size: .85em; cursor: pointer; }
 button.ghost:hover { color: var(--text); border-color: var(--text); }
+@media (max-aspect-ratio: 4/3) { .demo-stage { grid-template-columns: 1fr; } .lights.side { display: none; } }
 
 /* 7 */
 .panels { display: grid; grid-template-columns: 1.1fr 1.1fr .9fr; gap: 1.3vw; min-height: 0; }
