@@ -16,7 +16,7 @@ when the harvest meets the market — with the source under every number. It sup
 not replace it.
 
 **Link to Project Demo**
-https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/docs/demo/Neyra-pitch-en.pdf  (7 slides)
+https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/docs/demo/Neyra-pitch-en.pdf  (7 slides; editable copy: docs/demo/Neyra-pitch.pptx — or the Google Slides link once imported)
 
 **Link to Final Project**
 https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/  (site; the app is at /web/ and in Telegram: https://t.me/ulugbekcrewbot; source: https://github.com/davlatshoh-bakhtiyorov/ulugbekcrewnasa)

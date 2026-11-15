@@ -82,6 +82,15 @@ ul.l li::before { content: ''; position: absolute; left: 0; top: 13px; width: 14
 .panel h3 { margin: 0 0 6px; font-size: 28px; color: #fff; } .panel p { margin: 0 0 14px; font-size: 21px; color: #a7b0a9; line-height: 1.35; }
 .panel img { width: 100%; border-radius: 14px; object-fit: cover; object-position: top; }
 .big3 { font-size: 72px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; color: #4cc27a; margin: 10px 0 6px; }
+/* 2b wall of four */
+.wall4 { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 22px; flex: 1; height: 690px; }
+.causes.big li { font-size: 34px; font-weight: 700; padding: 22px 0; }
+.causes.big .m { width: 52px; height: 52px; font-size: 26px; }
+.team3 { display: flex; gap: 40px; }
+.team3 figure { margin: 0; text-align: center; width: 300px; }
+.team3 img, .av-ini { width: 240px; height: 240px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 18px; border: 4px solid #26302a; }
+.av-ini { display: grid; place-items: center; background: linear-gradient(135deg, #0f7f45, #4cc27a); font-size: 72px; font-weight: 800; color: #fff; }
+.team3 figcaption { font-size: 26px; font-weight: 700; color: #fff; }
 /* 7 team */
 .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 10px 0 26px; }
 .member { padding: 20px 18px; text-align: center; }
@@ -95,74 +104,74 @@ ul.l li::before { content: ''; position: absolute; left: 0; top: 13px; width: 14
 const foot = (n) => `<div class="foot"><span><img src="logo.png" alt=""><b>Neyra</b> · NASA Space Apps Challenge 2026 · Tashkent</span><span>${n} / 7</span></div>`;
 const li = (arr) => `<ul class="l">${arr.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`;
 
+const TEAM3 = [
+  { name: 'Davlatshoh Baxtiyorov', photo: img('team/davlatshoh.jpg'), ini: 'DB' },
+  { name: 'Og‘abek Raxmonjonov', photo: img('team/ogabek.jpg'), ini: 'OR' },
+  { name: 'Abdulla Inogomov', photo: img('team/abdulla.jpg'), ini: 'AI' },
+];
+const COVERS = [
+  ['press/yt-5SPo9AEus2w.jpg', '“Onions are not money — they are ash”', 'Ozodlik · 2024'],
+  ['press/yt-GlbDsv0luWM.jpg', 'Why did watermelons become so cheap?', 'Kun.uz · 2024'],
+  ['press/yt-3uI8M5Ex4dA.jpg', 'Surkhandarya onion growers are ruined', 'Xabar.uz · 2018', 2.3],
+  ['press/ef.jpg', 'Top-quality onions fed to sheep', 'EastFruit · 2024'],
+];
 const slides = (q) => [
 `<section class="slide"><div class="title">
   <div><img class="mark" src="logo.png" alt="Neyra"><div class="wm">Logo: AI-generated image</div></div>
   <div><p class="name">Neyra</p><p class="tag">See before you sow.</p><p class="sub">Right crop, right time — with NASA Earth data</p>
-    <p class="meta"><b>Team ulugbek-crew</b> · ${esc(members.join(' · '))}<br>NASA Space Apps Challenge 2026 · Tashkent<br>Challenge: Field Shift — Adapting Farms with NASA Data</p></div>
+    <p class="meta"><b>Team ulugbek-crew</b> · ${esc(TEAM3.map((m) => m.name).join(' · '))}<br>NASA Space Apps Challenge 2026 · Tashkent<br>Challenge: Field Shift — Adapting Farms with NASA Data</p></div>
 </div></section>`,
 
 `<section class="slide"><p class="eyebrow">The problem</p><h1>Planted by hand in February. Fed to sheep in May.</h1>
-<div class="wall">
-  ${PRESS.map((p) => p.f ? `<div class="tile"><img src="${p.f}" style="${p.zoom ? `transform:scale(${p.zoom})` : ''}" alt=""><div class="ov"><b>${esc(p.cap)}</b><span>${esc(p.src)}</span></div></div>` : '').join('')}
-  <div class="tile quote"><p>“Piyoz — pul emas, kul.”<br><span style="font-weight:600;font-size:30px;opacity:.9">Onions are not money — they are ash.</span></p><small>an onion grower, Surkhandarya · Ozodlik, June 2024</small></div>
-</div>
-<p class="src" style="position:absolute;left:110px;bottom:96px">Covers of public news videos and articles, shown for commentary with attribution.</p>${foot(2)}</section>`,
+<div class="row" style="margin-top:10px">
+  <div class="wall4">${COVERS.map(([f, cap, src, z]) => img(f) ? `<div class="tile"><img src="${f}" style="${z ? `transform:scale(${z})` : ''}" alt=""><div class="ov"><b>${esc(cap)}</b><span>${esc(src)}</span></div></div>` : '').join('')}</div>
+  <div class="tile quote" style="flex:0 0 520px;height:690px"><p>“Piyoz — pul emas, kul.”<br><span style="font-weight:600;font-size:30px;opacity:.9">Onions are not money — they are ash.</span></p><small>an onion grower, Surkhandarya · Ozodlik, June 2024</small></div>
+</div>${foot(2)}</section>`,
 
 `<section class="slide"><p class="eyebrow">Every year</p><h1>Good harvests, thrown away</h1>
 <div class="row" style="margin-top:0;align-items:center;min-height:760px">
   <div style="flex:0 0 900px"><div class="hero-num">5–7<small>million tonnes</small></div>
-    <p style="font-size:30px;margin:14px 0 0;max-width:26em">of fruit and vegetables lost after harvest in Uzbekistan each year — <b>20–30 %</b> of a ≈ 23 Mt crop.</p>
-    <p class="src" style="margin-top:14px">Our estimate from UzDaily (23 Oct 2025): post-harvest losses 20–30 % (expert estimate); cold storage 1.14 Mt = 4.9 % of annual output.</p></div>
-  <div class="col nums">
-    <div class="num"><b>12 ¢</b><span>per kg of onions, April 2024 — 4.4× below the year before · EastFruit</span></div>
-    <div class="num"><b>150–200k t</b><span>of onions dumped or fed to cattle in 2024 · EastFruit</span></div>
-    <div class="num"><b>8 ¢</b><span>per kg of watermelons, July 2024 — left in the fields · Kun.uz / EastFruit</span></div>
-    <div class="num"><b>4.9 %</b><span>of the yearly harvest fits in cold storage · UzDaily</span></div>
+    <p style="font-size:30px;margin:14px 0 0;max-width:24em">of fruit and vegetables lost after harvest in Uzbekistan — every year.</p>
+    <p class="src" style="margin-top:14px">Estimate: 20–30 % of a ≈ 23 Mt crop (UzDaily, Oct 2025: losses 20–30 %; cold storage 1.14 Mt = 4.9 %).</p></div>
+  <div class="col" style="display:grid;gap:22px">
+    <div class="card" style="padding:28px 32px"><div class="num"><b>12 ¢</b><span>per kilogram of onions, April 2024 — 4.4× below the year before · EastFruit</span></div></div>
+    <div class="card" style="padding:28px 32px"><div class="num"><b>150–200k t</b><span>of onions dumped or fed to cattle in 2024 · EastFruit</span></div></div>
   </div>
 </div>${foot(3)}</section>`,
 
 `<section class="slide"><p class="eyebrow">Why</p><h1>It is not the weather. It is information.</h1>
-<div class="row" style="margin-top:6px">
-  <div style="flex:0 0 620px"><img class="shot" src="shots/dark-loop.jpg" style="width:620px;border-radius:24px" alt=""><p class="cap">The onion cycle, 2022–2025 — prices high → everyone plants → record crop, same demand → collapse → nobody plants → ×10</p></div>
-  <div class="col"><ul class="causes">
-    <li><span class="m yes">✓</span><div>Everyone plants last year's winner<small>nobody sees what the others are sowing — the “herd”</small></div></li>
-    <li><span class="m yes">✓</span><div>Everyone harvests in the same two weeks<small>the market window is unknown until it closes</small></div></li>
-    <li><span class="m yes">✓</span><div>Water, ripening and soil are guessed, not measured<small>FAO tables from other climates; no field history</small></div></li>
-    <li><span class="m no">○</span><div>Demand for onions does not move with price<small>a 30 % bigger crop is a crop nobody buys · FAO</small></div></li>
-    <li><span class="m no">○</span><div>Thin export market, expensive logistics<small>Russia, Kazakhstan; the margin dies on the road</small></div></li>
-    <li><span class="m no">○</span><div>Cold storage for 4.9 %, no farmer–exporter contracts<small>quality and trust problems follow</small></div></li>
-  </ul><p class="src" style="margin-top:12px">✓ what Neyra addresses · ○ outside what satellite data can fix. Sources: EastFruit 2023–24, Kun.uz 2024–25, Podrobno.uz 2024, UzDaily 2025.</p></div>
+<div class="row" style="margin-top:6px;align-items:center">
+  <div style="flex:0 0 620px"><img class="shot" src="shots/dark-loop.jpg" style="width:620px;border-radius:24px" alt=""></div>
+  <div class="col"><ul class="causes big">
+    <li><span class="m yes">✓</span><div>Everyone plants last year’s winner</div></li>
+    <li><span class="m yes">✓</span><div>Everyone harvests in the same two weeks</div></li>
+    <li><span class="m yes">✓</span><div>Water, ripening and soil are guessed — not measured</div></li>
+  </ul><p class="cap" style="font-size:24px;margin-top:26px;max-width:26em">Demand for onions does not move with price — so a bigger crop is a crop nobody buys.</p></div>
 </div>${foot(4)}</section>`,
 
-`<section class="slide"><p class="eyebrow">The product</p><h1>Neyra — right crop, right time, in three taps</h1>
+`<section class="slide"><p class="eyebrow">The product</p><h1>Three taps. Four lights.</h1>
 <div class="row" style="margin-top:8px">
   <div class="phones">${[['dark-phone-field', '1 · Show the field'], ['dark-phone-questions', '2 · Three questions'], ['dark-phone-results', '3 · Three options']].map(([f, c]) => `<figure><img src="shots/${f}.jpg" alt=""><figcaption>${esc(c)}</figcaption></figure>`).join('')}</div>
-  <div class="col" style="padding-top:6px">
-    <p style="font-size:27px;margin:0 0 6px;line-height:1.4">Six candidate crops are scored year by year over <b>42 years of NASA POWER weather</b> at that point. The best three come back with four lights:</p>
-    <div class="lights">${[['#4cc27a', 'Water need (dry year)'], ['#4cc27a', 'Ripens before frost'], ['#e3a008', 'Soil benefit'], ['#d64545', 'Market & waste risk']].map(([c, t]) => `<div class="light"><i style="background:${c}"></i>${esc(t)}</div>`).join('')}</div>
-    ${li(['Runs inside Telegram — nothing to install; also on the web', 'Every number shows its source, resolution and period', 'Field passport: 36 months of NDVI, soil moisture vs 10 years, climate shift', 'It supports the farmer’s judgement — it does not replace it'])}
-    <div class="chips">${['NASA POWER', 'MODIS NDVI 250 m', 'MODIS phenology', 'MODIS LST', 'SMAP L4', 'GRACE-FO', 'FAO-56 Rev.1'].map((c) => `<span class="chip">${c}</span>`).join('')}</div>
+  <div class="col" style="padding-top:30px">
+    <div class="lights" style="grid-template-columns:1fr;gap:18px">${[['#4cc27a', 'Water need — dry year'], ['#4cc27a', 'Ripens before frost'], ['#e3a008', 'Soil benefit'], ['#d64545', 'Market & waste risk']].map(([c, t]) => `<div class="light" style="font-size:32px;font-weight:700"><i style="background:${c};width:28px;height:28px"></i>${esc(t)}</div>`).join('')}</div>
+    <p class="cap" style="font-size:24px;margin-top:34px;max-width:22em">Six crops scored over 42 years of NASA POWER weather at your field. Inside Telegram — nothing to install. Every number with its source.</p>
   </div>
 </div>${foot(5)}</section>`,
 
 `<section class="slide"><p class="eyebrow">Proof</p><h1>Evidence under every number</h1>
 <div class="panels">
-  <div class="panel card"><h3>Live: what NASA sees at your field</h3><p>Vegetation 250 m · soil moisture 9 km · land heat 1 km · water storage — tap a point, read the value and 12 months of history, decoded from the official GIBS colour scales.</p><img src="shots/dark-map.jpg" style="height:500px" alt=""></div>
-  <div class="panel card"><h3>The FAO table says 25 April. The field says 3 June.</h3><p>We re-scaled FAO heat sums with 767 field-years of MODIS phenology. Check 2016–2025: model within +0.5 day of the satellite (FAO: −36 days). 49 automated tests.</p><img src="shots/dark-ndvi.jpg" style="height:auto;border:1px solid #26302a" alt=""><p style="margin-top:14px">Greenness of the demo field (MODIS NDVI, 250 m) through the 2023–24 season: still green when FAO says “ripe”, yellow when MODIS says the season ended.</p></div>
-  <div class="panel card"><h3>Who harvests when</h3><p>Same onion model, 16 regions, NASA POWER 1985–2025. Surkhandarya ripens ahead of</p><div class="big3">30 · 35 · 62<span style="font-size:26px;color:#a7b0a9;font-weight:600;letter-spacing:0"> days</span></div><p>Tashkent · Turkistan (KZ) · Volgograd (RU) — and the window has moved 5–10 days earlier since 1985–2004.</p><img src="shots/dark-window.jpg" style="height:330px" alt=""></div>
+  <div class="panel card"><h3>Live NASA layers at your field</h3><img src="shots/dark-map.jpg" style="height:600px;margin-top:10px" alt=""></div>
+  <div class="panel card"><h3>The FAO table says 25 April. The satellite says 3 June.</h3><img src="shots/dark-ndvi.jpg" style="height:auto;border:1px solid #26302a;margin-top:10px" alt=""><p style="margin-top:16px">Season length re-scaled with 767 field-years of MODIS phenology — model within +0.5 day of the satellite.</p></div>
+  <div class="panel card"><h3>Who harvests when</h3><div class="big3">30 · 35 · 62<span style="font-size:26px;color:#a7b0a9;font-weight:600;letter-spacing:0"> days</span></div><p>ahead of Tashkent · Turkistan (KZ) · Volgograd (RU) — same onion model, NASA POWER 1985–2025.</p><img src="shots/dark-window.jpg" style="height:360px" alt=""></div>
 </div>${foot(6)}</section>`,
 
-`<section class="slide"><p class="eyebrow">Impact and next</p><h1>What changes</h1>
-<div class="row" style="margin-top:6px">
-  <div class="col">${li(['A farmer sees ripening date, water, soil and the market window before sowing — in three taps, in Uzbek', 'A region sees its harvest timing from space, year by year, and the herd before the price shows it', 'Six NASA datasets — each one feeds a number on screen; nothing listed that is not used', 'Next: HLS 30 m for crop area · price history for the market light · more crops · Khorezm and Karakalpakstan pilots'])}
-    <p class="quote">Neyra does not decide. The farmer decides — with evidence.</p></div>
-  <div style="flex:0 0 760px">
-    <div class="team">${members.map((m, i) => `<div class="member card"><div class="av"></div><b>${esc(m)}</b><span>${TEAM[i] ? '' : 'role'}</span></div>`).join('')}</div>
-    <div class="qrs">${[['bot', 'Telegram bot'], ['site', 'Website'], ['repo', 'Source code']].map(([k, t]) => `<figure><img src="${q[k]}" alt="">${t}</figure>`).join('')}</div>
-    <p class="src" style="margin-top:22px">Built with AI assistance (Claude Code) for code and text; every number is computed from the cited NASA and FAO sources and checked by tests. Logo: AI-generated image.</p>
-  </div>
-</div>${foot(7)}</section>`,
+`<section class="slide"><p class="eyebrow">Team ulugbek-crew</p><h1>Neyra does not decide. The farmer decides — with evidence.</h1>
+<div class="row" style="margin-top:30px;align-items:flex-start">
+  <div class="team3">${TEAM3.map((m) => `<figure>${m.photo ? `<img src="${m.photo}" alt="">` : `<div class="av-ini">${m.ini}</div>`}<figcaption>${esc(m.name)}</figcaption></figure>`).join('')}</div>
+  <div class="qrs" style="margin-left:auto">${[['bot', 'Telegram bot'], ['site', 'Website'], ['repo', 'Source code']].map(([k, t]) => `<figure><img src="${q[k]}" alt="">${t}</figure>`).join('')}</div>
+</div>
+<p class="cap" style="font-size:24px;margin-top:60px;max-width:40em">Six NASA datasets — each one feeds a number on screen. Next: HLS 30 m for crop area · price history · more crops · Khorezm and Karakalpakstan pilots.</p>
+<p class="src" style="position:absolute;left:110px;right:110px;bottom:96px">Built with AI assistance (Claude Code) for code and text; every number is computed from the cited NASA and FAO sources and checked by tests. Logo: AI-generated image.</p>${foot(7)}</section>`,
 ];
 
 const q = { bot: await qr(LINKS.bot), site: await qr(LINKS.site), repo: await qr(LINKS.repo) };

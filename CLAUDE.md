@@ -26,7 +26,15 @@ from `scripts/deck/gen-pitch.js` — 1 title · 2 press-cover wall (YouTube/East
 reel needs login — user may add a screenshot) · 3 yearly-loss numbers (5–7 Mt = our arithmetic from UzDaily's 20–30 % and
 "1.14 Mt cold storage = 4.9 %" ⇒ ≈ 23 Mt; labelled as estimate) · 4 causes with ✓/○ what Neyra addresses · 5 product
 (dark app screenshots; **user will replace with real Telegram screenshots**) · 6 proof (live map, FAO vs MODIS, 30·35·62 days)
-· 7 impact + 3 team placeholders ("Name Surname / role") + QR. This deck is the submission demo link and the stage deck.
+· 7 team + QR. **15 Nov update (user: "juda ko'p ma'lumot", "Google Slides", team names + photos):** text cut to one
+idea per slide; team = Davlatshoh Baxtiyorov (photo `IMG_6501.JPG` not found on this Mac → initials "DB" until sent),
+Og'abek Raxmonjonov (`~/Downloads/photo_2026-11-15 10.48.22.jpeg`, cropped to the face), Abdulla Inogomov
+(`~/Desktop/IMAGE 2026-11-15 10:49:04.jpg`); crops in `scripts/deck/team/`. Two outputs from the same content:
+`docs/demo/Neyra-pitch-en.pdf` (HTML → Chrome) and `docs/demo/Neyra-pitch.pptx` (pptxgenjs, `build-pptx.cjs`,
+validated; ZIP folder entries removed for cloud import). Google Drive upload via the connector failed:
+"not enough Drive storage quota" on the connected Google account — the user imports the PPTX into Google Slides
+themselves (File → Import) or frees space and we upload + share "anyone with link". This deck is the submission demo
+link and the stage deck.
 
 Deck pipeline (no slide editor; reproducible): `scripts/deck/` — `shots.js` (headless Chrome screenshots of the app
 flow and site visuals, EN and UZ, 2x), `optimize-shots.py` (PNG → JPEG, else the PDFs are 24 MB), `gen.js`

@@ -13,7 +13,8 @@ python3 optimize-shots.py         # PNG -> JPEG (keeps the PDFs at ~3 MB instead
 TEAM_NAMES="Name Surname · Name Surname" node gen.js   # -> deck-en.html, deck-uz.html
 sh fetch-press.sh                 # cover images for the problem slide (YouTube/EastFruit thumbnails) -> press/
 node shots-dark.js                # dark-mode screenshots for the pitch deck (optional: node shots.js for the light decks)
-TEAM_NAMES="A · B · C" node gen-pitch.js && node print.js pitch   # -> Neyra-pitch-en.pdf (dark)
+node gen-pitch.js && node print.js pitch   # -> Neyra-pitch-en.pdf (dark, reduced text, team photos from team/)
+npm install pptxgenjs@3.12.0 && node build-pptx.cjs && zip -dq Neyra-pitch.pptx '*/'   # -> Neyra-pitch.pptx (same deck, editable; import into Google Slides)
 node print.js                     # headless Google Chrome -> Neyra-en.pdf, Neyra-uz.pdf (light, 1920x1080)
 cp Neyra-*.pdf ../../docs/demo/
 ```
