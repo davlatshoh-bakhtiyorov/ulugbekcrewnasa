@@ -25,7 +25,8 @@ export function sentence(o) {
   // "neytral" va "noma'lum" - ma'lumot, na plyus, na minus: izohga kirmaydi
   if (!['soil_neutral', 'soil_last_unknown'].includes(L.soil.code)) R.push({ lv: L.soil.rotation, s: t(`r_${L.soil.code}`) });
   if (L.soil.salt && L.soil.salt.level !== 'green') {
-    R.push({ lv: L.soil.salt.level, s: t(`r_salt_${L.soil.salt.level}`, { a: L.soil.salt.yieldLow, b: L.soil.salt.yieldHigh }) });
+    const { yieldLow: a, yieldHigh: b } = L.soil.salt;
+    R.push({ lv: L.soil.salt.level, s: t(`r_salt_${L.soil.salt.level}`, { r: a === b ? `${a}` : `${a}–${b}` }) });
   }
   const m = L.market;
   if (m.code === 'spoil_low') R.push({ lv: 'green', s: t('r_spoil_low') });
@@ -44,13 +45,13 @@ export function sentence(o) {
 export function card(o, rank, more = true) {
   const lang = getLang();
   const kinds = ['water', 'ripen', 'soil', 'market'];
-  const sow = o.result.sow ? `<span class="sow">${lang === 'en' ? 'sow' : 'ekish'} ${mmdd(o.result.sow)}</span>` : '';
-  return `<article class="card">
-    <div class="card-head">${rank ? `<span class="rank">${rank}</span>` : ''}<h3>${esc(o.crop.name[lang])}</h3>${sow}</div>
+  const sow = o.result.sow ? `<span class="sow">${lang === 'en' ? 'Sow' : 'Ekish'} ${mmdd(o.result.sow)}</span>` : '';
+  // v2 (15-noyabr): raqamli belgisiz, 2x2 chiroq plitkalari; daraja so'zi rang bilan birga yoziladi (faqat rangga tayanmaydi)
+  return `<article class="card${rank ? ` top${rank}` : ''}">
+    <div class="card-head"><h3>${esc(o.crop.name[lang])}</h3>${sow}</div>
     <ul class="lights">${kinds.map((k) => {
-      const l = o.lights[k];
-      return `<li class="light lv-${l.level}"><span class="dot" aria-hidden="true">${ICON[l.level]}</span>
-        <span class="lname">${t(`L_${k}`)}</span><span class="lval">${t(`lv_${l.level}`)}${lightValue(k, l) ? ` · ${esc(lightValue(k, l))}` : ''}</span></li>`;
+      const l = o.lights[k], v = lightValue(k, l);
+      return `<li class="light lv-${l.level}"><span class="lname"><i class="dot" aria-hidden="true"></i>${t(`L_${k}`)}</span><span class="lval"><b>${t(`lv_${l.level}`)}</b>${v ? ` · ${esc(v)}` : ''}</span></li>`;
     }).join('')}</ul>
     <p class="why">${esc(sentence(o))}</p>
     ${more ? `<button class="link more" data-detail="${o.cropId}">${t('details')} →</button>` : ''}

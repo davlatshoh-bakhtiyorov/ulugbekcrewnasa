@@ -207,7 +207,7 @@ function renderResults(el) {
   const r0 = a.top[0].result;
   el.innerHTML = `
     <h2>${t('step3')}</h2>
-    <p class="meta muted small"><b>${Number(r0.period.to.slice(0, 4)) - Number(r0.period.from.slice(0, 4)) + 1} ${t('yrs')} NASA POWER</b> · ${r0.period.from.slice(0, 4)}–${r0.period.to.slice(0, 4)} · MERRA-2 + CERES · ~0.5° · ${S.lat.toFixed(3)}° N, ${S.lon.toFixed(3)}° E</p>
+    <p class="meta muted small"><b>${Number(r0.period.to.slice(0, 4)) - Number(r0.period.from.slice(0, 4)) + 1} ${t('yrs')} NASA POWER</b> · ${r0.period.from.slice(0, 4)}–${r0.period.to.slice(0, 4)} · ~0.5° · ${S.lat.toFixed(3)}° N, ${S.lon.toFixed(3)}° E</p>
     ${a.top.map((o, i) => card(o, i + 1)).join('')}
     <button class="navcard" id="openNasa"><b>${t('nasaOpen')}</b><span>${t('nasaOpenSub')}</span><i>→</i></button>
     <button class="link" id="toggleOthers">${S.showOthers ? t('hideOthers') : `${t('others')} (${a.all.length - 3})`}</button>
