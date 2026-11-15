@@ -1,5 +1,5 @@
-// Neyra jonli taqdimot (sayt ichida, /pitch/). 12 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
-// to'rt chiroq -> arxitektura -> jonli demo (ilova iframe ichida) -> dalil -> ta'sir -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
+// Neyra jonli taqdimot (sayt ichida, /pitch/). 11 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
+// to'rt chiroq -> arxitektura -> jonli demo (ilova iframe ichida) -> dalil -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
 // Matnlar: strings.js (uz/en, decklar bilan bir xil). Yer teksturasi: NASA Blue Marble (GIBS). Dala: EOX + NASA MODIS NDVI.
 import { L as STR, TEAM, LINKS } from './strings.js';
 import { layerByKey, tileTemplate } from '../core/gibs.js';
@@ -9,7 +9,7 @@ const REGION = { lat: 37.8, lon: 67.5 };
 const EOX = 'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg';
 const EOX_ATTR = '<a href="https://s2maps.eu" target="_blank" rel="noopener">Sentinel-2 cloudless 2020</a> by EOX';
 const GIBS_ATTR = 'NASA <a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener">GIBS</a> / EOSDIS';
-const N = 12;
+const N = 11;
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -38,8 +38,6 @@ function applyText() {
   $('lq').innerHTML = T().lightQ.map(([t, q, src], i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><i></i><h3>${esc(t)}</h3><p class="q">${esc(q)}</p><p class="src"><b>${esc(T().srcLabel)}</b>${esc(src)}</p></div>`).join('');
   const arrow = '<div class="aarrow in" style="--i:2"><svg viewBox="0 0 60 24"><path class="flow" d="M2 12H48"/><path d="M44 5l8 7-8 7"/></svg></div>';
   $('arch').innerHTML = T().arch.map((c, i) => `<div class="acol card in${i === 1 ? ' mid' : ''}" style="--i:${i + 1}"><h3>${esc(c.t)}</h3>${c.items.map(([ic, b, sub]) => `<div class="it">${ICON[ic] ?? ''}<div><b>${esc(b)}</b><span>${esc(sub)}</span></div></div>`).join('')}</div>`).join(arrow);
-  $('imp').innerHTML = T().impact.map(([t, p], i) => `<div class="card in" style="--i:${i + 1}"><h3>${esc(t)}</h3><p>${esc(p)}</p></div>`).join('');
-  $('nextrow').innerHTML = `<b>${esc(T().next_t)}</b>` + T().nextItems.map((n) => `<span>${esc(n)}</span>`).join('');
   $('team').innerHTML = TEAM.map((m, i) => `<figure class="in" style="--i:${i}"><img src="assets/team-${m.photo.replace('team/', '').replace('.jpg', '')}.jpg" alt=""><figcaption>${esc(m.name)}</figcaption></figure>`).join('');
   $('qrs').innerHTML = ['bot', 'site', 'repo'].map((k, i) => `<figure class="in" style="--i:${i + 3}"><a href="${LINKS[k]}" target="_blank" rel="noopener"><img src="assets/qr-${k}.png" alt=""></a>${esc(T().qr[i])}</figure>`).join('');
   renderLoop();

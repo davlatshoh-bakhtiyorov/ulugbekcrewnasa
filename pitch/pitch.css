@@ -146,7 +146,7 @@ button.ghost { margin: 0; background: transparent; color: var(--muted); border: 
 button.ghost:hover { color: var(--text); border-color: var(--text); }
 @media (max-aspect-ratio: 4/3) { .demo-stage { grid-template-columns: 1fr; } .lights.side { display: none; } }
 
-/* 6-8, 11: mahsulot ekranlari (uch qadam, to'rt chiroq, arxitektura, ta'sir) */
+/* 6-8: mahsulot ekranlari (uch qadam, to'rt chiroq, arxitektura) */
 .foot-line { margin-top: 2.4vh; font-size: 1.15em; font-weight: 600; color: var(--muted); }
 .foot-line.shield { display: flex; align-items: center; gap: .6em; }
 .foot-line.shield svg { width: 1.5em; height: 1.5em; flex: none; fill: none; stroke: var(--acc); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -177,14 +177,7 @@ button.ghost:hover { color: var(--text); border-color: var(--text); }
 .aarrow svg { width: 100%; height: auto; overflow: visible; fill: none; stroke: var(--acc); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .aarrow .flow { stroke-dasharray: 6 7; animation: flow 1.2s linear infinite; }
 @keyframes flow { to { stroke-dashoffset: -13; } }
-.imp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2vw; margin-top: 3vh; }
-.imp .card { padding: 2.2em 2em 2.6em; }
-.imp h3 { font-size: 2.2em; color: var(--acc); }
-.imp p { font-size: 1.5em; color: #fff; margin-top: .6em; line-height: 1.3; }
-.nextrow { margin-top: auto; display: flex; align-items: center; gap: .8vw; flex-wrap: wrap; }
-.nextrow b { font-size: .8em; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); margin-right: .6em; }
-.nextrow span { border: 1px solid var(--line); border-radius: 999px; padding: .5em 1.1em; font-size: 1em; color: var(--text); background: var(--card); }
-@media (max-aspect-ratio: 4/3) { .steps, .lq, .imp { grid-template-columns: 1fr 1fr; } .arch { grid-template-columns: 1fr; } .aarrow { display: none; } }
+@media (max-aspect-ratio: 4/3) { .steps, .lq { grid-template-columns: 1fr 1fr; } .arch { grid-template-columns: 1fr; } .aarrow { display: none; } }
 
 /* 7 */
 .panels { display: grid; grid-template-columns: 1.1fr 1.1fr .9fr; gap: 1.3vw; min-height: 0; }
