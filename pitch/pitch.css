@@ -119,8 +119,8 @@ p { margin: 0; }
 .lights.left li { flex-direction: row-reverse; }
 .lights li i { width: 1em; height: 1em; border-radius: 50%; flex: none; box-shadow: 0 0 0 .35em rgb(255 255 255 / .06); }
 .lights li small { display: block; font-size: .55em; font-weight: 500; color: var(--muted); margin-top: .15em; }
-.demo-foot { position: absolute; right: 6vw; bottom: 2.6vh; display: flex; align-items: center; gap: 1.5vw; }
-.live { display: flex; align-items: center; gap: .6em; font-size: .95em; color: var(--acc); font-weight: 700; }
+.demo-foot { position: absolute; left: 6vw; bottom: 2.6vh; display: flex; flex-direction: column; align-items: flex-start; gap: 1.2vh; max-width: 26vw; }
+.live { display: flex; align-items: center; gap: .6em; font-size: .9em; color: var(--acc); font-weight: 700; }
 .live i { width: .7em; height: .7em; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 0 rgb(76 194 122 / .6); animation: pulse 1.6s infinite; }
 @keyframes pulse { 70% { box-shadow: 0 0 0 .7em rgb(76 194 122 / 0); } 100% { box-shadow: 0 0 0 0 rgb(76 194 122 / 0); } }
 button.ghost { margin: 0; background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: .5em 1.1em; font: inherit; font-size: .85em; cursor: pointer; }
@@ -154,7 +154,7 @@ button.ghost:hover { color: var(--text); border-color: var(--text); }
 /* boshqaruv */
 .ctl { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; }
 .ctl .bar { height: 3px; background: rgb(255 255 255 / .08); } .ctl .bar i { display: block; height: 100%; width: 0; background: var(--acc); transition: width .5s ease; }
-.ctl .btns { position: absolute; right: 2vw; bottom: 1.6vh; display: flex; align-items: center; gap: .4em; opacity: .55; transition: opacity .3s; }
+.ctl .btns { position: absolute; right: 2vw; bottom: 1.4vh; display: flex; align-items: center; gap: .4em; opacity: .55; transition: opacity .3s; }
 .ctl:hover .btns { opacity: 1; }
 .ctl button { background: rgb(20 26 22 / .9); color: var(--text); border: 1px solid var(--line); border-radius: 999px; width: 2.2em; height: 2.2em; font: inherit; font-size: 1em; cursor: pointer; }
 .ctl #langBtn, .ctl #full { width: auto; padding: 0 .8em; font-size: .8em; font-weight: 700; }
