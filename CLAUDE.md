@@ -6,11 +6,42 @@ NASA Earth observations + local soil info + crop characteristics + farmer priori
 farmers explore crop-rotation strategies (soil health, water, adaptation). It must support the
 farmer's judgment, not replace it.
 
+## Submission and presentation (15 Nov — the local event day; submission closes 15 Nov 23:59 Tashkent)
+
+Rules read from the official "Project Submission Guide" (13 Nov 2026 PDF, on the user's Desktop): demo = **7 slides
+max (incl. title/intro), English** or a **≤ 30 s video** (any language, English subtitles), hosted publicly without
+login; everything on the project page and in linked materials in English; AI-generated images need a visible
+watermark; code/text AI help must be acknowledged in text; no NASA branding in generated content; no persons under 18.
+The stage pitch is local-event business (5 minutes, per the user).
+
+Decisions: the **user presents in Uzbek** with `docs/demo/Neyra-uz.pdf`; the **teammate shows the live site** from
+the admin laptop at slide 4 (pre-open the site and tap the demo point once so tiles are cached); the **English
+`docs/demo/Neyra-en.pdf`** is the submission demo (title slide carries "Logo: AI-generated image"); the user will
+also record a ≤ 30 s video today — script and English SRT in `docs/demo/video-script.md`,
+`docs/demo/video-subtitles-en.srt`. Stage script: `docs/demo/nutq-uz.md`. Project-page text (all fields, English):
+`docs/SUBMISSION.md`. README is now English (old Uzbek README kept as `docs/README-uz.md`).
+
+Deck pipeline (no slide editor; reproducible): `scripts/deck/` — `shots.js` (headless Chrome screenshots of the app
+flow and site visuals, EN and UZ, 2x), `optimize-shots.py` (PNG → JPEG, else the PDFs are 24 MB), `gen.js`
+(HTML slides 1920×1080 from an EN/UZ strings object; `TEAM_NAMES="…"` env fills the member names — **still a
+placeholder "ulugbek-crew (2)"; the user will send names**), `print.js` (Chrome `Page.printToPDF`). The app ignores
+`?lang`; shots.js clicks `#lang`. New logo (15 Nov): striped leaf, AI-generated per the user, cut from the PNG's own
+alpha; brand green `#0f7f45`. The user does not want a visual watermark on the site; the credits fold says
+"Logo: AI-generated image" instead.
+
+Vercel: `ulugbekcrewnasa.vercel.app` returns DEPLOYMENT_NOT_FOUND; the Vercel account connected to Claude (team
+"ivybek") has no such project and the GitHub repo has no Vercel integration records — the project was deleted or
+lived in another account. Offered A (ignore, Pages is enough) / B (recreate under ivybek, Git-connected) / C (user
+checks vercel.com); no answer yet. Nothing on our side touched Vercel.
+
+Site v4 (15 Nov): the 3D layer stack was removed on the user's request ("3D in the wrong place"); the hero is text +
+the leaf mark; the big NASA map section and the ⓘ Batafsil toggles stay. A 3D element may return only where it
+carries meaning (idea on the table: globe → field zoom; not built).
+
 ## Brand (14 Nov, user decision)
 
-Product name **Neyra** (was "Field Shift UZ"; the challenge name stays in the kicker). Logo: the user's JPG
-(green "N" with a leaf on black) cut to transparent PNGs in `site/assets/neyra-{mark,512,192,64}.png`; brand green
-`#1f9d4f`, lime `#8fe03a`. Design brief from the user: "chiroyli, minimalistik va tiniq" — white background, one
+Product name **Neyra** (was "Field Shift UZ"; the challenge name stays in the kicker). Logo (15 Nov): striped
+green leaf (AI-generated) in `site/assets/neyra-{mark,512,192,64}.png`; brand green `#0f7f45`, light `#4cc27a`. Design brief from the user: "chiroyli, minimalistik va tiniq" — white background, one
 accent colour, big numbers, **one visual per section that answers one plain question**; "wow" means clear maps and
 charts, not complex diagrams. Mini App header shows the logo + "Neyra" (web/i18n.js `title`).
 

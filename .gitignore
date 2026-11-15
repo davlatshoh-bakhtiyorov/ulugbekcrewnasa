@@ -7,3 +7,9 @@
 node_modules/
 cache/
 .DS_Store
+
+# deck generator
+scripts/deck/node_modules/
+scripts/deck/shots/
+scripts/deck/deck-*.html
+scripts/deck/Neyra-*.pdf

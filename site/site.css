@@ -3,10 +3,10 @@
 :root {
   color-scheme: light;
   --bg: #ffffff; --bg2: #f4f6f2; --card: #ffffff; --text: #101512; --hint: #5b655e; --line: #e3e8e1;
-  --brand: #1f9d4f; --brand-2: #8fe03a; --brand-ink: #126b36;
-  --btn: #1f9d4f; --btn-text: #ffffff; --link: #126b36;
-  --series: #1f9d4f; --series-on: #0e6b35; --then: #aab4ac; --now: #1f9d4f;
-  --good: #1f9d4f; --warn: #e3a008; --crit: #d64545; --unk: #8a938c; --water: #2f7fd6; --dry: #c98a2b;
+  --brand: #0f7f45; --brand-2: #4cc27a; --brand-ink: #0a5c32;
+  --btn: #0f7f45; --btn-text: #ffffff; --link: #0a5c32;
+  --series: #0f7f45; --series-on: #0a5c32; --then: #aab4ac; --now: #0f7f45;
+  --good: #0f7f45; --warn: #e3a008; --crit: #d64545; --unk: #8a938c; --water: #2f7fd6; --dry: #c98a2b;
   --shadow: 0 10px 30px rgb(16 21 18 / .08);
 }
 @media (prefers-color-scheme: dark) {
@@ -334,16 +334,10 @@ details.fold > :not(summary) { margin-top: 12px; }
 .sec.open .detail { animation: fadein .35s ease; }
 @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-/* ===== v3: bosh qismdagi 3D qatlamlar ===== */
-.stack-fig { margin: 0; }
-.stack { position: relative; height: 440px; perspective: 1100px; perspective-origin: 50% 40%; }
-.stack-in { position: absolute; left: 10%; right: 10%; top: 22%; height: 60%; transform-style: preserve-3d; transform: rotateX(var(--rx, 58deg)) rotateZ(var(--rz, -22deg)); transition: transform .25s ease-out; will-change: transform; }
-.plane { position: absolute; inset: 0; border-radius: 10px; overflow: hidden; background: var(--bg2); box-shadow: 0 14px 34px rgb(0 0 0 / .28); transform: translateZ(calc(var(--i) * var(--gap, 12px))); transition: transform .25s ease-out; will-change: transform; outline: 1px solid rgb(255 255 255 / .35); }
-.plane canvas { width: 100%; height: 100%; display: block; }
-.plane-lab { opacity: var(--lab, 1); transition: opacity .25s; position: absolute; left: 10px; bottom: 10px; background: color-mix(in srgb, var(--bg) 90%, transparent); border-radius: 8px; padding: 4px 9px; font: 700 12px system-ui, sans-serif; color: var(--text); white-space: nowrap; }
-.plane[data-k="soil"] canvas, .plane[data-k="water"] canvas, .plane[data-k="heat"] canvas { image-rendering: pixelated; }
-@media (max-width: 900px) { .stack { height: 330px; } .stack-in { left: 8%; right: 8%; } }
-@media (prefers-reduced-motion: reduce) { .stack-in, .plane { transition: none; } }
+/* ===== bosh qism belgisi ===== */
+.hero-art { display: grid; place-items: center; min-height: 360px; }
+.hero-art img { width: min(380px, 70%); filter: drop-shadow(0 24px 40px rgb(15 127 69 / .22)); }
+@media (max-width: 900px) { .hero-art { min-height: 0; } .hero-art img { width: 46%; } }
 
 /* ===== v3: katta NASA xaritasi (ilova bilan bir xil sinflar) ===== */
 .map-sec .mapgrid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 18px; align-items: start; margin-top: 10px; }
