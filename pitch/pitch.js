@@ -1,5 +1,5 @@
 // Neyra jonli taqdimot (sayt ichida, /pitch/). 11 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
-// to'rt chiroq -> arxitektura -> jonli demo (ilova iframe ichida) -> dalil -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
+// to'rt chiroq -> arxitektura -> jonli demo (ilova iframe ichida) -> formulalar -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
 // Matnlar: strings.js (uz/en, decklar bilan bir xil). Yer teksturasi: NASA Blue Marble (GIBS). Dala: EOX + NASA MODIS NDVI.
 import { L as STR, TEAM, LINKS } from './strings.js?v=4';
 import { layerByKey, tileTemplate } from '../core/gibs.js';
@@ -38,7 +38,7 @@ function applyText() {
   $('lq').innerHTML = T().lightQ.map(([t, q, src], i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><i></i><h3>${esc(t)}</h3><p class="q">${esc(q)}</p><p class="src"><b>${esc(T().srcLabel)}</b>${esc(src)}</p></div>`).join('');
   const arrow = '<div class="aarrow in" style="--i:2"><svg viewBox="0 0 60 24"><path class="flow" d="M2 12H48"/><path d="M44 5l8 7-8 7"/></svg></div>';
   $('arch').innerHTML = T().arch.map((c, i) => `<div class="acol card in${i === 1 ? ' mid' : ''}" style="--i:${i + 1}"><h3>${esc(c.t)}</h3>${c.items.map(([ic, b, sub]) => `<div class="it">${ICON[ic] ?? ''}<div><b>${esc(b)}</b><span>${esc(sub)}</span></div></div>`).join('')}</div>`).join(arrow);
-  $('win').innerHTML = T().win.map(([name, date, d], i) => `<div class="r${i === 0 ? ' first' : ''}"><b>${esc(name)}</b><div class="t"><i style="left:${(8 + (d / 62) * 80).toFixed(1)}%"></i><span style="left:${(8 + (d / 62) * 80).toFixed(1)}%">${esc(date)}${d ? ` <small>+${d}</small>` : ''}</span></div></div>`).join(''); // piyoz modeli, NASA POWER 1985-2025: Surxondaryodan necha kun keyin pishadi
+  $('fx').innerHTML = T().fx.map((c, i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><h3><i></i>${esc(c.name)}</h3><p class="f">${c.f}</p><p class="note">${c.note}</p><p class="rule">${esc(c.rule)}</p><p class="src">${c.src}</p></div>`).join(''); // f/note/src - o'z HTML'imiz (sub/sup)
   $('team').innerHTML = TEAM.map((m, i) => `<figure class="in" style="--i:${i}"><img src="assets/team-${m.photo.replace('team/', '').replace('.jpg', '')}.jpg" alt=""><figcaption>${esc(m.name)}</figcaption></figure>`).join('');
   $('qrs').innerHTML = ['bot', 'site', 'repo'].map((k, i) => `<figure class="in" style="--i:${i + 3}"><a href="${LINKS[k]}" target="_blank" rel="noopener"><img src="assets/qr-${k}.png" alt=""></a>${esc(T().qr[i])}</figure>`).join('');
   renderLoop();
@@ -212,7 +212,6 @@ function animateNumbers() {
   setTimeout(() => countUp($('n1'), (e) => `${fmtN(1500 * e)} ${lang === 'en' ? 'UZS' : 'so‘m'}`, 1400), 500);
   setTimeout(() => countUp($('n2'), (e) => (lang === 'en' ? `${Math.round(150 * e)}–${Math.round(200 * e)}k t` : `${Math.round(150 * e)}–${Math.round(200 * e)} ming t`), 1400), 800);
 }
-function animateProof() { setTimeout(() => countUp($('big3'), (e) => `${Math.round(30 * e)} · ${Math.round(35 * e)} · ${Math.round(62 * e)}`, 1600), 700); }
 
 // ---------------- demo (ilova iframe) ----------------
 function fitPhone() {
@@ -262,7 +261,6 @@ function go(i, { replay = false } = {}) {
   if (i === 4) renderLoop();
   if (i >= 6) loadApp(); // demo 9-ekranda; ilova oldindan yuklanadi
   if (i === 8) fitPhone();
-  if (i === 9) animateProof();
 }
 function onKey(e) {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
@@ -276,7 +274,7 @@ function onKey(e) {
   else if (k === 'r' || k === 'R') go(cur, { replay: true });
 }
 function toggleFull() { if (document.fullscreenElement) document.exitFullscreen?.(); else document.documentElement.requestFullscreen?.(); }
-function toggleLang() { lang = lang === 'en' ? 'uz' : 'en'; store.set('fs-site-lang', lang); applyText(); if (cur === 3) animateNumbers(); if (cur === 9) animateProof(); }
+function toggleLang() { lang = lang === 'en' ? 'uz' : 'en'; store.set('fs-site-lang', lang); applyText(); if (cur === 3) animateNumbers(); }
 
 addEventListener('keydown', onKey);
 $('langBtn').onclick = toggleLang; $('full').onclick = toggleFull;

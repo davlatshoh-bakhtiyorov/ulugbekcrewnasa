@@ -87,9 +87,9 @@ arxitektura"):** 11 screens: 1 title · 2 orbit→field · 3 press wall · 4 num
 line, no numbers except "42 years") · **8 how it works** (three columns NASA sees → Neyra counts → the farmer decides, inline stroke
 icons `ICON` in pitch.js, animated dashed arrows; foot: "No server, no account — the phone talks to NASA directly. Open source.") ·
 9 live demo (phone; the app opens with `?theme=dark`, the status bar takes the app's real background via `syncStatus`; the
-"42 · years of NASA weather" statement is a bold green pill in the head) · 10 proof = **two big panels** (FAO-vs-MODIS NDVI chart;
-"30 · 35 · 62 days" + an HTML harvest timeline `#win` from `win` strings — the live-layers panel and the calendar-strip image were
-dropped as unreadable; captions simplified: no "767 field-years / +0.5 day") · 11 team (the `next` roadmap paragraph is gone from the pitch; an "impact + next" screen was
+"42 · years of NASA weather" statement is a bold green pill in the head) · 10 **formulas** (user: "the serious part"): four cards from `fx` strings — light name, the core formula in serif
+(`Σ(Kc·ET0 − Peff)`, GDD, `100 − b(ECe − threshold)`, risky-year rule), plain note, thresholds, source; the earlier proof panels
+(NDVI chart, harvest timeline) and their pitch assets were removed, the proof strings `p1..p3c` survive only in the 7-slide decks · 11 team (the `next` roadmap paragraph is gone from the pitch; an "impact + next" screen was
 built and removed the same evening on the user's request — the `next` string survives only in the 7-slide decks). `go()`: app iframe preloads from screen 7, `fitPhone` at 8, `animateProof` at 9 (0-based). The PDF/PPTX
 decks stay at 7 slides (submission rule) and only picked up the simplified proof captions. Idea parked by the user: a very short
 emotional video of the dumped harvests at the start of the pitch ("hozircha plan, keyin ko'ramiz").

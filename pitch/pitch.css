@@ -175,26 +175,21 @@ button.ghost:hover { color: var(--text); border-color: var(--text); }
 .aarrow svg { width: 100%; height: auto; overflow: visible; fill: none; stroke: var(--acc); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .aarrow .flow { stroke-dasharray: 6 7; animation: flow 1.2s linear infinite; }
 @keyframes flow { to { stroke-dashoffset: -13; } }
-@media (max-aspect-ratio: 4/3) { .steps, .lq, .proof2 { grid-template-columns: 1fr 1fr; } .arch { grid-template-columns: 1fr; } .aarrow { display: none; } }
+@media (max-aspect-ratio: 4/3) { .steps, .lq { grid-template-columns: 1fr 1fr; } .fx { grid-template-columns: 1fr; } .arch { grid-template-columns: 1fr; } .aarrow { display: none; } }
 
-/* 10 - dalil: ikki katta panel (FAO vs MODIS grafigi · kim qachon yig'adi) */
-.proof2 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.6vw; min-height: 0; }
-.panel { padding: 1.5em 1.6em; display: flex; flex-direction: column; min-height: 0; background: var(--card); border: 1px solid var(--line); border-radius: 1.2em; }
-.panel h3 { font-size: 1.75em; margin-bottom: .6em; }
-.panel p { font-size: 1.15em; color: var(--muted); line-height: 1.35; margin-top: .8em; }
-.panel img.wide { width: 100%; border-radius: .7em; display: block; border: 1px solid var(--line); background: #0e1210; }
-.big3 b { white-space: nowrap; font-size: 3.6em; font-weight: 800; letter-spacing: -.03em; color: var(--acc); line-height: 1.05; }
-.big3 span { font-size: 1.1em; color: var(--muted); font-weight: 600; margin-left: .4em; }
-.win { margin-top: auto; padding-top: 1.4em; display: grid; gap: 1.1em; }
-.win .r { display: grid; grid-template-columns: 7.5em 1fr; align-items: center; gap: .8em; font-size: 1em; }
-.win .r b { font-weight: 700; color: var(--text); }
-.win .r.first b { color: var(--acc); }
-.win .t { position: relative; height: 2px; background: var(--line); }
-.win .t i { position: absolute; top: 50%; width: .9em; height: .9em; margin: -.45em 0 0 -.45em; border-radius: 50%; background: var(--muted); }
-.win .r.first .t i { background: var(--acc); box-shadow: 0 0 0 .35em rgb(76 194 122 / .18); }
-.win .t span { position: absolute; top: .9em; transform: translateX(-50%); white-space: nowrap; font-size: .88em; color: var(--muted); }
-.win .r.first .t span { color: var(--acc); font-weight: 700; }
-.win .t span small { color: var(--dim); font-size: .9em; }
+/* 10 - formulalar: to'rt chiroq, har biri karta: nom, formula, izoh, qoida, manba */
+.s6 h2 { font-size: 2.6em; margin-bottom: .6vh; }
+.s6 .foot-line { margin-top: 1.4vh; font-size: .9em; }
+.fx { display: grid; grid-template-columns: 1fr 1fr; gap: 1vw; min-height: 0; margin-top: 1.4vh; }
+.fx .card { --c: var(--acc); padding: .9em 1.2em .8em; display: flex; flex-direction: column; gap: .4em; min-height: 0; border-left: .35em solid var(--c); }
+.fx h3 { display: flex; align-items: center; gap: .5em; font-size: 1.15em; }
+.fx h3 i { width: .65em; height: .65em; border-radius: 50%; background: var(--c); flex: none; }
+.fx .f { font-family: "Times New Roman", "Georgia", serif; font-size: 1.35em; line-height: 1.25; color: #fff; background: rgb(255 255 255 / .05); border: 1px solid var(--line); border-radius: .45em; padding: .3em .6em; letter-spacing: .01em; white-space: nowrap; overflow: hidden; }
+.fx .f sub { font-size: .62em; }
+.fx .note { font-size: .8em; color: var(--muted); line-height: 1.32; }
+.fx .rule { font-size: .78em; color: var(--text); line-height: 1.32; }
+.fx .src { margin-top: auto; padding-top: .2em; font-size: .7em; color: var(--dim); }
+.fx .src sub { font-size: .7em; }
 
 /* 8 */
 .s7 .row.grow { flex: 0 0 auto; margin-top: 4vh; }
