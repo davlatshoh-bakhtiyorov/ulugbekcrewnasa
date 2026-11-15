@@ -49,7 +49,7 @@ export const TEXT = {
     loop_cap: 'The onion cycle. Years are from the sources on the right.',
     price_h: 'Onion wholesale price, UZS per kg — only sourced points',
     price_cap: 'Points, not a line: we show only prices that a source states. Bars are the stated range.',
-    f_price: 'per kg wholesale, April 2024', f_waste: 'tonnes of onions that may have been dumped, 2024', f_cold: 'of the yearly harvest fits in cold storage',
+    f_price: 'per kg of onions, wholesale, April 2024 (≈ 12 US cents)', f_waste: 'tonnes of onions that may have been dumped, 2024', f_cold: 'of the yearly harvest fits in cold storage',
     pr_other: 'Other causes named by the sources — a thin export market, logistics, quality, no contracts between farmers and exporters — are real, but outside what satellite data can fix. Neyra works on the one thing it can see: what is planted, where, and when it ripens.',
 
     how_eyebrow: 'How it works', how_h: 'Three taps, three options',
@@ -166,7 +166,7 @@ export const TEXT = {
     loop_cap: 'Piyoz aylanasi. Yillar — o\'ngdagi manbalardan.',
     price_h: 'Piyoz ulgurji narxi, so\'m/kg — faqat manbali nuqtalar',
     price_cap: 'Chiziq emas, nuqtalar: faqat manba aytgan narxni ko\'rsatamiz. Ustun — manbadagi oraliq.',
-    f_price: 'kg uchun ulgurji, 2024 yil aprel', f_waste: 'tonna piyoz tashlab yuborilgan bo\'lishi mumkin, 2024', f_cold: 'yillik hosil sovutgichli omborga sig\'adi',
+    f_price: '1 kg piyoz, ulgurji, 2024 yil aprel (≈ 12 sent)', f_waste: 'tonna piyoz tashlab yuborilgan bo\'lishi mumkin, 2024', f_cold: 'yillik hosil sovutgichli omborga sig\'adi',
     pr_other: 'Manbalar aytgan boshqa sabablar — tor eksport bozori, logistika, sifat, dehqon bilan eksportchi o\'rtasida shartnoma yo\'qligi — haqiqiy, lekin sun\'iy yo\'ldosh ma\'lumoti ularni hal qilmaydi. Neyra o\'zi ko\'ra oladigan narsa bilan ishlaydi: nima, qayerda ekilgan va qachon pishadi.',
 
     how_eyebrow: 'Qanday ishlaydi', how_h: 'Uch marta bosing — uchta variant',

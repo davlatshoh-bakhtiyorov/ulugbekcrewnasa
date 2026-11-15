@@ -10,7 +10,7 @@ three crop-rotation options, each with four traffic lights (water need, ripens i
 risk) and a one-sentence explanation, computed in the browser from 42 years of NASA POWER daily weather, NASA MODIS
 vegetation and phenology, SMAP soil moisture and GRACE water storage, combined with FAO-56 crop science. It runs as a
 web page and as a Telegram Mini App, in Uzbek and English. It matters because the loss is not weather but information:
-in 2024 everyone planted onions after a good year, prices fell to 12 US cents per kg and 150–200 thousand tonnes were
+in 2024 everyone planted onions after a good year, prices fell to 1,500 UZS (about 12 US cents) per kg and 150–200 thousand tonnes were
 dumped. Neyra shows, before sowing, what the field can ripen, how much water it needs, what it does to the soil and
 when the harvest meets the market — with the source under every number. It supports the farmer's judgement; it does
 not replace it.

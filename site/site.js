@@ -199,7 +199,7 @@ function renderProblem() {
   renderPrice();
   const en = lang === 'en';
   const F = [
-    { v: '≈ 12¢', l: s('f_price'), src: 'eastfruit' },
+    { v: en ? '1,500 UZS' : '1 500 so‘m', l: s('f_price'), src: 'eastfruit' },
     { v: en ? '150–200k' : '150–200 ming', l: s('f_waste'), src: 'eastfruit' },
     { v: en ? '4.9 %' : '4,9 %', l: s('f_cold'), src: 'uzdaily' },
   ];

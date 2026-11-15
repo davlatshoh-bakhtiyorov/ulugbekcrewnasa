@@ -71,8 +71,8 @@ T(s, '5–7', { x: 0.6, y: 2.0, w: 5.2, h: 2.0, fontSize: 150, bold: true, color
 T(s, 'million tonnes', { x: 0.7, y: 4.0, w: 5.5, h: 0.5, fontSize: 26, bold: true, color: 'FFFFFF' });
 T(s, 'of fruit and vegetables lost after harvest in Uzbekistan — every year', { x: 0.7, y: 4.55, w: 5.6, h: 0.8, fontSize: 18, color: C.muted });
 T(s, 'Estimate: 20–30 % of a ≈ 23 Mt crop (UzDaily, Oct 2025: losses 20–30 %; cold storage 1.14 Mt = 4.9 %)', { x: 0.7, y: 6.1, w: 7, h: 0.5, fontSize: 9, color: C.dim });
-card(s, 7.3, 2.0, 5.4, 1.9); T(s, '12 ¢', { x: 7.6, y: 2.15, w: 5, h: 1.0, fontSize: 60, bold: true, color: 'FFFFFF' });
-T(s, 'per kilogram of onions, April 2024 — 4.4× below the year before · EastFruit', { x: 7.6, y: 3.15, w: 4.9, h: 0.6, fontSize: 13, color: C.muted });
+card(s, 7.3, 2.0, 5.4, 1.9); T(s, '1 500 UZS', { x: 7.6, y: 2.15, w: 5, h: 1.0, fontSize: 60, bold: true, color: 'FFFFFF' });
+T(s, 'per kilogram of onions, April 2024 (≈ 12 US cents) — 4.4× below the year before · EastFruit', { x: 7.6, y: 3.15, w: 4.9, h: 0.6, fontSize: 13, color: C.muted });
 card(s, 7.3, 4.1, 5.4, 1.9); T(s, '150–200k t', { x: 7.6, y: 4.25, w: 5, h: 1.0, fontSize: 60, bold: true, color: 'FFFFFF' });
 T(s, 'of onions dumped or fed to cattle in 2024 · EastFruit', { x: 7.6, y: 5.25, w: 4.9, h: 0.6, fontSize: 13, color: C.muted });
 

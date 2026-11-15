@@ -134,7 +134,7 @@ const slides = (q) => [
     <p style="font-size:30px;margin:14px 0 0;max-width:24em">of fruit and vegetables lost after harvest in Uzbekistan — every year.</p>
     <p class="src" style="margin-top:14px">Estimate: 20–30 % of a ≈ 23 Mt crop (UzDaily, Oct 2025: losses 20–30 %; cold storage 1.14 Mt = 4.9 %).</p></div>
   <div class="col" style="display:grid;gap:22px">
-    <div class="card" style="padding:28px 32px"><div class="num"><b>12 ¢</b><span>per kilogram of onions, April 2024 — 4.4× below the year before · EastFruit</span></div></div>
+    <div class="card" style="padding:28px 32px"><div class="num"><b>1 500 UZS</b><span>per kilogram of onions, April 2024 (≈ 12 US cents) — 4.4× below the year before · EastFruit</span></div></div>
     <div class="card" style="padding:28px 32px"><div class="num"><b>150–200k t</b><span>of onions dumped or fed to cattle in 2024 · EastFruit</span></div></div>
   </div>
 </div>${foot(3)}</section>`,
