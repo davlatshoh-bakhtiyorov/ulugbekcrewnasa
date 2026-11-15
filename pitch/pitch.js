@@ -162,7 +162,7 @@ async function ensureFlyMap() {
 }
 async function runFly() {
   const my = ++FM.token;
-  $('flyMap').classList.remove('on'); $('flyLabel').classList.remove('on'); $('flyCap').classList.remove('on');
+  $('flyMap').classList.remove('on'); $('flyLabel').classList.remove('on'); $('flyCap').classList.remove('on'); $('flyShade').classList.remove('on');
   await ensureFlyMap();
   if (my !== FM.token) return;
   FM.map.invalidateSize(false);
@@ -172,7 +172,7 @@ async function runFly() {
   $('flyMap').classList.add('on');
   await wait(reduce ? 50 : 500); if (my !== FM.token) return;
   $('globe').classList.add('off'); $('earthStatic').classList.add('off');
-  $('flyLabel').classList.add('on');
+  $('flyLabel').classList.add('on'); $('flyShade').classList.add('on');
   FM.map.flyTo([FIELD.lat, FIELD.lon], 13, { duration: reduce ? 0.1 : 2.4, easeLinearity: 0.2 });
   await wait(reduce ? 200 : 2500); if (my !== FM.token) return;
   FM.ndvi?.setOpacity(0.85);

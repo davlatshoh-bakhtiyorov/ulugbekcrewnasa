@@ -46,10 +46,12 @@ p { margin: 0; }
 .leaflet-container .leaflet-control-attribution { font-size: 10px; background: rgb(11 15 13 / .7); color: #a7b0a9; }
 .leaflet-container .leaflet-control-attribution a { color: #c3cbc5; }
 .nasa-tiles { transition: opacity 1.4s ease; }
+.fly-shade { position: absolute; z-index: 4; left: 0; right: 0; top: 0; height: 32vh; background: linear-gradient(rgb(0 0 0 / .6), transparent); opacity: 0; transition: opacity .8s; pointer-events: none; }
+.fly-shade.on { opacity: 1; }
 .fly-label { position: absolute; z-index: 5; left: 6vw; top: 7vh; opacity: 0; transform: translateY(1.5vh); transition: opacity .8s, transform .8s; text-shadow: 0 2px 18px rgb(0 0 0 / .8); }
 .fly-label.on { opacity: 1; transform: none; }
 .fly-label h2 { font-size: 3em; }
-.fly-cap { position: absolute; z-index: 5; left: 6vw; right: 6vw; bottom: 9vh; font-size: 1.05em; color: #fff; opacity: 0; transition: opacity .8s; text-shadow: 0 2px 14px rgb(0 0 0 / .9); }
+.fly-cap { position: absolute; z-index: 5; left: 0; right: 0; bottom: 0; padding: 14vh 6vw 9vh; font-size: 1.05em; color: #fff; opacity: 0; transition: opacity .8s; text-shadow: 0 2px 14px rgb(0 0 0 / .9); background: linear-gradient(transparent, rgb(0 0 0 / .72)); pointer-events: none; }
 .fly-cap.on { opacity: 1; }
 .fly-cap small { font-size: .72em; color: #c3cbc5; }
 .field-pin { width: 1.1em; height: 1.1em; border-radius: 50%; background: var(--acc); border: 3px solid #fff; box-shadow: 0 0 0 .5em rgb(76 194 122 / .35); }
@@ -103,8 +105,8 @@ p { margin: 0; }
 /* 6 */
 .phone-wrap { flex: 0 0 auto; height: 100%; display: flex; align-items: flex-start; }
 .phone { position: relative; width: 390px; height: 844px; border-radius: 48px; border: 9px solid #15191a; outline: 2px solid #2b3335; background: #000; overflow: hidden; box-shadow: 0 40px 90px rgb(0 0 0 / .65), inset 0 0 0 1px rgb(255 255 255 / .06); transform: scale(var(--s, 1)); transform-origin: top left; }
-.phone iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
-.phone .notch { position: absolute; left: 50%; top: 10px; width: 118px; height: 32px; margin-left: -59px; border-radius: 20px; background: #000; z-index: 2; pointer-events: none; }
+.phone iframe { width: 100%; height: calc(100% - 34px); margin-top: 34px; border: 0; display: block; background: #fff; } /* yuqorida 34 px holat paneli - ilova notch ostida qolmaydi */
+.phone .notch { position: absolute; left: 50%; top: 8px; width: 96px; height: 22px; margin-left: -48px; border-radius: 14px; background: #1a1f21; z-index: 2; pointer-events: none; }
 .phone .home { position: absolute; left: 50%; bottom: 7px; width: 130px; height: 5px; margin-left: -65px; border-radius: 3px; background: rgb(0 0 0 / .55); z-index: 2; pointer-events: none; }
 .prod { padding-top: 1vh; }
 .lights { list-style: none; margin: 0 0 2vh; padding: 0; }
