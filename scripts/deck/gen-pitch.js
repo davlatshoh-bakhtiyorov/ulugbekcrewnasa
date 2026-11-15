@@ -2,7 +2,7 @@
 import { writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import QRCode from 'qrcode';
-import { TEAM, L, shot } from './strings.mjs';
+import { TEAM, L, shot, PRESS_DECK } from './strings.mjs';
 
 const LINKS = { bot: 'https://t.me/ulugbekcrewbot', site: 'https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/', repo: 'https://github.com/davlatshoh-bakhtiyorov/ulugbekcrewnasa' };
 const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
@@ -79,7 +79,7 @@ function slides(lang, q) {
 </div></section>`,
 `<section class="slide"><p class="eyebrow">${esc(T.e2)}</p><h1>${esc(T.h2)}</h1>
 <div class="row" style="margin-top:10px">
-  <div class="wall4">${T.covers.map(([f, cap, src, z]) => (img(f) ? `<div class="tile"><img src="${f}" style="${z ? `transform:scale(${z})` : ''}" alt=""><div class="ov"><b>${esc(cap)}</b><span>${esc(src)}</span></div></div>` : '')).join('')}</div>
+  <div class="wall4">${T.covers.map(([k, cap, src, z]) => { const f = PRESS_DECK[k] ?? k; return img(f) ? `<div class="tile"><img src="${f}" style="${z ? `transform:scale(${z})` : ''}" alt=""><div class="ov"><b>${esc(cap)}</b><span>${esc(src)}</span></div></div>` : ''; }).join('')}</div>
   <div class="tile quote" style="flex:0 0 520px;height:690px"><p>${esc(T.quote)}${T.quote2 ? `<br><span style="font-weight:600;font-size:30px;opacity:.9">${esc(T.quote2)}</span>` : ''}</p><small>${esc(T.quoteBy)}</small></div>
 </div>${foot(2)}</section>`,
 `<section class="slide"><p class="eyebrow">${esc(T.e3)}</p><h1>${esc(T.h3)}</h1>

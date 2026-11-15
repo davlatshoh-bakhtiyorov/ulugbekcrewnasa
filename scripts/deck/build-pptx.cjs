@@ -2,7 +2,7 @@
 const pptxgen = require('pptxgenjs');
 const fs = require('fs');
 const path = require('path');
-const { TEAM, L, shot } = require('./strings.cjs');
+const { TEAM, L, shot, PRESS_DECK } = require('./strings.cjs');
 const here = __dirname;
 const P = (f) => path.join(here, f);
 const has = (f) => fs.existsSync(P(f));
@@ -41,9 +41,9 @@ async function build(lang) {
 
   s = pres.addSlide({ masterName: 'DARK', sectionTitle: sec('2') });
   eyebrow(s, T.e2); title(s, T.h2);
-  T.covers.forEach(([f, cap, src], i) => {
+  T.covers.forEach(([k, cap, src], i) => {
     const x = 0.6 + (i % 2) * 4.05, y = 1.9 + Math.floor(i / 2) * 2.45;
-    img(s, f, { x, y, w: 3.9, h: 1.85, sizing: { type: 'cover', w: 3.9, h: 1.85 } });
+    img(s, PRESS_DECK[k] ?? k, { x, y, w: 3.9, h: 1.85, sizing: { type: 'cover', w: 3.9, h: 1.85 } });
     X(s, cap, { x, y: y + 1.9, w: 3.9, h: 0.3, fontSize: 12, bold: true });
     X(s, src, { x, y: y + 2.15, w: 3.9, h: 0.25, fontSize: 10, color: C.dim });
   });
