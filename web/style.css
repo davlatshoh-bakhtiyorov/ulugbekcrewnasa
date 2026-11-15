@@ -52,6 +52,22 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .intro { margin: 6px 0 0; }
 
 #map { height: 52vh; min-height: 280px; border-radius: 14px; overflow: hidden; margin: 8px 0; z-index: 0; }
+/* dala ekrani ikki rejimda: tanlash (sodda) va "Dala NASA nigohida" (qatlamlar, vaqt, o'qish) */
+#screen-field:not(.nasa) .nasa-only { display: none !important; }
+#screen-field.nasa .pick-only { display: none !important; }
+#screen-field:not(.nasa) #map { height: 60vh; min-height: 320px; }
+/* savollar: bittadan, bosqich nuqtalari */
+.dots { display: flex; align-items: center; gap: 6px; margin: 16px 0 2px; font-size: 13px; color: var(--hint); }
+.dots i { width: 24px; height: 6px; border-radius: 3px; background: var(--line); }
+.dots i.done { background: var(--good); } .dots i.on { background: var(--btn); }
+.dots span { margin-left: 6px; }
+h2.qh { font-size: 22px; margin: 8px 0 14px; }
+.opts.big { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.opts.big .opt { border-radius: 14px; padding: 14px 12px; min-height: 56px; font-size: 16px; font-weight: 600; text-align: center; }
+/* natija: keyingi qadam kartasi */
+.navcard { display: grid; grid-template-columns: 1fr auto; column-gap: 10px; width: 100%; text-align: left; background: var(--bg2); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin: 14px 0 4px; align-items: center; }
+.navcard b { font-size: 15px; } .navcard span { grid-column: 1; font-size: 13px; color: var(--hint); }
+.navcard i { grid-row: 1 / span 2; font-style: normal; color: var(--link); font-size: 22px; }
 .picked { min-height: 1.4em; font-weight: 600; margin: 6px 0; }
 .row { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
 .row > * { flex: 1 1 140px; }

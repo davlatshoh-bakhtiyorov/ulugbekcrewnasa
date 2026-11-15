@@ -24,7 +24,9 @@ const S = {
   answers: { lastCrop: null, water: null, salinity: null }, // null = hali javob yo'q
   data: null, dataKey: null, dataPromise: null,
   advice: null, detail: null, showOthers: false, error: null,
-  pass: null, passFrom: 'results', // dala pasporti ma'lumoti va qaysi ekrandan ochilgani
+  q: 0, // qaysi savolda (bittadan ko'rsatiladi)
+  nasaFrom: 'results', nasaOpened: false, // "Dala NASA nigohida" ekrani qayerdan ochilgani; birinchi ochilishda NDVI yoqiladi
+  pass: null, passFrom: 'nasa', // dala pasporti ma'lumoti va qaysi ekrandan ochilgani
 };
 
 const $ = (id) => document.getElementById(id);
@@ -74,7 +76,7 @@ function initMap() {
   });
   L.control.layers({ 'Sentinel-2': sat, OpenStreetMap: osm }, null, { position: 'topright' }).addTo(map);
   map.on('click', (e) => setPoint(e.latlng.lat, e.latlng.lng, false));
-  setPassportHandler(() => { if (S.lat != null) { S.passFrom = 'field'; go('passport'); } });
+  setPassportHandler(() => { if (S.lat != null) { S.passFrom = 'nasa'; go('passport'); } });
   initNasaMap(map).then(() => { if (S.lat != null) readAt(S.lat, S.lon); }).catch((err) => console.warn('NASA layers:', err));
 }
 
@@ -113,42 +115,51 @@ const SPOIL_SRC = { id: 'rule_spoil', doc: null, table: null, page: null, verifi
 // ---------------- ekranlar ----------------
 
 function renderField() {
-  $('intro').textContent = t('tagline');
+  const nasa = S.screen === 'nasa';
+  $('screen-field').classList.toggle('nasa', nasa);
   $('step1').textContent = t('step1');
   $('mapHint').textContent = t('mapHint');
+  $('nasaTitle').textContent = t('nasaScreen');
+  $('nasaHint').textContent = t('nasaHint');
   $('btnLocate').textContent = t('myLocation');
   $('btnDemo').textContent = t('demo');
   $('picked').textContent = S.lat == null ? '' : `${t('picked')}: ${S.lat.toFixed(4)}° N, ${S.lon.toFixed(4)}° E`;
-  setBack(null);
-  setPrimary(t('next'), () => go('questions'), S.lat != null);
+  if (nasa) { setBack(() => go(S.nasaFrom)); setPrimary(null); }
+  else { setBack(null); setPrimary(t('next'), () => { S.q = 0; go('questions'); }, S.lat != null); }
   renderNasa();
+  if (nasa && !S.nasaOpened) { S.nasaOpened = true; setTimeout(() => document.querySelector('#layerBar [data-k="ndvi"]')?.click(), 60); }
 }
 
 function chipGroup(name, options) {
-  return `<div class="opts" role="group" data-q="${name}">${options.map(([v, label]) =>
+  return `<div class="opts big" role="group" data-q="${name}">${options.map(([v, label]) =>
     `<button class="opt" data-v="${v}" aria-pressed="${S.answers[name] === v}">${esc(label)}</button>`).join('')}</div>`;
 }
 
+// Uchta savol - bittadan, har birida "Davom etish"
+const QS = [
+  ['lastCrop', 'qLast', () => [...CROPS.map((c) => [c.id, c.name[getLang()]]), ['unknown', t('dontKnow')]]],
+  ['water', 'qWater', () => [['enough', t('water_enough')], ['sometimes', t('water_sometimes')], ['scarce', t('water_scarce')], ['unknown', t('dontKnow')]]],
+  ['salinity', 'qSalt', () => [['low', t('salt_low')], ['medium', t('salt_medium')], ['high', t('salt_high')], ['unknown', t('dontKnow')]]],
+];
+
 function renderQuestions(el) {
-  const lang = getLang();
+  const i = Math.max(0, Math.min(QS.length - 1, S.q));
+  const [name, key, opts] = QS[i];
+  const step = t('qStep', { i: i + 1, n: QS.length });
   el.innerHTML = `
-    <h2>${t('step2')}</h2>
-    <p class="q">${t('qLast')}</p>
-    ${chipGroup('lastCrop', [...CROPS.map((c) => [c.id, c.name[lang]]), ['unknown', t('dontKnow')]])}
-    <p class="q">${t('qWater')}</p>
-    ${chipGroup('water', [['enough', t('water_enough')], ['sometimes', t('water_sometimes')], ['scarce', t('water_scarce')], ['unknown', t('dontKnow')]])}
-    <p class="q">${t('qSalt')}</p>
-    ${chipGroup('salinity', [['low', t('salt_low')], ['medium', t('salt_medium')], ['high', t('salt_high')], ['unknown', t('dontKnow')]])}`;
-  el.querySelectorAll('.opts').forEach((g) => g.addEventListener('click', (e) => {
+    <div class="dots" role="img" aria-label="${esc(step)}">${QS.map((_, k) => `<i class="${k < i ? 'done' : k === i ? 'on' : ''}"></i>`).join('')}<span>${esc(step)}</span></div>
+    <h2 class="qh">${t(key)}</h2>
+    ${chipGroup(name, opts())}`;
+  el.querySelector('.opts').addEventListener('click', (e) => {
     const b = e.target.closest('.opt');
     if (!b) return;
-    S.answers[g.dataset.q] = b.dataset.v;
+    S.answers[name] = b.dataset.v;
     haptic();
     render();
-  }));
-  const ready = Object.values(S.answers).every((v) => v != null);
-  setBack(() => go('field'));
-  setPrimary(t('showResult'), compute, ready);
+  });
+  const last = i === QS.length - 1, ready = S.answers[name] != null;
+  setBack(() => { if (i === 0) go('field'); else { S.q = i - 1; go('questions'); } });
+  setPrimary(last ? t('showResult') : t('next'), () => { if (last) compute(); else { S.q = i + 1; go('questions'); } }, ready);
 }
 
 async function compute() {
@@ -182,7 +193,7 @@ function renderLoading(el) {
     el.innerHTML = `<p class="error">${t('loadError')}</p><p class="muted small">${esc(S.error)}</p>
       <button class="secondary" id="retry">${t('retry')}</button>`;
     $('retry').onclick = compute;
-    setBack(() => go('questions'));
+    setBack(() => { S.q = QS.length - 1; go('questions'); });
   } else {
     el.innerHTML = `<div class="loading"><div class="spinner" aria-hidden="true"></div><p class="status">${t('loading')}</p></div>`;
     setBack(null);
@@ -196,25 +207,21 @@ function renderResults(el) {
   const r0 = a.top[0].result;
   el.innerHTML = `
     <h2>${t('step3')}</h2>
-    <p class="meta">${S.lat.toFixed(3)}° N, ${S.lon.toFixed(3)}° E</p>
-    <div class="chips">${nasaChip(r0)}</div>
-    <p class="muted small">${t('climateNote')}</p>
+    <p class="meta muted small">${S.lat.toFixed(3)}° N, ${S.lon.toFixed(3)}° E · ${esc(t('nasaChip', { a: r0.period.from.slice(0, 4), b: r0.period.to.slice(0, 4) }))}</p>
     ${a.top.map((o, i) => card(o, i + 1)).join('')}
-    ${teaserHtml()}
+    <button class="navcard" id="openNasa"><b>${t('nasaOpen')}</b><span>${t('nasaOpenSub')}</span><i>→</i></button>
     <button class="link" id="toggleOthers">${S.showOthers ? t('hideOthers') : `${t('others')} (${a.all.length - 3})`}</button>
     ${S.showOthers ? a.all.slice(3).map((o) => card(o, null)).join('') : ''}
-    <p class="muted small rules">${t('rulesNote')}</p>
     <div class="row">
       <button class="secondary" id="again">${t('changeAnswers')}</button>
       <button class="secondary" id="newField">${t('newField')}</button>
     </div>`;
   el.querySelectorAll('[data-detail]').forEach((b) => (b.onclick = () => { S.detail = b.dataset.detail; go('details'); }));
-  loadPassport();
-  bindTeaser();
+  $('openNasa').onclick = () => { S.nasaFrom = 'results'; go('nasa'); };
   $('toggleOthers').onclick = () => { S.showOthers = !S.showOthers; render(); };
-  $('again').onclick = () => go('questions');
+  $('again').onclick = () => { S.q = 0; go('questions'); };
   $('newField').onclick = () => go('field');
-  setBack(() => go('questions'));
+  setBack(() => { S.q = QS.length - 1; go('questions'); });
   setPrimary(null);
 }
 
@@ -290,7 +297,9 @@ function renderDetails(el) {
       <ol class="refs">
         <li>NASA Langley Research Center, POWER Project — daily point API, community AG (MERRA-2; CERES SRB/SYN1deg). <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener">power.larc.nasa.gov</a></li>
         ${Object.values(SOURCES).map((x) => `<li>${esc(x.cite)} <a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.url.replace(/^https?:\/\//, ''))}</a></li>`).join('')}
-      </ol></section>`;
+      </ol>
+      <p class="muted small">${t('climateNote')}</p>
+      <p class="muted small">${t('rulesNote')}</p></section>`;
 
   barChart($('chart'), {
     points: yearsWithWater.map((y) => ({ label: String(y.year), value: y.nirMm == null ? null : y.nirMm * 10 })),
@@ -328,7 +337,6 @@ function loadPassport() {
 
 function refreshPassport() {
   if (S.screen === 'passport') renderPassport($('main'), true);
-  else if (S.screen === 'results') { const el = $('teaser'); if (el) el.outerHTML = teaserHtml(); bindTeaser(); }
 }
 
 /** Pasportning qisqa xulosalari (natija ekrani va pasport boshida) */
@@ -348,16 +356,6 @@ function passportFacts(P) {
     f.push(t('pp_factHeat', { a: num(early.heatDays), b: num(late.heatDays) }));
   }
   return f;
-}
-
-function teaserHtml() {
-  const f = S.pass ? passportFacts(S.pass) : [];
-  return `<button class="teaser" id="teaser"><h3>${t('passport')}<span>${t('details')} →</span></h3>
-    ${f.length ? `<ul>${f.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : `<p class="muted small">${t('reading')}</p>`}</button>`;
-}
-function bindTeaser() {
-  const b = $('teaser');
-  if (b) b.onclick = () => { S.passFrom = 'results'; go('passport'); };
 }
 
 const monthRange = (a, b) => {
@@ -498,7 +496,7 @@ function render() {
   document.title = t('title');
   $('title').textContent = t('title');
   $('lang').textContent = t('lang');
-  const field = S.screen === 'field';
+  const field = S.screen === 'field' || S.screen === 'nasa';
   $('screen-field').hidden = !field;
   $('main').hidden = field;
   if (field) {

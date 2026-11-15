@@ -9,8 +9,9 @@ try {
   await a.click('#btnDemo'); await a.wait(6500);
   await a.shot(SH + `${pre}-phone-field.png`);
   await a.click('#primary'); await a.wait(800);
-  for (const [q, v] of [['lastCrop', 'onion'], ['water', 'sometimes'], ['salinity', 'low']]) { await a.click(`.opts[data-q="${q}"] .opt[data-v="${v}"]`); await a.wait(250); }
-  await a.eval('window.scrollTo(0,0)'); await a.wait(300); await a.shot(SH + `${pre}-phone-questions.png`);
+  await a.click('.opt[data-v="onion"]'); await a.wait(300); await a.eval('window.scrollTo(0,0)'); await a.shot(SH + `${pre}-phone-questions.png`); await a.click('#primary'); await a.wait(500);
+  await a.click('.opt[data-v="sometimes"]'); await a.wait(250); await a.click('#primary'); await a.wait(500);
+  await a.click('.opt[data-v="low"]'); await a.wait(250);
   await a.click('#primary'); await a.wait(10000); await a.eval('window.scrollTo(0,0)'); await a.wait(300);
   console.log('phone results cards:', await a.eval('[...document.querySelectorAll(".card h3")].map(h => h.textContent).join(" / ")'));
   await a.shot(SH + `${pre}-phone-results.png`);

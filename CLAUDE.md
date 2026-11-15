@@ -81,6 +81,19 @@ connected project in an account not linked to Claude; nothing to do on our side,
 **Submission form:** `docs/SUBMISSION-FORM.md` has every field in form order (summary ≤ 1500 chars, demo/project links,
 details, SI, NASA data rows, other data rows). The user fills the form at spaceappschallenge.org/2026/find-a-team/ulugbek-crew/?tab=project.
 
+## App flow v2 (15 Nov, user: "keraksiz narsalarni o'chirish, sodda, bosqichma-bosqich; Davom etish bosilsin")
+
+`web/` screens now: **field** (pick mode: title + hint + map 60 vh + My location / Example + coordinate; layer bar, time
+slider, legend and readout are hidden via `#screen-field:not(.nasa) .nasa-only`) → **questions** one per screen
+(`QS` table, `S.q` index, progress dots "1 / 3", big 2-column option buttons, primary = "Davom etish" / last = "Natijani
+ko'rish"; Back goes to the previous question or the field) → **loading** → **results** (title + coordinate/NASA line +
+3 cards + `navcard` "Dalani NASA ko'rganidek ko'ring" + "Boshqa ekinlar" + two buttons; chips/climate/rule notes moved to
+the Details sources block; the passport teaser and its eager NDVI loading are gone) → **details** → **nasa** (same
+`#screen-field` with class `nasa`: layers, slider, legend, readout, passport button; NDVI auto-activated on first open;
+Back → `S.nasaFrom`). Passport opens from the nasa screen (`S.passFrom = 'nasa'`). Bot: /start (and any text) = one
+message with a persistent reply keyboard [web_app "🌱 Dalani tekshirish", request_location]; a location → inline
+"Shu dalani tekshirish". Deck screenshot scripts (`shots-dark.js`) click Continue between questions.
+
 ## Brand (14 Nov, user decision)
 
 Product name **Neyra** (was "Field Shift UZ"; the challenge name stays in the kicker). Logo (15 Nov): striped

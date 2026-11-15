@@ -7,16 +7,14 @@ if (!TOKEN) { console.error('TELEGRAM_BOT_TOKEN is missing - copy .env.example t
 
 const T = {
   uz: {
-    start: 'Neyra — ekishdan oldin ko‘ring.\n\nDalangizni xaritada ko‘rsating, uchta savolga javob bering — NASA ma’lumoti bilan uchta ekin varianti: suv, pishib ulgurish, tuproq, bozor.\n\nTugmani bosing yoki 📍 joylashuvingizni yuboring — dala xaritada tayyor ochiladi.',
-    open: 'Dalani tekshirish', loc: '📍 Joylashuvimni yuborish',
-    got: (la, lo) => `Dala: ${la.toFixed(4)}° N, ${lo.toFixed(4)}° E\nShu nuqta uchun uchta variantni ko‘ring:`,
-    openHere: 'Shu dalani tekshirish', help: 'Buyruqlar: /start — boshlash. Joylashuv yuborsangiz, ilova shu dalada ochiladi.',
+    start: 'Neyra — ekishdan oldin ko‘ring.\n\nDalangizni ko‘rsating, uchta savolga javob bering — NASA ma’lumoti bilan uchta ekin varianti.',
+    open: '🌱 Dalani tekshirish', loc: '📍 Joylashuvimni yuborish',
+    got: (la, lo) => `Dala: ${la.toFixed(4)}° N, ${lo.toFixed(4)}° E`, openHere: 'Shu dalani tekshirish',
   },
   en: {
-    start: 'Neyra — see before you sow.\n\nShow your field on the map and answer three questions — three crop options from NASA data: water, ripening, soil, market.\n\nTap the button or send your 📍 location — the app opens at that field.',
-    open: 'Check my field', loc: '📍 Send my location',
-    got: (la, lo) => `Field: ${la.toFixed(4)}° N, ${lo.toFixed(4)}° E\nSee three options for this point:`,
-    openHere: 'Check this field', help: 'Commands: /start — begin. Send a location and the app opens at that field.',
+    start: 'Neyra — see before you sow.\n\nShow your field, answer three questions — three crop options from NASA data.',
+    open: '🌱 Check my field', loc: '📍 Send my location',
+    got: (la, lo) => `Field: ${la.toFixed(4)}° N, ${lo.toFixed(4)}° E`, openHere: 'Check this field',
   },
 };
 const L = (msg) => (String(msg.from?.language_code || '').startsWith('en') ? T.en : T.uz);
@@ -28,7 +26,8 @@ async function api(method, body) {
   return j.result;
 }
 const openBtn = (text, url) => ({ inline_keyboard: [[{ text, web_app: { url } }]] });
-const locKb = (text) => ({ keyboard: [[{ text, request_location: true }]], resize_keyboard: true, one_time_keyboard: true });
+// Bitta doimiy klaviatura: ilovani ochish (web_app tugmasi) va joylashuv yuborish
+const mainKb = (l) => ({ keyboard: [[{ text: l.open, web_app: { url: APP } }], [{ text: l.loc, request_location: true }]], resize_keyboard: true, is_persistent: true });
 
 async function onMessage(m) {
   const l = L(m), chat = m.chat.id;
@@ -37,17 +36,12 @@ async function onMessage(m) {
     const url = `${APP}?lat=${la.toFixed(5)}&lon=${lo.toFixed(5)}`;
     return api('sendMessage', { chat_id: chat, text: l.got(la, lo), reply_markup: openBtn(l.openHere, url) });
   }
-  const text = (m.text || '').trim();
-  if (text.startsWith('/start') || text.startsWith('/help')) {
-    await api('sendMessage', { chat_id: chat, text: l.start, reply_markup: openBtn(l.open, APP) });
-    return api('sendMessage', { chat_id: chat, text: l.help, reply_markup: locKb(l.loc) });
-  }
-  if (text) return api('sendMessage', { chat_id: chat, text: l.help, reply_markup: openBtn(l.open, APP) });
+  return api('sendMessage', { chat_id: chat, text: l.start, reply_markup: mainKb(l) }); // /start, /help va har qanday matn - bitta xabar
 }
 
 async function setup() {
   const me = await api('getMe');
-  await api('setMyCommands', { commands: [{ command: 'start', description: 'Neyra — ekishdan oldin ko‘ring / see before you sow' }, { command: 'help', description: 'Yordam / help' }] });
+  await api('setMyCommands', { commands: [{ command: 'start', description: 'Neyra — ekishdan oldin ko‘ring / see before you sow' }] });
   await api('setChatMenuButton', { menu_button: { type: 'web_app', text: 'Dalani tekshirish', web_app: { url: APP } } });
   console.log(`@${me.username} ready · Mini App: ${APP}`);
 }
