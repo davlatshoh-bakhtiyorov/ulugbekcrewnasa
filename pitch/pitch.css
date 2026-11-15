@@ -108,9 +108,9 @@ p { margin: 0; }
 .s5-head { display: flex; align-items: baseline; gap: 1.2vw; flex-wrap: wrap; }
 .s5-head .eyebrow { margin: 0; }
 .s5-head h2 { font-size: 2.2em; margin: 0; }
-.nasa42 { margin-left: auto; display: flex; align-items: baseline; gap: .45em; max-width: 24em; line-height: 1.15; }
-.nasa42 b { font-size: 2.6em; font-weight: 800; color: var(--acc); letter-spacing: -.04em; }
-.nasa42 span { font-size: 1em; font-weight: 700; color: #fff; }
+.nasa42 { margin-left: auto; display: flex; align-items: baseline; gap: .45em; max-width: 26em; line-height: 1.15; padding: .15em 1.1em .15em .7em; border-radius: 999px; background: rgb(76 194 122 / .12); border: 1px solid rgb(76 194 122 / .4); }
+.nasa42 b { font-size: 2.6em; font-weight: 900; color: var(--acc); letter-spacing: -.04em; }
+.nasa42 span { font-size: 1.1em; font-weight: 800; color: #fff; }
 .demo-stage { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 3vw; margin-top: .5vh; }
 .phone-wrap { position: relative; align-self: stretch; display: flex; align-items: center; justify-content: center; min-height: 0; }
 /* iPhone 17 Pro ko'rinishi: 402x874 ekran, titan ramka, Dynamic Island, yon tugmalar */
@@ -145,6 +145,46 @@ button.ghost { margin: 0; background: transparent; color: var(--muted); border: 
 button.ghost:hover { color: var(--text); border-color: var(--text); }
 @media (max-aspect-ratio: 4/3) { .demo-stage { grid-template-columns: 1fr; } .lights.side { display: none; } }
 
+/* 6-8, 11: mahsulot ekranlari (uch qadam, to'rt chiroq, arxitektura, ta'sir) */
+.foot-line { margin-top: 2.4vh; font-size: 1.15em; font-weight: 600; color: var(--muted); }
+.foot-line.shield { display: flex; align-items: center; gap: .6em; }
+.foot-line.shield svg { width: 1.5em; height: 1.5em; flex: none; fill: none; stroke: var(--acc); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5vw; min-height: 0; }
+.step { display: flex; flex-direction: column; min-height: 0; }
+.step .n { display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; border-radius: 50%; background: var(--acc); color: var(--bg); font-weight: 800; font-size: 1.1em; margin-bottom: .5em; }
+.step h3 { font-size: 1.6em; }
+.step p { font-size: 1em; color: var(--muted); margin: .3em 0 1.4vh; min-height: 2.6em; }
+.step .shotbox { flex: 1; min-height: 0; overflow: hidden; display: flex; justify-content: center; align-items: flex-start; padding: 0 .4em; -webkit-mask-image: linear-gradient(#000 72%, transparent); mask-image: linear-gradient(#000 72%, transparent); }
+.step img { width: 100%; max-width: 22vw; height: auto; border-radius: 1.8em; border: 5px solid #1f2622; box-shadow: 0 30px 70px rgb(0 0 0 / .6); background: #fff; }
+.lq { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4vw; min-height: 0; }
+.lq .card { --c: var(--acc); padding: 1.8em 1.5em; display: flex; flex-direction: column; border-top: .4em solid var(--c); }
+.lq i { width: 1.7em; height: 1.7em; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 .45em rgb(255 255 255 / .06); margin-bottom: 1em; }
+.lq h3 { font-size: 1.6em; margin-bottom: .5em; }
+.lq .q { font-size: 1.55em; font-weight: 700; color: #fff; line-height: 1.25; flex: 1; }
+.lq .src { font-size: .85em; color: var(--muted); margin-top: 1.2em; line-height: 1.35; }
+.lq .src b { display: block; font-size: .78em; letter-spacing: .12em; text-transform: uppercase; color: var(--acc); margin-bottom: .2em; }
+.arch { display: grid; grid-template-columns: 1fr auto 1.08fr auto 1fr; gap: 1vw; align-items: stretch; min-height: 0; }
+.s10 h2 { font-size: 2.9em; }
+.acol { padding: 1.5em 1.5em 1.2em; display: flex; flex-direction: column; gap: 1.1em; min-height: 0; }
+.acol.mid { border-color: rgb(76 194 122 / .55); background: linear-gradient(180deg, rgb(76 194 122 / .12), var(--card) 60%); }
+.acol h3 { font-size: 1.45em; color: var(--acc); margin-bottom: .2em; }
+.acol .it { display: grid; grid-template-columns: 2.5em 1fr; gap: .9em; align-items: start; }
+.acol .it svg { width: 2.5em; height: 2.5em; padding: .5em; border-radius: .75em; background: rgb(76 194 122 / .12); fill: none; stroke: var(--acc); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.acol .it b { display: block; font-size: 1.12em; color: #fff; line-height: 1.2; }
+.acol .it span { font-size: .88em; color: var(--muted); line-height: 1.3; }
+.aarrow { display: flex; align-items: center; width: 3.2vw; }
+.aarrow svg { width: 100%; height: auto; overflow: visible; fill: none; stroke: var(--acc); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.aarrow .flow { stroke-dasharray: 6 7; animation: flow 1.2s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -13; } }
+.imp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2vw; margin-top: 3vh; }
+.imp .card { padding: 2.2em 2em 2.6em; }
+.imp h3 { font-size: 2.2em; color: var(--acc); }
+.imp p { font-size: 1.5em; color: #fff; margin-top: .6em; line-height: 1.3; }
+.nextrow { margin-top: auto; display: flex; align-items: center; gap: .8vw; flex-wrap: wrap; }
+.nextrow b { font-size: .8em; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); margin-right: .6em; }
+.nextrow span { border: 1px solid var(--line); border-radius: 999px; padding: .5em 1.1em; font-size: 1em; color: var(--text); background: var(--card); }
+@media (max-aspect-ratio: 4/3) { .steps, .lq, .imp { grid-template-columns: 1fr 1fr; } .arch { grid-template-columns: 1fr; } .aarrow { display: none; } }
+
 /* 7 */
 .panels { display: grid; grid-template-columns: 1.1fr 1.1fr .9fr; gap: 1.3vw; min-height: 0; }
 .panel { padding: 1.2em; display: flex; flex-direction: column; min-height: 0; background: var(--card); border: 1px solid var(--line); border-radius: 1.2em; }
@@ -154,7 +194,7 @@ button.ghost:hover { color: var(--text); border-color: var(--text); }
 .panel img.fill { flex: 1; min-height: 0; object-fit: cover; object-position: top; }
 .panel img.short { max-height: 42%; }
 .panel img.wide { border: 1px solid var(--line); background: #0e1210; }
-.big3 b { font-size: 3em; font-weight: 800; letter-spacing: -.03em; color: var(--acc); line-height: 1.05; }
+.big3 b { white-space: nowrap; font-size: 2.7em; font-weight: 800; letter-spacing: -.03em; color: var(--acc); line-height: 1.05; }
 .big3 span { font-size: 1em; color: var(--muted); font-weight: 600; margin-left: .4em; }
 
 /* 8 */

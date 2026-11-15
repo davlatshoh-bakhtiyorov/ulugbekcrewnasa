@@ -81,6 +81,17 @@ connected project in an account not linked to Claude; nothing to do on our side,
 **Submission form:** `docs/SUBMISSION-FORM.md` has every field in form order (summary ≤ 1500 chars, demo/project links,
 details, SI, NASA data rows, other data rows). The user fills the form at spaceappschallenge.org/2026/find-a-team/ulugbek-crew/?tab=project.
 
+**Pitch v3 (15 Nov, user: "product focused", "keraksiz raqamlar kerak emas, hakamlar engineerlar emas", "chiroyli va tushunarli
+arxitektura"):** 12 screens: 1 title · 2 orbit→field · 3 press wall · 4 numbers · 5 why · **6 three steps** (light app screenshots
+`assets/{lang}-step{1,2,3}.jpg`, 390×844 @2x, cropped with a fade) · **7 four lights** (one plain question per light + "From: …" source
+line, no numbers except "42 years") · **8 how it works** (three columns NASA sees → Neyra counts → the farmer decides, inline stroke
+icons `ICON` in pitch.js, animated dashed arrows; foot: "No server, no account — the phone talks to NASA directly. Open source.") ·
+9 live demo (phone; the "42 · years of NASA weather" statement is a bold green pill in the head) · 10 proof (captions simplified:
+no "767 field-years / +0.5 day") · **11 impact + next** (farmer / market / country cards + next-step chips; the `next` string left
+the team screen) · 12 team. `go()`: app iframe preloads from screen 7, `fitPhone` at 8, `animateProof` at 9 (0-based). The PDF/PPTX
+decks stay at 7 slides (submission rule) and only picked up the simplified proof captions. Idea parked by the user: a very short
+emotional video of the dumped harvests at the start of the pitch ("hozircha plan, keyin ko'ramiz").
+
 ## App flow v2 (15 Nov, user: "keraksiz narsalarni o'chirish, sodda, bosqichma-bosqich; Davom etish bosilsin")
 
 `web/` screens now: **field** (pick mode: title + hint + map 60 vh + My location / Example + coordinate; layer bar, time

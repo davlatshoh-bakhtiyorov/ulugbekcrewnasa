@@ -1,5 +1,5 @@
-// Neyra jonli taqdimot (sayt ichida, /pitch/). 8 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab ->
-// jonli demo (ilova iframe ichida) -> dalil -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
+// Neyra jonli taqdimot (sayt ichida, /pitch/). 12 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
+// to'rt chiroq -> arxitektura -> jonli demo (ilova iframe ichida) -> dalil -> ta'sir -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
 // Matnlar: strings.js (uz/en, decklar bilan bir xil). Yer teksturasi: NASA Blue Marble (GIBS). Dala: EOX + NASA MODIS NDVI.
 import { L as STR, TEAM, LINKS } from './strings.js';
 import { layerByKey, tileTemplate } from '../core/gibs.js';
@@ -9,7 +9,7 @@ const REGION = { lat: 37.8, lon: 67.5 };
 const EOX = 'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg';
 const EOX_ATTR = '<a href="https://s2maps.eu" target="_blank" rel="noopener">Sentinel-2 cloudless 2020</a> by EOX';
 const GIBS_ATTR = 'NASA <a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener">GIBS</a> / EOSDIS';
-const N = 8;
+const N = 12;
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -34,6 +34,12 @@ function applyText() {
   const LC = ['#4cc27a', '#4cc27a', '#e3a008', '#d64545'];
   const light = (i) => `<li class="in" style="--i:${i + 1}"><i style="background:${LC[i]}"></i><span>${esc(T().lights[i])}${T().lightsSub?.[i] ? `<small>${esc(T().lightsSub[i])}</small>` : ''}</span></li>`;
   $('lightsL').innerHTML = [0, 1].map(light).join(''); $('lightsR').innerHTML = [2, 3].map(light).join('');
+  $('steps').innerHTML = T().steps.map(([t, sub], i) => `<div class="step in" style="--i:${i + 1}"><span class="n">${i + 1}</span><h3>${esc(t)}</h3><p>${esc(sub)}</p><div class="shotbox"><img src="assets/${lang}-step${i + 1}.jpg" alt=""></div></div>`).join('');
+  $('lq').innerHTML = T().lightQ.map(([t, q, src], i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><i></i><h3>${esc(t)}</h3><p class="q">${esc(q)}</p><p class="src"><b>${esc(T().srcLabel)}</b>${esc(src)}</p></div>`).join('');
+  const arrow = '<div class="aarrow in" style="--i:2"><svg viewBox="0 0 60 24"><path class="flow" d="M2 12H48"/><path d="M44 5l8 7-8 7"/></svg></div>';
+  $('arch').innerHTML = T().arch.map((c, i) => `<div class="acol card in${i === 1 ? ' mid' : ''}" style="--i:${i + 1}"><h3>${esc(c.t)}</h3>${c.items.map(([ic, b, sub]) => `<div class="it">${ICON[ic] ?? ''}<div><b>${esc(b)}</b><span>${esc(sub)}</span></div></div>`).join('')}</div>`).join(arrow);
+  $('imp').innerHTML = T().impact.map(([t, p], i) => `<div class="card in" style="--i:${i + 1}"><h3>${esc(t)}</h3><p>${esc(p)}</p></div>`).join('');
+  $('nextrow').innerHTML = `<b>${esc(T().next_t)}</b>` + T().nextItems.map((n) => `<span>${esc(n)}</span>`).join('');
   $('team').innerHTML = TEAM.map((m, i) => `<figure class="in" style="--i:${i}"><img src="assets/team-${m.photo.replace('team/', '').replace('.jpg', '')}.jpg" alt=""><figcaption>${esc(m.name)}</figcaption></figure>`).join('');
   $('qrs').innerHTML = ['bot', 'site', 'repo'].map((k, i) => `<figure class="in" style="--i:${i + 3}"><a href="${LINKS[k]}" target="_blank" rel="noopener"><img src="assets/qr-${k}.png" alt=""></a>${esc(T().qr[i])}</figure>`).join('');
   renderLoop();
@@ -41,6 +47,20 @@ function applyText() {
   const app = $('app');
   if (app.dataset.loaded) loadApp(true);
 }
+
+// arxitektura ekrani uchun oddiy chiziqli ikonkalar (24x24, stroke)
+const ICON = {
+  sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>',
+  leaf: '<svg viewBox="0 0 24 24"><path d="M3 21c0-9 5-15 18-16-1 11-6 16-15 16"/><path d="M3 21c3-6 7-10 12-13"/></svg>',
+  drop: '<svg viewBox="0 0 24 24"><path d="M12 2.7l5.7 5.7a8 8 0 1 1-11.4 0z"/></svg>',
+  wave: '<svg viewBox="0 0 24 24"><path d="M2 8c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 3.5-2 5 0M2 13c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 3.5-2 5 0M2 18c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 3.5-2 5 0"/></svg>',
+  ruler: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M7 3v4M11 3v3M15 3v4M3 9h18M8 14h8M8 17.5h5"/></svg>',
+  loop: '<svg viewBox="0 0 24 24"><path d="M21 4v6h-6"/><path d="M3 20v-6h6"/><path d="M20.5 15a9 9 0 0 1-15.4 3.4L3 14M3.5 9a9 9 0 0 1 15.4-3.4L21 10"/></svg>',
+  sat: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19.1 4.9a10 10 0 0 1 0 14.2M4.9 19.1a10 10 0 0 1 0-14.2"/></svg>',
+  chat: '<svg viewBox="0 0 24 24"><path d="M21 14.5a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  light: '<svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="3"/><circle cx="12" cy="6.5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="17.5" r="1.8"/></svg>',
+  search: '<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7"/><path d="M21 21l-5.2-5.2"/></svg>',
+};
 
 // ---------------- piyoz aylanasi (SVG) ----------------
 const wrap2 = (str, max = 15) => {
@@ -230,9 +250,9 @@ function go(i, { replay = false } = {}) {
   if (i === 1) runFly();
   if (i === 3) animateNumbers();
   if (i === 4) renderLoop();
-  if (i >= 4) loadApp();
-  if (i === 5) fitPhone();
-  if (i === 6) animateProof();
+  if (i >= 6) loadApp(); // demo 9-ekranda; ilova oldindan yuklanadi
+  if (i === 8) fitPhone();
+  if (i === 9) animateProof();
 }
 function onKey(e) {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
@@ -246,7 +266,7 @@ function onKey(e) {
   else if (k === 'r' || k === 'R') go(cur, { replay: true });
 }
 function toggleFull() { if (document.fullscreenElement) document.exitFullscreen?.(); else document.documentElement.requestFullscreen?.(); }
-function toggleLang() { lang = lang === 'en' ? 'uz' : 'en'; store.set('fs-site-lang', lang); applyText(); if (cur === 3) animateNumbers(); if (cur === 6) animateProof(); }
+function toggleLang() { lang = lang === 'en' ? 'uz' : 'en'; store.set('fs-site-lang', lang); applyText(); if (cur === 3) animateNumbers(); if (cur === 9) animateProof(); }
 
 addEventListener('keydown', onKey);
 $('langBtn').onclick = toggleLang; $('full').onclick = toggleFull;
