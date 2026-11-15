@@ -40,7 +40,7 @@ ul.l li::before { content: ''; position: absolute; left: 0; top: 13px; width: 14
 .src { font-size: 18px; color: #7f8a82; }
 /* 1 */
 .title { display: grid; grid-template-columns: 1fr 1.25fr; align-items: center; height: 100%; gap: 60px; padding-bottom: 60px; }
-.title .mark { width: 440px; filter: drop-shadow(0 30px 60px rgb(76 194 122 / .25)); }
+.title .mark { width: 440px; }
 .title .name { font-size: 150px; font-weight: 800; letter-spacing: -.04em; line-height: 1; margin: 0 0 8px; color: #fff; }
 .title .tag { font-size: 64px; font-weight: 700; letter-spacing: -.02em; margin: 0 0 22px; color: #4cc27a; }
 .title .sub { font-size: 32px; color: #a7b0a9; margin: 0; }
@@ -49,7 +49,7 @@ ul.l li::before { content: ''; position: absolute; left: 0; top: 13px; width: 14
 /* 2 press wall */
 .wall { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 22px; height: 690px; margin-top: 6px; }
 .tile { position: relative; border-radius: 20px; overflow: hidden; background: #141a16; }
-.tile img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.9); }
+.tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .tile .ov { position: absolute; left: 0; right: 0; bottom: 0; padding: 70px 22px 18px; background: linear-gradient(transparent, rgb(0 0 0 / .85)); }
 .tile .ov b { display: block; font-size: 24px; line-height: 1.25; color: #fff; } .tile .ov span { font-size: 17px; color: #c3cbc5; }
 .tile.quote { display: grid; place-items: center; padding: 40px; text-align: center; background: #0f7f45; }
