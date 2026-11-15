@@ -1,7 +1,7 @@
-// Neyra jonli taqdimot (sayt ichida, /pitch/). 11 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
-// to'rt chiroq -> arxitektura -> jonli demo (ilova iframe ichida) -> formulalar -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
+// Neyra jonli taqdimot (sayt ichida, /pitch/). 10 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
+// arxitektura -> jonli demo (ilova iframe ichida) -> formulalar -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
 // Matnlar: strings.js (uz/en, decklar bilan bir xil). Yer teksturasi: NASA Blue Marble (GIBS). Dala: EOX + NASA MODIS NDVI.
-import { L as STR, TEAM, LINKS } from './strings.js?v=202611151650';
+import { L as STR, TEAM, LINKS } from './strings.js?v=202611151709';
 import { layerByKey, tileTemplate } from '../core/gibs.js';
 
 const FIELD = { lat: 37.5021, lon: 67.3888 };
@@ -9,7 +9,7 @@ const REGION = { lat: 37.8, lon: 67.5 };
 const EOX = 'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg';
 const EOX_ATTR = '<a href="https://s2maps.eu" target="_blank" rel="noopener">Sentinel-2 cloudless 2020</a> by EOX';
 const GIBS_ATTR = 'NASA <a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener">GIBS</a> / EOSDIS';
-const N = 11;
+const N = 10;
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -44,9 +44,6 @@ function applyText() {
   });
   safe(() => {
     $('steps').innerHTML = T().steps.map(([t, sub], i) => `<div class="step in" style="--i:${i + 1}"><span class="n">${i + 1}</span><h3>${esc(t)}</h3><p>${esc(sub)}</p><div class="shotbox"><img src="assets/${lang}-step${i + 1}.jpg" alt=""></div></div>`).join('');
-  });
-  safe(() => {
-    $('lq').innerHTML = T().lightQ.map(([t, q, src], i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><i></i><h3>${esc(t)}</h3><p class="q">${esc(q)}</p><p class="src"><b>${esc(T().srcLabel)}</b>${esc(src)}</p></div>`).join('');
   });
   const arrow = '<div class="aarrow in" style="--i:2"><svg viewBox="0 0 60 24"><path class="flow" d="M2 12H48"/><path d="M44 5l8 7-8 7"/></svg></div>';
   safe(() => {
@@ -282,8 +279,8 @@ function go(i, { replay = false } = {}) {
   if (i === 1) runFly();
   if (i === 3) animateNumbers();
   if (i === 4) renderLoop();
-  if (i >= 6) loadApp(); // demo 9-ekranda; ilova oldindan yuklanadi
-  if (i === 8) fitPhone();
+  if (i >= 5) loadApp(); // demo 8-ekranda; ilova oldindan yuklanadi
+  if (i === 7) fitPhone();
 }
 function onKey(e) {
   if (e.metaKey || e.ctrlKey || e.altKey) return;

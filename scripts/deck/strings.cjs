@@ -32,10 +32,7 @@ const L = {
     e_what: 'The product', h_what: 'Three steps. Two minutes. Inside Telegram.',
     steps: [['Show your field', 'Tap the map or share your location'], ['Three questions', 'Last crop · water · salinity — buttons, no typing'], ['Three options', 'Each with four lights and one plain sentence']],
     what_foot: 'Nothing to install, nothing to learn. Works on any phone with Telegram.',
-    e_lights: 'What the farmer gets', h_lights: 'Four lights. Four plain questions.', srcLabel: 'From',
-    lightQ: [['Water', 'Will this crop have enough water in a dry year?', 'NASA POWER weather at the field, 42 years'], ['Ripens in time', 'Will it ripen before the autumn frost?', 'NASA POWER heat sums, checked against MODIS harvest dates'], ['Soil', 'Does it suit last year’s crop and the salt in the soil?', 'FAO crop tables + the farmer’s answers'], ['Market & waste', 'Could it spoil in the harvest weeks?', 'NASA POWER rain and heat at harvest time']],
-    lights_foot: 'Green, yellow, red — and one sentence why. The farmer decides.',
-    e_f: 'The formulas', h_f: 'Four lights. Four formulas.',
+    e_f: 'The formulas', h_f: 'Four formulas.',
     fx: [
       { name: 'Water', f: 'Water need = Σ ( K<sub>c</sub> · ET<sub>0</sub> − P<sub>eff</sub> )', note: 'ET<sub>0</sub> — FAO Penman–Monteith, every day from NASA POWER weather. K<sub>c</sub> — crop coefficient, P<sub>eff</sub> — effective rain. Dry year = the 80th percentile of 42 years.', rule: 'Rule: “enough water” — green < 10 000, yellow < 14 000 m³/ha · “sometimes short” 6 000 / 9 000 · “scarce” 4 000 / 6 000.', src: 'FAO-56 Rev.1 Eq. 6, 6.16–6.20 · NASA POWER 1984–2025' },
       { name: 'Ripens in time', f: 'GDD = Σ max( 0, min( T<sub>mean</sub>, 30 ) − T<sub>base</sub> )', note: 'Heat collected day by day (T<sub>mean</sub> = (T<sub>max</sub> + T<sub>min</sub>) / 2). Sum reaches the crop’s table value — ripe; frost (T<sub>min</sub> ≤ 0 °C) comes first — that year failed. Wheat and cotton sums re-tuned to the harvests MODIS saw.', rule: 'Rule: green ≥ 90 % of years ripened · yellow ≥ 70 % · red below.', src: 'FAO-56 Rev.1 Eq. 6.23, Tables 6.10–6.12 · NASA MODIS MCD12Q2' },
@@ -83,10 +80,7 @@ const L = {
     e_what: 'Mahsulot', h_what: 'Uch qadam. Ikki daqiqa. Telegram ichida.',
     steps: [['Dalani ko‘rsating', 'Xaritada bosing yoki joylashuvni yuboring'], ['Uchta savol', 'O‘tgan ekin · suv · sho‘r — tugmalar, yozish shart emas'], ['Uchta variant', 'Har birida to‘rtta chiroq va bitta sodda gap']],
     what_foot: 'O‘rnatish shart emas, o‘rganish shart emas. Telegram bor har telefonda ishlaydi.',
-    e_lights: 'Dehqon nimani oladi', h_lights: 'To‘rtta chiroq. To‘rtta sodda savol.', srcLabel: 'Manba',
-    lightQ: [['Suv', 'Quruq yilda bu ekinga suv yetadimi?', 'Daladagi NASA POWER ob-havosi, 42 yil'], ['Pishib ulgurish', 'Kuzgi sovuqgacha pishib ulguradimi?', 'NASA POWER issiqlik yig‘indisi, MODIS yig‘im sanalari bilan tekshirilgan'], ['Tuproq', 'O‘tgan yilgi ekinga va tuproq sho‘riga mos keladimi?', 'FAO ekin jadvallari + dehqon javoblari'], ['Bozor va isrof', 'Yig‘im haftalarida buzilib qolishi mumkinmi?', 'Yig‘im paytidagi NASA POWER yomg‘ir va issiq']],
-    lights_foot: 'Yashil, sariq, qizil — va bitta gap: nega. Qarorni dehqon qiladi.',
-    e_f: 'Formulalar', h_f: 'To‘rtta chiroq. To‘rtta formula.',
+    e_f: 'Formulalar', h_f: 'To‘rtta formula.',
     fx: [
       { name: 'Suv', f: 'Suv talabi = Σ ( K<sub>c</sub> · ET<sub>0</sub> − P<sub>eff</sub> )', note: 'ET<sub>0</sub> — FAO Penman–Monteith, NASA POWER ob-havosidan har kun. K<sub>c</sub> — ekin koeffitsiyenti, P<sub>eff</sub> — samarali yog‘in. Quruq yil = 42 yilning 80-persentili.', rule: 'Qoida: «suv yetarli» — yashil < 10 000, sariq < 14 000 m³/ga · «ba’zan yetmaydi» 6 000 / 9 000 · «kam» 4 000 / 6 000.', src: 'FAO-56 Rev.1 Eq. 6, 6.16–6.20 · NASA POWER 1984–2025' },
       { name: 'Pishib ulgurish', f: 'GDD = Σ max( 0, min( T<sub>o‘rt</sub>, 30 ) − T<sub>baza</sub> )', note: 'Har kuni to‘plangan issiqlik (T<sub>o‘rt</sub> = (T<sub>max</sub> + T<sub>min</sub>) / 2). Yig‘indi jadvaldagi qiymatga yetdi — pishdi; undan oldin sovuq (T<sub>min</sub> ≤ 0 °C) keldi — ulgurmadi. Bug‘doy va paxta yig‘indisi MODIS ko‘rgan yig‘imlarga sozlangan.', rule: 'Qoida: yashil — yillarning ≥ 90 % ida pishgan · sariq ≥ 70 % · qizil — kamroq.', src: 'FAO-56 Rev.1 Eq. 6.23, 6.10–6.12-jadvallar · NASA MODIS MCD12Q2' },
