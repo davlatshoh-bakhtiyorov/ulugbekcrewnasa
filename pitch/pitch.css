@@ -33,7 +33,7 @@ p { margin: 0; }
 .hero-txt .tag { font-size: 2.6em; font-weight: 700; color: var(--acc); letter-spacing: -.02em; margin: .5vh 0 1vh; }
 .hero-txt .sub { font-size: 1.25em; color: var(--muted); }
 .hero-txt .meta { margin-top: 3vh; font-size: .9em; color: var(--muted); line-height: 1.6; } .hero-txt .meta b { color: var(--text); }
-.hero-txt .hint { margin-top: 2vh; font-size: .75em; color: var(--dim); }
+.hero-txt .hint { margin-top: 4vh; font-size: .75em; color: var(--dim); }
 
 .scroll-cue { position: absolute; left: 50%; bottom: 5vh; width: 1.6em; height: 2.6em; margin-left: -.8em; border: 2px solid rgb(255 255 255 / .35); border-radius: 1em; }
 .scroll-cue i { position: absolute; left: 50%; top: .4em; width: .3em; height: .55em; margin-left: -.15em; border-radius: .2em; background: var(--acc); animation: cue 1.6s ease-in-out infinite; }

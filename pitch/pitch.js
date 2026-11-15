@@ -27,7 +27,6 @@ function applyText() {
   document.querySelectorAll('[data-t]').forEach((n) => { n.textContent = T()[n.dataset.t] ?? ''; });
   const h4 = document.querySelector('.s4 h2[data-t="h4"]'); if (h4) h4.innerHTML = esc(T().h4).replace('. ', '.<br>'); // ikki gap - ikki qator
   document.querySelectorAll('[data-img]').forEach((img) => { const src = img.dataset.img.replace('{lang}', lang); if (img.getAttribute('src') !== src) img.src = src; });
-  $('names').textContent = TEAM.map((m) => m.name).join(' · ');
   $('langBtn').textContent = lang === 'en' ? 'UZ' : 'EN';
   $('wall').innerHTML = T().covers.map(([k, cap, src, z], i) => `<div class="tile" style="--i:${i}"><img src="assets/press-${k}.jpg" alt="" style="${z ? `transform-origin:center 30%;--z:${z}` : ''}"><div class="ov"><b>${esc(cap)}</b><span>${esc(src)}</span></div></div>`).join('')
     + `<div class="tile quote" style="--i:4"><div><p>${esc(T().quote)}${T().quote2 ? `<span>${esc(T().quote2)}</span>` : ''}</p><small>${esc(T().quoteBy)}</small></div></div>`;
