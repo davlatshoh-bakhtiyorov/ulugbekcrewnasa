@@ -33,7 +33,10 @@ Og'abek Raxmonjonov (`~/Downloads/photo_2026-11-15 10.48.22.jpeg`, cropped to th
 `docs/demo/Neyra-pitch-en.pdf` (HTML → Chrome) and `docs/demo/Neyra-pitch.pptx` (pptxgenjs, `build-pptx.cjs`,
 validated; ZIP folder entries removed for cloud import). Google Drive upload via the connector failed:
 "not enough Drive storage quota" on the connected Google account — the user imports the PPTX into Google Slides
-themselves (File → Import) or frees space and we upload + share "anyone with link". This deck is the submission demo
+themselves (File → Import) or frees space and we upload + share "anyone with link". **Uzbek version (15 Nov, user request):** `docs/demo/Neyra-pitch-uz.pdf` + `Neyra-pitch-uz.pptx`, same layout; all strings live
+in `scripts/deck/strings.mjs` (and `strings.cjs`, a sed copy for the CommonJS PPTX builder — regenerate both together);
+Uzbek screenshots `shots/dark-uz-*` from `node shots-dark.js uz`. The stage script `nutq-uz.md` now follows the pitch-deck
+order (live demo at slide 6). This deck is the submission demo
 link and the stage deck. Prices are shown in **UZS first** (user: "sent o'rniga UZS da yoz"): 1 500 UZS/kg with "≈ 12 US
 cents" only as a small parenthetical — same on the site's facts tile and in SUBMISSION.md.
 

@@ -1,6 +1,6 @@
 # Neyra — sahna nutqi (5 daqiqa, o‘zbekcha)
 
-Format: 7 slayd (`Neyra-uz.pdf`), 4-slaydda sherik admin kompyuterdan jonli saytni ko‘rsatadi.
+Format: 7 slayd — **`Neyra-pitch-uz.pdf`** (qorong‘i pitch-deck; `Neyra-pitch-uz.pptx` tahrirlanadigan nusxa). Slaydlar tartibi: 1 sarlavha · 2 muammo (matbuot muqovalari) · 3 har yili (5–7 mln t) · 4 nega · 5 mahsulot · 6 dalil (**shu yerda sherik jonli saytni ko‘rsatadi**) · 7 jamoa. Quyidagi nutq shu tartibga mos; «jonli demo» bo‘limi 6-slaydga to‘g‘ri keladi.
 Tayyorgarlik: saytni oldindan ochib, «Xarita» bo‘limida bir marta «Namuna: Jarqo‘rg‘on dalasi»ni bosib qo‘ying (tayllar keshga tushadi). Zaxira: `docs/demo/` dagi ekran yozuvi.
 
 ## 1 — Sarlavha (0:00–0:20)

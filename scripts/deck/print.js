@@ -1,9 +1,9 @@
-import { launch, newTab } from '../headless.js';
+import { launch, newTab } from './headless.js';
 import { writeFile } from 'node:fs/promises';
 const here = new URL('./', import.meta.url).pathname;
 const chrome = await launch();
 try {
-  const decks = process.argv[2] === 'pitch' ? ['pitch-en'] : ['en', 'uz'];
+  const decks = process.argv[2] === 'pitch' ? ['pitch-en', 'pitch-uz'] : ['en', 'uz'];
   for (const lang of decks) {
     const t = await newTab(); await t.viewport(1920, 1080, false, 1); await t.dark(false);
     await t.goto(`file://${here}deck-${lang}.html`); await t.wait(1500);
