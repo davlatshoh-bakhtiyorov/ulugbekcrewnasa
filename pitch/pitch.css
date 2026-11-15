@@ -116,13 +116,12 @@ p { margin: 0; }
 .phone iframe { width: 100%; height: calc(100% - 54px); margin-top: 54px; border: 0; display: block; background: #fff; }
 .phone .island { position: absolute; left: 50%; top: 11px; width: 124px; height: 36px; margin-left: -62px; border-radius: 20px; background: #000; z-index: 3; pointer-events: none; }
 .phone .island::after { content: ''; position: absolute; right: 12px; top: 11px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #1d2a3a, #0a0d12 60%); box-shadow: 0 0 0 1px rgb(255 255 255 / .06); }
-.phone .statusbar { position: absolute; left: 0; right: 0; top: 0; height: 54px; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 14px 30px 0; font: 600 17px/1 -apple-system, "SF Pro Text", system-ui, sans-serif; color: #000; background: #fff; pointer-events: none; }
-.phone .status { display: flex; align-items: center; gap: 6px; }
-.phone .sig { width: 18px; height: 11px; background: linear-gradient(to right, #000 0 3px, transparent 3px 5px, #000 5px 8px, transparent 8px 10px, #000 10px 13px, transparent 13px 15px, #000 15px 18px); clip-path: polygon(0 60%, 3px 60%, 3px 100%, 0 100%, 0 60%, 5px 40%, 8px 40%, 8px 100%, 5px 100%, 5px 40%, 10px 20%, 13px 20%, 13px 100%, 10px 100%, 10px 20%, 15px 0, 18px 0, 18px 100%, 15px 100%); }
-.phone .wifi { width: 16px; height: 12px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; border: 2.5px solid #000; border-bottom: 0; box-sizing: border-box; }
-.phone .bat { width: 27px; height: 13px; border: 1.5px solid rgb(0 0 0 / .4); border-radius: 4px; position: relative; }
-.phone .bat::before { content: ''; position: absolute; left: 2px; top: 2px; bottom: 2px; width: 19px; border-radius: 2px; background: #000; }
-.phone .bat::after { content: ''; position: absolute; right: -4px; top: 4px; width: 2px; height: 5px; border-radius: 0 2px 2px 0; background: rgb(0 0 0 / .4); }
+.phone .statusbar { position: absolute; left: 0; right: 0; top: 0; height: 54px; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 16px 28px 0 34px; font: 600 17px/1 -apple-system, "SF Pro Text", system-ui, sans-serif; letter-spacing: -.2px; color: #000; background: #fff; pointer-events: none; }
+.phone .status { display: flex; align-items: center; gap: 7px; }
+.phone .status svg { display: block; fill: currentColor; }
+.phone .sig { width: 19px; height: 12px; }
+.phone .wifi { width: 17px; height: 12px; }
+.phone .bat { width: 28px; height: 13px; }
 .phone .home { position: absolute; left: 50%; bottom: 8px; width: 140px; height: 5px; margin-left: -70px; border-radius: 3px; background: rgb(0 0 0 / .6); z-index: 2; pointer-events: none; }
 .phone .btn-action, .phone .btn-vol, .phone .btn-power, .phone .btn-camera { position: absolute; background: linear-gradient(90deg, #2c3135, #4a5055, #2c3135); border-radius: 2px; }
 .phone .btn-action { left: -3px; top: 150px; width: 3px; height: 34px; }

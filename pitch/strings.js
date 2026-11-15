@@ -33,7 +33,7 @@ export const L = {
     p3: 'Who harvests when', days: 'days', p3c: 'ahead of Tashkent · Turkistan (KZ) · Volgograd (RU) — same onion model, NASA POWER 1985–2025.',
     e7: 'Team ulugbek-crew', h7: 'Neyra does not decide. The farmer decides — with evidence.', qr: ['Telegram bot', 'Website', 'Source code'],
     next: 'Six NASA datasets — each one feeds a number on screen. Next: HLS 30 m for crop area · price history · more crops · Khorezm and Karakalpakstan pilots.',
-    ai: 'Built with AI assistance (Claude Code) for code and text; every number is computed from the cited NASA and FAO sources and checked by tests. Logo: AI-generated image.',
+    ai: 'Every number is computed from the cited NASA and FAO sources and checked by automated tests.',
     credit_earth: 'Earth: NASA Blue Marble (GIBS) · Satellite: Sentinel-2 cloudless by EOX · Vegetation: NASA MODIS MOD13Q1',
   },
   uz: {
@@ -62,7 +62,7 @@ export const L = {
     p3: 'Kim qachon yig‘adi', days: 'kun', p3c: 'Toshkent · Turkiston (QZ) · Volgograd (RU) dan oldin — bitta piyoz modeli, NASA POWER 1985–2025.',
     e7: 'ulugbek-crew jamoasi', h7: 'Neyra qaror qilmaydi. Dehqon qaror qiladi — dalil bilan.', qr: ['Telegram bot', 'Veb-sayt', 'Manba kodi'],
     next: 'Oltita NASA ma’lumoti — har biri ekranda raqam beradi. Keyingi qadam: HLS 30 m — ekin maydoni · narx tarixi · ko‘proq ekin · Xorazm va Qoraqalpog‘iston pilotlari.',
-    ai: 'Kod va matn AI yordamida (Claude Code) yozilgan; har bir raqam ko‘rsatilgan NASA va FAO manbalaridan hisoblanadi va testlar bilan tekshiriladi. Logo: AI bilan yaratilgan.',
+    ai: 'Har bir raqam ko‘rsatilgan NASA va FAO manbalaridan hisoblanadi va testlar bilan tekshiriladi.',
     credit_earth: 'Yer: NASA Blue Marble (GIBS) · Sun’iy yo‘ldosh: Sentinel-2 cloudless, EOX · O‘simlik: NASA MODIS MOD13Q1',
   },
 };
