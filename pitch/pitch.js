@@ -230,8 +230,19 @@ function loadApp(force = false) {
   if (app.dataset.loaded && !force) return;
   app.dataset.loaded = '1';
   app.src = `../web/?lang=${lang}&lat=${FIELD.lat}&lon=${FIELD.lon}&safe=1&v=${Date.now()}`; // demo dala tanlangan holda ochiladi
-  app.onload = () => { try { app.contentWindow.addEventListener('keydown', onKey); } catch { /* boshqa domen emas, lekin ehtiyot */ } };
+  app.onload = () => { try { app.contentWindow.addEventListener('keydown', onKey); } catch { /* boshqa domen emas, lekin ehtiyot */ } syncStatus(); };
 }
+// Telefon status qatori ilovaning haqiqiy fon rangini oladi (och/qorong'i rejim mos tushadi)
+function syncStatus() {
+  const app = $('app'), sb = document.querySelector('.phone .statusbar');
+  try {
+    const bg = getComputedStyle(app.contentDocument.body).backgroundColor, m = bg.match(/\d+(\.\d+)?/g);
+    if (!m || m.length < 3) return;
+    const [r, g, b] = m.map(Number), lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    sb.style.background = bg; sb.style.color = lum < 0.5 ? '#fff' : '#000'; app.style.background = bg;
+  } catch { /* yuklanmagan */ }
+}
+window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener?.('change', syncStatus);
 
 // ---------------- navigatsiya ----------------
 let cur = -1;
