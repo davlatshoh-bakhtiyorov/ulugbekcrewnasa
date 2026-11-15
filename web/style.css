@@ -75,7 +75,10 @@ h2.qh { font-size: 22px; margin: 8px 0 14px; }
 .secondary { background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px; font-weight: 600; }
 .bottom { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, var(--bg) 30%); }
 .in-tg .bottom { display: none; }
-.primary { display: block; width: 100%; max-width: 528px; margin: 0 auto; background: var(--btn); color: var(--btn-text); border: 0; border-radius: 12px; padding: 14px; font-weight: 700; font-size: 16px; }
+.primary { display: block; width: 100%; max-width: 528px; margin: 0 auto; background: var(--btn); color: var(--btn-text); border: 0; border-radius: 999px; padding: 15px 18px; font-weight: 700; font-size: 16px; }
+/* taqdimotdagi telefon ramkasi ichida (?safe=1): pastda iOS home-bar uchun joy */
+.safe .bottom { padding-bottom: 30px; }
+.safe body, .safe { --safe-extra: 20px; }
 .primary:disabled { opacity: .45; cursor: default; }
 
 /* savollar */

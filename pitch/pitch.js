@@ -209,7 +209,7 @@ function loadApp(force = false) {
   const app = $('app');
   if (app.dataset.loaded && !force) return;
   app.dataset.loaded = '1';
-  app.src = `../web/?lang=${lang}&lat=${FIELD.lat}&lon=${FIELD.lon}&v=${Date.now()}`; // demo dala tanlangan holda ochiladi
+  app.src = `../web/?lang=${lang}&lat=${FIELD.lat}&lon=${FIELD.lon}&safe=1&v=${Date.now()}`; // demo dala tanlangan holda ochiladi
   app.onload = () => { try { app.contentWindow.addEventListener('keydown', onKey); } catch { /* boshqa domen emas, lekin ehtiyot */ } };
 }
 
