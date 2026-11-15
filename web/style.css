@@ -89,6 +89,9 @@ h2.qh { font-size: 22px; margin: 8px 0 14px; }
 
 /* yuklanish */
 .loading { text-align: center; padding: 48px 0; }
+.big42 { margin: 0 0 6px; font-size: 18px; font-weight: 700; }
+.big42 b { display: block; font-size: 56px; line-height: 1; font-weight: 800; color: var(--btn); letter-spacing: -.03em; }
+.meta b { color: var(--text); font-weight: 700; }
 .spinner { width: 36px; height: 36px; margin: 0 auto 14px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--btn); animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .error { font-weight: 600; color: var(--crit); }

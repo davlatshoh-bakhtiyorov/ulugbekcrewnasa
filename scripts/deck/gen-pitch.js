@@ -103,7 +103,7 @@ function slides(lang, q) {
   <div class="phones">${['phone-field', 'phone-questions', 'phone-results'].map((f, i) => `<figure><img src="${sh(f)}" alt=""><figcaption>${esc(T.phones[i])}</figcaption></figure>`).join('')}</div>
   <div class="col" style="padding-top:30px">
     <div class="lights">${['#4cc27a', '#4cc27a', '#e3a008', '#d64545'].map((c, i) => `<div class="light"><i style="background:${c}"></i>${esc(T.lights[i])}</div>`).join('')}</div>
-    <p class="cap" style="font-size:24px;margin-top:34px;max-width:22em">${esc(T.prod)}</p>
+    <p class="cap" style="font-size:24px;margin-top:34px;max-width:22em">${esc(T.prod).replace(/(42 (?:yillik|years of) NASA POWER (?:ob-havosi|weather))/, '<b style="color:#fff;font-size:1.15em">$1</b>')}</p>
   </div>
 </div>${foot(5)}</section>`,
 `<section class="slide"><p class="eyebrow">${esc(T.e6)}</p><h1>${esc(T.h6)}</h1>

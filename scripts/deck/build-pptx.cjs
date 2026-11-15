@@ -81,7 +81,8 @@ async function build(lang) {
     X(s, T.phones[i], { x, y: 6.55, w: 2.1, h: 0.3, fontSize: 11, color: C.muted, align: 'center' });
   });
   [C.acc, C.acc, C.warn, C.bad].forEach((c, i) => { const y = 2.2 + i * 0.62; dot(s, 7.9, y + 0.07, c, 0.26); X(s, T.lights[i], { x: 8.3, y, w: 4.5, h: 0.45, fontSize: 20, bold: true }); });
-  X(s, T.prod, { x: 7.9, y: 4.9, w: 4.9, h: 1.3, fontSize: 15, color: C.muted });
+  { const m = T.prod.match(/42 (?:yillik|years of) NASA POWER (?:ob-havosi|weather)/); const i = m ? T.prod.indexOf(m[0]) : -1;
+    X(s, i < 0 ? T.prod : [{ text: T.prod.slice(0, i), options: { color: C.muted } }, { text: m[0], options: { bold: true, color: 'FFFFFF', fontSize: 17 } }, { text: T.prod.slice(i + m[0].length), options: { color: C.muted } }], { x: 7.9, y: 4.9, w: 4.9, h: 1.3, fontSize: 15, color: C.muted }); }
 
   s = pres.addSlide({ masterName: 'DARK', sectionTitle: sec('6') });
   eyebrow(s, T.e6); title(s, T.h6);

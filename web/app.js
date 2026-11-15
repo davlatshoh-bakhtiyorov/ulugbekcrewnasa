@@ -195,7 +195,7 @@ function renderLoading(el) {
     $('retry').onclick = compute;
     setBack(() => { S.q = QS.length - 1; go('questions'); });
   } else {
-    el.innerHTML = `<div class="loading"><div class="spinner" aria-hidden="true"></div><p class="status">${t('loading')}</p></div>`;
+    el.innerHTML = `<div class="loading"><div class="spinner" aria-hidden="true"></div><p class="big42"><b>42</b>${t('years42')}</p><p class="status">${t('loading')}</p></div>`;
     setBack(null);
   }
   setPrimary(null);
@@ -207,7 +207,7 @@ function renderResults(el) {
   const r0 = a.top[0].result;
   el.innerHTML = `
     <h2>${t('step3')}</h2>
-    <p class="meta muted small">${S.lat.toFixed(3)}° N, ${S.lon.toFixed(3)}° E · ${esc(t('nasaChip', { a: r0.period.from.slice(0, 4), b: r0.period.to.slice(0, 4) }))}</p>
+    <p class="meta muted small"><b>${Number(r0.period.to.slice(0, 4)) - Number(r0.period.from.slice(0, 4)) + 1} ${t('yrs')} NASA POWER</b> · ${r0.period.from.slice(0, 4)}–${r0.period.to.slice(0, 4)} · MERRA-2 + CERES · ~0.5° · ${S.lat.toFixed(3)}° N, ${S.lon.toFixed(3)}° E</p>
     ${a.top.map((o, i) => card(o, i + 1)).join('')}
     <button class="navcard" id="openNasa"><b>${t('nasaOpen')}</b><span>${t('nasaOpenSub')}</span><i>→</i></button>
     <button class="link" id="toggleOthers">${S.showOthers ? t('hideOthers') : `${t('others')} (${a.all.length - 3})`}</button>
