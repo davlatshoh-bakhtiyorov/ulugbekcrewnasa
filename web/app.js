@@ -516,7 +516,9 @@ function render() {
 
 function start() {
   initTelegram();
-  setLang(store.get('lang') ?? (telegramLang() === 'en' ? 'en' : 'uz'));
+  const ql = new URLSearchParams(location.search).get('lang'); // ?lang=uz|en (sayt / taqdimotdan ochilganda)
+  setLang(ql === 'en' || ql === 'uz' ? ql : (store.get('lang') ?? (telegramLang() === 'en' ? 'en' : 'uz')));
+  if (ql === 'en' || ql === 'uz') store.set('lang', ql);
   $('lang').onclick = () => {
     setLang(getLang() === 'uz' ? 'en' : 'uz');
     store.set('lang', getLang());

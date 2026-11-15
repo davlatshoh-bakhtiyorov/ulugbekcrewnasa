@@ -37,7 +37,7 @@ function applyText() {
   renderLoop();
   document.querySelectorAll('.slide').forEach((sl) => sl.querySelectorAll('.in:not([style*="--i"])').forEach((el, i) => el.style.setProperty('--i', i)));
   const app = $('app');
-  if (app.dataset.loaded) app.src = `../web/?lang=${lang}`;
+  if (app.dataset.loaded) loadApp(true);
 }
 
 // ---------------- piyoz aylanasi (SVG) ----------------
@@ -168,13 +168,13 @@ async function runFly() {
   FM.map.invalidateSize(false);
   FM.map.setView([REGION.lat, REGION.lon], G.ok ? 7 : 5, { animate: false });
   FM.ndvi?.setOpacity(0);
-  if (G.ok) { const done = await flyGlobe(FIELD.lat, FIELD.lon, reduce ? 0 : 3200); if (!done || my !== FM.token) return; }
+  if (G.ok) { const done = await flyGlobe(FIELD.lat, FIELD.lon, reduce ? 0 : 1500); if (!done || my !== FM.token) return; }
   $('flyMap').classList.add('on');
-  await wait(reduce ? 50 : 1000); if (my !== FM.token) return;
+  await wait(reduce ? 50 : 500); if (my !== FM.token) return;
   $('globe').classList.add('off'); $('earthStatic').classList.add('off');
   $('flyLabel').classList.add('on');
-  FM.map.flyTo([FIELD.lat, FIELD.lon], 13, { duration: reduce ? 0.1 : 5, easeLinearity: 0.15 });
-  await wait(reduce ? 200 : 5200); if (my !== FM.token) return;
+  FM.map.flyTo([FIELD.lat, FIELD.lon], 13, { duration: reduce ? 0.1 : 2.4, easeLinearity: 0.2 });
+  await wait(reduce ? 200 : 2500); if (my !== FM.token) return;
   FM.ndvi?.setOpacity(0.85);
   $('flyCap').classList.add('on');
 }
@@ -204,7 +204,7 @@ function loadApp(force = false) {
   const app = $('app');
   if (app.dataset.loaded && !force) return;
   app.dataset.loaded = '1';
-  app.src = `../web/?lang=${lang}&v=${Date.now()}`;
+  app.src = `../web/?lang=${lang}&lat=${FIELD.lat}&lon=${FIELD.lon}&v=${Date.now()}`; // demo dala tanlangan holda ochiladi
   app.onload = () => { try { app.contentWindow.addEventListener('keydown', onKey); } catch { /* boshqa domen emas, lekin ehtiyot */ } };
 }
 
@@ -232,8 +232,8 @@ function go(i, { replay = false } = {}) {
 function onKey(e) {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   const k = e.key;
-  if (k === 'ArrowRight' || k === ' ' || k === 'PageDown' || k === 'Enter') { e.preventDefault(); go(cur + 1); }
-  else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); go(cur - 1); }
+  if (k === 'ArrowRight' || k === 'ArrowDown' || k === ' ' || k === 'PageDown' || k === 'Enter') { e.preventDefault(); go(cur + 1); }
+  else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); go(cur - 1); }
   else if (k === 'Home') go(0);
   else if (k === 'End') go(N - 1);
   else if (k === 'f' || k === 'F') toggleFull();
@@ -244,14 +244,28 @@ function toggleFull() { if (document.fullscreenElement) document.exitFullscreen?
 function toggleLang() { lang = lang === 'en' ? 'uz' : 'en'; store.set('fs-site-lang', lang); applyText(); if (cur === 3) animateNumbers(); if (cur === 6) animateProof(); }
 
 addEventListener('keydown', onKey);
-$('prev').onclick = () => go(cur - 1); $('next').onclick = () => go(cur + 1);
 $('langBtn').onclick = toggleLang; $('full').onclick = toggleFull;
 $('resetDemo').onclick = () => loadApp(true);
 addEventListener('resize', fitPhone);
-let tx = null;
-addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; }, { passive: true });
-addEventListener('touchend', (e) => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(dx) > 60) go(cur + (dx < 0 ? 1 : -1)); });
-$('stage').addEventListener('click', (e) => { if (e.target.closest('a, button, iframe, .phone, .leaflet-container')) return; go(cur + (e.clientX > innerWidth / 2 ? 1 : -1)); });
+// pastga skroll / g'ildirak = keyingi ekran, yuqoriga = oldingi (trekpad inertsiyasi uchun to'planish + qulf)
+let acc = 0, lastWheel = 0, lock = 0;
+addEventListener('wheel', (e) => {
+  if (e.target.closest?.('.phone, iframe')) return;
+  const now = performance.now();
+  if (now < lock) return;
+  if (now - lastWheel > 250) acc = 0;
+  lastWheel = now; acc += e.deltaY;
+  if (Math.abs(acc) > 60) { go(cur + (acc > 0 ? 1 : -1)); acc = 0; lock = now + 1100; }
+}, { passive: true });
+let tx = null, ty0 = null;
+addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; ty0 = e.touches[0].clientY; }, { passive: true });
+addEventListener('touchend', (e) => {
+  if (tx == null) return;
+  const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty0; tx = ty0 = null;
+  if (Math.abs(dy) > 60 && Math.abs(dy) > Math.abs(dx)) go(cur + (dy < 0 ? 1 : -1));
+  else if (Math.abs(dx) > 60) go(cur + (dx < 0 ? 1 : -1));
+});
+$('stage').addEventListener('click', (e) => { if (e.target.closest('a, button, iframe, .phone, .leaflet-container')) return; go(cur + 1); });
 
 // ---------------- ishga tushirish ----------------
 applyText();

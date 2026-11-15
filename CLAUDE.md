@@ -72,6 +72,15 @@ hidden. No-WebGL fallback = static earth image. Verified headless with `--use-an
 Gotcha fixed: importing `L` from strings.js shadowed Leaflet's `L` → import as `STR`. `scripts/deck/strings.mjs`
 re-exports `pitch/strings.js`; `strings.cjs` is a sed copy for the CommonJS PPTX builder. serve.js whitelists `pitch/`.
 
+**Pitch v2 (15 Nov, user: pitch is 2 minutes, "next tugmasi o'rniga scroll"):** orbit→field now ≈ 5 s (globe 1.5 s, crossfade
+0.5 s, Leaflet flyTo 2.4 s); navigation by wheel/trackpad (accumulated deltaY > 60, 1.1 s lock), vertical swipe, ↓/↑, click;
+prev/next buttons removed (counter, language, fullscreen stay). The phone iframe opens the app at the demo field in the
+deck's language (`web/app.js` now honours `?lang=` and stores it; `?lat&lon` preselects the field) with a notch/home bar.
+**Vercel:** `https://neyraapp.vercel.app/` serves this repo (root, /web/, /pitch/) and updated with the pitch push — a Git-
+connected project in an account not linked to Claude; nothing to do on our side, every push to main deploys there too.
+**Submission form:** `docs/SUBMISSION-FORM.md` has every field in form order (summary ≤ 1500 chars, demo/project links,
+details, SI, NASA data rows, other data rows). The user fills the form at spaceappschallenge.org/2026/find-a-team/ulugbek-crew/?tab=project.
+
 ## Brand (14 Nov, user decision)
 
 Product name **Neyra** (was "Field Shift UZ"; the challenge name stays in the kicker). Logo (15 Nov): striped
