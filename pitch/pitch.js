@@ -1,7 +1,7 @@
 // Neyra jonli taqdimot (sayt ichida, /pitch/). 11 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
 // to'rt chiroq -> arxitektura -> jonli demo (ilova iframe ichida) -> formulalar -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
 // Matnlar: strings.js (uz/en, decklar bilan bir xil). Yer teksturasi: NASA Blue Marble (GIBS). Dala: EOX + NASA MODIS NDVI.
-import { L as STR, TEAM, LINKS } from './strings.js?v=4';
+import { L as STR, TEAM, LINKS } from './strings.js?v=202611151650';
 import { layerByKey, tileTemplate } from '../core/gibs.js';
 
 const FIELD = { lat: 37.5021, lon: 67.3888 };
@@ -28,20 +28,42 @@ function applyText() {
   const h4 = document.querySelector('.s4 h2[data-t="h4"]'); if (h4) h4.innerHTML = esc(T().h4).replace('. ', '.<br>'); // ikki gap - ikki qator
   document.querySelectorAll('[data-img]').forEach((img) => { const src = img.dataset.img.replace('{lang}', lang); if (img.getAttribute('src') !== src) img.src = src; });
   $('langBtn').textContent = lang === 'en' ? 'UZ' : 'EN';
-  $('wall').innerHTML = T().covers.map(([k, cap, src, z], i) => `<div class="tile" style="--i:${i}"><img src="assets/press-${k}.jpg" alt="" style="${z ? `transform-origin:center 30%;--z:${z}` : ''}"><div class="ov"><b>${esc(cap)}</b><span>${esc(src)}</span></div></div>`).join('')
-    + `<div class="tile quote" style="--i:4"><div><p>${esc(T().quote)}${T().quote2 ? `<span>${esc(T().quote2)}</span>` : ''}</p><small>${esc(T().quoteBy)}</small></div></div>`;
-  $('causes').innerHTML = T().causes.map((c, i) => `<li class="in" style="--i:${i + 1}"><span class="m">✓</span><span>${esc(c)}</span></li>`).join('');
+  // Har blok alohida: strings.js yoki index.html eskirgan keshdan kelsa ham (GitHub Pages 10 daqiqa) butun sahifa bo'sh qolmasin
+  const safe = (fn) => { try { fn(); } catch (e) { console.warn('applyText', e); } };
+  safe(() => {
+    $('wall').innerHTML = T().covers.map(([k, cap, src, z], i) => `<div class="tile" style="--i:${i}"><img src="assets/press-${k}.jpg" alt="" style="${z ? `transform-origin:center 30%;--z:${z}` : ''}"><div class="ov"><b>${esc(cap)}</b><span>${esc(src)}</span></div></div>`).join('')
+      + `<div class="tile quote" style="--i:4"><div><p>${esc(T().quote)}${T().quote2 ? `<span>${esc(T().quote2)}</span>` : ''}</p><small>${esc(T().quoteBy)}</small></div></div>`;
+  });
+  safe(() => {
+    $('causes').innerHTML = T().causes.map((c, i) => `<li class="in" style="--i:${i + 1}"><span class="m">✓</span><span>${esc(c)}</span></li>`).join('');
+  });
   const LC = ['#4cc27a', '#4cc27a', '#e3a008', '#d64545'];
   const light = (i) => `<li class="in" style="--i:${i + 1}"><i style="background:${LC[i]}"></i><span>${esc(T().lights[i])}${T().lightsSub?.[i] ? `<small>${esc(T().lightsSub[i])}</small>` : ''}</span></li>`;
-  $('lightsL').innerHTML = [0, 1].map(light).join(''); $('lightsR').innerHTML = [2, 3].map(light).join('');
-  $('steps').innerHTML = T().steps.map(([t, sub], i) => `<div class="step in" style="--i:${i + 1}"><span class="n">${i + 1}</span><h3>${esc(t)}</h3><p>${esc(sub)}</p><div class="shotbox"><img src="assets/${lang}-step${i + 1}.jpg" alt=""></div></div>`).join('');
-  $('lq').innerHTML = T().lightQ.map(([t, q, src], i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><i></i><h3>${esc(t)}</h3><p class="q">${esc(q)}</p><p class="src"><b>${esc(T().srcLabel)}</b>${esc(src)}</p></div>`).join('');
+  safe(() => {
+    $('lightsL').innerHTML = [0, 1].map(light).join(''); $('lightsR').innerHTML = [2, 3].map(light).join('');
+  });
+  safe(() => {
+    $('steps').innerHTML = T().steps.map(([t, sub], i) => `<div class="step in" style="--i:${i + 1}"><span class="n">${i + 1}</span><h3>${esc(t)}</h3><p>${esc(sub)}</p><div class="shotbox"><img src="assets/${lang}-step${i + 1}.jpg" alt=""></div></div>`).join('');
+  });
+  safe(() => {
+    $('lq').innerHTML = T().lightQ.map(([t, q, src], i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><i></i><h3>${esc(t)}</h3><p class="q">${esc(q)}</p><p class="src"><b>${esc(T().srcLabel)}</b>${esc(src)}</p></div>`).join('');
+  });
   const arrow = '<div class="aarrow in" style="--i:2"><svg viewBox="0 0 60 24"><path class="flow" d="M2 12H48"/><path d="M44 5l8 7-8 7"/></svg></div>';
-  $('arch').innerHTML = T().arch.map((c, i) => `<div class="acol card in${i === 1 ? ' mid' : ''}" style="--i:${i + 1}"><h3>${esc(c.t)}</h3>${c.items.map(([ic, b, sub]) => `<div class="it">${ICON[ic] ?? ''}<div><b>${esc(b)}</b><span>${esc(sub)}</span></div></div>`).join('')}</div>`).join(arrow);
-  $('fx').innerHTML = T().fx.map((c, i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><h3><i></i>${esc(c.name)}</h3><p class="f">${c.f}</p><p class="note">${c.note}</p><p class="rule">${esc(c.rule)}</p><p class="src">${c.src}</p></div>`).join(''); // f/note/src - o'z HTML'imiz (sub/sup)
-  $('team').innerHTML = TEAM.map((m, i) => `<figure class="in" style="--i:${i}"><img src="assets/team-${m.photo.replace('team/', '').replace('.jpg', '')}.jpg" alt=""><figcaption>${esc(m.name)}</figcaption></figure>`).join('');
-  $('qrs').innerHTML = ['bot', 'site', 'repo'].map((k, i) => `<figure class="in" style="--i:${i + 3}"><a href="${LINKS[k]}" target="_blank" rel="noopener"><img src="assets/qr-${k}.png" alt=""></a>${esc(T().qr[i])}</figure>`).join('');
-  renderLoop();
+  safe(() => {
+    $('arch').innerHTML = T().arch.map((c, i) => `<div class="acol card in${i === 1 ? ' mid' : ''}" style="--i:${i + 1}"><h3>${esc(c.t)}</h3>${c.items.map(([ic, b, sub]) => `<div class="it">${ICON[ic] ?? ''}<div><b>${esc(b)}</b><span>${esc(sub)}</span></div></div>`).join('')}</div>`).join(arrow);
+  });
+  safe(() => {
+    $('fx').innerHTML = T().fx.map((c, i) => `<div class="card in" style="--i:${i + 1};--c:${LC[i]}"><h3><i></i>${esc(c.name)}</h3><p class="f">${c.f}</p><p class="note">${c.note}</p><p class="rule">${esc(c.rule)}</p><p class="src">${c.src}</p></div>`).join(''); // f/note/src - o'z HTML'imiz (sub/sup)
+  });
+  safe(() => {
+    $('team').innerHTML = TEAM.map((m, i) => `<figure class="in" style="--i:${i}"><img src="assets/team-${m.photo.replace('team/', '').replace('.jpg', '')}.jpg" alt=""><figcaption>${esc(m.name)}</figcaption></figure>`).join('');
+  });
+  safe(() => {
+    $('qrs').innerHTML = ['bot', 'site', 'repo'].map((k, i) => `<figure class="in" style="--i:${i + 3}"><a href="${LINKS[k]}" target="_blank" rel="noopener"><img src="assets/qr-${k}.png" alt=""></a>${esc(T().qr[i])}</figure>`).join('');
+  });
+  safe(() => {
+    renderLoop();
+  });
   document.querySelectorAll('.slide').forEach((sl) => sl.querySelectorAll('.in:not([style*="--i"])').forEach((el, i) => el.style.setProperty('--i', i)));
   const app = $('app');
   if (app.dataset.loaded) loadApp(true);
@@ -102,9 +124,10 @@ function initGlobe() {
     const camera = new THREE.PerspectiveCamera(40, 1, 0.01, 200);
     camera.position.set(0, 0, 3.1);
     const group = new THREE.Group(); scene.add(group);
-    const tex = new THREE.TextureLoader().load('assets/earth.jpg');
+    const mat = new THREE.MeshPhongMaterial({ color: 0x1d4b7a, shininess: 8, specular: new THREE.Color(0x1a2a3a) }); // tekstura kelguncha okean ko'k
+    const tex = new THREE.TextureLoader().load('assets/earth.jpg', () => { mat.map = tex; mat.color.set(0xffffff); mat.needsUpdate = true; });
     tex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
-    const globe = new THREE.Mesh(new THREE.SphereGeometry(1, 128, 96), new THREE.MeshPhongMaterial({ map: tex, shininess: 8, specular: new THREE.Color(0x1a2a3a) }));
+    const globe = new THREE.Mesh(new THREE.SphereGeometry(1, 128, 96), mat);
     group.add(globe);
     const atm = new THREE.Mesh(new THREE.SphereGeometry(1.04, 64, 48), new THREE.MeshBasicMaterial({ color: 0x79b8ff, transparent: true, opacity: 0.09, side: THREE.BackSide, depthWrite: false }));
     group.add(atm);

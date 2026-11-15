@@ -57,6 +57,13 @@ Site v4 (15 Nov): the 3D layer stack was removed on the user's request ("3D in t
 the leaf mark; the big NASA map section and the ⓘ Batafsil toggles stay. A 3D element may return only where it
 carries meaning (idea on the table: globe → field zoom; not built).
 
+**Pitch cache rule (15 Nov evening, after a blank page on GitHub Pages):** Pages caches every file for 10 min, so a fresh
+`index.html` can run with a stale `pitch.js`/`strings.js` (or vice versa) — a missing string table then threw inside `applyText`
+and the page stayed black. Now: `npm run pitch-version` stamps `pitch.css?v=`, `pitch.js?v=` (index.html) and `strings.js?v=`
+(pitch.js) with the current UTC minute — **run it before every commit that touches `pitch/`**; `applyText` wraps each block in
+`safe()` so one bad block only logs a warning; the globe starts as a blue sphere and gets the texture on load (earth.jpg is now
+2048×1024, 281 KB, preloaded). On stage use `neyraapp.vercel.app/pitch/` (no 10-min cache).
+
 ## In-browser pitch `/pitch/` (15 Nov, user: "presentationni saytni o'ziga qilsakchi … 3D worlddan Surxondaryoga tushishi")
 
 `pitch/index.html` + `pitch.css` + `pitch.js` + `strings.js` (+ `assets/`: NASA Blue Marble `earth.jpg` 4096×2048 from the
