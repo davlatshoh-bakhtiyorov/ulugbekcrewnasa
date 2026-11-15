@@ -1,7 +1,7 @@
 // Neyra jonli taqdimot (sayt ichida, /pitch/). 10 ekran: 3D Yer -> Surxondaryo dalasi -> muammo -> raqamlar -> sabab -> uch qadam ->
-// arxitektura -> jonli demo (ilova iframe ichida) -> formulalar -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
+// arxitektura -> formulalar -> jonli demo (ilova iframe ichida) -> jamoa. Boshqaruv: → / Bo'shliq / PageDown, ← / PageUp, Home/End, F, L.
 // Matnlar: strings.js (uz/en, decklar bilan bir xil). Yer teksturasi: NASA Blue Marble (GIBS). Dala: EOX + NASA MODIS NDVI.
-import { L as STR, TEAM, LINKS } from './strings.js?v=202611151709';
+import { L as STR, TEAM, LINKS } from './strings.js?v=202611151710';
 import { layerByKey, tileTemplate } from '../core/gibs.js';
 
 const FIELD = { lat: 37.5021, lon: 67.3888 };
@@ -279,8 +279,8 @@ function go(i, { replay = false } = {}) {
   if (i === 1) runFly();
   if (i === 3) animateNumbers();
   if (i === 4) renderLoop();
-  if (i >= 5) loadApp(); // demo 8-ekranda; ilova oldindan yuklanadi
-  if (i === 7) fitPhone();
+  if (i >= 6) loadApp(); // demo 9-ekranda; ilova oldindan yuklanadi
+  if (i === 8) fitPhone();
 }
 function onKey(e) {
   if (e.metaKey || e.ctrlKey || e.altKey) return;

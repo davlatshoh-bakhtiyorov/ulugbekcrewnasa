@@ -1,10 +1,10 @@
 # Neyra — sahna nutqi (5 daqiqa, o‘zbekcha)
 
 **Sahnada:** https://neyraapp.vercel.app/pitch/?lang=uz (yoki …github.io/ulugbekcrewnasa/pitch/?lang=uz) — brauzerda, `F` to‘liq ekran. 10 ekran:
-1 Yer shari · 2 orbitadan dalaga (avtomatik, ~5 s) · 3 muammo · 4 raqamlar · 5 nega · 6 uch qadam · 7 qanday ishlaydi (NASA ko‘radi → Neyra hisoblaydi → dehqon qaror qiladi) · 8 **jonli demo** (ilova telefon ichida — namuna dala → 3 savol → 3 variant) · 9 formulalar (to‘rt formula, qoida, manba) · 10 jamoa.
+1 Yer shari · 2 orbitadan dalaga (avtomatik, ~5 s) · 3 muammo · 4 raqamlar · 5 nega · 6 uch qadam · 7 qanday ishlaydi (NASA ko‘radi → Neyra hisoblaydi → dehqon qaror qiladi) · 8 formulalar (to‘rt formula, qoida, manba) · 9 **jonli demo** (ilova telefon ichida — namuna dala → 3 savol → 3 variant) · 10 jamoa.
 Pastga aylantirish / `→` / bo‘shliq — keyingi, `←` — orqaga, `R` — ekranni qayta boshlash, `L` — til. Zaxira: `Neyra-pitch-uz.pdf`.
-Gapdan oldin sahifani ochib, 2- va 8-ekranni bir marta o‘tkazib qo‘ying (tayllar va ilova keshga tushadi).
-Nutq bo‘limlari ekranlarga shunday mos keladi: «Sarlavha» = 1–2 · «Muammo» = 3–5 · «G‘oya» = 6–7 · «Jonli demo» = 8 · «Nega ishonish mumkin» va «To‘g‘ri vaqt» = 9 (formulalar ekranida) · «Yopish» = 10.
+Gapdan oldin sahifani ochib, 2- va 9-ekranni bir marta o‘tkazib qo‘ying (tayllar va ilova keshga tushadi).
+Nutq bo‘limlari ekranlarga shunday mos keladi: «Sarlavha» = 1–2 · «Muammo» = 3–5 · «G‘oya» = 6–7 · «Nega ishonish mumkin» va «To‘g‘ri vaqt» = 8 (formulalar ekranida) · «Jonli demo» = 9 · «Yopish» = 10.
 
 Format: 7 slayd — **`Neyra-pitch-uz.pdf`** (qorong‘i pitch-deck; `Neyra-pitch-uz.pptx` tahrirlanadigan nusxa). Slaydlar tartibi: 1 sarlavha · 2 muammo (matbuot muqovalari) · 3 har yili (5–7 mln t) · 4 nega · 5 mahsulot · 6 dalil (**shu yerda sherik jonli saytni ko‘rsatadi**) · 7 jamoa. Quyidagi nutq shu tartibga mos; «jonli demo» bo‘limi 6-slaydga to‘g‘ri keladi.
 Tayyorgarlik: saytni oldindan ochib, «Xarita» bo‘limida bir marta «Namuna: Jarqo‘rg‘on dalasi»ni bosib qo‘ying (tayllar keshga tushadi). Zaxira: `docs/demo/` dagi ekran yozuvi.

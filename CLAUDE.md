@@ -93,7 +93,7 @@ arxitektura"):** 10 screens (the "four lights" question screen was built and rem
 `assets/{lang}-step{1,2,3}.jpg`, 390×844 @2x, cropped with a fade) · **7 four lights** (one plain question per light + "From: …" source
 line, no numbers except "42 years") · **8 how it works** (three columns NASA sees → Neyra counts → the farmer decides, inline stroke
 icons `ICON` in pitch.js, animated dashed arrows; foot: "No server, no account — the phone talks to NASA directly. Open source.") ·
-9 live demo (phone; the app opens with `?theme=dark`, the status bar takes the app's real background via `syncStatus`; the
+**order since 22:15: … 7 how it works · 8 formulas · 9 live demo · 10 team.** 9 live demo (phone; the app opens with `?theme=dark`, the status bar takes the app's real background via `syncStatus`; the
 "42 · years of NASA weather" statement is a bold green pill in the head) · 10 **formulas** (user: "the serious part"): four cards from `fx` strings — light name, the core formula in serif
 (`Σ(Kc·ET0 − Peff)`, GDD, `100 − b(ECe − threshold)`, risky-year rule), plain note, thresholds, source; the earlier proof panels
 (NDVI chart, harvest timeline) and their pitch assets were removed, the proof strings `p1..p3c` survive only in the 7-slide decks · 11 team (the `next` roadmap paragraph is gone from the pitch; an "impact + next" screen was
