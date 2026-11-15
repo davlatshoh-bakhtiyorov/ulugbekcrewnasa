@@ -25,6 +25,7 @@ function applyText() {
   document.documentElement.lang = lang;
   document.title = `Neyra — ${T().tag}`;
   document.querySelectorAll('[data-t]').forEach((n) => { n.textContent = T()[n.dataset.t] ?? ''; });
+  const h4 = document.querySelector('.s4 h2[data-t="h4"]'); if (h4) h4.innerHTML = esc(T().h4).replace('. ', '.<br>'); // ikki gap - ikki qator
   document.querySelectorAll('[data-img]').forEach((img) => { const src = img.dataset.img.replace('{lang}', lang); if (img.getAttribute('src') !== src) img.src = src; });
   $('names').textContent = TEAM.map((m) => m.name).join(' · ');
   $('langBtn').textContent = lang === 'en' ? 'UZ' : 'EN';
@@ -202,8 +203,8 @@ function fitPhone() {
   // sahna balandligi = .demo-stage (grid) balandligi; wrap o'zi grid ichida cho'zilmasligi mumkin
   const stage = document.querySelector('.demo-stage');
   const h = (stage?.clientHeight || innerHeight * 0.8) - 4;
-  const s = Math.min(1.3, h / 866, (innerWidth * 0.36) / 412); // balandlik bo'yicha, lekin kenglikning 34 % idan oshmasin
-  ph.style.setProperty('--s', s.toFixed(3)); wrap.style.width = `${Math.round(412 * s)}px`;
+  const s = Math.min(1.3, h / 902, (innerWidth * 0.36) / 430); // balandlik bo'yicha, lekin kenglikning 34 % idan oshmasin
+  ph.style.setProperty('--s', s.toFixed(3)); wrap.style.width = `${Math.round(430 * s)}px`;
 }
 function loadApp(force = false) {
   const app = $('app');
