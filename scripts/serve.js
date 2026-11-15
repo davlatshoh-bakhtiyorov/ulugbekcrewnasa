@@ -5,7 +5,7 @@ import { readFile } from 'node:fs/promises';
 import { extname, join, normalize, sep } from 'node:path';
 
 const ROOT = process.cwd();
-const ALLOWED_DIRS = ['web', 'core', 'site'];      // butun papka
+const ALLOWED_DIRS = ['web', 'core', 'site', 'pitch'];  // butun papka
 const ROOT_FILES = ['index.html'];                  // ildizdagi fayllar
 const DOCS_JSON = /^docs[/\\][^/\\]+\.json$/;       // docs/ dan faqat JSON (sayt pilot natijasini o'qiydi)
 const PORT = Number(process.env.PORT) || 8080;

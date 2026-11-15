@@ -9,6 +9,7 @@ Earth observations and FAO crop science. Every number shows its source, resoluti
 farmer's judgement; it does not replace it.
 
 - **Live site (English / Uzbek):** https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/
+- **Live pitch (in-browser presentation, 8 screens, 3D Earth → field, live demo inside):** https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/pitch/ — keys: → / Space next, ← back, F full screen, L language
 - **App (web + Telegram Mini App):** https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/web/ · Telegram bot: https://t.me/ulugbekcrewbot
 - **Demo deck (7 slides):** `docs/demo/Neyra-pitch-en.pdf` (PDF) · `docs/demo/Neyra-pitch.pptx` (editable, imports into Google Slides) · Uzbek stage version: `Neyra-pitch-uz.pdf`, `Neyra-pitch-uz.pptx` · earlier light decks: `Neyra-en.pdf`, `Neyra-uz.pdf`
 - **Telegram bot:** `bot/bot.js` — `/start` opens the Mini App; a shared location opens it at that field (`npm run bot`)
@@ -86,6 +87,7 @@ Pure ES modules, no build step, no dependencies. Node 18+ for scripts. The Teleg
 core/    pure calculations (FAO-56 ET0, GDD, crop evaluation, advisor, GIBS decode, calibration) — browser + Node
 web/     the app (browser + Telegram Mini App)
 site/    the project site (index.html at the repo root)
+pitch/   the in-browser pitch (strings.js is the single EN/UZ text source for the pitch and the PDF/PPTX decks)
 scripts/ data pipelines (POWER, ORNL MCD12Q2, GIBS), dev server
 tests/   node --test
 docs/    submission text, demo deck and scripts, Uzbek planning notes (REJA.md), live API checks

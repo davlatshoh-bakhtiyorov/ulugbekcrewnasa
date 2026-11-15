@@ -1,5 +1,8 @@
 # Demo deck generator (7 slides)
 
+Text for both decks and the in-browser pitch lives in `pitch/strings.js` (EN + UZ). `strings.mjs` re-exports it;
+regenerate `strings.cjs` after editing: `sed -e 's/^export const /const /' -e '$a\\\nmodule.exports = { TEAM, LINKS, L, shot, PRESS_DECK };' ../../pitch/strings.js > strings.cjs`.
+
 `docs/demo/Neyra-pitch-en.pdf` — the dark pitch deck (problem → numbers → causes → product → proof → impact/team), used for
 the submission and the stage. `Neyra-en.pdf` / `Neyra-uz.pdf` are the earlier light decks (English / Uzbek stage version).
 All are generated from the live site and app — no slide editor involved.

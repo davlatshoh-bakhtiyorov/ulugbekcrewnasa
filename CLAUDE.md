@@ -57,6 +57,21 @@ Site v4 (15 Nov): the 3D layer stack was removed on the user's request ("3D in t
 the leaf mark; the big NASA map section and the ⓘ Batafsil toggles stay. A 3D element may return only where it
 carries meaning (idea on the table: globe → field zoom; not built).
 
+## In-browser pitch `/pitch/` (15 Nov, user: "presentationni saytni o'ziga qilsakchi … 3D worlddan Surxondaryoga tushishi")
+
+`pitch/index.html` + `pitch.css` + `pitch.js` + `strings.js` (+ `assets/`: NASA Blue Marble `earth.jpg` 4096×2048 from the
+GIBS WMS `BlueMarble_ShadedRelief_Bathymetry`, press covers, dark site screenshots per language, team photos, QR PNGs).
+8 screens: 1 title with a **three.js globe** (r128 from cdnjs; MeshPhong + atmosphere + stars; pin at the demo field;
+slow eastward spin so Central Asia drifts into view) · 2 **orbit → field**: globe flies to 37.5 N/67.4 E (globe
+`rotation.y = -π/2 − lon`, group `rotation.x = lat`, camera z 3.1 → 1.38), crossfades to a Leaflet map (EOX) at zoom 7
+that `flyTo`s the field at zoom 13, then the latest MODIS NDVI frame fades in · 3 press-cover wall + quote · 4 count-up
+numbers · 5 onion loop (SVG arcs drawn with `pathLength`) + three causes · 6 **live demo: the real app in an iframe
+inside a phone frame** (`../web/?lang=`, loaded lazily from screen 5; keydown forwarded from the iframe) · 7 proof panels
+· 8 team + QR. Keys → Space PageDown / ← PageUp / Home End / F / L / R (replay). Hash `#n`. Globe rendering pauses when
+hidden. No-WebGL fallback = static earth image. Verified headless with `--use-angle=swiftshader` (WebGL works there).
+Gotcha fixed: importing `L` from strings.js shadowed Leaflet's `L` → import as `STR`. `scripts/deck/strings.mjs`
+re-exports `pitch/strings.js`; `strings.cjs` is a sed copy for the CommonJS PPTX builder. serve.js whitelists `pitch/`.
+
 ## Brand (14 Nov, user decision)
 
 Product name **Neyra** (was "Field Shift UZ"; the challenge name stays in the kicker). Logo (15 Nov): striped

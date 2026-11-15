@@ -26,7 +26,7 @@ export const PRICE_POINTS = [
 export const TEXT = {
   en: {
     title: 'Neyra — see before you sow',
-    nav_map: 'Map', nav_problem: 'Problem', nav_how: 'How it works', nav_herd: 'Harvest', nav_window: 'Market window', nav_climate: 'Climate', nav_field: 'One field', nav_method: 'Method',
+    nav_map: 'Map', nav_pitch: 'Pitch', nav_problem: 'Problem', nav_how: 'How it works', nav_herd: 'Harvest', nav_window: 'Market window', nav_climate: 'Climate', nav_field: 'One field', nav_method: 'Method',
     openApp: 'Open the app', lang: 'UZ',
     kicker: 'NASA Space Apps Challenge 2026 · “Field Shift: Adapting Farms with NASA Data” · Tashkent',
     h1: 'See before you sow.',
@@ -143,7 +143,7 @@ export const TEXT = {
   },
   uz: {
     title: 'Neyra — ekishdan oldin ko\'ring',
-    nav_map: 'Xarita', nav_problem: 'Muammo', nav_how: 'Qanday ishlaydi', nav_herd: 'Yig\'im', nav_window: 'Bozor oynasi', nav_climate: 'Iqlim', nav_field: 'Bitta dala', nav_method: 'Usul',
+    nav_map: 'Xarita', nav_pitch: 'Taqdimot', nav_problem: 'Muammo', nav_how: 'Qanday ishlaydi', nav_herd: 'Yig\'im', nav_window: 'Bozor oynasi', nav_climate: 'Iqlim', nav_field: 'Bitta dala', nav_method: 'Usul',
     openApp: 'Ilovani ochish', lang: 'EN',
     kicker: 'NASA Space Apps Challenge 2026 · “Field Shift: Adapting Farms with NASA Data” · Toshkent',
     h1: 'Ekishdan oldin ko\'ring.',

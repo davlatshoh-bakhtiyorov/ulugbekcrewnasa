@@ -1,5 +1,10 @@
 # Neyra — sahna nutqi (5 daqiqa, o‘zbekcha)
 
+**Sahnada:** https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/pitch/?lang=uz — brauzerda, `F` to‘liq ekran. 8 ekran:
+1 Yer shari · 2 orbitadan dalaga (avtomatik, ~12 s) · 3 muammo · 4 raqamlar · 5 nega · 6 **jonli demo** (ilova telefon ichida — namuna dala → 3 savol → 3 variant) · 7 dalil · 8 jamoa.
+`→`/bo‘shliq — keyingi, `←` — orqaga, `R` — ekranni qayta boshlash, `L` — til. Zaxira: `Neyra-pitch-uz.pdf`.
+Gapdan oldin sahifani ochib, 2- va 6-ekranni bir marta o‘tkazib qo‘ying (tayllar va ilova keshga tushadi).
+
 Format: 7 slayd — **`Neyra-pitch-uz.pdf`** (qorong‘i pitch-deck; `Neyra-pitch-uz.pptx` tahrirlanadigan nusxa). Slaydlar tartibi: 1 sarlavha · 2 muammo (matbuot muqovalari) · 3 har yili (5–7 mln t) · 4 nega · 5 mahsulot · 6 dalil (**shu yerda sherik jonli saytni ko‘rsatadi**) · 7 jamoa. Quyidagi nutq shu tartibga mos; «jonli demo» bo‘limi 6-slaydga to‘g‘ri keladi.
 Tayyorgarlik: saytni oldindan ochib, «Xarita» bo‘limida bir marta «Namuna: Jarqo‘rg‘on dalasi»ni bosib qo‘ying (tayllar keshga tushadi). Zaxira: `docs/demo/` dagi ekran yozuvi.
 

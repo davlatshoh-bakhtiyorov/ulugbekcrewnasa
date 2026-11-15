@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neyra — pitch</title>
+  <meta name="description" content="Neyra live pitch: from orbit to the field. NASA Space Apps Challenge 2026, Tashkent.">
+  <meta name="theme-color" content="#0b0f0d">
+  <link rel="icon" type="image/png" sizes="64x64" href="../site/assets/neyra-64.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="pitch.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+  <canvas id="globe" aria-hidden="true"></canvas>
+  <div id="earthStatic" class="earth-static" hidden aria-hidden="true"></div>
+
+  <main id="stage">
+    <!-- 1 title -->
+    <section class="slide s0" data-s="0">
+      <div class="hero-txt">
+        <img class="mark in" src="../site/assets/neyra-mark.png" alt="">
+        <h1 class="in">Neyra</h1>
+        <p class="tag in" data-t="tag"></p>
+        <p class="sub in" data-t="sub"></p>
+        <p class="meta in"><b data-t="team"></b> · <span id="names"></span><br><span data-t="event"></span> · <span data-t="chal"></span></p>
+        <p class="hint in" data-t="hint"></p>
+      </div>
+    </section>
+
+    <!-- 2 orbit -> field -->
+    <section class="slide s1" data-s="1">
+      <div id="flyMap" class="flymap"></div>
+      <div class="fly-label" id="flyLabel"><p class="eyebrow" data-t="fly_e"></p><h2 data-t="fly_where"></h2></div>
+      <p class="fly-cap" id="flyCap"><span data-t="fly_cap"></span><br><small data-t="credit_earth"></small></p>
+    </section>
+
+    <!-- 3 problem -->
+    <section class="slide s2" data-s="2">
+      <p class="eyebrow in" data-t="e2"></p>
+      <h2 class="in" data-t="h2"></h2>
+      <div class="wall" id="wall"></div>
+    </section>
+
+    <!-- 4 numbers -->
+    <section class="slide s3" data-s="3">
+      <p class="eyebrow in" data-t="e3"></p>
+      <h2 class="in" data-t="h3"></h2>
+      <div class="row grow">
+        <div class="bigcol in">
+          <div class="bignum"><b id="big">0–0</b><span data-t="bigUnit"></span></div>
+          <p class="bigcap" data-t="bigCap"></p>
+          <p class="est" data-t="est"></p>
+        </div>
+        <div class="cards">
+          <div class="card in"><b id="n1">0</b><span data-t="n1c"></span></div>
+          <div class="card in"><b id="n2">0</b><span data-t="n2c"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 why -->
+    <section class="slide s4" data-s="4">
+      <p class="eyebrow in" data-t="e4"></p>
+      <h2 class="in" data-t="h4"></h2>
+      <div class="row grow center">
+        <div id="loop" class="loop in"></div>
+        <div class="col">
+          <ul id="causes" class="causes"></ul>
+          <p class="demand in" data-t="demand"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 product: live demo -->
+    <section class="slide s5" data-s="5">
+      <p class="eyebrow in" data-t="e5"></p>
+      <h2 class="in" data-t="h5"></h2>
+      <div class="row grow">
+        <div class="phone-wrap in"><div class="phone" id="phone"><iframe id="app" title="Neyra app" allow="geolocation"></iframe></div></div>
+        <div class="col prod">
+          <ul id="lights" class="lights"></ul>
+          <p class="prod-txt in" data-t="prod"></p>
+          <p class="live in"><i></i><span data-t="demo_live"></span></p>
+          <button id="resetDemo" class="ghost in" type="button" data-t="demo_reset"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 proof -->
+    <section class="slide s6" data-s="6">
+      <p class="eyebrow in" data-t="e6"></p>
+      <h2 class="in" data-t="h6"></h2>
+      <div class="panels grow">
+        <div class="panel in"><h3 data-t="p1"></h3><img data-img="assets/{lang}-map.jpg" alt="" class="fill"></div>
+        <div class="panel in"><h3 data-t="p2"></h3><img data-img="assets/{lang}-ndvi.jpg" alt="" class="wide"><p data-t="p2c"></p></div>
+        <div class="panel in"><h3 data-t="p3"></h3><div class="big3"><b id="big3">0 · 0 · 0</b><span data-t="days"></span></div><p data-t="p3c"></p><img data-img="assets/{lang}-window.jpg" alt="" class="fill short"></div>
+      </div>
+    </section>
+
+    <!-- 8 team -->
+    <section class="slide s7" data-s="7">
+      <p class="eyebrow in" data-t="e7"></p>
+      <h2 class="in" data-t="h7"></h2>
+      <div class="row grow">
+        <div class="team" id="team"></div>
+        <div class="qrs" id="qrs"></div>
+      </div>
+      <p class="next in" data-t="next"></p>
+      <p class="ai" data-t="ai"></p>
+    </section>
+  </main>
+
+  <div class="ctl" id="ctl">
+    <div class="bar"><i id="prog"></i></div>
+    <div class="btns">
+      <button id="prev" type="button" aria-label="Previous">‹</button>
+      <span id="count"></span>
+      <button id="next" type="button" aria-label="Next">›</button>
+      <button id="langBtn" type="button" aria-label="Language"></button>
+      <button id="full" type="button" aria-label="Full screen">⛶</button>
+    </div>
+  </div>
+
+  <script type="module" src="pitch.js"></script>
+</body>
+</html>
