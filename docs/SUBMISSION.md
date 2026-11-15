@@ -16,7 +16,7 @@ when the harvest meets the market — with the source under every number. It sup
 not replace it.
 
 **Link to Project Demo**
-https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/docs/demo/Neyra-en.pdf  (7 slides)
+https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/docs/demo/Neyra-pitch-en.pdf  (7 slides)
 
 **Link to Final Project**
 https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/  (site; the app is at /web/ and in Telegram: https://t.me/ulugbekcrewbot; source: https://github.com/davlatshoh-bakhtiyorov/ulugbekcrewnasa)
@@ -84,4 +84,6 @@ image (marked on the demo slides and in the credits). No NASA branding was gener
 - Leaflet 1.9.4 (BSD-2-Clause); Telegram Web Apps JavaScript.
 - Market figures: EastFruit (25 Aug 2023, 17 Nov 2023, 6 Mar 2024, 16 Apr 2024), Kun.uz (11 May 2018, 8 Jun 2024,
   11 Apr 2025), Podrobno.uz (23 Jul 2024), UzDaily (23 Oct 2025) — linked next to each number on the site.
+- Slide 2 of the demo shows cover images of public news videos and an article (Ozodlik 7 Jun 2024, Xabar.uz 13 May 2018,
+  Kun.uz 14 Aug 2024, VESAGRO 3 Feb 2018 on YouTube; EastFruit 6 Mar 2024), used for commentary with on-slide attribution.
 - Code: own, MIT-style; AI-assisted as stated above. Fonts: system fonts. No copyrighted material beyond the above.

@@ -21,6 +21,13 @@ also record a ≤ 30 s video today — script and English SRT in `docs/demo/vide
 `docs/demo/video-subtitles-en.srt`. Stage script: `docs/demo/nutq-uz.md`. Project-page text (all fields, English):
 `docs/SUBMISSION.md`. README is now English (old Uzbek README kept as `docs/README-uz.md`).
 
+**Pitch deck (15 Nov, user brief: pitch style, professional, dark, creative, English):** `docs/demo/Neyra-pitch-en.pdf`
+from `scripts/deck/gen-pitch.js` — 1 title · 2 press-cover wall (YouTube/EastFruit thumbnails, attributed; the Facebook
+reel needs login — user may add a screenshot) · 3 yearly-loss numbers (5–7 Mt = our arithmetic from UzDaily's 20–30 % and
+"1.14 Mt cold storage = 4.9 %" ⇒ ≈ 23 Mt; labelled as estimate) · 4 causes with ✓/○ what Neyra addresses · 5 product
+(dark app screenshots; **user will replace with real Telegram screenshots**) · 6 proof (live map, FAO vs MODIS, 30·35·62 days)
+· 7 impact + 3 team placeholders ("Name Surname / role") + QR. This deck is the submission demo link and the stage deck.
+
 Deck pipeline (no slide editor; reproducible): `scripts/deck/` — `shots.js` (headless Chrome screenshots of the app
 flow and site visuals, EN and UZ, 2x), `optimize-shots.py` (PNG → JPEG, else the PDFs are 24 MB), `gen.js`
 (HTML slides 1920×1080 from an EN/UZ strings object; `TEAM_NAMES="…"` env fills the member names — **still a
@@ -264,7 +271,8 @@ double-crop field 37.5021, 67.3888 in the same POWER cell (see step 4a).
 | 4 | Field memory + map + GDD calibration | done: 4a GIBS layers on Leaflet with time slider + tap readout; 4b field passport (NDVI 3 seasons, SMAP same-day, climate shift); 4c wheat + cotton GDD calibrated with MCD12Q2 (see above). Open idea: calibrate other crops if a crop map (field identity) becomes available. |
 | A | Satellite sees the harvest | done 14 Nov: MCD12Q2 region grid, per-pixel season-end map + per-year strip; the planned "herd" (onion area) count was tested and rejected (documented on the site). |
 | B | Market window | done 14 Nov: onion model in 16 regions, calendar strip, 1985–2004 vs 2006–2025 toggle. |
-| 5 | Telegram bot (launcher) | /start + menu button opens the Mini App; a sent location opens it at that field. Token only from `.env` (`.env.example` done). |
+| 5 | Telegram bot (launcher) | done 15 Nov: `bot/bot.js` (no deps, long polling, `npm run bot`), /start → web_app button, shared location → Mini App `?lat&lon`; app reads `?lat&lon` and Telegram `start_param` "lat_lon"; sets commands + menu button on start; `WEBAPP_URL` now set in `.env`. Only one poller at a time (409). |
+| 5-old | Telegram bot (launcher) | /start + menu button opens the Mini App; a sent location opens it at that field. Token only from `.env` (`.env.example` done). |
 | 6 | Water outlook + HLS | GRACE basin storage series precomputed to JSON; HLS for one pilot district. |
 | 7 | Submission | Basis exists: the project site (root, uz/en) already holds the problem, method, NASA data table, limitations, AI-use disclosure and credits. Still to do: English README, submission-form text (copy from `site/text.js` en), demo (7 slides or 30 s video — confirm with Local Lead), team names. |
 

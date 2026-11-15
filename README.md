@@ -10,7 +10,8 @@ farmer's judgement; it does not replace it.
 
 - **Live site (English / Uzbek):** https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/
 - **App (web + Telegram Mini App):** https://davlatshoh-bakhtiyorov.github.io/ulugbekcrewnasa/web/ · Telegram bot: https://t.me/ulugbekcrewbot
-- **Demo deck (7 slides, PDF):** `docs/demo/Neyra-en.pdf` · stage version in Uzbek: `docs/demo/Neyra-uz.pdf`
+- **Demo deck (7 slides, PDF):** `docs/demo/Neyra-pitch-en.pdf` · earlier light decks: `Neyra-en.pdf`, `Neyra-uz.pdf` (Uzbek)
+- **Telegram bot:** `bot/bot.js` — `/start` opens the Mini App; a shared location opens it at that field (`npm run bot`)
 - **Submission text:** `docs/SUBMISSION.md`
 
 ## Why

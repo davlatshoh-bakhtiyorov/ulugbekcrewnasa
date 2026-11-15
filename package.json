@@ -15,6 +15,7 @@
     "mcd12q2:region": "node scripts/fetch-mcd12q2-region.js",
     "market-window": "node scripts/market-window.js",
     "field-ndvi": "node scripts/field-ndvi.js",
-    "harvest": "node scripts/harvest-timing.js"
+    "harvest": "node scripts/harvest-timing.js",
+    "bot": "node --env-file=.env bot/bot.js"
   }
 }

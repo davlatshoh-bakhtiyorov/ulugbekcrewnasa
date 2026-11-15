@@ -534,6 +534,12 @@ function start() {
   };
   initMap();
   render();
+  // Bot lokatsiya yuborganda (?lat=..&lon=..) yoki t.me/.../app?startapp=lat_lon havolasi bilan ochilsa - dala tayyor
+  const q = new URLSearchParams(location.search);
+  const sp = window.Telegram?.WebApp?.initDataUnsafe?.start_param;
+  const [la, lo] = q.has('lat') && q.has('lon') ? [q.get('lat'), q.get('lon')] : (typeof sp === 'string' && sp.includes('_') ? sp.split('_') : []);
+  const lat = Number(la), lon = Number(lo);
+  if (Number.isFinite(lat) && Number.isFinite(lon) && Math.abs(lat) <= 90 && Math.abs(lon) <= 180 && la !== undefined) setPoint(lat, lon);
 }
 
 start();
